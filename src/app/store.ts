@@ -14,4 +14,4 @@
 // unknown,
 // Action<string>
 // >;
-export { };
+export {};
