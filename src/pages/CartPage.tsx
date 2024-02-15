@@ -1,6 +1,3 @@
 export const CartPage = () => {
-  return (
-    <>
-    </>
-  );
+  return <></>;
 };

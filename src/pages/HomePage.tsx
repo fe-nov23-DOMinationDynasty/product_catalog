@@ -1,6 +1,3 @@
 export const HomePage = () => {
-  return (
-    <>
-    </>
-  );
+  return <></>;
 };

@@ -1,6 +1,3 @@
 export const ItemCardPage = () => {
-  return (
-    <>
-    </>
-  );
+  return <></>;
 };

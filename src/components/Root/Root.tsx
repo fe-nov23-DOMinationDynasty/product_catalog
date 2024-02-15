@@ -8,13 +8,15 @@ import { CartPage } from '../../pages/CartPage';
 
 export const Root = () => (
   <Routes>
-    <Route path='/' element={<App />}>
+    <Route path="/" element={<App />}>
       <Route index element={<HomePage />} />
-      <Route path='home' element={<Navigate to='../' />} />
-      <Route path='catalog' element={<CatalogPage />} />
-      <Route path='favourites' element={<FavouritesPage />} />
-      <Route path=':item-slug' element={<ItemCardPage />} />
-      <Route path='cart' element={<CartPage />} />
+      <Route path="home" element={<Navigate to="../" />} />
+      <Route path="catalog" element={<CatalogPage />} />
+      <Route path="favourites" element={<FavouritesPage />} />
+      <Route path="items">
+        <Route path=':item-slug' element={<ItemCardPage />} />
+      </Route>
+      <Route path="cart" element={<CartPage />} />
     </Route>
   </Routes>
 );
