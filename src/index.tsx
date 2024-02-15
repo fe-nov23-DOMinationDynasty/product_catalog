@@ -1,9 +1,9 @@
-import { createRoot } from "react-dom/client";
-import reportWebVitals from "./reportWebVitals";
-import "./index.scss";
-import { Root } from "./Root";
+import { createRoot } from 'react-dom/client';
+import reportWebVitals from './reportWebVitals';
+import './index.scss';
+import { Root } from './Root';
 
-const container = document.getElementById("root") as HTMLElement;
+const container = document.getElementById('root') as HTMLElement;
 const root = createRoot(container);
 
 root.render(<Root />);
