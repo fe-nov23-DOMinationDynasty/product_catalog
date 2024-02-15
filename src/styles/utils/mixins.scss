@@ -1,0 +1,29 @@
+@mixin onTablet {
+  @media (min-width: $min-tablet-width) {
+    @content;
+  }
+}
+
+@mixin onDesktop {
+  @media (min-width: $min-desktop-width) {
+    @content;
+  }
+}
+
+@mixin pageGrid {
+  --columns: 4;
+
+  display: grid;
+  box-sizing: border-box;
+
+  column-gap: 16px;
+  grid-template-columns: repeat(var(--columns), 1fr);
+
+  @include onTablet {
+    --columns: 12;
+  }
+
+  @include onDesktop {
+    --columns: 24;
+  }
+}
