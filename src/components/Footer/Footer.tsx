@@ -24,9 +24,7 @@ export const Footer: React.FC = () => (
       </div>
 
       <Link to="/" className="footer__go-top">
-        <p className="footer__go-top-text">
-          Back to top
-        </p>
+        <p className="footer__go-top-text">Back to top</p>
         <div className="footer__go-top-logo-wrap">
           <img
             className="footer__go-top-logo"
