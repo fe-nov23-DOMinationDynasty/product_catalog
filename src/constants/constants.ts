@@ -1,1 +1,1 @@
-export const JAJAJA = 123;
+export const mock = 123;

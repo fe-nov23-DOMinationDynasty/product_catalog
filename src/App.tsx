@@ -1,5 +1,9 @@
-import { CardPhone } from "./components/CardPhone";
+import { Outlet } from 'react-router-dom';
 
-export const App = () => (
-  <CardPhone />
-);
+export const App = () => {
+  return (
+    <>
+      <Outlet />
+    </>
+  );
+};

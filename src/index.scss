@@ -1,1 +1,25 @@
-/* stylelint-disable-next-line no-empty-source */
+@import './styles/utils/fonts';
+@import './styles/utils/variables';
+@import './styles/utils/mixins';
+@import './styles/utils/normalize';
+@import './styles/wrapper';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+iframe {
+  display: none;
+}
+
+body {
+  @include defaultFont;
+}
+
+p {
+  color: $primary-color;
+  font-size: 14px;
+}
+
+a {
+  color: $secondary-color;
+}
