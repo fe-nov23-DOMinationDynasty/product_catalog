@@ -3,5 +3,6 @@ module.exports = {
   rules: {
     'scss/at-mixin-pattern': null,
     'scss/dollar-variable-empty-line-before': null,
+    'scss/at-rule-no-unknown': null,
   },
 };

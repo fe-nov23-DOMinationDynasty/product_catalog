@@ -1,13 +1,31 @@
+@import './variables';
+
 @mixin onTablet {
   @media (min-width: $min-tablet-width) {
     @content;
   }
 }
 
+@mixin defaultFont {
+  font-family: Mont, Arial, Helvetica, sans-serif;
+  color: $primary-color;
+  font-size: 14px;
+  font-weight: normal;
+}
+
 @mixin onDesktop {
   @media (min-width: $min-desktop-width) {
     @content;
   }
+}
+
+@mixin withButtonBorder {
+  border: 1px solid $icons-color;
+}
+
+@mixin withButtonSize {
+  height: 32px;
+  width: 32px;
 }
 
 @mixin pageGrid {
