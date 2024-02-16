@@ -10,7 +10,8 @@
   font-family: Mont, Arial, Helvetica, sans-serif;
   color: $primary-color;
   font-size: 14px;
-  font-weight: normal;
+  line-height: 21px;
+  letter-spacing: 0;
 }
 
 @mixin onDesktop {

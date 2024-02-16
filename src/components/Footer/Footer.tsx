@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './footer.scss';
 
 export const Footer: React.FC = () => (
   <footer className="footer">
@@ -10,7 +11,11 @@ export const Footer: React.FC = () => (
       </a>
 
       <div className="footer__links">
-        <a href="#" className="footer__link">
+        <a
+          href="https://github.com/fe-nov23-DOMinationDynasty/product_catalog"
+          className="footer__link"
+          target="_blank"
+          rel="noreferrer">
           Github
         </a>
 
