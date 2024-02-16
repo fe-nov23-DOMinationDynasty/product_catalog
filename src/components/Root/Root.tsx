@@ -11,7 +11,11 @@ export const Root = () => (
     <Route path="/" element={<App />}>
       <Route index element={<HomePage />} />
       <Route path="home" element={<Navigate to="../" />} />
-      <Route path="catalog" element={<CatalogPage />} />
+      <Route path="catalog">
+        <Route path="page">
+          <Route path=":currentPageNumber" element={<CatalogPage />} />
+        </Route>
+      </Route>
       <Route path="favourites" element={<FavouritesPage />} />
       <Route path="items">
         <Route path=":item-slug" element={<ItemCardPage />} />

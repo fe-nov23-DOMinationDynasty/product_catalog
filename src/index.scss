@@ -1,1 +1,12 @@
-/* stylelint-disable-next-line no-empty-source */
+@import './styles/utils/fonts';
+@import './styles/utils/variables';
+@import './styles/utils/mixins';
+@import './styles/utils/normalize';
+@import './styles/wrapper';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @include defaultFont;
+}
