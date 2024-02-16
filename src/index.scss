@@ -1,21 +1,21 @@
-@import './styles/utils/normalize';
-@import './styles/utils/variables';
 @import './styles/utils/fonts';
+@import './styles/utils/variables';
 @import './styles/utils/mixins';
+@import './styles/utils/normalize';
+@import './styles/wrapper';
+
 @import './components/Footer/footer';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 iframe {
   display: none;
 }
 
-html,
 body {
-  box-sizing: border-box;
-  height: 100%;
-  padding: 0;
-  margin: 0;
-
-  font-family: Mont, Arial, Helvetica, sans-serif;
+  @include defaultFont;
 }
 
 p {
