@@ -1,7 +1,6 @@
 import classNames from 'classnames';
 import { NavLink } from 'react-router-dom';
 
-import '../../constants/constants.scss';
 import './header.scss';
 
 import { IconLogo } from '../IconLogo';
@@ -15,7 +14,7 @@ export const Header = () => (
         <ul className="nav_list">
           <li className="list_item">
             <NavLink
-              to="#/"
+              to="/"
               className={({ isActive }) =>
                 classNames('nav_link', { ' is-active': isActive })
               }>
@@ -23,17 +22,17 @@ export const Header = () => (
             </NavLink>
           </li>
           <li className="list_item">
-            <NavLink to="#/" className="nav_link">
+            <NavLink to="phones/catalog/page/1" className="nav_link">
               Phones
             </NavLink>
           </li>
           <li className="list_item">
-            <NavLink to="#/" className="nav_link">
+            <NavLink to="tablets/catalog/page/1" className="nav_link">
               Tablets
             </NavLink>
           </li>
           <li className="list_item">
-            <NavLink to="#/" className="nav_link">
+            <NavLink to="accessories/catalog/page/1" className="nav_link">
               Accessories
             </NavLink>
           </li>
