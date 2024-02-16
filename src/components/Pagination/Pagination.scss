@@ -1,0 +1,32 @@
+@import '../../styles/utils/mixins';
+
+.pagination {
+  display: flex;
+
+  &__list {
+    display: flex;
+  }
+
+  &__item {
+    display: flex;
+    box-sizing: border-box;
+    margin-inline: 4px;
+    justify-content: center;
+    align-items: center;
+
+    @include defaultFont;
+
+    &--selected {
+      color: white;
+      background-color: $primary-color;
+    }
+  }
+
+  &__arrow-left {
+    margin-right: 12px;
+  }
+
+  &__arrow-right {
+    margin-left: 12px;
+  }
+}

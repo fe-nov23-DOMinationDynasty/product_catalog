@@ -2,6 +2,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import './footer.scss';
+
 export const Footer: React.FC = () => (
   <footer className="footer">
     <div className="footer__wrapper">
@@ -24,9 +26,7 @@ export const Footer: React.FC = () => (
       </div>
 
       <Link to="/" className="footer__go-top">
-        <p className="footer__go-top-text">
-          Back to top
-        </p>
+        <p className="footer__go-top-text">Back to top</p>
         <div className="footer__go-top-logo-wrap">
           <img
             className="footer__go-top-logo"

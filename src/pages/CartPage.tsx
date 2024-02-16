@@ -1,11 +1,14 @@
 import { CartItem } from '../components/CartItem';
+// import { Footer } from '../components/Footer';
+
+import '../styles/wrapper.scss';
 
 export const CartPage = () => {
   return (
     <div className="wrapper">
-      <h1 className="cart__title">Cart</h1>
-
       <CartItem />
+
+      {/* <Footer /> */}
     </div>
   );
 };
