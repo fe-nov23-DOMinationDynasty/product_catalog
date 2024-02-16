@@ -1,1 +1,1 @@
-export const test = 'abc';
+export const mock = 123;
