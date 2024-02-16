@@ -1,14 +1,14 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable jsx-a11y/control-has-associated-label */
-/* eslint-disable max-len */
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export const Footer: React.FC = () => (
   <footer className="footer">
     <div className="footer__wrapper">
       <a href="#" className="footer__logo">
-        <img src="./imgs/Logo.png" alt="" />
+        <img src="./logos/logo.png" alt="logo" />
       </a>
+
       <div className="footer__links">
         <a href="#" className="footer__link">
           Github
@@ -22,14 +22,19 @@ export const Footer: React.FC = () => (
           Rights
         </a>
       </div>
-      <a href="#" className="footer__go-top">
-        <p className="footer__go-top-text" />
-        <img
-          className="footer__go-top-logo"
-          src="./imgs/go-top.svg"
-          alt="go-top"
-        />
-      </a>
+
+      <Link to="/" className="footer__go-top">
+        <p className="footer__go-top-text">
+          Back to top
+        </p>
+        <div className="footer__go-top-logo-wrap">
+          <img
+            className="footer__go-top-logo"
+            src="./icons/go-top.svg"
+            alt="go-top"
+          />
+        </div>
+      </Link>
     </div>
   </footer>
 );
