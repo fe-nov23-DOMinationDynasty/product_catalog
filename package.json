@@ -10,7 +10,7 @@
     "lint-css": "mate-scripts lint -s",
     "lint": "npm run lint-js && npm run lint-css",
     "preview": "vite preview",
-    "deploy": "mate-scripts deploy",
+    "deploy": "npm run build && mate-scripts deploy",
     "format": "prettier . -ignore-path .gitignore --write",
     "prepare": "husky"
   },
