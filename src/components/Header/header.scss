@@ -98,7 +98,7 @@
   color: $primary-color;
 }
 
-.buttons_block {
+.header__buttons-block {
   display: none;
 
   @include onTablet {
@@ -106,17 +106,16 @@
   }
 }
 
-.button {
+.header__button {
   @include onTablet {
+    box-sizing: border-box;
+    border-left: 1px solid $elements-color;
+    display: flex;
+    align-items: center;
     padding: 16px;
   }
 
   @include onDesktop {
     padding: 24px;
   }
-}
-
-.button_link {
-  display: flex;
-  align-items: center;
 }

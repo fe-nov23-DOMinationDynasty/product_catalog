@@ -40,12 +40,12 @@ export const Header = () => (
         </ul>
       </div>
 
-      <div className="buttons_block">
-        <a href="#/" className="button button_link">
+      <div className="header__buttons-block">
+        <a href="#/" className="header__button header__button-link">
           <img src="./logos/favourites.svg" alt="logoFavourite" />
         </a>
 
-        <a href="#/" className="button button_link">
+        <a href="#/" className="header__button header__button-link">
           <img src="./logos/shopping-bag.svg" alt="logoShoppingBag" />
         </a>
       </div>
