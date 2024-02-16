@@ -1,1 +1,5 @@
-export const App = () => <div>a</div>;
+import { CardPhone } from "./components/CardPhone";
+
+export const App = () => (
+  <CardPhone />
+);
