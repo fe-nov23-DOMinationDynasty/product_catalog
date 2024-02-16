@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
 import React from 'react';
 import './cardphone.scss';
 
@@ -17,34 +18,28 @@ export const CardPhone: React.FC = () => {
       <p className="card__price-value">$999</p>
 
       <div className="card__params">
-        <div className="card__param-pair">
-          <p className="card__params-info">Screen</p>
-          <p className="card__params-value">6.1” OLED</p>
-        </div>
+        <p className="card__param-pair">
+          <span className="card__params-info">Screen</span>
+          <span className="card__params-value">6.1” OLED</span>
+        </p>
 
-        <div className="card__param-pair">
-          <p className="card__params-info">Capacity</p>
-          <p className="card__params-value">128 GB</p>
-        </div>
+        <p className="card__param-pair">
+          <span className="card__params-info">Capacity</span>
+          <span className="card__params-value">128 GB</span>
+        </p>
 
-        <div className="card__param-pair">
-          <p className="card__params-info">RAM</p>
-          <p className="card__params-value">6 GB</p>
-        </div>
+        <p className="card__param-pair">
+          <span className="card__params-info">RAM</span>
+          <span className="card__params-value">6 GB</span>
+        </p>
       </div>
 
-      <div className="card__buttons">
-        <a href="#addToCart" className="card__buttons-add">
+      <div className="card__button">
+        <button type="button" className="button button--add">
           Add to cart
-        </a>
+        </button>
 
-        <a href="#favourite" className="card__buttons-favourite">
-          <img
-            src="./icons/buttons/icon-add-favourites.png"
-            alt="icon-favourite"
-            className="card__icon-favourite"
-          />
-        </a>
+        <button type="button" className="button button--favourite" />
       </div>
     </article>
   );

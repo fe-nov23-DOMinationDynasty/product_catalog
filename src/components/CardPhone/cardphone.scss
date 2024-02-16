@@ -53,35 +53,10 @@
     margin: 0;
   }
 
-  &__buttons {
+  &__button {
     display: flex;
     gap: 8px;
     align-items: center;
     justify-content: space-between;
-  }
-
-  &__buttons-add {
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    width: 160px;
-    height: 40px;
-
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 14px;
-    background-color: #313237;
-    color: white;
-
-    transition:
-      background-color 0.3s ease,
-      color 0.3s ease;
-
-    &:hover {
-      background-color: lightgrey;
-      color: black;
-    }
   }
 }
