@@ -1,7 +1,7 @@
-import { CartItem } from '../components/CartItem';
+import { CartItem } from '../../components/CartItem';
 // import { Footer } from '../components/Footer';
 
-import '../styles/wrapper.scss';
+import '../../styles/blocks/wrapper.scss';
 
 export const CartPage = () => {
   return (
