@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './footer.scss';
 
+
 export const Footer: React.FC = () => (
   <footer className="footer">
     <div className="footer__wrapper">
