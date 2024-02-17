@@ -5,14 +5,16 @@
   left: 0;
   bottom: 0;
   width: 100%;
+
+  padding-block: 32px;
+
+  border-top: solid 1px $elements-color;
   font-size: 12px;
 
   &__wrapper {
     @include pageGrid;
 
     row-gap: 32px;
-
-    margin: 32px 16px;
 
     @include onTablet {
       display: flex;
@@ -58,18 +60,5 @@
   &__go-top-text {
     color: $secondary-color;
     font-weight: 700;
-  }
-
-  &__go-top-logo-wrap {
-    color: $secondary-color;
-    display: flex;
-    align-items: center;
-    border: solid 1px $icons-color;
-    padding: 8px;
-  }
-
-  &__go-top-logo {
-    box-sizing: border-box;
-    margin: 8px;
   }
 }

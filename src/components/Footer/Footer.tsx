@@ -1,44 +1,47 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { LogoLink } from '../LogoLink';
 import './footer.scss';
+import '../../styles/blocks/container.scss';
+import '../../styles/blocks/button.scss';
 
+export const Footer: React.FC = () => {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  };
 
-export const Footer: React.FC = () => (
-  <footer className="footer">
-    <div className="footer__wrapper">
-      <a href="#" className="footer__logo">
-        <img src="./logos/logo.png" alt="logo" />
-      </a>
+  return (
+    <footer className="footer">
+      <div className="footer__wrapper container">
+        <LogoLink />
 
-      <div className="footer__links">
-        <a
-          href="https://github.com/fe-nov23-DOMinationDynasty/product_catalog"
-          className="footer__link"
-          target="_blank"
-          rel="noreferrer">
-          Github
-        </a>
+        <div className="footer__links">
+          <a
+            href="https://github.com/fe-nov23-DOMinationDynasty/product_catalog"
+            className="footer__link"
+            target="_blank"
+            rel="noreferrer">
+            Github
+          </a>
 
-        <a href="#" className="footer__link">
-          Contacts
-        </a>
+          <a href="#" className="footer__link">
+            Contacts
+          </a>
 
-        <a href="#" className="footer__link">
-          Rights
-        </a>
-      </div>
-
-      <Link to="/" className="footer__go-top">
-        <p className="footer__go-top-text">Back to top</p>
-        <div className="footer__go-top-logo-wrap">
-          <img
-            className="footer__go-top-logo"
-            src="./icons/go-top.svg"
-            alt="go-top"
-          />
+          <a href="#" className="footer__link">
+            Rights
+          </a>
         </div>
-      </Link>
-    </div>
-  </footer>
-);
+
+        <button
+          type="button"
+          className="footer__go-top"
+          onClick={scrollToTop}
+        >
+          <span className="footer__go-top-text">Back to top</span>
+          <div className="button button--top" />
+        </button>
+      </div>
+    </footer>
+  );
+};

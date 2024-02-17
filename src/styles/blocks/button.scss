@@ -45,6 +45,10 @@
     background-image: url(./public/icons/plus.svg);
   }
 
+  &--top {
+    background-image: url(./public/icons/go-top.svg);
+  }
+
   &:hover {
     border: 1px solid $primary-color;
   }
