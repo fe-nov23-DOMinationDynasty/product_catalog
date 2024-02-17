@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { Pagination } from '../components/Pagination';
+import { Pagination } from '../../components/Pagination';
 
 export const CatalogPage = () => {
   const { currentPageNumber } = useParams();
