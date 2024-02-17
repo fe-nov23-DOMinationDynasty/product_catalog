@@ -1,8 +1,11 @@
 @import './styles/utils/fonts';
 @import './styles/utils/variables';
+@import './styles/utils/text-styles';
 @import './styles/utils/mixins';
 @import './styles/utils/normalize';
-@import './styles/wrapper';
+@import './styles/blocks/wrapper';
+@import './styles/blocks/button';
+@import './styles/blocks/container';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

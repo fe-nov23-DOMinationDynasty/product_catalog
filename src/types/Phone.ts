@@ -1,4 +1,4 @@
-export type Phone = {
+export interface Phone {
   id: string;
   namespaceId: string;
   name: string;
@@ -20,4 +20,4 @@ export type Phone = {
   camera: string;
   zoom: string;
   cell: string[];
-};
+}

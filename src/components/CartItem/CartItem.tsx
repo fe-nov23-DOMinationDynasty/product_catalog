@@ -1,9 +1,16 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
+import './cartItem.scss';
+
 export const CartItem = () => {
   return (
-    <div className="cart-item">
+    <article className="cart-item">
       <div className="cart-item__info">
         <button type="button" className="cart-item__delete">
-          <img src=".icons/close.svg" alt="close-icon" />
+          <img
+            src="./icons/close.svg"
+            className="cart-item__delete-icon"
+            alt="close-icon"
+          />
         </button>
 
         <img
@@ -18,20 +25,19 @@ export const CartItem = () => {
       </div>
 
       <div className="cart-item__cost">
-        <div className="cart-item__count">
-          <button type="button" className="button__remove">
-            -
-          </button>
+        <div className="cart-item__counter">
+          <button
+            type="button"
+            className="button button--minus--disabled button--minus"
+          />
 
-          <p className="count">1</p>
+          <p className="cart-item__count">1</p>
 
-          <button type="button" className="button__add">
-            +
-          </button>
+          <button type="button" className="button button--plus" />
         </div>
 
         <p className="cart-item__price">$999</p>
       </div>
-    </div>
+    </article>
   );
 };
