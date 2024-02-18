@@ -3,6 +3,7 @@ import React from 'react';
 import { LogoLink } from '../LogoLink';
 import './footer.scss';
 import '../../styles/blocks/button.scss';
+import '../../styles/utils/text-styles.scss';
 
 export const Footer: React.FC = () => {
   const scrollToTop = () => {
@@ -14,7 +15,7 @@ export const Footer: React.FC = () => {
       <div className="footer__wrapper container">
         <LogoLink />
 
-        <div className="footer__links">
+        <div className="footer__links uppercase">
           <a
             href="https://github.com/fe-nov23-DOMinationDynasty/product_catalog"
             className="footer__link"
@@ -38,7 +39,7 @@ export const Footer: React.FC = () => {
           onClick={scrollToTop}
         >
           <span className="footer__go-top-text">Back to top</span>
-          <div className="button button--top" />
+          <i className="button button--top" />
         </button>
       </div>
     </footer>
