@@ -2,7 +2,6 @@
 import React from 'react';
 import { LogoLink } from '../LogoLink';
 import './footer.scss';
-import '../../styles/blocks/container.scss';
 import '../../styles/blocks/button.scss';
 
 export const Footer: React.FC = () => {

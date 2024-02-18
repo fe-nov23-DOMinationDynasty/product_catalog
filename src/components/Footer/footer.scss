@@ -1,15 +1,12 @@
 @import '../../styles/utils/mixins';
 
 .footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
   width: 100%;
 
   padding-block: 32px;
 
   border-top: solid 1px $elements-color;
-  font-size: 12px;
+  background-color: #fff;
 
   &__wrapper {
     @include pageGrid;
@@ -43,6 +40,7 @@
   }
 
   &__link {
+    font-size: 12px;
     font-weight: 800;
     line-height: 11px;
     text-transform: uppercase;
