@@ -1,0 +1,16 @@
+@import '../../styles/utils/mixins';
+
+.logo {
+  display: flex;
+  align-items: center;
+
+  &__img {
+    width: 64px;
+    height: 22px;
+
+    @include onDesktop {
+      width: 80px;
+      height: 28px;
+    }
+  }
+}
