@@ -6,12 +6,12 @@ import './styles/blocks/container.scss';
 
 export const App = () => {
   return (
-    <div className="main-wrapper">
+    <div className="app-wrapper">
       <Header />
 
-      <section className="container">
+      <div className="container">
         <Outlet />
-      </section>
+      </div>
 
       <Footer />
     </div>
