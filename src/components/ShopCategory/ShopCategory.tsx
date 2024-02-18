@@ -10,7 +10,7 @@ export const ShopCategory:React.FC = () => {
           <img
             src="../../img/category-phones.png"
             alt="categoty-phone"
-            className="product__photo"
+            className="product__photo product__photo--phones"
           />
           <h3 className="product__title">
             Mobile phones
@@ -24,7 +24,7 @@ export const ShopCategory:React.FC = () => {
           <img
             src="../../img/category-tablets.png"
             alt="categoty-tablet"
-            className="product__photo"
+            className="product__photo product__photo--tablets"
           />
           <h3 className="product__title">
             Tablets
@@ -38,7 +38,7 @@ export const ShopCategory:React.FC = () => {
           <img
             src="../../img/category-accessories.png"
             alt="categoty-tablet"
-            className="product__photo"
+            className="product__photo product__photo--accessories"
           />
           <h3 className="product__title">
             Accessories
