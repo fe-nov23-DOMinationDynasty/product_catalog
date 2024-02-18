@@ -53,4 +53,35 @@
     pointer-events: none;
     border: 1px solid $elements-color;
   }
+
+  &--add {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 160px;
+    height: 40px;
+
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+    background-color: #313237;
+    color: white;
+
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+
+    &:hover {
+      background-color: lightgrey;
+      color: black;
+    }
+  }
+
+  &--favourite {
+    width: 40px;
+    height: 40px;
+    background-image: url('./icons/buttons/icon-favourites.svg');
+  }
 }
