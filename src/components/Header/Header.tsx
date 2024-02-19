@@ -32,7 +32,7 @@ export const Header = () => {
               </li>
               <li className="list_item">
                 <NavLink
-                  to="phones/catalog/page/1"
+                  to="catalog/phones"
                   className={({ isActive }) =>
                     classNames('nav_link', { ' is-active': isActive })
                   }
@@ -43,7 +43,7 @@ export const Header = () => {
               <li className="list_item"
               >
                 <NavLink
-                  to="tablets/catalog/page/1"
+                  to="catalog/tablets"
                   className={({ isActive }) =>
                     classNames('nav_link', { ' is-active': isActive })
                   }
@@ -54,7 +54,7 @@ export const Header = () => {
               <li className="list_item"
               >
                 <NavLink
-                  to="accessories/catalog/page/1"
+                  to="catalog/accessories"
                   className={({ isActive }) =>
                     classNames('nav_link', { ' is-active': isActive })
                   }
@@ -66,11 +66,11 @@ export const Header = () => {
           </div>
 
           <div className="header__buttons-block">
-            <NavLink to="/src/pages/FavouritesPage" className="header__button">
+            <NavLink to="favourites" className="header__button">
               <img src="./logos/favourites.svg" alt="logoFavourite" />
             </NavLink>
 
-            <NavLink to="/src/pages/CartPage" className="header__button">
+            <NavLink to="cart" className="header__button">
               <img src="./logos/shopping-bag.svg" alt="logoShoppingBag" />
             </NavLink>
           </div>

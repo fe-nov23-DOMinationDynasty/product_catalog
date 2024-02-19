@@ -46,9 +46,9 @@ export const BurgerMenu: React.FC<Props> = ({ setCloseBurger }) => {
           </li>
           <li className="burger__list__item">
             <NavLink
-              to="phones/catalog/page/1"
+              to="catalog/phones"
               onClick={() => {
-                setCurrentURL('phones/catalog/page/1');
+                setCurrentURL('catalog/phones');
               }}
               className={({ isActive }) =>
                 classNames('burger__nav__link',
@@ -60,9 +60,9 @@ export const BurgerMenu: React.FC<Props> = ({ setCloseBurger }) => {
           </li>
           <li className="burger__list__item">
             <NavLink
-              to="tablets/catalog/page/1"
+              to="catalog/tablets"
               onClick={() => {
-                setCurrentURL('tablets/catalog/page/1');
+                setCurrentURL('catalog/tablets');
               }}
               className={({ isActive }) =>
                 classNames('burger__nav__link',
@@ -74,9 +74,9 @@ export const BurgerMenu: React.FC<Props> = ({ setCloseBurger }) => {
           </li>
           <li className="burger__list__item">
             <NavLink
-              to="accessories/catalog/page/1"
+              to="catalog/accessories"
               onClick={() => {
-                setCurrentURL('accessories/catalog/page/1');
+                setCurrentURL('catalog/accessories');
               }}
               className={({ isActive }) =>
                 classNames('burger__nav__link',
@@ -89,11 +89,11 @@ export const BurgerMenu: React.FC<Props> = ({ setCloseBurger }) => {
         </ul>
 
         <div className="burger__buttons">
-          <NavLink to="/src/pages/FavouritesPage" className="burger__button">
+          <NavLink to="favourites" className="burger__button">
             <img src="./logos/favourites.svg" alt="logoFavourite" />
           </NavLink>
 
-          <NavLink to="/src/pages/CartPage" className="burger__button">
+          <NavLink to="cart" className="burger__button">
             <img src="./logos/shopping-bag.svg" alt="logoShoppingBag" />
           </NavLink>
         </div>
