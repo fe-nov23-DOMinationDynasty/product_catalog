@@ -9,7 +9,7 @@ export const ShopCategory:React.FC = () => {
         <article className="product shop__product">
           <div className="product__photo-container">
             <img
-              src="../../img/category-phones.png"
+              src="../../public/img/category-phones.png"
               alt="categoty-phone"
               className="product__photo product__photo--phones"
             />

@@ -3,13 +3,13 @@ import { NavLink } from 'react-router-dom';
 
 import './header.scss';
 
-import { IconLogo } from '../IconLogo';
+import { LogoLink } from '../LogoLink';
 
 export const Header = () => (
   <header className="header">
     <nav className="nav">
       <div className="nav_menu_start">
-        <IconLogo />
+        <LogoLink />
 
         <ul className="nav_list">
           <li className="list_item">
@@ -22,17 +22,17 @@ export const Header = () => (
             </NavLink>
           </li>
           <li className="list_item">
-            <NavLink to="phones/catalog/page/1" className="nav_link">
+            <NavLink to="catalog/phones" className="nav_link">
               Phones
             </NavLink>
           </li>
           <li className="list_item">
-            <NavLink to="tablets/catalog/page/1" className="nav_link">
+            <NavLink to="catalog/tablets" className="nav_link">
               Tablets
             </NavLink>
           </li>
           <li className="list_item">
-            <NavLink to="accessories/catalog/page/1" className="nav_link">
+            <NavLink to="catalog/accessories" className="nav_link">
               Accessories
             </NavLink>
           </li>
