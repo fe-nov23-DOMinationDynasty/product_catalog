@@ -1,26 +1,50 @@
-// import { CategoriesFilter } from '../../components/CategoriesFilter';
-// import { CustomSwiper } from '../../components/CustomSwiper';
-// import { HomePageSwiper } from '../../components/HomePageSwiper';
-// import { ShopCategory } from '../../components/ShopCategory';
-import { Icon } from '../../components/Icon';
+import { Promo } from '../../types/Promo';
 import './home-page.scss';
+import { PromoSlider } from './src/components/PromoSilder';
+import { tabletWidth } from '../../constants/constants';
+import { useResize } from '../../hooks/useResize';
+
+const promoImagesMobile = [
+  './promos/promo-image-mobile.webp',
+  './promos/promo-image-mobile.webp',
+  './promos/promo-image-mobile.webp',
+];
+const promoImagesTabletAndDesktop = [
+  './promos/promo-image-tablet-desktop.webp',
+  './promos/promo-image-tablet-desktop.webp',
+  './promos/promo-image-tablet-desktop.webp',
+];
+
+const promosTabletAndDesktop: Promo[] = promoImagesTabletAndDesktop.map(
+  (image) => ({
+    image,
+    link: 'https://www.apple.com',
+  })
+);
+
+const promosMobile: Promo[] = promoImagesMobile.map((image) => ({
+  image,
+  link: 'https://www.apple.com',
+}));
 
 export const HomePage = () => {
+  const [windowWidth] = useResize();
+
   return (
     <section className="home-page">
       {/* <h1 className="h1">Welcome to Nice Gadgets store!</h1> */}
 
-      {/* <HomePageSwiper />
+      <PromoSlider
+        promos={
+          windowWidth >= tabletWidth ? promosTabletAndDesktop : promosMobile
+        }
+      />
 
-        <CustomSwiper title="Brand new models" items={null} />
+      {/* <CustomSwiper title="Brand new models" items={null} />
 
         <CategoriesFilter />
 
         <CustomSwiper title="Hot prices" items={null} /> */}
-
-      {/* <ShopCategory /> */}
-      <Icon pathImage='/logos/shopping-bag.svg' counter={12}/>
-      <Icon pathImage='/logos/favourites.svg' counter={66}/>
     </section>
   );
 };

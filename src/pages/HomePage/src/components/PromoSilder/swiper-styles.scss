@@ -1,0 +1,38 @@
+@import '../../../../../styles//utils/variables';
+@import '../../../../../styles//utils/mixins';
+
+.swiper {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+
+  @include onTablet {
+    position: static;
+  }
+}
+
+.swiper-slide {
+  text-align: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+.swiper-pagination-bullet {
+  width: 14px;
+  height: 4px;
+  border-radius: 0;
+  color: $elements-color;
+}
+
+.swiper-pagination-bullet-active {
+  background: $primary-color;
+}
