@@ -1,16 +1,14 @@
+@import '../../styles/utils/mixins';
+
 .footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
   width: 100%;
-  font-size: 12px;
+  padding-block: 32px;
+  border-top: solid 1px $elements-color;
 
   &__wrapper {
     @include pageGrid;
 
     row-gap: 32px;
-
-    margin: 32px 16px;
 
     @include onTablet {
       display: flex;
@@ -24,6 +22,7 @@
 
   &__links {
     grid-column: span 4;
+
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -38,36 +37,23 @@
     }
   }
 
-  &__link {
-    font-weight: 800;
-    line-height: 11px;
-    text-transform: uppercase;
+  &__link:hover {
+    color: $primary-color;
   }
 
   &__go-top {
     grid-column: 2 / 4;
-    justify-content: center;
+
     display: flex;
+    justify-content: center;
     column-gap: 16px;
     align-items: center;
+
     font-size: 12px;
   }
 
   &__go-top-text {
     color: $secondary-color;
     font-weight: 700;
-  }
-
-  &__go-top-logo-wrap {
-    color: $secondary-color;
-    display: flex;
-    align-items: center;
-    border: solid 1px $icons-color;
-    padding: 8px;
-  }
-
-  &__go-top-logo {
-    box-sizing: border-box;
-    margin: 8px;
   }
 }

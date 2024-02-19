@@ -1,0 +1,18 @@
+@import '../utils/mixins';
+
+.container {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 1200px;
+
+  padding-inline: 16px;
+
+  @include onTablet {
+    padding-inline: 24px;
+  }
+
+  @include onDesktop {
+    padding-inline: 32px;
+  }
+}

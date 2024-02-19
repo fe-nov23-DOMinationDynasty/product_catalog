@@ -1,50 +1,48 @@
 import classNames from 'classnames';
 import { NavLink } from 'react-router-dom';
 
-import '../../constants/constants.scss';
 import './header.scss';
 
+import { LogoLink } from '../LogoLink';
 import { useState } from 'react';
-import { IconLogo } from '../IconLogo';
 import { BurgerMenu } from '../BurgerMenu';
 
-export const Header = () => {
+
+export const Header = () =>
+(
   const [openBurger, setOpenBurger] = useState(false);
+  <header className="header">
+    <nav className="nav">
+      <div className="nav_menu_start">
+        <LogoLink />
 
-  return (
-    <>
-      <header className="header">
-        <nav className="nav">
-          <div className="nav_menu_start">
-            <IconLogo />
-
-            <ul className="nav_list">
-              <li className="list_item">
-                <NavLink
-                  to="#/"
-                  className={({ isActive }) =>
-                    classNames('nav_link', { ' is-active': isActive })
-                  }>
-                  Home
-                </NavLink>
-              </li>
-              <li className="list_item">
-                <NavLink to="#/" className="nav_link">
-                  Phones
-                </NavLink>
-              </li>
-              <li className="list_item">
-                <NavLink to="#/" className="nav_link">
-                  Tablets
-                </NavLink>
-              </li>
-              <li className="list_item">
-                <NavLink to="#/" className="nav_link">
-                  Accessories
-                </NavLink>
-              </li>
-            </ul>
-          </div>
+        <ul className="nav_list">
+          <li className="list_item">
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                classNames('nav_link', { ' is-active': isActive })
+              }>
+              Home
+            </NavLink>
+          </li>
+          <li className="list_item">
+            <NavLink to="phones/catalog/page/1" className="nav_link">
+              Phones
+            </NavLink>
+          </li>
+          <li className="list_item">
+            <NavLink to="tablets/catalog/page/1" className="nav_link">
+              Tablets
+            </NavLink>
+          </li>
+          <li className="list_item">
+            <NavLink to="accessories/catalog/page/1" className="nav_link">
+              Accessories
+            </NavLink>
+          </li>
+        </ul>
+      </div>
 
           <div className="header__buttons-block">
             <a href="#/" className="header__button">

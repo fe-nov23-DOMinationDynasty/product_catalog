@@ -1,0 +1,7 @@
+@import '../../styles/utils/mixins';
+
+.home-page {
+  @include pageGrid;
+
+  margin-top: 66px;
+}

@@ -1,9 +1,11 @@
 @import './styles/utils/fonts';
 @import './styles/utils/variables';
+@import './styles/utils/text-styles';
 @import './styles/utils/mixins';
 @import './styles/utils/normalize';
-@import './styles/wrapper';
-@import './components/Footer/footer';
+@import './styles/blocks/wrapper';
+@import './styles/blocks/button';
+@import './styles/blocks/container';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -23,4 +25,10 @@ p {
 
 a {
   color: $secondary-color;
+}
+
+.app-wrapper {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
 }
