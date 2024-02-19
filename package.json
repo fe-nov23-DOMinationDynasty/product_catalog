@@ -9,9 +9,10 @@
     "lint-js": "mate-scripts lint -j",
     "lint-css": "mate-scripts lint -s",
     "lint": "npm run lint-js && npm run lint-css",
+    "lint-fix": "eslint . --ignore-path .gitignore --fix",
     "preview": "vite preview",
     "deploy": "npm run build && mate-scripts deploy",
-    "format": "prettier . -ignore-path .gitignore --write",
+    "format": "prettier . --ignore-path .gitignore --write",
     "prepare": "husky"
   },
   "dependencies": {

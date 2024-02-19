@@ -1,1 +1,1 @@
-export const mock = 123;
+export const tabletWidth = 640;
