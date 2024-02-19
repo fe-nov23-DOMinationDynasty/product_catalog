@@ -1,36 +1,41 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React from 'react';
-import './cardphone.scss';
+import './productcard.scss';
+import { Phone } from '../../types/Phone';
 
-export const CardPhone: React.FC = () => {
+type Props = {
+  phone: Phone;
+};
+
+export const ProductCard: React.FC<Props> = ({ phone }) => {
   return (
-    <article className="card">
+    <article className="card" key={phone.id}>
       <img
-        src="../img/phones/apple-iphone-14-pro/spaceblack/00.webp"
+        src={`../${phone.images[0]}`}
         alt="Iphone 14 Midnight"
         className="card__image"
       />
 
       <h2 className="card__title">
-        Apple iPhone 14 Pro 128GB Deep Purple (MQ0G3)
+        {phone.name} (MQ023)
       </h2>
 
-      <p className="card__price-value">$999</p>
+      <p className="card__price-value">${phone.priceDiscount}</p>
 
       <div className="card__params">
         <p className="card__param-pair">
           <span className="card__params-info">Screen</span>
-          <span className="card__params-value">6.1” OLED</span>
+          <span className="card__params-value">{phone.screen}</span>
         </p>
 
         <p className="card__param-pair">
           <span className="card__params-info">Capacity</span>
-          <span className="card__params-value">128 GB</span>
+          <span className="card__params-value">{phone.capacity}</span>
         </p>
 
         <p className="card__param-pair">
           <span className="card__params-info">RAM</span>
-          <span className="card__params-value">6 GB</span>
+          <span className="card__params-value">{phone.ram}</span>
         </p>
       </div>
 
