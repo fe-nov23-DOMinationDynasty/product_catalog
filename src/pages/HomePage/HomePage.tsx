@@ -1,7 +1,8 @@
 // import { CategoriesFilter } from '../../components/CategoriesFilter';
 // import { CustomSwiper } from '../../components/CustomSwiper';
 // import { HomePageSwiper } from '../../components/HomePageSwiper';
-import { ShopCategory } from '../../components/ShopCategory';
+// import { ShopCategory } from '../../components/ShopCategory';
+import { Icon } from '../../components/Icon';
 import './home-page.scss';
 
 export const HomePage = () => {
@@ -17,7 +18,9 @@ export const HomePage = () => {
 
         <CustomSwiper title="Hot prices" items={null} /> */}
 
-      <ShopCategory />
+      {/* <ShopCategory /> */}
+      <Icon pathImage='/logos/shopping-bag.svg' counter={12}/>
+      <Icon pathImage='/logos/favourites.svg' counter={66}/>
     </section>
   );
 };
