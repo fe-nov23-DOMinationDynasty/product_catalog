@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import './shopCategory.scss';
 
 export const ShopCategory: React.FC = () => {

@@ -41,10 +41,10 @@
     background-size: cover;
     background-repeat: no-repeat;
 
-    &--accessories {
-      background-image: url(./img/category-accessories.png);
-      background-color: #ac385e;
-      background-position: left 49px top 77px;
+    &--phones {
+      background-image: url(./img/category-phones.png);
+      background-color: #f5e7cd;
+      background-position: left 49px top 40px;
     }
 
     &--tablets {
@@ -53,10 +53,10 @@
       background-position: left 49px top 67px;
     }
 
-    &--phones {
-      background-image: url(./img/category-phones.png);
-      background-color: #f5e7cd;
-      background-position: left 49px top 40px;
+    &--accessories {
+      background-image: url(./img/category-accessories.png);
+      background-color: #ac385e;
+      background-position: left 49px top 77px;
     }
   }
 }
