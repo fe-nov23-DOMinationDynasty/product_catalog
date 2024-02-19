@@ -13,7 +13,7 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: var(16px);
-  transition: border 0.3s;
+  transition: border $transition-duration;
 
   background-color: $white-color;
 
@@ -58,34 +58,40 @@
     border: 1px solid $elements-color;
   }
 
-  &--add {
+  &-add {
     display: flex;
-
     align-items: center;
     justify-content: center;
 
-    width: 160px;
     height: 40px;
+    width: 160px;
 
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 14px;
     background-color: #313237;
     color: white;
 
     transition:
-      background-color 0.3s ease,
-      color 0.3s ease;
+      color $transition-duration
+      background-color $transition-duration;
 
     &:hover {
-      background-color: lightgrey;
       color: black;
+      background-color: lightgrey;
+    }
+
+    &--selected {
+      color: $green-color;
+      border: 1px solid $elements-color;
+      background-color: $white-color;
     }
   }
 
-  &--favourite {
+  &-favourite {
     width: 40px;
     height: 40px;
     background-image: url('./icons/buttons/icon-favourites.svg');
+
+    &--selected {
+      background-image: url('./icons/buttons/icon-favourites-selected.svg')
+    }
   }
 }

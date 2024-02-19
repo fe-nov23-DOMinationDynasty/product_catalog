@@ -1,9 +1,9 @@
-.card {
+.product-card {
   display: flex;
   flex-direction: column;
-  padding: 32px;
   width: 272px;
   height: 506px;
+  padding: 32px;
 
   box-sizing: border-box;
 
@@ -21,13 +21,13 @@
     font-size: 14px;
   }
 
-  &__price-value {
+  &__price {
     font-size: 22px;
     font-weight: 800px;
     margin-bottom: 16px;
   }
 
-  &__params {
+  &__characteristics {
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -35,25 +35,25 @@
     margin-top: 0;
   }
 
-  &__param-pair {
+  &__characteristic {
     display: flex;
     justify-content: space-between;
     margin: 0;
   }
 
-  &__params-info {
+  &__characteristic-name {
     font-size: 12px;
     font-weight: 600;
     margin: 0;
   }
 
-  &__params-value {
+  &__characteristic-value {
     font-size: 12px;
     font-weight: 600;
     margin: 0;
   }
 
-  &__button {
+  &__buttons {
     display: flex;
     gap: 8px;
     align-items: center;
