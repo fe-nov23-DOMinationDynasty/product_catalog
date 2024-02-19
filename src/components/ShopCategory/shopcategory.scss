@@ -40,6 +40,13 @@
     height: 100%;
     background-size: cover;
     background-repeat: no-repeat;
+    transition: all .5s;
+
+    @include onDesktop {
+      &:hover {
+        filter: blur(1px);
+      }
+    }
 
     &--phones {
       background-image: url(./img/category-phones.png);
