@@ -3,10 +3,10 @@
 .promo-swiper {
   $button-width: 32px;
 
-  --promo-height: 320px;
+  --promo-height: 350px;
 
   @include onTablet {
-    --promo-height: 189px;
+    --promo-height: 270px;
   }
 
   @include onDesktop {

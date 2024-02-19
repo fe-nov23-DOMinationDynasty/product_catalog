@@ -22,6 +22,8 @@
 
 .swiper-slide img {
   display: block;
+  object-fit: cover;
+  object-position: center;
 }
 
 .swiper-pagination-bullet {
