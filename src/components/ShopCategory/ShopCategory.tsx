@@ -1,16 +1,14 @@
 import React from "react";
-import './shopcategory.scss';
+import './shopCategory.scss';
 
-export const ShopCategory:React.FC = () => {
+export const ShopCategory: React.FC = () => {
   return (
     <section className="shop" id="shop">
       <h2 className="section-title h2">Shop by category</h2>
       <div className="shop__by-category">
         <article className="product shop__product">
           <div className="product__photo-container">
-            <img
-              src="../../img/category-phones.png"
-              alt="categoty-phone"
+            <span
               className="product__photo product__photo--phones"
             />
           </div>
@@ -24,11 +22,11 @@ export const ShopCategory:React.FC = () => {
         </article>
 
         <article className="product shop__product">
-          <img
-            src="../../img/category-tablets.png"
-            alt="categoty-tablet"
-            className="product__photo product__photo--tablets"
-          />
+          <div className="product__photo-container">
+            <span
+              className="product__photo product__photo--tablets"
+            />
+          </div>
           <h3 className="product__title">
             Tablets
           </h3>
@@ -38,11 +36,11 @@ export const ShopCategory:React.FC = () => {
         </article>
 
         <article className="product shop__product">
-          <img
-            src="../../img/category-accessories.png"
-            alt="categoty-tablet"
-            className="product__photo product__photo--accessories"
-          />
+          <div className="product__photo-container">
+            <span
+              className="product__photo product__photo--accessories"
+            />
+          </div>
           <h3 className="product__title">
             Accessories
           </h3>
