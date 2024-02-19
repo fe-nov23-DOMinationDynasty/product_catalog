@@ -3,7 +3,7 @@ import { Phone } from '../types/Phone';
 import { request } from '../utils/fetchClient';
 
 export const getAccessries = () => {
-  return request<Product.Accessories[]>(Product.Accessories);
+  return request(Product.Accessories);
 };
 
 export const getPhones = () => {
