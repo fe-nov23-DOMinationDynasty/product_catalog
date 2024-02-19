@@ -1,6 +1,5 @@
 import { BackButton } from '../../components/BackButton';
 import { CartItem } from '../../components/CartItem';
-
 import './cartPage.scss';
 import '../../styles/blocks/button.scss';
 import '../../styles/utils/text-styles.scss';
