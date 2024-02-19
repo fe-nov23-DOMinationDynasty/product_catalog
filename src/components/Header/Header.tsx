@@ -11,6 +11,9 @@ import { BurgerMenu } from '../BurgerMenu';
 export const Header = () => {
   const [openBurger, setOpenBurger] = useState(false);
 
+  const handleNavigationIsActive = ({ isActive }: {isActive: boolean}) =>
+    classNames('nav_link', { ' is-active': isActive });
+
   return (
     <>
       <header className="header">
@@ -24,18 +27,14 @@ export const Header = () => {
               <li className="list_item">
                 <NavLink
                   to="/"
-                  className={({ isActive }) =>
-                    classNames('nav_link', { ' is-active': isActive })
-                  }>
+                  className={handleNavigationIsActive}>
                 Home
                 </NavLink>
               </li>
               <li className="list_item">
                 <NavLink
                   to="catalog/phones"
-                  className={({ isActive }) =>
-                    classNames('nav_link', { ' is-active': isActive })
-                  }
+                  className={handleNavigationIsActive}
                 >
                 Phones
                 </NavLink>
@@ -44,9 +43,7 @@ export const Header = () => {
               >
                 <NavLink
                   to="catalog/tablets"
-                  className={({ isActive }) =>
-                    classNames('nav_link', { ' is-active': isActive })
-                  }
+                  className={handleNavigationIsActive}
                 >
                 Tablets
                 </NavLink>
@@ -55,9 +52,7 @@ export const Header = () => {
               >
                 <NavLink
                   to="catalog/accessories"
-                  className={({ isActive }) =>
-                    classNames('nav_link', { ' is-active': isActive })
-                  }
+                  className={handleNavigationIsActive}
                 >
                 Accessories
                 </NavLink>

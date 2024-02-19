@@ -12,6 +12,10 @@ type Props = {
 export const BurgerMenu: React.FC<Props> = ({ setCloseBurger }) => {
   const [currentURL, setCurrentURL] = useState('');
 
+  const handleBurgerLinkIsActive = ({ isActive }: { isActive: boolean }) =>
+    classNames('burger__nav__link',
+      { 'burger__is--active': isActive });
+
   return (
     <aside id="burgerMenu" className="burger__menu">
       <div className="burger__top">
@@ -37,10 +41,8 @@ export const BurgerMenu: React.FC<Props> = ({ setCloseBurger }) => {
               onClick={() => {
                 setCurrentURL('/');
               }}
-              className={({ isActive }) =>
-                classNames('burger__nav__link',
-                  { 'burger__is--active': isActive })
-              }>
+              className={handleBurgerLinkIsActive}
+            >
               Home
             </NavLink>
           </li>
@@ -50,10 +52,7 @@ export const BurgerMenu: React.FC<Props> = ({ setCloseBurger }) => {
               onClick={() => {
                 setCurrentURL('catalog/phones');
               }}
-              className={({ isActive }) =>
-                classNames('burger__nav__link',
-                  { 'burger__is--active': isActive })
-              }
+              className={handleBurgerLinkIsActive}
             >
               Phones
             </NavLink>
@@ -64,10 +63,7 @@ export const BurgerMenu: React.FC<Props> = ({ setCloseBurger }) => {
               onClick={() => {
                 setCurrentURL('catalog/tablets');
               }}
-              className={({ isActive }) =>
-                classNames('burger__nav__link',
-                  { 'burger__is--active': isActive })
-              }
+              className={handleBurgerLinkIsActive}
             >
               Tablets
             </NavLink>
@@ -78,10 +74,7 @@ export const BurgerMenu: React.FC<Props> = ({ setCloseBurger }) => {
               onClick={() => {
                 setCurrentURL('catalog/accessories');
               }}
-              className={({ isActive }) =>
-                classNames('burger__nav__link',
-                  { 'burger__is--active': isActive })
-              }
+              className={handleBurgerLinkIsActive}
             >
               Accessories
             </NavLink>
