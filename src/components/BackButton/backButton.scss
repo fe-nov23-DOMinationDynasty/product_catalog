@@ -1,0 +1,22 @@
+@import '../../styles/utils/variables';
+
+.back-button {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  transition: color 0.3s;
+
+  color: $secondary-color;
+
+  &:hover {
+    color: $primary-color;
+  }
+
+  &__arrow-left {
+    padding: 8px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url(./icons/arrow-left.svg);
+  }
+}
