@@ -2,7 +2,7 @@ import { Product } from '../enums/Product';
 import { request } from '../utils/fetchClient';
 
 export const getAccessries = () => {
-  return request(Product.Accessories);
+  return request<Product.Accessories[]>(Product.Accessories);
 };
 
 export const getPhones = () => {

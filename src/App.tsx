@@ -7,9 +7,11 @@ export const App = () => {
     <>
       <Header />
 
-      <Outlet />
+      <div className="container">
+        <Outlet />
 
-      <Footer />
+        <Footer />
+      </div>
     </>
   );
 };
