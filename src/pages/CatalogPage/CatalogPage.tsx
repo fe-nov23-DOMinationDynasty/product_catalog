@@ -19,7 +19,7 @@ export const CatalogPage = () => {
 
   useEffect(() => {
     setAmountOfPages( Math.ceil(phones.length / 16));
-  }, []);
+  }, [phones]);
 
   return (
     <>
