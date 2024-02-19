@@ -1,0 +1,34 @@
+@import '../../styles/utils/variables';
+@import '../../styles/utils/mixins';
+
+.back-button {
+  grid-column: span 4;
+
+  @include onTablet {
+    grid-column: span 12;
+  }
+
+  @include onDesktop {
+    grid-column: span 24;
+  }
+
+  display: flex;
+
+  align-items: center;
+  gap: 4px;
+
+  transition: color 0.3s;
+
+  color: $secondary-color;
+
+  &:hover {
+    color: $primary-color;
+  }
+
+  &__arrow-left {
+    padding: 8px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url(./icons/arrow-left.svg);
+  }
+}

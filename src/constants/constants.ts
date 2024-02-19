@@ -3,3 +3,4 @@ export const shownProductCardCharacteristics = [
   'Capacity',
   'RAM',
 ];
+export const tabletWidth = 640;
