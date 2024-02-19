@@ -4,15 +4,13 @@ import { NavLink } from 'react-router-dom';
 import { IconLogo } from '../IconLogo';
 
 type Props = {
-  setCloseBurger: (state: boolean) => void
+  setCloseBurger: (state: boolean) => void;
 };
 
-export const BurgerMenu: React.FC<Props> = ({
-  setCloseBurger
-}) => (
-  <aside id='burgerMenu' className='burger__menu'>
+export const BurgerMenu: React.FC<Props> = ({ setCloseBurger }) => (
+  <aside id="burgerMenu" className="burger__menu">
     <div className="burger__top">
-      <div className='burger__logo'>
+      <div className="burger__logo">
         <IconLogo />
       </div>
 
@@ -21,16 +19,12 @@ export const BurgerMenu: React.FC<Props> = ({
           setCloseBurger(false);
         }}
         href="#/"
-        className="logo_link burger__close"
-      >
-        <img
-          src="./logos/close.svg"
-          alt="layoutLogo"
-        />
+        className="logo_link burger__close">
+        <img src="./logos/close.svg" alt="layoutLogo" />
       </a>
     </div>
 
-    <div className='burger__main'>
+    <div className="burger__main">
       <ul className="burger-nav_list">
         <li className="burger-list_item">
           <NavLink
@@ -38,27 +32,27 @@ export const BurgerMenu: React.FC<Props> = ({
             className={({ isActive }) =>
               classNames('burger-nav_link', { 'burger-is-active': isActive })
             }>
-              Home
+            Home
           </NavLink>
         </li>
         <li className="burger-list_item">
           <NavLink to="#/" className="burger-nav_link">
-              Phones
+            Phones
           </NavLink>
         </li>
         <li className="burger-list_item">
           <NavLink to="#/" className="burger-nav_link">
-              Tablets
+            Tablets
           </NavLink>
         </li>
         <li className="burger-list_item">
           <NavLink to="#/" className="burger-nav_link">
-              Accessories
+            Accessories
           </NavLink>
         </li>
       </ul>
 
-      <div className='burger__buttons'>
+      <div className="burger__buttons">
         <a href="#/" className="burger__button">
           <img src="./logos/favourites.svg" alt="logoFavourite" />
         </a>

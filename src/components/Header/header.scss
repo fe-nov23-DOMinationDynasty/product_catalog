@@ -139,19 +139,15 @@
 
 //  #region Burger
 
-
 .burger__menu {
   position: fixed;
   z-index: 1;
   top: 0;
   right: 0;
   left: 0;
-  // bottom: 0;
   background-color: $white-color;
   height: 100vh;
-
 }
-
 
 .burger__top {
   display: flex;
@@ -159,7 +155,6 @@
   border-bottom: 1px solid $elements-color;
   margin-bottom: 24px;
 }
-
 
 .burger__close {
   box-sizing: border-box;
@@ -173,12 +168,8 @@
 }
 
 .burger-nav_list {
-  margin:0 16px 0 16px;
+  margin: 0 16px;
   text-align: center;
-}
-
-.burger-list_item:not(:last-child) {
-  margin-bottom: 16px;
 }
 
 .burger-list_item {
@@ -189,6 +180,10 @@
   font-size: 12px;
   line-height: 11px;
   font-weight: 800;
+}
+
+.burger-list_item:not(:last-child) {
+  margin-bottom: 16px;
 }
 
 .burger-nav_link {
@@ -238,4 +233,5 @@
 .burger__button:not(:last-child) {
   border-right: 2px solid $elements-color;
 }
+
 //  #endregion
