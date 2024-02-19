@@ -1,0 +1,66 @@
+@import './../../styles/utils/variables';
+
+.card {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+  width: $card-width;
+  height: 506px;
+  border: 1px #E2E6E9 solid; // тимчасовий бордер, для того, щоб бачити рамки карток. ПОФІКСІТЬ НА НОРМАЛЬНИЙ БОРДЕР!
+
+  box-sizing: border-box;
+
+  &__image {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 8px;
+    width: 208px;
+    height: 196px;
+  }
+
+  &__title {
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  &__price-value {
+    font-size: 22px;
+    font-weight: 800px;
+    margin-bottom: 16px;
+  }
+
+  &__params {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 8px;
+    margin-top: 0;
+  }
+
+  &__param-pair {
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+  }
+
+  &__params-info {
+    font-size: 12px;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  &__params-value {
+    font-size: 12px;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  &__button {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
