@@ -17,7 +17,7 @@ export const Root = () => (
             <Route path=":currentPageNumber" element={<CatalogPage />} />
           </Route>
 
-          <Route index element={<Navigate to="page/1" />} />
+          <Route index element={<Navigate to="./page/1" />} />
         </Route>
       </Route>
       <Route path="favourites" element={<FavouritesPage />} />

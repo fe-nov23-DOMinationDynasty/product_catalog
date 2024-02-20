@@ -13,17 +13,17 @@
       @include pageGrid;
     }
   }
- }
+}
 
- .section-title {
+.section-title {
   margin-bottom: 24px;
- }
+}
 
- .product__title {
+.product__title {
   margin-bottom: 4px;
- }
+}
 
- .product {
+.product {
   grid-column: span 4;
 
   @include onDesktop {
@@ -55,5 +55,4 @@
       background-color: #f5e7cd;
     }
   }
- }
-
+}

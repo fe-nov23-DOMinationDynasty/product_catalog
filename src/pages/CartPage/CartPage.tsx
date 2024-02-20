@@ -12,9 +12,7 @@ export const CartPage = () => {
           <BackButton />
         </div>
 
-        <h1 className="cart__title h1">
-          Cart
-        </h1>
+        <h1 className="cart__title h1">Cart</h1>
       </div>
 
       <div className="cart__items">
@@ -34,7 +32,6 @@ export const CartPage = () => {
           Checkout
         </button>
       </article>
-
     </div>
   );
 };

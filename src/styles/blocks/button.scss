@@ -48,37 +48,44 @@
     background-image: url(./public/icons/go-top.svg);
   }
 
-  &:hover {
-    border: 1px solid $primary-color;
-  }
-
   &--disabled {
     pointer-events: none;
     border: 1px solid $elements-color;
   }
 
-  &--add {
-    display: flex;
+  @include onDesktop {
+    &:hover {
+      border: 1px solid $primary-color;
+    }
+  }
 
+  &-add {
+    display: flex;
     align-items: center;
     justify-content: center;
 
-    width: 160px;
     height: 40px;
+    width: 160px;
 
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 14px;
-    background-color: #313237;
-    color: white;
+    border: 0;
+    background-color: $primary-color;
+    color: $white-color;
 
     transition:
-      background-color 0.3s ease,
-      color 0.3s ease;
+      box-shadow $transition-duration,
+      border $transition-duration;
 
-    &:hover {
-      background-color: lightgrey;
-      color: black;
+    @include onDesktop {
+      &:hover {
+        border: 0;
+        box-shadow: 0 3px 13px 0 $hover-button-shadow-color;
+      }
+    }
+
+    &--selected {
+      color: $green-color;
+      border: 1px solid $elements-color;
+      background-color: $white-color;
     }
   }
 
@@ -87,9 +94,13 @@
     height: 48px;
   }
 
-  &--favourite {
+  &-favourite {
     width: 40px;
     height: 40px;
     background-image: url('./icons/buttons/icon-favourites.svg');
+
+    &--selected {
+      background-image: url('./icons/buttons/icon-favourites-selected.svg');
+    }
   }
 }
