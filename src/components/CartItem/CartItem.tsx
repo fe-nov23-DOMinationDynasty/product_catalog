@@ -1,7 +1,35 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
+import React from 'react';
+import { Product } from '../../types/Product';
 import './cartItem.scss';
 
-export const CartItem = () => {
+interface Props {
+  item: Product;
+  quantity: number;
+  setQuantity: React.Dispatch<React.SetStateAction<number>>;
+}
+
+export const CartItem: React.FC<Props> = ({
+  item,
+  quantity,
+  setQuantity,
+}) => {
+  const {
+    name,
+    image,
+    price,
+  } = item;
+
+  const handleIncrement = () => {
+    setQuantity((prevQuantity) => prevQuantity + 1);
+  };
+
+  const handleDecrement = () => {
+    if (quantity > 1) {
+      setQuantity((prevQuantity) => prevQuantity - 1);
+    }
+  };
+
   return (
     <article className="cart-item">
       <div className="cart-item__info">
@@ -14,13 +42,13 @@ export const CartItem = () => {
         </button>
 
         <img
-          src="./img/phones/apple-iphone-14-pro/spaceblack/00.webp"
+          src={image}
           alt="iphone-model"
           className="cart-item__image"
         />
 
         <p className="cart-item__about">
-          Apple iPhone 14 Pro 128GB Silver (MQ023)
+          {name}
         </p>
       </div>
 
@@ -29,14 +57,20 @@ export const CartItem = () => {
           <button
             type="button"
             className="button button--minus--disabled button--minus"
+            disabled={quantity === 1}
+            onClick={handleDecrement}
           />
 
-          <p className="cart-item__count">1</p>
+          <p className="cart-item__count">{quantity}</p>
 
-          <button type="button" className="button button--plus" />
+          <button
+            type="button"
+            className="button button--plus"
+            onClick={handleIncrement}
+          />
         </div>
 
-        <p className="cart-item__price">$999</p>
+        <p className="cart-item__price h3">${price * quantity}</p>
       </div>
     </article>
   );
