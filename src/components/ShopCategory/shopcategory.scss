@@ -1,13 +1,14 @@
 @import '../../styles/utils/mixins';
 @import '../../styles/utils/fonts';
+@import '../../styles/utils/variables';
 
 .shop {
   grid-column: 1 / -1;
 
-  &__by-category {
+  &__categories {
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    row-gap: 32px;
 
     @include onTablet {
       @include pageGrid;
@@ -31,28 +32,41 @@
   }
 
   &__photo-container {
-    position: relative;
-    width: 100%;
+    aspect-ratio: 1/1;
   }
 
   &__photo {
-    padding-bottom: 100%;
-    height: 0;
+    display: block;
     width: 100%;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    transition: filter $transition-slow-duration;
+
     margin-bottom: 24px;
 
-    &--accessories {
-      background-color: #ac385e;
-    }
-
-    &--tablets {
-      background-color: #86878b;
+    @include onDesktop {
+      &:hover {
+        filter: blur(1px);
+      }
     }
 
     &--phones {
+      background-image: url(./img/category-phones.png);
       background-color: #f5e7cd;
+      background-position: left 49px top 40px;
+    }
+
+    &--tablets {
+      background-image: url(./img/category-tablets.png);
+      background-color: #86878b;
+      background-position: left 49px top 67px;
+    }
+
+    &--accessories {
+      background-image: url(./img/category-accessories.png);
+      background-color: #ac385e;
+      background-position: left 49px top 77px;
     }
   }
 }
