@@ -9,6 +9,7 @@ import { BurgerMenu } from '../BurgerMenu';
 
 export const Header = () => {
   const [openBurger, setOpenBurger] = useState(false);
+  const [currentURL, setCurrentURL] = useState('');
 
   const handleNavigationIsActive = ({ isActive }: {isActive: boolean}) =>
     classNames('nav_link', { 'is-active': isActive });
@@ -28,6 +29,9 @@ export const Header = () => {
             <ul className="nav_list">
               <li className="list_item">
                 <NavLink
+                  onClick={() => {
+                    setCurrentURL('/');
+                  }}
                   to="/"
                   className={handleNavigationIsActive}>
                 Home
@@ -35,6 +39,9 @@ export const Header = () => {
               </li>
               <li className="list_item">
                 <NavLink
+                  onClick={() => {
+                    setCurrentURL('cart');
+                  }}
                   to="catalog/phones"
                   className={handleNavigationIsActive}
                 >
@@ -43,6 +50,9 @@ export const Header = () => {
               </li>
               <li className="list_item">
                 <NavLink
+                  onClick={() => {
+                    setCurrentURL('catalog/tablets');
+                  }}
                   to="catalog/tablets"
                   className={handleNavigationIsActive}
                 >
@@ -51,6 +61,9 @@ export const Header = () => {
               </li>
               <li className="list_item">
                 <NavLink
+                  onClick={() => {
+                    setCurrentURL('catalog/accessories');
+                  }}
                   to="catalog/accessories"
                   className={handleNavigationIsActive}
                 >
@@ -62,13 +75,32 @@ export const Header = () => {
 
           <div className="header__buttons-block">
             <NavLink
+              onClick={() => {
+                setCurrentURL('favourites');
+              }}
               to="favourites"
               className={handleHeaderButtonIsActive}
             >
-              <img src="./logos/favourites.svg" alt="logoFavourite" />
+
+              {currentURL !== 'favourites'
+                ? (
+                  <img src="./logos/favourites.svg" alt="logoFavourite" />
+                ) : (
+                  <img
+                    src="./logos/favourites-selected.svg"
+                    alt="logoFavourite"
+                  />
+                )
+              }
             </NavLink>
 
-            <NavLink to="cart" className={handleHeaderButtonIsActive}>
+            <NavLink
+              onClick={() => {
+                setCurrentURL('cart');
+              }}
+              to="cart"
+              className={handleHeaderButtonIsActive}
+            >
               <img src="./logos/shopping-bag.svg" alt="logoShoppingBag" />
             </NavLink>
           </div>
@@ -78,7 +110,7 @@ export const Header = () => {
               onClick={() => {
                 setOpenBurger(true);
               }}
-              to="#/"
+              to={currentURL}
               className="header__burger-menu">
               <img src="./logos/burger-menu.svg" alt="logoShoppingBag" />
             </NavLink>
@@ -89,6 +121,8 @@ export const Header = () => {
       {openBurger
         && <BurgerMenu
           setCloseBurger={setOpenBurger}
+          currentURL={currentURL}
+          setCurrentURL={setCurrentURL}
         />}
     </>
   );

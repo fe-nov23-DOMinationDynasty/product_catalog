@@ -1,4 +1,4 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import classNames from 'classnames';
 
 import '../Header/header.scss';
@@ -7,12 +7,16 @@ import { LogoLink } from '../LogoLink';
 
 type Props = {
   setCloseBurger: (state: boolean) => void;
+  currentURL:string;
+  setCurrentURL: (state:string) => void
 };
 
 export const BurgerMenu: React.FC<Props> = ({
   setCloseBurger,
+  currentURL,
+  setCurrentURL
 }) => {
-  const [currentURL, setCurrentURL] = useState('');
+  // const [currentURL, setCurrentURL] = useState('');
 
   const handleBurgerLinkIsActive = ({ isActive }: { isActive: boolean }) =>
     classNames('burger__nav__link',
@@ -100,7 +104,14 @@ export const BurgerMenu: React.FC<Props> = ({
             to="favourites"
             className={handleBurgerButtonIsActive}
           >
-            <img src="./logos/favourites.svg" alt="logoFavourite" />
+            { currentURL !== 'favourites' ? <img
+              src="./logos/favourites.svg"
+              alt="logoFavourite"
+            />
+              : <img
+                src="./logos/favourites-selected.svg"
+                alt="logoFavouriteSelected"
+              />}
           </NavLink>
 
           <NavLink
