@@ -4,6 +4,8 @@
 .product-card {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  gap: 8px;
 
   max-width: 272px;
   max-height: 506px;
@@ -12,14 +14,11 @@
   box-sizing: border-box;
   border: 1px solid $elements-color;
   transition: box-shadow $transition-duration;
+  cursor: pointer;
 
   &__image {
-    margin-bottom: 8px;
+    object-fit: contain;
     aspect-ratio: 1 / 1;
-  }
-
-  &__title {
-    margin-bottom: 8px;
   }
 
   &__price {

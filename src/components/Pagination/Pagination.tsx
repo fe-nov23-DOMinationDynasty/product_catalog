@@ -27,7 +27,7 @@ export const Pagination: React.FC<Props> = ({
         {Array.from(Array(amountOfPages).keys()).map((_, index) => (
           <Link
             key={_}
-            to={`../${index + 1}`}
+            to={`${index + 1 === 1 ? '../' : `../${index + 1}`}`}
             className={cn('button pagination__item', {
               'pagination__item--selected': index === currentPageIndex,
             })}>
