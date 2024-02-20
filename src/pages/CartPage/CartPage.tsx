@@ -63,7 +63,7 @@ export const CartPage = () => {
 
         <span className="total__line" />
 
-        <button type="button" className="button button--add button--cart">
+        <button type="button" className="button button-add button--cart">
           Checkout
         </button>
       </article>
