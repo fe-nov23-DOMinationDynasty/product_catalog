@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React from 'react';
+import cn from 'classnames';
 import { Product } from '../../types/Product';
 import './cartItem.scss';
 
@@ -56,8 +57,9 @@ export const CartItem: React.FC<Props> = ({
         <div className="cart-item__counter">
           <button
             type="button"
-            className="button button--minus--disabled button--minus"
-            disabled={quantity === 1}
+            className={cn('button button--minus', {
+              'button--minus--disabled': quantity === 1,
+            })}
             onClick={handleDecrement}
           />
 

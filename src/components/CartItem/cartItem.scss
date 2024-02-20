@@ -50,10 +50,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    @include onTablet {
-      column-gap: 24px;
-    }
   }
 
   &__counter {
@@ -62,12 +58,17 @@
   }
 
   &__count {
-    width: 30px;
-    text-align: center;
+    @include withButtonSize;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   &__price {
+    width: 80px;
     font-size: 22px;
     font-weight: 800;
+    text-align: end;
   }
 }
