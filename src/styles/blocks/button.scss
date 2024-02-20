@@ -68,7 +68,7 @@
     width: 160px;
 
     border: 0;
-    background-color: #313237;
+    background-color: $primary-color;
     color: $white-color;
 
     transition:
@@ -78,7 +78,7 @@
     @include onDesktop {
       &:hover {
         border: 0;
-        box-shadow: 0 3px 13px 0 #17203166;
+        box-shadow: 0 3px 13px 0 $hover-button-shadow-color;
       }
     }
 
