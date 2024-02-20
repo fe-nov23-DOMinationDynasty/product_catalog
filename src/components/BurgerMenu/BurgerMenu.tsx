@@ -9,12 +9,18 @@ type Props = {
   setCloseBurger: (state: boolean) => void;
 };
 
-export const BurgerMenu: React.FC<Props> = ({ setCloseBurger }) => {
+export const BurgerMenu: React.FC<Props> = ({
+  setCloseBurger,
+}) => {
   const [currentURL, setCurrentURL] = useState('');
 
   const handleBurgerLinkIsActive = ({ isActive }: { isActive: boolean }) =>
     classNames('burger__nav__link',
       { 'burger__is--active': isActive });
+
+  const handleBurgerButtonIsActive = ({ isActive }: {isActive: boolean}) =>
+    classNames('burger__button', { 'burger__button--is-active': isActive });
+
 
   return (
     <aside id="burgerMenu" className="burger__menu">
@@ -82,11 +88,23 @@ export const BurgerMenu: React.FC<Props> = ({ setCloseBurger }) => {
         </ul>
 
         <div className="burger__buttons">
-          <NavLink to="favourites" className="burger__button">
+          <NavLink
+            onClick={() => {
+              setCurrentURL('favourites');
+            }}
+            to="favourites"
+            className={handleBurgerButtonIsActive}
+          >
             <img src="./logos/favourites.svg" alt="logoFavourite" />
           </NavLink>
 
-          <NavLink to="cart" className="burger__button">
+          <NavLink
+            onClick={() => {
+              setCurrentURL('cart');
+            }}
+            to="cart"
+            className={handleBurgerButtonIsActive}
+          >
             <img src="./logos/shopping-bag.svg" alt="logoShoppingBag" />
           </NavLink>
         </div>
