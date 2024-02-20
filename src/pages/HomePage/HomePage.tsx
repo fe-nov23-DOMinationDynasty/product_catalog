@@ -1,31 +1,51 @@
 import { Promo } from '../../types/Promo';
 import './home-page.scss';
-import { PromoSlider } from './src/components/PromoSilder';
+import { PromoSlider } from '../../components/PromoSilder';
 import { tabletWidth } from '../../constants/constants';
 import { useResize } from '../../hooks/useResize';
 
 const promoImagesMobile = [
   './promos/promo-image-mobile.webp',
-  './promos/promo-image-mobile.webp',
-  './promos/promo-image-mobile.webp',
+  './promos/banner-phones.png',
+  './promos/banner-tablets.png',
+  './promos/banner-accessories.png',
 ];
 const promoImagesTabletAndDesktop = [
   './promos/promo-image-tablet-desktop.webp',
-  './promos/promo-image-tablet-desktop.webp',
-  './promos/promo-image-tablet-desktop.webp',
+  './promos/banner-phones.png',
+  './promos/banner-tablets.png',
+  './promos/banner-accessories.png',
 ];
 
 const promosTabletAndDesktop: Promo[] = promoImagesTabletAndDesktop.map(
-  (image) => ({
-    image,
-    link: 'https://www.apple.com',
-  })
+  (image, index) => {
+    if (index === 0) {
+      return {
+        image,
+        link: 'https://www.apple.com',
+      };
+    }
+
+    return {
+      image,
+      link: image.replace('promos/banner-', 'catalog/').replace('.png', ''),
+    };
+  }
 );
 
-const promosMobile: Promo[] = promoImagesMobile.map((image) => ({
-  image,
-  link: 'https://www.apple.com',
-}));
+const promosMobile: Promo[] = promoImagesMobile.map((image, index) => {
+  if (index === 0) {
+    return {
+      image,
+      link: 'https://www.apple.com',
+    };
+  }
+
+  return {
+    image,
+    link: image.replace('promos/banner-', 'catalog/').replace('.png', ''),
+  };
+});
 
 export const HomePage = () => {
   const [windowWidth] = useResize();

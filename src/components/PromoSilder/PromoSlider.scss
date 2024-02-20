@@ -1,9 +1,19 @@
-@import '../../../../../styles/utils/mixins';
+@import '../../styles/utils/mixins';
+@import '../../styles/utils/variables';
 
 .promo-swiper {
   $button-width: 32px;
 
   --promo-height: 350px;
+
+  height: var(--promo-height);
+
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  justify-content: center;
+
+  grid-column: 1 / -1;
 
   @include onTablet {
     --promo-height: 270px;
@@ -12,13 +22,6 @@
   @include onDesktop {
     --promo-height: 400px;
   }
-
-  display: flex;
-  gap: 16px;
-  width: 100%;
-  justify-content: center;
-
-  grid-column: 1 / -1;
 
   &__wrapper {
     width: calc(100% - $button-width * 2);

@@ -1,19 +1,6 @@
-import { Product } from '../enums/Product';
-import { Phone } from '../types/Phone';
+import { Product } from '../types/Product';
 import { request } from '../utils/fetchClient';
 
-export const getAccessries = () => {
-  return request(Product.Accessories);
-};
-
-export const getPhones = () => {
-  return request<Phone[]>(Product.Phones);
-};
-
-export const getTablets = () => {
-  return request(Product.Tablets);
-};
-
 export const getProducts = () => {
-  return request(Product.Products);
+  return request<Product[]>('products');
 };

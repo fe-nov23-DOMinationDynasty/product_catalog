@@ -13,12 +13,14 @@
     margin-inline: 4px;
     justify-content: center;
     align-items: center;
+    pointer-events: all;
 
     @include defaultFont;
 
     &--selected {
       color: white;
       background-color: $primary-color;
+      pointer-events: none;
     }
   }
 

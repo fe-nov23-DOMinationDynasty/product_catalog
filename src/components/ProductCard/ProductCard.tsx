@@ -20,7 +20,7 @@ export const ProductCard: React.FC<Props> = ({
   addToCart,
   addToFavourite,
 }) => {
-  const { id, category, name, price, fullPrice } = product;
+  const { id, category, name, price, fullPrice, image } = product;
 
   const handleAddedToCart = () => {
     addToCart(id);
@@ -33,50 +33,49 @@ export const ProductCard: React.FC<Props> = ({
   return (
     <article className="product-card">
       <img
-        src="../img/phones/apple-iphone-14-pro/spaceblack/00.webp"
+        src={image}
         alt={`${category}_image`}
         className="product-card__image"
       />
 
       <p className="product-card__title">{name}</p>
 
-      <div className="product-card__price">
-        <p className="product-card__actual-price h3">{`$${price}`}</p>
-        {fullPrice !== price && (
-          <p className="product-card__full-price h3">{`$${fullPrice}`}</p>
-        )}
-      </div>
-
-      <div className="product-card__characteristics">
-        {shownProductCardCharacteristics.map((characteristic) => (
-          <p className="product-card__characteristic">
-            <span className="product-card__characteristic-name small-text">
-              {characteristic}
-            </span>
-            <span className="product-card__characteristic-value small-text">
-              {product[characteristic.toLowerCase() as keyof Product]}
-            </span>
-          </p>
-        ))}
-      </div>
-
-      <div className="product-card__buttons">
-        <button
-          onClick={handleAddedToCart}
-          type="button"
-          className={cn('button button-add', {
-            'button-add--selected': isInCart,
-          })}>
-          {isInCart ? 'Added to cart' : 'Add to cart'}
-        </button>
-
-        <button
-          onClick={handleAddedToFavourite}
-          type="button"
-          className={cn('button button-favourite', {
-            'button-favourite--selected': isInFavourite,
-          })}
-        />
+      <div className="product-card__bottom-part">
+        <div className="product-card__price">
+          <p className="product-card__actual-price h3">{`$${price}`}</p>
+          {fullPrice !== price && (
+            <p className="product-card__full-price h3">{`$${fullPrice}`}</p>
+          )}
+        </div>
+        <div className="product-card__characteristics">
+          {shownProductCardCharacteristics.map((characteristic) => (
+            <p className="product-card__characteristic">
+              <span className="product-card__characteristic-name small-text">
+                {characteristic}
+              </span>
+              <span className="product-card__characteristic-value small-text">
+                {product[characteristic.toLowerCase() as keyof Product]}
+              </span>
+            </p>
+          ))}
+        </div>
+        <div className="product-card__buttons">
+          <button
+            onClick={handleAddedToCart}
+            type="button"
+            className={cn('button button-add', {
+              'button-add--selected': isInCart,
+            })}>
+            {isInCart ? 'Added to cart' : 'Add to cart'}
+          </button>
+          <button
+            onClick={handleAddedToFavourite}
+            type="button"
+            className={cn('button button-favourite', {
+              'button-favourite--selected': isInFavourite,
+            })}
+          />
+        </div>
       </div>
     </article>
   );

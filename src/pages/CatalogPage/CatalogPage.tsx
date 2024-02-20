@@ -1,19 +1,40 @@
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Pagination } from '../../components/Pagination';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { loadProducts } from '../../features/productsSlice';
+import { Category } from '../../enums/Category';
+import { ProductTable } from '../../components/ProductTable/ProductTable';
+import { Loader } from '../../components/Loader';
 
 export const CatalogPage = () => {
-  const { currentPageNumber } = useParams();
+  const { currentPageNumber, productType } = useParams();
+  const { products, isLoading } = useAppSelector(
+    (state) => state.productsReducer
+  );
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(loadProducts(productType as Category));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [productType]);
 
   return (
     <>
-      {/* <ProductTable products={phones} /> */}
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <ProductTable products={products} />
 
-      <div className="wrapper">
-        <Pagination
-          amountOfPages={5}
-          currentPageIndex={+(currentPageNumber as string) - 1}
-        />
-      </div>
+          <div className="wrapper">
+            <Pagination
+              amountOfPages={5}
+              currentPageIndex={+(currentPageNumber || 1) - 1}
+            />
+          </div>
+        </>
+      )}
     </>
   );
 };

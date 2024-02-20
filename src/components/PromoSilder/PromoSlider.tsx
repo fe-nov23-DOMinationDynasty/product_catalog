@@ -3,14 +3,15 @@ import React, { useCallback, useRef, useState } from 'react';
 import cn from 'classnames';
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
-import { tabletWidth } from '../../../../../constants/constants';
-import { Promo } from '../../../../../types/Promo';
+import { Link } from 'react-router-dom';
+import { tabletWidth } from '../../constants/constants';
+import { Promo } from '../../types/Promo';
 
 import 'swiper/css/pagination';
 import 'swiper/css';
 import './PromoSlider.scss';
 import './swiper-styles.scss';
-import { useResize } from '../../../../../hooks/useResize';
+import { useResize } from '../../hooks/useResize';
 
 interface Props {
   promos: Promo[];
@@ -30,7 +31,6 @@ export const PromoSlider: React.FC<Props> = React.memo(({ promos }) => {
     }
 
     swiperRef.current.swiper.slidePrev();
-    setSlideIndex(swiperRef.current?.swiper.realIndex);
   }, []);
 
   const handleNext = useCallback(() => {
@@ -39,7 +39,6 @@ export const PromoSlider: React.FC<Props> = React.memo(({ promos }) => {
     }
 
     swiperRef.current.swiper.slideNext();
-    setSlideIndex(swiperRef.current?.swiper.realIndex);
   }, []);
 
   return (
@@ -58,6 +57,7 @@ export const PromoSlider: React.FC<Props> = React.memo(({ promos }) => {
       )}
       <div className="promo-swiper__wrapper">
         <Swiper
+          onSlideChange={(swiper) => setSlideIndex(swiper.realIndex)}
           ref={swiperRef}
           pagination={{
             clickable: true,
@@ -69,14 +69,14 @@ export const PromoSlider: React.FC<Props> = React.memo(({ promos }) => {
           modules={[Pagination]}
           className="mySwiper">
           {promos.map((promo) => (
-            <SwiperSlide>
-              <a href={promo.link} className="promo-swiper__link">
+            <SwiperSlide key={promo.image}>
+              <Link to={promo.link} className="promo-swiper__link">
                 <img
                   src={promo.image}
                   alt="promo"
                   className="promo-swiper__slide-image"
                 />
-              </a>
+              </Link>
             </SwiperSlide>
           ))}
         </Swiper>
