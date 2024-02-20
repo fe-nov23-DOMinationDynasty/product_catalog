@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React, { useCallback, useRef, useState } from 'react';
 import cn from 'classnames';
@@ -57,12 +58,12 @@ export const PromoSlider: React.FC<Props> = React.memo(({ promos }) => {
       )}
       <div className="promo-swiper__wrapper">
         <Swiper
-          onSlideChange={(swiper) => setSlideIndex(swiper.realIndex)}
+          onSlideChange={(swiper: any) => setSlideIndex(swiper.realIndex)}
           ref={swiperRef}
           pagination={{
             clickable: true,
             el: '.promo-swiper__custom-pagination',
-            renderBullet: (index: number, className: string) => {
+            renderBullet: (_index: number, className: string) => {
               return `<span class="${className}"></span>`;
             },
           }}

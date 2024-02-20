@@ -11,7 +11,14 @@ export const ProductTable: React.FC<Props> = ({ products }) => {
   return (
     <div className="card-layout">
       {products.map((product) => (
-        <ProductCard product={product} key={product.id} />
+        <ProductCard
+          product={product}
+          key={product.id}
+          isInCart={false}
+          isInFavourite={false}
+          addToFavourite={() => {}}
+          addToCart={() => { }}
+        />
       ))}
     </div>
   );

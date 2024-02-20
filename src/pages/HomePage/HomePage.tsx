@@ -3,6 +3,7 @@ import './home-page.scss';
 import { PromoSlider } from '../../components/PromoSilder';
 import { tabletWidth } from '../../constants/constants';
 import { useResize } from '../../hooks/useResize';
+import { ShopCategory } from '../../components/ShopCategory';
 
 const promoImagesMobile = [
   './promos/promo-image-mobile.webp',
@@ -59,6 +60,8 @@ export const HomePage = () => {
           windowWidth >= tabletWidth ? promosTabletAndDesktop : promosMobile
         }
       />
+
+      <ShopCategory />
 
       {/* <CustomSwiper title="Brand new models" items={null} />
 
