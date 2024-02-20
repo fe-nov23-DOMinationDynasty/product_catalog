@@ -1,13 +1,14 @@
 @import '../../styles/utils/mixins';
 @import '../../styles/utils/fonts';
+@import '../../styles/utils/variables';
 
 .shop {
   grid-column: 1 / -1;
 
-  &__by-category {
+  &__categories {
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    row-gap: 32px;
 
     @include onTablet {
       @include pageGrid;
@@ -40,7 +41,9 @@
     height: 100%;
     background-size: cover;
     background-repeat: no-repeat;
-    transition: all .5s;
+    transition: filter $transition-slow-duration;
+
+    margin-bottom: 24px;
 
     @include onDesktop {
       &:hover {
