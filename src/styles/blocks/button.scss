@@ -15,7 +15,7 @@
   background-size: var(16px);
   transition: border 0.3s;
 
-  background-color: #fff;
+  background-color: $white-color;
 
   &--arrow-left {
     background-image: url(./icons/arrow-left.svg);
@@ -43,6 +43,10 @@
 
   &--plus {
     background-image: url(./public/icons/plus.svg);
+  }
+
+  &--top {
+    background-image: url(./public/icons/go-top.svg);
   }
 
   &:hover {
