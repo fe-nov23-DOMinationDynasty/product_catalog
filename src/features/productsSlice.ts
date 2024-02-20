@@ -13,14 +13,13 @@ const initialState = {
 export const loadProducts = createAsyncThunk(
   'products/fetch',
   (category: Category) => {
-    return getProducts()
-      .then((products) => {
-        return products.filter((product) => product.category === category);
-      });
+    return getProducts().then((products) => {
+      return products.filter((product) => product.category === category);
+    });
   }
 );
 
-export const productsSlice = createSlice({
+const productsSlice = createSlice({
   name: 'products',
   initialState,
   reducers: {},

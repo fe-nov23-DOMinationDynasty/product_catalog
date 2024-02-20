@@ -16,7 +16,7 @@ export const CatalogPage = () => {
 
   useEffect(() => {
     dispatch(loadProducts(productType as Category));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [productType]);
 
   return (

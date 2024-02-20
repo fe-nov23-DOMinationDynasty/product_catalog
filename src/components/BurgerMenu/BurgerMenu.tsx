@@ -9,18 +9,14 @@ type Props = {
   setCloseBurger: (state: boolean) => void;
 };
 
-export const BurgerMenu: React.FC<Props> = ({
-  setCloseBurger,
-}) => {
+export const BurgerMenu: React.FC<Props> = ({ setCloseBurger }) => {
   const [currentURL, setCurrentURL] = useState('');
 
   const handleBurgerLinkIsActive = ({ isActive }: { isActive: boolean }) =>
-    classNames('burger__nav__link',
-      { 'burger__is--active': isActive });
+    classNames('burger__nav__link', { 'burger__is--active': isActive });
 
-  const handleBurgerButtonIsActive = ({ isActive }: {isActive: boolean}) =>
+  const handleBurgerButtonIsActive = ({ isActive }: { isActive: boolean }) =>
     classNames('burger__button', { 'burger__button--is-active': isActive });
-
 
   return (
     <aside id="burgerMenu" className="burger__menu">
@@ -48,8 +44,7 @@ export const BurgerMenu: React.FC<Props> = ({
                 setCurrentURL('/');
                 setCloseBurger(false);
               }}
-              className={handleBurgerLinkIsActive}
-            >
+              className={handleBurgerLinkIsActive}>
               Home
             </NavLink>
           </li>
@@ -60,8 +55,7 @@ export const BurgerMenu: React.FC<Props> = ({
                 setCurrentURL('catalog/phones');
                 setCloseBurger(false);
               }}
-              className={handleBurgerLinkIsActive}
-            >
+              className={handleBurgerLinkIsActive}>
               Phones
             </NavLink>
           </li>
@@ -72,8 +66,7 @@ export const BurgerMenu: React.FC<Props> = ({
                 setCurrentURL('catalog/tablets');
                 setCloseBurger(false);
               }}
-              className={handleBurgerLinkIsActive}
-            >
+              className={handleBurgerLinkIsActive}>
               Tablets
             </NavLink>
           </li>
@@ -84,8 +77,7 @@ export const BurgerMenu: React.FC<Props> = ({
                 setCurrentURL('catalog/accessories');
                 setCloseBurger(false);
               }}
-              className={handleBurgerLinkIsActive}
-            >
+              className={handleBurgerLinkIsActive}>
               Accessories
             </NavLink>
           </li>
@@ -98,8 +90,7 @@ export const BurgerMenu: React.FC<Props> = ({
               setCloseBurger(false);
             }}
             to="favourites"
-            className={handleBurgerButtonIsActive}
-          >
+            className={handleBurgerButtonIsActive}>
             <img src="./logos/favourites.svg" alt="logoFavourite" />
           </NavLink>
 
@@ -109,8 +100,7 @@ export const BurgerMenu: React.FC<Props> = ({
               setCloseBurger(false);
             }}
             to="cart"
-            className={handleBurgerButtonIsActive}
-          >
+            className={handleBurgerButtonIsActive}>
             <img src="./logos/shopping-bag.svg" alt="logoShoppingBag" />
           </NavLink>
         </div>

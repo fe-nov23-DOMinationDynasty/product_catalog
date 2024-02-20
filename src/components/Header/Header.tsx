@@ -10,10 +10,10 @@ import { BurgerMenu } from '../BurgerMenu';
 export const Header = () => {
   const [openBurger, setOpenBurger] = useState(false);
 
-  const handleNavigationIsActive = ({ isActive }: {isActive: boolean}) =>
+  const handleNavigationIsActive = ({ isActive }: { isActive: boolean }) =>
     classNames('nav_link', { 'is-active': isActive });
 
-  const handleHeaderButtonIsActive = ({ isActive }: {isActive: boolean}) =>
+  const handleHeaderButtonIsActive = ({ isActive }: { isActive: boolean }) =>
     classNames('header__button', { 'header__button--is-active': isActive });
 
   return (
@@ -27,44 +27,36 @@ export const Header = () => {
 
             <ul className="nav_list">
               <li className="list_item">
-                <NavLink
-                  to="/"
-                  className={handleNavigationIsActive}>
-                Home
+                <NavLink to="/" className={handleNavigationIsActive}>
+                  Home
                 </NavLink>
               </li>
               <li className="list_item">
                 <NavLink
                   to="catalog/phones"
-                  className={handleNavigationIsActive}
-                >
-                Phones
+                  className={handleNavigationIsActive}>
+                  Phones
                 </NavLink>
               </li>
               <li className="list_item">
                 <NavLink
                   to="catalog/tablets"
-                  className={handleNavigationIsActive}
-                >
-                Tablets
+                  className={handleNavigationIsActive}>
+                  Tablets
                 </NavLink>
               </li>
               <li className="list_item">
                 <NavLink
                   to="catalog/accessories"
-                  className={handleNavigationIsActive}
-                >
-                Accessories
+                  className={handleNavigationIsActive}>
+                  Accessories
                 </NavLink>
               </li>
             </ul>
           </div>
 
           <div className="header__buttons-block">
-            <NavLink
-              to="favourites"
-              className={handleHeaderButtonIsActive}
-            >
+            <NavLink to="favourites" className={handleHeaderButtonIsActive}>
               <img src="./logos/favourites.svg" alt="logoFavourite" />
             </NavLink>
 
@@ -86,10 +78,7 @@ export const Header = () => {
         </nav>
       </header>
 
-      {openBurger
-        && <BurgerMenu
-          setCloseBurger={setOpenBurger}
-        />}
+      {openBurger && <BurgerMenu setCloseBurger={setOpenBurger} />}
     </>
   );
 };

@@ -10,16 +10,8 @@ interface Props {
   setQuantity: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export const CartItem: React.FC<Props> = ({
-  item,
-  quantity,
-  setQuantity,
-}) => {
-  const {
-    name,
-    image,
-    price,
-  } = item;
+export const CartItem: React.FC<Props> = ({ item, quantity, setQuantity }) => {
+  const { name, image, price } = item;
 
   const handleIncrement = () => {
     setQuantity((prevQuantity) => prevQuantity + 1);
@@ -42,15 +34,9 @@ export const CartItem: React.FC<Props> = ({
           />
         </button>
 
-        <img
-          src={image}
-          alt="iphone-model"
-          className="cart-item__image"
-        />
+        <img src={image} alt="iphone-model" className="cart-item__image" />
 
-        <p className="cart-item__about">
-          {name}
-        </p>
+        <p className="cart-item__about">{name}</p>
       </div>
 
       <div className="cart-item__cost">
