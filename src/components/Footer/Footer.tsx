@@ -33,11 +33,7 @@ export const Footer: React.FC = () => {
           </a>
         </div>
 
-        <button
-          type="button"
-          className="footer__go-top"
-          onClick={scrollToTop}
-        >
+        <button type="button" className="footer__go-top" onClick={scrollToTop}>
           <span className="footer__go-top-text">Back to top</span>
           <i className="button button--top" />
         </button>

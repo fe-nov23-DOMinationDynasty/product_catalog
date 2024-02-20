@@ -1,0 +1,22 @@
+.wrapper {
+  display: flex;
+  position: relative;
+}
+
+.icon__counter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 14px;
+  width: 14px;
+  font-size: 9px;
+
+  position: absolute;
+  color: white;
+  background-color: #eb5757;
+  border: solid 1px white;
+  border-radius: 50%;
+  left: 50%;
+  top: -30%;
+}

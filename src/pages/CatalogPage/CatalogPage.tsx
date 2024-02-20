@@ -6,6 +6,8 @@ export const CatalogPage = () => {
 
   return (
     <>
+      {/* <ProductTable products={phones} /> */}
+
       <div className="wrapper">
         <Pagination
           amountOfPages={5}

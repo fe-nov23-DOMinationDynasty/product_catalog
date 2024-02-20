@@ -1,0 +1,94 @@
+@import '../../styles/utils/variables';
+@import '../../styles/utils/mixins';
+
+.cart {
+  @include pageGrid;
+
+  row-gap: 32px;
+
+  padding-block: 24px 56px;
+
+  @include onTablet {
+    padding-block: 40px 64px;
+  }
+
+  @include onDesktop {
+    padding-block: 40px 80px;
+  }
+
+  &__header {
+    grid-column: span 4;
+
+    @include onTablet {
+      grid-column: span 12;
+    }
+
+    @include onDesktop {
+      grid-column: span 24;
+    }
+  }
+
+  &__back-button {
+    padding-bottom: 24px;
+
+    @include onTablet {
+      padding-bottom: 16px;
+    }
+  }
+
+  &__items {
+    grid-column: span 4;
+    display: grid;
+    row-gap: 16px;
+
+    @include onTablet {
+      grid-column: span 12;
+    }
+
+    @include onDesktop {
+      grid-column: span 16;
+    }
+  }
+}
+
+.total {
+  grid-column: span 4;
+  grid-row: span 1;
+
+  max-height: 206px;
+
+  @include onTablet {
+    grid-column: span 12;
+  }
+
+  @include onDesktop {
+    grid-column: 17 / 25;
+  }
+
+  box-sizing: border-box;
+  padding: 24px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  border: solid 1px $elements-color;
+
+  &__price {
+    font-size: 32px;
+    line-height: 41px;
+    text-align: center;
+    letter-spacing: -0.01em;
+    font-weight: bold;
+  }
+
+  &__count-items {
+    text-align: center;
+    color: $secondary-color;
+  }
+
+  &__line {
+    height: 1px;
+    background-color: $elements-color;
+  }
+}
