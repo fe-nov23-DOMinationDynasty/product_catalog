@@ -3,4 +3,3 @@ export enum ProductCardCharacteristics {
   Capacity = 'Capacity',
   Ram = 'RAM',
 }
-

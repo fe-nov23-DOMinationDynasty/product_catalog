@@ -48,13 +48,15 @@
     background-image: url(./public/icons/go-top.svg);
   }
 
-  &:hover {
-    border: 1px solid $primary-color;
-  }
-
   &--disabled {
     pointer-events: none;
     border: 1px solid $elements-color;
+  }
+
+  @include onDesktop {
+    &:hover {
+      border: 1px solid $primary-color;
+    }
   }
 
   &-add {
@@ -65,16 +67,19 @@
     height: 40px;
     width: 160px;
 
+    border: 0;
     background-color: #313237;
-    color: white;
+    color: $white-color;
 
     transition:
-      color $transition-duration
-      background-color $transition-duration;
+      box-shadow $transition-duration,
+      border $transition-duration;
 
-    &:hover {
-      color: black;
-      background-color: lightgrey;
+    @include onDesktop {
+      &:hover {
+        border: 0;
+        box-shadow: 0 3px 13px 0 #17203166;
+      }
     }
 
     &--selected {
@@ -95,7 +100,7 @@
     background-image: url('./icons/buttons/icon-favourites.svg');
 
     &--selected {
-      background-image: url('./icons/buttons/icon-favourites-selected.svg')
+      background-image: url('./icons/buttons/icon-favourites-selected.svg');
     }
   }
 }

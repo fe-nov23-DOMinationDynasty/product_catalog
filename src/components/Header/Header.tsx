@@ -7,7 +7,6 @@ import { useState } from 'react';
 import { LogoLink } from '../LogoLink';
 import { BurgerMenu } from '../BurgerMenu';
 
-
 export const Header = () => {
   const [openBurger, setOpenBurger] = useState(false);
 
@@ -16,7 +15,7 @@ export const Header = () => {
       <header className="header">
         <nav className="nav">
           <div className="nav_menu_start">
-            <div className='header__logo'>
+            <div className="header__logo">
               <LogoLink />
             </div>
 
@@ -27,39 +26,34 @@ export const Header = () => {
                   className={({ isActive }) =>
                     classNames('nav_link', { ' is-active': isActive })
                   }>
-                Home
+                  Home
                 </NavLink>
               </li>
               <li className="list_item">
                 <NavLink
-                  to="phones/catalog/page/1"
+                  to="catalog/phones"
                   className={({ isActive }) =>
                     classNames('nav_link', { ' is-active': isActive })
-                  }
-                >
-                Phones
+                  }>
+                  Phones
                 </NavLink>
               </li>
-              <li className="list_item"
-              >
+              <li className="list_item">
                 <NavLink
-                  to="tablets/catalog/page/1"
+                  to="catalog/tablets"
                   className={({ isActive }) =>
                     classNames('nav_link', { ' is-active': isActive })
-                  }
-                >
-                Tablets
+                  }>
+                  Tablets
                 </NavLink>
               </li>
-              <li className="list_item"
-              >
+              <li className="list_item">
                 <NavLink
-                  to="accessories/catalog/page/1"
+                  to="catalog/accessories"
                   className={({ isActive }) =>
                     classNames('nav_link', { ' is-active': isActive })
-                  }
-                >
-                Accessories
+                  }>
+                  Accessories
                 </NavLink>
               </li>
             </ul>
@@ -92,4 +86,3 @@ export const Header = () => {
     </>
   );
 };
-

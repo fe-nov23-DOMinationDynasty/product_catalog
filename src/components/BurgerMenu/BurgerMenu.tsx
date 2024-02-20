@@ -38,8 +38,9 @@ export const BurgerMenu: React.FC<Props> = ({ setCloseBurger }) => {
                 setCurrentURL('/');
               }}
               className={({ isActive }) =>
-                classNames('burger__nav__link',
-                  { 'burger__is--active': isActive })
+                classNames('burger__nav__link', {
+                  'burger__is--active': isActive,
+                })
               }>
               Home
             </NavLink>
@@ -51,10 +52,10 @@ export const BurgerMenu: React.FC<Props> = ({ setCloseBurger }) => {
                 setCurrentURL('phones/catalog/page/1');
               }}
               className={({ isActive }) =>
-                classNames('burger__nav__link',
-                  { 'burger__is--active': isActive })
-              }
-            >
+                classNames('burger__nav__link', {
+                  'burger__is--active': isActive,
+                })
+              }>
               Phones
             </NavLink>
           </li>
@@ -65,10 +66,10 @@ export const BurgerMenu: React.FC<Props> = ({ setCloseBurger }) => {
                 setCurrentURL('tablets/catalog/page/1');
               }}
               className={({ isActive }) =>
-                classNames('burger__nav__link',
-                  { 'burger__is--active': isActive })
-              }
-            >
+                classNames('burger__nav__link', {
+                  'burger__is--active': isActive,
+                })
+              }>
               Tablets
             </NavLink>
           </li>
@@ -79,10 +80,10 @@ export const BurgerMenu: React.FC<Props> = ({ setCloseBurger }) => {
                 setCurrentURL('accessories/catalog/page/1');
               }}
               className={({ isActive }) =>
-                classNames('burger__nav__link',
-                  { 'burger__is--active': isActive })
-              }
-            >
+                classNames('burger__nav__link', {
+                  'burger__is--active': isActive,
+                })
+              }>
               Accessories
             </NavLink>
           </li>
