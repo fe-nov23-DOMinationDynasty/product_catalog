@@ -7,7 +7,6 @@ import { useState } from 'react';
 import { LogoLink } from '../LogoLink';
 import { BurgerMenu } from '../BurgerMenu';
 
-
 export const Header = () => {
   const [openBurger, setOpenBurger] = useState(false);
 
@@ -19,7 +18,7 @@ export const Header = () => {
       <header className="header">
         <nav className="nav">
           <div className="nav_menu_start">
-            <div className='header__logo'>
+            <div className="header__logo">
               <LogoLink />
             </div>
 
@@ -39,8 +38,7 @@ export const Header = () => {
                 Phones
                 </NavLink>
               </li>
-              <li className="list_item"
-              >
+              <li className="list_item">
                 <NavLink
                   to="catalog/tablets"
                   className={handleNavigationIsActive}
@@ -48,8 +46,7 @@ export const Header = () => {
                 Tablets
                 </NavLink>
               </li>
-              <li className="list_item"
-              >
+              <li className="list_item">
                 <NavLink
                   to="catalog/accessories"
                   className={handleNavigationIsActive}
@@ -87,4 +84,3 @@ export const Header = () => {
     </>
   );
 };
-

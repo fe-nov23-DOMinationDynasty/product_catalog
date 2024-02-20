@@ -1,50 +1,82 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React from 'react';
-import './productcard.scss';
-import { Phone } from '../../types/Phone';
+import cn from 'classnames';
+import './productCard.scss';
+import { Product } from '../../types/Product';
+import { shownProductCardCharacteristics } from '../../constants/constants';
 
-type Props = {
-  phone: Phone;
-};
+interface Props {
+  product: Product;
+  isInCart: boolean;
+  isInFavourite: boolean;
+  addToFavourite: (id: number) => void;
+  addToCart: (id: number) => void;
+}
 
-export const ProductCard: React.FC<Props> = ({ phone }) => {
+export const ProductCard: React.FC<Props> = ({
+  product,
+  isInCart,
+  isInFavourite,
+  addToCart,
+  addToFavourite,
+}) => {
+  const { id, category, name, price, fullPrice } = product;
+
+  const handleAddedToCart = () => {
+    addToCart(id);
+  };
+
+  const handleAddedToFavourite = () => {
+    addToFavourite(id);
+  };
+
   return (
-    <article className="card" key={phone.id}>
+    <article className="product-card">
       <img
-        src={`../${phone.images[0]}`}
-        alt="Iphone 14 Midnight"
-        className="card__image"
+        src="../img/phones/apple-iphone-14-pro/spaceblack/00.webp"
+        alt={`${category}_image`}
+        className="product-card__image"
       />
 
-      <h2 className="card__title">
-        {phone.name} (MQ023)
-      </h2>
+      <p className="product-card__title">{name}</p>
 
-      <p className="card__price-value">${phone.priceDiscount}</p>
-
-      <div className="card__params">
-        <p className="card__param-pair">
-          <span className="card__params-info">Screen</span>
-          <span className="card__params-value">{phone.screen}</span>
-        </p>
-
-        <p className="card__param-pair">
-          <span className="card__params-info">Capacity</span>
-          <span className="card__params-value">{phone.capacity}</span>
-        </p>
-
-        <p className="card__param-pair">
-          <span className="card__params-info">RAM</span>
-          <span className="card__params-value">{phone.ram}</span>
-        </p>
+      <div className="product-card__price">
+        <p className="product-card__actual-price h3">{`$${price}`}</p>
+        {fullPrice !== price && (
+          <p className="product-card__full-price h3">{`$${fullPrice}`}</p>
+        )}
       </div>
 
-      <div className="card__button">
-        <button type="button" className="button button--add">
-          Add to cart
+      <div className="product-card__characteristics">
+        {shownProductCardCharacteristics.map((characteristic) => (
+          <p className="product-card__characteristic">
+            <span className="product-card__characteristic-name small-text">
+              {characteristic}
+            </span>
+            <span className="product-card__characteristic-value small-text">
+              {product[characteristic.toLowerCase() as keyof Product]}
+            </span>
+          </p>
+        ))}
+      </div>
+
+      <div className="product-card__buttons">
+        <button
+          onClick={handleAddedToCart}
+          type="button"
+          className={cn('button button-add', {
+            'button-add--selected': isInCart,
+          })}>
+          {isInCart ? 'Added to cart' : 'Add to cart'}
         </button>
 
-        <button type="button" className="button button--favourite" />
+        <button
+          onClick={handleAddedToFavourite}
+          type="button"
+          className={cn('button button-favourite', {
+            'button-favourite--selected': isInFavourite,
+          })}
+        />
       </div>
     </article>
   );

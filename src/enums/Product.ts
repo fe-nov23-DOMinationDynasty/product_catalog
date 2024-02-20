@@ -1,6 +1,5 @@
-export enum Product {
+export enum Category {
   Accessories = 'accessories',
   Phones = 'phones',
-  Products = 'products',
   Tablets = 'tablets',
 }

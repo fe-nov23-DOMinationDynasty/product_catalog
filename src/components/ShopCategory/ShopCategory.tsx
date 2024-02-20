@@ -1,51 +1,50 @@
-import React from "react";
-import './shopcategory.scss';
+import React from 'react';
+import './shopCategory.scss';
+import '../../styles/utils/text-styles.scss';
 
-export const ShopCategory:React.FC = () => {
+export const ShopCategory: React.FC = () => {
   return (
     <section className="shop" id="shop">
       <h2 className="section-title h2">Shop by category</h2>
-      <div className="shop__by-category">
+      <div className="shop__categories">
         <article className="product shop__product">
           <div className="product__photo-container">
-            <img
-              src="../../public/img/category-phones.png"
-              alt="categoty-phone"
+            <span
               className="product__photo product__photo--phones"
             />
           </div>
 
-          <h3 className="product__title">
+          <h4 className="product__title h4">
             Mobile phones
-          </h3>
+          </h4>
           <span className="product__counter">
             95 models
           </span>
         </article>
 
         <article className="product shop__product">
-          <img
-            src="../../img/category-tablets.png"
-            alt="categoty-tablet"
-            className="product__photo product__photo--tablets"
-          />
-          <h3 className="product__title">
+          <div className="product__photo-container">
+            <span
+              className="product__photo product__photo--tablets"
+            />
+          </div>
+          <h4 className="product__title h4">
             Tablets
-          </h3>
+          </h4>
           <span className="product__counter">
             24 models
           </span>
         </article>
 
         <article className="product shop__product">
-          <img
-            src="../../img/category-accessories.png"
-            alt="categoty-tablet"
-            className="product__photo product__photo--accessories"
-          />
-          <h3 className="product__title">
+          <div className="product__photo-container">
+            <span
+              className="product__photo product__photo--accessories"
+            />
+          </div>
+          <h4 className="product__title h4">
             Accessories
-          </h3>
+          </h4>
           <span className="product__counter">
             100 models
           </span>
