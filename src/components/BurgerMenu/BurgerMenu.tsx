@@ -46,6 +46,7 @@ export const BurgerMenu: React.FC<Props> = ({
               to="/"
               onClick={() => {
                 setCurrentURL('/');
+                setCloseBurger(false);
               }}
               className={handleBurgerLinkIsActive}
             >
@@ -57,6 +58,7 @@ export const BurgerMenu: React.FC<Props> = ({
               to="catalog/phones"
               onClick={() => {
                 setCurrentURL('catalog/phones');
+                setCloseBurger(false);
               }}
               className={handleBurgerLinkIsActive}
             >
@@ -68,6 +70,7 @@ export const BurgerMenu: React.FC<Props> = ({
               to="catalog/tablets"
               onClick={() => {
                 setCurrentURL('catalog/tablets');
+                setCloseBurger(false);
               }}
               className={handleBurgerLinkIsActive}
             >
@@ -79,6 +82,7 @@ export const BurgerMenu: React.FC<Props> = ({
               to="catalog/accessories"
               onClick={() => {
                 setCurrentURL('catalog/accessories');
+                setCloseBurger(false);
               }}
               className={handleBurgerLinkIsActive}
             >
@@ -91,6 +95,7 @@ export const BurgerMenu: React.FC<Props> = ({
           <NavLink
             onClick={() => {
               setCurrentURL('favourites');
+              setCloseBurger(false);
             }}
             to="favourites"
             className={handleBurgerButtonIsActive}
@@ -101,6 +106,7 @@ export const BurgerMenu: React.FC<Props> = ({
           <NavLink
             onClick={() => {
               setCurrentURL('cart');
+              setCloseBurger(false);
             }}
             to="cart"
             className={handleBurgerButtonIsActive}
