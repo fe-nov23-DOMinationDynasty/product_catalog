@@ -6,11 +6,9 @@ import './productCard.scss';
 import { Product } from '../../types/Product';
 import { shownProductCardCharacteristics } from '../../constants/constants';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { addToCart, deleteFromCart } from '../../features/cartSlice';
-import {
-  addToFavourites,
-  deleteFromFavourites,
-} from '../../features/favouritesSlice';
+import { actions as cartActions } from '../../features/cartSlice';
+import { actions as favouriteAction } from '../../features/favouritesSlice';
+import { getCartProductId } from '../../services/getCartProductIds';
 
 interface Props {
   product: Product;
@@ -18,33 +16,36 @@ interface Props {
 
 export const ProductCard: React.FC<Props> = ({ product }) => {
   const { id, category, name, price, fullPrice, image } = product;
-  const { cartProductIds } = useAppSelector((state) => state.cartReducer);
-  const { favouriteProductIds } = useAppSelector(
+  const cartProducts = useAppSelector((state) => state.cartReducer);
+  const favouriteProductIds = useAppSelector(
     (state) => state.favouritesReducer
   );
   const dispatch = useAppDispatch();
 
-  const isInCart = cartProductIds.includes(id);
+  const isInCart = !!cartProducts?.find(
+    (cartProduct) => getCartProductId(cartProduct) === id
+  );
+
   const isInFavourite = favouriteProductIds.includes(id);
 
   const handleProductCartStatusChanged = () => {
     if (isInCart) {
-      dispatch(deleteFromCart(id));
+      dispatch(cartActions.delete(id));
 
       return;
     }
 
-    dispatch(addToCart(id));
+    dispatch(cartActions.add(id));
   };
 
   const handleFavouriteProductStatusChanged = () => {
     if (isInFavourite) {
-      dispatch(deleteFromFavourites(id));
+      dispatch(favouriteAction.delete(id));
 
       return;
     }
 
-    dispatch(addToFavourites(id));
+    dispatch(favouriteAction.add(id));
   };
 
   return (

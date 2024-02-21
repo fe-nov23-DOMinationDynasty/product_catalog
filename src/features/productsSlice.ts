@@ -6,11 +6,11 @@ import { getProducts } from '../api/products';
 
 const initialState = {
   products: [] as Product[],
-  isLoading: false,
+  isLoading: true,
   errorMessage: '',
 };
 
-export const loadProducts = createAsyncThunk(
+const loadProducts = createAsyncThunk(
   'products/fetch',
   (category: Category) => {
     return getProducts().then((products) => {
@@ -45,3 +45,5 @@ const productsSlice = createSlice({
 });
 
 export const productsReducer = productsSlice.reducer;
+
+export const actions = { loadProducts };

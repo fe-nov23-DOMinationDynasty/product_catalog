@@ -7,6 +7,8 @@ export function getLocalStorage<T>(key: string, startValue: T) {
 
   if (!localData) {
     saveItem(startValue);
+
+    return [startValue, saveItem];
   }
 
   try {

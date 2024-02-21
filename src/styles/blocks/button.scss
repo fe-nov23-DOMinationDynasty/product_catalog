@@ -71,8 +71,7 @@
     background-color: $primary-color;
     color: $white-color;
 
-    transition:
-      box-shadow $transition-duration;
+    transition: box-shadow $transition-duration;
 
     @include onDesktop {
       &:hover {

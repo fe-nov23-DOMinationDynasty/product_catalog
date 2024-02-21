@@ -4,35 +4,55 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { localStorageCartKey } from '../constants/constants';
 import { getLocalStorage } from '../services/getLocalStorage';
+import { CartProduct } from '../types/CartProduct';
+import { getCartProductId } from '../services/getCartProductIds';
 
-const [cartProductIds, setCartProductIds] = getLocalStorage(
+const [cartProducts, setCartProducts] = getLocalStorage(
   localStorageCartKey,
   []
 );
 
-const initialState = {
-  cartProductIds: cartProductIds as number[],
-};
-
 const cartSlice = createSlice({
   name: 'cart',
-  initialState,
+  initialState: cartProducts as CartProduct[],
   reducers: {
-    addToCart: (state, action: PayloadAction<number>) => {
-      state.cartProductIds = [...state.cartProductIds, action.payload];
+    add: (products, action: PayloadAction<number>) => {
+      const newProducts = [...products, { [action.payload]: 1 }];
 
-      setCartProductIds(state.cartProductIds);
+      setCartProducts(newProducts);
+
+      return newProducts;
     },
-    deleteFromCart: (state, action: PayloadAction<number>) => {
-      state.cartProductIds = state.cartProductIds.filter(
-        (id) => id !== action.payload
+    delete: (products, action: PayloadAction<number>) => {
+      const newProducts = products.filter(
+        (product) => getCartProductId(product) !== action.payload
       );
 
-      setCartProductIds(state.cartProductIds);
+      setCartProducts(newProducts);
+
+      return newProducts;
+    },
+    incrementAmount: (products, action: PayloadAction<number>) => {
+      const productIndex = products.findIndex(
+        (product) => getCartProductId(product) === action.payload
+      );
+
+      products[productIndex][action.payload] += 1;
+      // products[productIndex] - get product from array
+      // products[productIndex][action.payload] - get property by key(productId)
+    },
+    decrementAmount: (products, action: PayloadAction<number>) => {
+      const productIndex = products.findIndex(
+        (product) => getCartProductId(product) === action.payload
+      );
+
+      products[productIndex][action.payload] -= 1;
+      // products[productIndex] - get product from array
+      // products[productIndex][action.payload] - get property by key(productId)
     },
   },
 });
 
 export const cartReducer = cartSlice.reducer;
 
-export const { addToCart, deleteFromCart } = cartSlice.actions;
+export const actions = { ...cartSlice.actions };

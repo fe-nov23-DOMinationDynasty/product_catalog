@@ -10,33 +10,27 @@ const [favouriteProductIds, setFavouriteProductIds] = getLocalStorage(
   []
 );
 
-const initialState = {
-  favouriteProductIds: favouriteProductIds as number[],
-};
-
 const favouritesSlice = createSlice({
   name: 'favourites',
-  initialState,
+  initialState: favouriteProductIds as number[],
   reducers: {
-    addToFavourites: (state, action: PayloadAction<number>) => {
-      state.favouriteProductIds = [
-        ...state.favouriteProductIds,
-        action.payload,
-      ];
+    add: (productsIds, action: PayloadAction<number>) => {
+      const newProductsIds = [...productsIds, action.payload];
 
-      setFavouriteProductIds(state.favouriteProductIds);
+      setFavouriteProductIds(newProductsIds);
+
+      return newProductsIds;
     },
-    deleteFromFavourites: (state, action: PayloadAction<number>) => {
-      state.favouriteProductIds = state.favouriteProductIds.filter(
-        (id) => id !== action.payload
-      );
+    delete: (productsIds, action: PayloadAction<number>) => {
+      const newProductsIds = productsIds.filter((id) => id !== action.payload);
 
-      setFavouriteProductIds(state.favouriteProductIds);
+      setFavouriteProductIds(newProductsIds);
+
+      return newProductsIds;
     },
   },
 });
 
 export const favouritesReducer = favouritesSlice.reducer;
 
-export const { addToFavourites, deleteFromFavourites }
-  = favouritesSlice.actions;
+export const actions = { ...favouritesSlice.actions };
