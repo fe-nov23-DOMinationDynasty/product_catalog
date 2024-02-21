@@ -14,11 +14,24 @@
   box-sizing: border-box;
   border: 1px solid $elements-color;
   transition: box-shadow $transition-duration;
-  cursor: pointer;
+
+  &__link {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+  }
 
   &__image {
     object-fit: contain;
     aspect-ratio: 1 / 1;
+    transition: transform $transition-duration;
+
+    @include onDesktop {
+      &:hover {
+        transform: scale(110%);
+      }
+    }
   }
 
   &__price {

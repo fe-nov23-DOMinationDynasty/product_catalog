@@ -10,18 +10,18 @@ import { CheckoutModal } from '../../components/CheckoutModal';
 export const CartPage = () => {
   const items = [
     {
-      "id": 72,
-      "category": "phones",
-      "itemId": "apple-iphone-14-128gb-midnight",
-      "name": "Apple iPhone 14 128GB Midnight",
-      "fullPrice": 1056,
-      "price": 980,
-      "screen": "6.1' IPS",
-      "capacity": "32GB",
-      "color": "midnight",
-      "ram": "6GB",
-      "year": 2022,
-      "image": "img/phones/apple-iphone-14/midnight/00.webp"
+      id: 72,
+      category: 'phones',
+      itemId: 'apple-iphone-14-128gb-midnight',
+      name: 'Apple iPhone 14 128GB Midnight',
+      fullPrice: 1056,
+      price: 980,
+      screen: "6.1' IPS",
+      capacity: '32GB',
+      color: 'midnight',
+      ram: '6GB',
+      year: 2022,
+      image: 'img/phones/apple-iphone-14/midnight/00.webp',
     },
   ];
 
@@ -30,8 +30,10 @@ export const CartPage = () => {
 
   const navigate = useNavigate();
 
-  const totalCost = items
-    .reduce((total, item) => total + item.price * quantity, 0);
+  const totalCost = items.reduce(
+    (total, item) => total + item.price * quantity,
+    0
+  );
 
   const handleCheckout = () => {
     setShowModal(true);
@@ -66,13 +68,7 @@ export const CartPage = () => {
       <article className="total">
         <div className="total__info">
           <h2 className="total__price">${totalCost}</h2>
-          <div className="total__count-items">
-            Total for
-            {' '}
-            {quantity}
-            {' '}
-            items
-          </div>
+          <div className="total__count-items">Total for {quantity} items</div>
         </div>
 
         <span className="total__line" />
