@@ -1,5 +1,5 @@
 import React from 'react';
-import './shopCategory.scss';
+import './shopcategory.scss';
 import '../../styles/utils/text-styles.scss';
 
 export const ShopCategory: React.FC = () => {
