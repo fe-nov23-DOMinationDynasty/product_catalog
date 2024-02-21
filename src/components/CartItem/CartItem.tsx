@@ -7,23 +7,20 @@ import { useAppDispatch } from '../../app/hooks';
 import { actions as cartActions } from '../../features/cartSlice';
 
 interface Props {
-  item: Product;
+  product: Product;
   quantity: number;
-  setQuantity: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export const CartItem: React.FC<Props> = ({ item, quantity, setQuantity }) => {
-  const { id, name, image, price } = item;
+export const CartItem: React.FC<Props> = ({ product, quantity }) => {
+  const { id, name, image, price } = product;
   const dispatch = useAppDispatch();
 
   const handleIncrement = () => {
-    setQuantity((prevQuantity) => prevQuantity + 1);
+    dispatch(cartActions.incrementAmount(id));
   };
 
   const handleDecrement = () => {
-    if (quantity > 1) {
-      setQuantity((prevQuantity) => prevQuantity - 1);
-    }
+    dispatch(cartActions.decrementAmount(id));
   };
 
   const handleDelete = () => {

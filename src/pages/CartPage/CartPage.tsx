@@ -2,22 +2,21 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BackButton } from '../../components/BackButton';
 import { CartItem } from '../../components/CartItem';
-import './cartPage.scss';
+import './CartPage.scss';
 import '../../styles/blocks/button.scss';
 import '../../styles/utils/text-styles.scss';
 import { CheckoutModal } from '../../components/CheckoutModal';
 import { useAppSelector } from '../../app/hooks';
 
 export const CartPage = () => {
-  const items = useAppSelector((state) => state.cartReducer);
+  const products = useAppSelector((state) => state.cartReducer);
 
-  const [quantity, setQuantity] = useState(items.length);
   const [showModal, setShowModal] = useState(false);
 
   const navigate = useNavigate();
 
-  const totalCost = items.reduce(
-    (total, item) => total + item.price * quantity,
+  const totalCost = products.reduce(
+    (total, { product, amount }) => total + (product?.price || 0) * amount,
     0
   );
 
@@ -41,20 +40,27 @@ export const CartPage = () => {
       </div>
 
       <div className="cart__items">
-        {items.map((item) => (
-          <CartItem
-            key={item.id}
-            item={item}
-            quantity={quantity}
-            setQuantity={setQuantity}
-          />
+        {products.map(({ product, amount }) => (
+          product ? (
+            <CartItem
+              key={product.id}
+              product={product}
+              quantity={amount}
+            />
+          ) : null
         ))}
       </div>
 
       <article className="total">
         <div className="total__info">
           <h2 className="total__price">${totalCost}</h2>
-          <div className="total__count-items">Total for {quantity} items</div>
+          <div className="total__count-items">
+            Total for
+            {' '}
+            {products.length}
+            {' '}
+            items
+          </div>
         </div>
 
         <span className="total__line" />
