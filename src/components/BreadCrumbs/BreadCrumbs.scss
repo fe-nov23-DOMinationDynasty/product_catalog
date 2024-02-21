@@ -5,7 +5,7 @@
   $crum-gap: 8px;
 
   display: flex;
-  gap: 8px;
+  gap: $crum-gap;
   margin: 24px 0 40px;
 
   text-transform: capitalize;
