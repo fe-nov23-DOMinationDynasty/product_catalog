@@ -7,7 +7,7 @@ import { Product } from '../../types/Product';
 import { shownProductCardCharacteristics } from '../../constants/constants';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { actions as cartActions } from '../../features/cartSlice';
-import { actions as favouriteAction } from '../../features/favouritesSlice';
+import { actions as favouriteActions } from '../../features/favouritesSlice';
 import { getCartProductId } from '../../services/getCartProductIds';
 
 interface Props {
@@ -40,12 +40,12 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
 
   const handleFavouriteProductStatusChanged = () => {
     if (isInFavourite) {
-      dispatch(favouriteAction.delete(id));
+      dispatch(favouriteActions.delete(id));
 
       return;
     }
 
-    dispatch(favouriteAction.add(id));
+    dispatch(favouriteActions.add(id));
   };
 
   return (
