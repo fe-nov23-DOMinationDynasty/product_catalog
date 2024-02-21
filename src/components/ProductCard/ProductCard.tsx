@@ -49,7 +49,7 @@ export const ProductCard: React.FC<Props> = ({
         </div>
         <div className="product-card__characteristics">
           {shownProductCardCharacteristics.map((characteristic) => (
-            <p className="product-card__characteristic">
+            <p className="product-card__characteristic" key={characteristic}>
               <span className="product-card__characteristic-name small-text">
                 {characteristic}
               </span>

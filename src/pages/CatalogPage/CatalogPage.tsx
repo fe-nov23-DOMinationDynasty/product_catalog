@@ -6,6 +6,7 @@ import { loadProducts } from '../../features/productsSlice';
 import { Category } from '../../enums/Category';
 import { ProductTable } from '../../components/ProductTable/ProductTable';
 import { Loader } from '../../components/Loader';
+import { BreadCrumbs } from '../../components/BreadCrumbs';
 
 export const CatalogPage = () => {
   const { currentPageNumber, productType } = useParams();
@@ -21,6 +22,8 @@ export const CatalogPage = () => {
 
   return (
     <>
+      <BreadCrumbs />
+
       {isLoading ? (
         <Loader />
       ) : (
