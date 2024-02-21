@@ -1,17 +1,17 @@
 @import '../../styles/utils/variables';
 
 .bread-crumbs {
-  $crum-size: 16px;
-  $crum-gap: 8px;
+  $crumb-size: 16px;
+  $crumb-gap: 8px;
 
   display: flex;
-  gap: $crum-gap;
+  gap: $crumb-gap;
   margin: 24px 0 40px;
 
   text-transform: capitalize;
 
   &__crumb {
-    height: $crum-size;
+    height: $crumb-size;
 
     position: relative;
     display: flex;
@@ -22,7 +22,7 @@
 
   &__arrow {
     background: url('../../../public/icons/arrow-right-disabled.svg') center no-repeat;
-    width: $crum-size;
+    width: $crumb-size;
   }
 
   &__crumb:last-child {
@@ -35,6 +35,6 @@
 
   &__home{
     background: url('../../../public/icons/buttons/icon-home.svg') center no-repeat;
-    width: $crum-size;
+    width: $crumb-size;
   }
 }

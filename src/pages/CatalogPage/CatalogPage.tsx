@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Pagination } from '../../components/Pagination';
@@ -17,7 +18,6 @@ export const CatalogPage = () => {
 
   useEffect(() => {
     dispatch(loadProducts(productType as Category));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [productType]);
 
   return (
