@@ -68,7 +68,6 @@ export const HomePage = () => {
 
         <CustomSwiper title="Hot prices" items={null} /> */}
 
-
     </section>
   );
 };
