@@ -26,6 +26,7 @@ export const CatalogPage = () => {
   return (
     <>
       <BreadCrumbs />
+
       {isLoading && <Loader />}
 
       {!isLoading && !errorMessage && (
