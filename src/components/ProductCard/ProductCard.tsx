@@ -8,7 +8,6 @@ import { shownProductCardCharacteristics } from '../../constants/constants';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { actions as cartActions } from '../../features/cartSlice';
 import { actions as favouriteActions } from '../../features/favouritesSlice';
-import { getCartProductId } from '../../services/getCartProductIds';
 
 interface Props {
   product: Product;
@@ -16,17 +15,17 @@ interface Props {
 
 export const ProductCard: React.FC<Props> = ({ product }) => {
   const { id, category, name, price, fullPrice, image } = product;
-  const cartProducts = useAppSelector((state) => state.cartReducer);
-  const favouriteProductIds = useAppSelector(
-    (state) => state.favouritesReducer
-  );
+  const cartItems = useAppSelector((state) => state.cartReducer);
+  const favouriteProducts = useAppSelector((state) => state.favouritesReducer);
   const dispatch = useAppDispatch();
 
-  const isInCart = !!cartProducts?.find(
-    (cartProduct) => getCartProductId(cartProduct) === id
+  const isInCart = !!cartItems?.find(
+    ({ product: cartProduct }) => cartProduct.id === id
   );
 
-  const isInFavourite = favouriteProductIds.includes(id);
+  const isInFavourite = !!favouriteProducts.find(
+    (favouriteProduct) => favouriteProduct.id === id
+  );
 
   const handleProductCartStatusChanged = () => {
     if (isInCart) {
@@ -35,7 +34,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
       return;
     }
 
-    dispatch(cartActions.add(id));
+    dispatch(cartActions.add(product));
   };
 
   const handleFavouriteProductStatusChanged = () => {
@@ -45,7 +44,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
       return;
     }
 
-    dispatch(favouriteActions.add(id));
+    dispatch(favouriteActions.add(product));
   };
 
   return (
