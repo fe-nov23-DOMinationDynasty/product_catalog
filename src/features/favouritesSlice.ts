@@ -4,27 +4,30 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { localStorageFavouritesKey } from '../constants/constants';
 import { getLocalStorage } from '../services/getLocalStorage';
+import { Product } from '../types/Product';
 
-const [favouriteProductIds, setFavouriteProductIds] = getLocalStorage(
+const [favouriteProducts, setFavouriteProducts] = getLocalStorage(
   localStorageFavouritesKey,
   []
 );
 
 const favouritesSlice = createSlice({
   name: 'favourites',
-  initialState: favouriteProductIds as number[],
+  initialState: favouriteProducts as Product[],
   reducers: {
-    add: (productsIds, action: PayloadAction<number>) => {
-      const newProductsIds = [...productsIds, action.payload];
+    add: (products, action: PayloadAction<Product>) => {
+      const newProductsIds = [...products, action.payload];
 
-      setFavouriteProductIds(newProductsIds);
+      setFavouriteProducts(newProductsIds);
 
       return newProductsIds;
     },
     delete: (productsIds, action: PayloadAction<number>) => {
-      const newProductsIds = productsIds.filter((id) => id !== action.payload);
+      const newProductsIds = productsIds.filter(
+        ({ id }) => id !== action.payload
+      );
 
-      setFavouriteProductIds(newProductsIds);
+      setFavouriteProducts(newProductsIds);
 
       return newProductsIds;
     },
