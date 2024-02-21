@@ -52,6 +52,11 @@ const cartSlice = createSlice({
 
       cartItems[productIndex].amount -= 1;
     },
+    resetCart: () => {
+      setCartProducts([]);
+
+      return [];
+    },
   },
 });
 

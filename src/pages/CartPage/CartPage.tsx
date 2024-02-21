@@ -1,14 +1,20 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { actions as cartActions } from '../../features/cartSlice';
+
 import { BackButton } from '../../components/BackButton';
 import { CartItem } from '../../components/CartItem';
+import { CheckoutModal } from '../../components/CheckoutModal';
+
+import { useAppSelector } from '../../app/hooks';
+
 import './CartPage.scss';
 import '../../styles/blocks/button.scss';
 import '../../styles/utils/text-styles.scss';
-import { CheckoutModal } from '../../components/CheckoutModal';
-import { useAppSelector } from '../../app/hooks';
 
 export const CartPage = () => {
+  const dispatch = useDispatch();
   const products = useAppSelector((state) => state.cartReducer);
 
   const [showModal, setShowModal] = useState(false);
@@ -24,6 +30,8 @@ export const CartPage = () => {
     .reduce((total, { amount }) => total + amount, 0);
 
   const handleCheckout = () => {
+    dispatch(cartActions.resetCart());
+
     setShowModal(true);
 
     setTimeout(() => {
@@ -54,28 +62,30 @@ export const CartPage = () => {
         ))}
       </div>
 
-      <article className="total">
-        <div className="total__info">
-          <h2 className="total__price">${totalCost}</h2>
-          <div className="total__count-items">
-            Total for
-            {' '}
-            {totalQuantity}
-            {' '}
-            items
+      {!!totalQuantity && (
+        <article className="total">
+          <div className="total__info">
+            <h2 className="total__price">${totalCost}</h2>
+            <div className="total__count-items">
+              Total for
+              {' '}
+              {totalQuantity}
+              {' '}
+              items
+            </div>
           </div>
-        </div>
 
-        <span className="total__line" />
+          <span className="total__line" />
 
-        <button
-          type="button"
-          className="button button-add button--cart"
-          onClick={handleCheckout}
-        >
-          Checkout
-        </button>
-      </article>
+          <button
+            type="button"
+            className="button button-add button--cart"
+            onClick={handleCheckout}
+          >
+            Checkout
+          </button>
+        </article>
+      )}
 
       {showModal && <CheckoutModal />}
     </div>
