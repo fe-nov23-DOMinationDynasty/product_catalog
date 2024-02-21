@@ -15,7 +15,7 @@ interface Props {
 
 export const ProductCard: React.FC<Props> = ({ product }) => {
   const { id, category, name, price, fullPrice, image } = product;
-  const cartItems = useAppSelector((state) => state.cartReducer);
+  const { cartItems } = useAppSelector((state) => state.cartReducer);
   const favouriteProducts = useAppSelector((state) => state.favouritesReducer);
   const dispatch = useAppDispatch();
 
