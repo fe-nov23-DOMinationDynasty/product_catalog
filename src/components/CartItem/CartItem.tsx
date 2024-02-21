@@ -20,7 +20,9 @@ export const CartItem: React.FC<Props> = ({ product, quantity }) => {
   };
 
   const handleDecrement = () => {
-    dispatch(cartActions.decrementAmount(id));
+    if (quantity > 1) {
+      dispatch(cartActions.decrementAmount(id));
+    }
   };
 
   const handleDelete = () => {

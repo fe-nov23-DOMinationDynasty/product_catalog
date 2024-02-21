@@ -16,9 +16,12 @@ export const CartPage = () => {
   const navigate = useNavigate();
 
   const totalCost = products.reduce(
-    (total, { product, amount }) => total + (product?.price || 0) * amount,
+    (total, { product, amount }) => total + product.price * amount,
     0
   );
+
+  const totalQuantity = products
+    .reduce((total, { amount }) => total + amount, 0);
 
   const handleCheckout = () => {
     setShowModal(true);
@@ -57,7 +60,7 @@ export const CartPage = () => {
           <div className="total__count-items">
             Total for
             {' '}
-            {products.length}
+            {totalQuantity}
             {' '}
             items
           </div>
