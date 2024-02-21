@@ -3,6 +3,8 @@ import React from 'react';
 import cn from 'classnames';
 import { Product } from '../../types/Product';
 import './cartItem.scss';
+import { useAppDispatch } from '../../app/hooks';
+import { actions as cartActions } from '../../features/cartSlice';
 
 interface Props {
   item: Product;
@@ -11,7 +13,8 @@ interface Props {
 }
 
 export const CartItem: React.FC<Props> = ({ item, quantity, setQuantity }) => {
-  const { name, image, price } = item;
+  const { id, name, image, price } = item;
+  const dispatch = useAppDispatch();
 
   const handleIncrement = () => {
     setQuantity((prevQuantity) => prevQuantity + 1);
@@ -23,10 +26,18 @@ export const CartItem: React.FC<Props> = ({ item, quantity, setQuantity }) => {
     }
   };
 
+  const handleDelete = () => {
+    dispatch(cartActions.delete(id));
+  };
+
   return (
     <article className="cart-item">
       <div className="cart-item__info">
-        <button type="button" className="cart-item__delete">
+        <button
+          type="button"
+          className="cart-item__delete"
+          onClick={handleDelete}
+        >
           <img
             src="./icons/close.svg"
             className="cart-item__delete-icon"

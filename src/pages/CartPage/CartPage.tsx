@@ -6,24 +6,10 @@ import './cartPage.scss';
 import '../../styles/blocks/button.scss';
 import '../../styles/utils/text-styles.scss';
 import { CheckoutModal } from '../../components/CheckoutModal';
+import { useAppSelector } from '../../app/hooks';
 
 export const CartPage = () => {
-  const items = [
-    {
-      id: 72,
-      category: 'phones',
-      itemId: 'apple-iphone-14-128gb-midnight',
-      name: 'Apple iPhone 14 128GB Midnight',
-      fullPrice: 1056,
-      price: 980,
-      screen: "6.1' IPS",
-      capacity: '32GB',
-      color: 'midnight',
-      ram: '6GB',
-      year: 2022,
-      image: 'img/phones/apple-iphone-14/midnight/00.webp',
-    },
-  ];
+  const items = useAppSelector((state) => state.cartReducer);
 
   const [quantity, setQuantity] = useState(items.length);
   const [showModal, setShowModal] = useState(false);
