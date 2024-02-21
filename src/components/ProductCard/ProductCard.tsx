@@ -1,45 +1,62 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React from 'react';
+import { Link } from 'react-router-dom';
 import cn from 'classnames';
 import './productCard.scss';
 import { Product } from '../../types/Product';
 import { shownProductCardCharacteristics } from '../../constants/constants';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { actions as cartActions } from '../../features/cartSlice';
+import { actions as favouriteActions } from '../../features/favouritesSlice';
 
 interface Props {
   product: Product;
-  isInCart: boolean;
-  isInFavourite: boolean;
-  addToFavourite: (id: number) => void;
-  addToCart: (id: number) => void;
 }
 
-export const ProductCard: React.FC<Props> = ({
-  product,
-  isInCart,
-  isInFavourite,
-  addToCart,
-  addToFavourite,
-}) => {
+export const ProductCard: React.FC<Props> = ({ product }) => {
   const { id, category, name, price, fullPrice, image } = product;
+  const cartItems = useAppSelector((state) => state.cartReducer);
+  const favouriteProducts = useAppSelector((state) => state.favouritesReducer);
+  const dispatch = useAppDispatch();
 
-  const handleAddedToCart = () => {
-    addToCart(id);
+  const isInCart = !!cartItems?.find(
+    ({ product: cartProduct }) => cartProduct.id === id
+  );
+
+  const isInFavourite = !!favouriteProducts.find(
+    (favouriteProduct) => favouriteProduct.id === id
+  );
+
+  const handleProductCartStatusChanged = () => {
+    if (isInCart) {
+      dispatch(cartActions.delete(id));
+
+      return;
+    }
+
+    dispatch(cartActions.add(product));
   };
 
-  const handleAddedToFavourite = () => {
-    addToFavourite(id);
+  const handleFavouriteProductStatusChanged = () => {
+    if (isInFavourite) {
+      dispatch(favouriteActions.delete(id));
+
+      return;
+    }
+
+    dispatch(favouriteActions.add(product));
   };
 
   return (
     <article className="product-card">
-      <img
-        src={image}
-        alt={`${category}_image`}
-        className="product-card__image"
-      />
-
-      <p className="product-card__title">{name}</p>
-
+      <Link to={`/item/${id}`} className="product-card__link">
+        <img
+          src={image}
+          alt={`${category}_image`}
+          className="product-card__image"
+        />
+        <p className="product-card__title">{name}</p>
+      </Link>
       <div className="product-card__bottom-part">
         <div className="product-card__price">
           <p className="product-card__actual-price h3">{`$${price}`}</p>
@@ -49,7 +66,7 @@ export const ProductCard: React.FC<Props> = ({
         </div>
         <div className="product-card__characteristics">
           {shownProductCardCharacteristics.map((characteristic) => (
-            <p className="product-card__characteristic">
+            <p className="product-card__characteristic" key={characteristic}>
               <span className="product-card__characteristic-name small-text">
                 {characteristic}
               </span>
@@ -61,7 +78,7 @@ export const ProductCard: React.FC<Props> = ({
         </div>
         <div className="product-card__buttons">
           <button
-            onClick={handleAddedToCart}
+            onClick={handleProductCartStatusChanged}
             type="button"
             className={cn('button button-add', {
               'button-add--selected': isInCart,
@@ -69,7 +86,7 @@ export const ProductCard: React.FC<Props> = ({
             {isInCart ? 'Added to cart' : 'Add to cart'}
           </button>
           <button
-            onClick={handleAddedToFavourite}
+            onClick={handleFavouriteProductStatusChanged}
             type="button"
             className={cn('button button-favourite', {
               'button-favourite--selected': isInFavourite,
