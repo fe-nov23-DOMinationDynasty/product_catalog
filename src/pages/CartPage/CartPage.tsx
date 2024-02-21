@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BackButton } from '../../components/BackButton';
 import { CartItem } from '../../components/CartItem';
-import './cartPage.scss';
+import './CartPage.scss';
 import '../../styles/blocks/button.scss';
 import '../../styles/utils/text-styles.scss';
 import { CheckoutModal } from '../../components/CheckoutModal';
