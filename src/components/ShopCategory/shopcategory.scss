@@ -20,10 +20,6 @@
   margin-bottom: 24px;
 }
 
-.product__title {
-  margin-bottom: 4px;
-}
-
 .product {
   grid-column: span 4;
 
@@ -68,5 +64,10 @@
       background-color: #ac385e;
       background-position: left 49px top 77px;
     }
+  }
+
+  &__title {
+    text-transform: capitalize;
+    margin-bottom: 4px;
   }
 }
