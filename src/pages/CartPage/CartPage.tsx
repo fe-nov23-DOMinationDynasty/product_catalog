@@ -1,9 +1,11 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { BackButton } from '../../components/BackButton';
 import { CartItem } from '../../components/CartItem';
 import './cartPage.scss';
 import '../../styles/blocks/button.scss';
 import '../../styles/utils/text-styles.scss';
+import { CheckoutModal } from '../../components/CheckoutModal';
 
 export const CartPage = () => {
   const items = [
@@ -24,9 +26,21 @@ export const CartPage = () => {
   ];
 
   const [quantity, setQuantity] = useState(items.length);
+  const [showModal, setShowModal] = useState(false);
+
+  const navigate = useNavigate();
 
   const totalCost = items
     .reduce((total, item) => total + item.price * quantity, 0);
+
+  const handleCheckout = () => {
+    setShowModal(true);
+
+    setTimeout(() => {
+      setShowModal(false);
+      navigate('..');
+    }, 2000);
+  };
 
   return (
     <div className="cart">
@@ -63,10 +77,16 @@ export const CartPage = () => {
 
         <span className="total__line" />
 
-        <button type="button" className="button button-add button--cart">
+        <button
+          type="button"
+          className="button button-add button--cart"
+          onClick={handleCheckout}
+        >
           Checkout
         </button>
       </article>
+
+      {showModal && <CheckoutModal />}
     </div>
   );
 };
