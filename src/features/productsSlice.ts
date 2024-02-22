@@ -9,12 +9,9 @@ const initialState = {
   errorMessage: '',
 };
 
-const loadProducts = createAsyncThunk(
-  'products/fetch',
-  () => {
-    return getProducts();
-  }
-);
+const loadProducts = createAsyncThunk('products/fetch', () => {
+  return getProducts();
+});
 
 const productsSlice = createSlice({
   name: 'products',
