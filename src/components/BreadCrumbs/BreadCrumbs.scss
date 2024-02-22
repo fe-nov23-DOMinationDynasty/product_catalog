@@ -1,0 +1,40 @@
+@import '../../styles/utils/variables';
+
+.bread-crumbs {
+  $crumb-size: 16px;
+  $crumb-gap: 8px;
+
+  display: flex;
+  gap: $crumb-gap;
+  margin: 24px 0 40px;
+
+  text-transform: capitalize;
+
+  &__crumb {
+    height: $crumb-size;
+
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    color: $secondary-color;
+  }
+
+  &__arrow {
+    background: url('../../../public/icons/arrow-right-disabled.svg') center no-repeat;
+    width: $crumb-size;
+  }
+
+  &__crumb:last-child {
+    color: $primary-color;
+  }
+
+  &__link {
+    color: inherit;
+  }
+
+  &__home{
+    background: url('../../../public/icons/buttons/icon-home.svg') center no-repeat;
+    width: $crumb-size;
+  }
+}

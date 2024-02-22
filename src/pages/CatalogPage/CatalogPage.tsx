@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useMemo } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 
@@ -82,6 +83,7 @@ export const CatalogPage = () => {
   };
 
   return (
+    <>
     <div className="catalog-page">
       {isLoading && <Loader />}
 
