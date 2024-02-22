@@ -13,8 +13,10 @@ import { SortOptions } from '../../enums/SortOptions';
 import { getSearchWith } from '../../utils/searchHelper';
 
 import './CatalogPage.scss';
+import '../../styles/blocks/button.scss';
 import { prepareProducts } from '../../utils/productsHelper';
 import { itemsPerPageOptions } from '../../constants/constants';
+import { BreadCrumbs } from '../../components/BreadCrumbs';
 
 export const CatalogPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -83,12 +85,23 @@ export const CatalogPage = () => {
   };
 
   return (
-    <>
     <div className="catalog-page">
       {isLoading && <Loader />}
 
       {!isLoading && !errorMessage && (
         <>
+          <div className="catalog-page__breadcrumbs-container">
+            <BreadCrumbs />
+          </div>
+
+          <div className="catalog-page__header">
+            <h1 className="catalog-page__title h1">{productCategory}</h1>
+            <p className="catalog-page__amount-products">
+              {categoryProducts.length}
+              {' '}
+              models
+            </p>
+          </div>
 
           <div className="catalog-page__dropdowns-container">
             <div className="catalog-page__sort-dropdown">
@@ -112,10 +125,12 @@ export const CatalogPage = () => {
             </div>
           </div>
 
-          <ProductTable products={preparedProducts} />
+          <div className="catalog-page__products">
+            <ProductTable products={preparedProducts} />
+          </div>
 
           {amountOfPages > 1 && (
-            <div className="wrapper">
+            <div className="catalog-page__pagination wrapper">
               <Pagination
                 amountOfPages={amountOfPages}
                 currentPageIndex={+(currentPageNumber || 1) - 1}
