@@ -1,0 +1,41 @@
+@import '../../styles/utils/variables';
+@import '../../styles/utils/mixins';
+
+.catalog-page {
+  &__dropdowns-container {
+    display: flex;
+    max-height: 40px;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  &__sort-dropdown {
+    width: 50%;
+    min-width: 150px;
+
+    @include onTablet {
+      width: 190px;
+    }
+
+    @include onDesktop {
+      width: 180px;
+    }
+  }
+
+  &__items-per-page-dropdown {
+    width: 50%;
+
+    @include onTablet {
+      width: 140px;
+    }
+
+    @include onDesktop {
+      width: 130px;
+    }
+  }
+
+  &__dropdown-title {
+    display: inline-block;
+    color: $secondary-color;
+  }
+}
