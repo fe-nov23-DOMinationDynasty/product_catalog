@@ -1,9 +1,7 @@
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 
 import { Pagination } from '../../components/Pagination';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { actions as productsActions } from '../../features/productsSlice';
 import { ProductTable } from '../../components/ProductTable/ProductTable';
 import { Loader } from '../../components/Loader';
 import { ErrorMessage } from '../../components/ErrorMessage';
@@ -14,6 +12,7 @@ import { getSearchWith } from '../../utils/searchHelper';
 import './CatalogPage.scss';
 import { prepareProducts } from '../../utils/productsHelper';
 import { itemsPerPageOptions } from '../../constants/constants';
+import { useAppSelector } from '../../app/hooks';
 
 export const CatalogPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -24,8 +23,6 @@ export const CatalogPage = () => {
   const { products, isLoading, errorMessage } = useAppSelector(
     (state) => state.productsReducer
   );
-
-  const dispatch = useAppDispatch();
 
   const categoryProducts = useMemo(() => {
     return products.filter(({ category }) => category === productCategory);
@@ -38,12 +35,6 @@ export const CatalogPage = () => {
       sortOption as SortOptions,
     );
   }, [categoryProducts, sortOption, itemsPerPage, currentPageNumber]);
-
-  useEffect(() => {
-    dispatch(productsActions.loadProducts());
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [productCategory]);
 
   const handleItemsPerPageChanged = (newItemsPerPage: string) => {
     if (newItemsPerPage !== itemsPerPage) {
