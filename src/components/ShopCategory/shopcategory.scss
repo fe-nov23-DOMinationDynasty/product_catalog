@@ -2,10 +2,10 @@
 @import '../../styles/utils/fonts';
 @import '../../styles/utils/variables';
 
-.shop {
+.categories {
   grid-column: 1 / -1;
 
-  &__categories {
+  &__list {
     display: flex;
     flex-direction: column;
     row-gap: 32px;
@@ -14,17 +14,13 @@
       @include pageGrid;
     }
   }
-}
 
-.section-title {
+  &__title {
   margin-bottom: 24px;
 }
-
-.product__title {
-  margin-bottom: 4px;
 }
 
-.product {
+.category {
   grid-column: span 4;
 
   @include onDesktop {
@@ -68,5 +64,14 @@
       background-color: #ac385e;
       background-position: left 49px top 77px;
     }
+  }
+
+  &__title {
+    text-transform: capitalize;
+    margin-bottom: 4px;
+  }
+
+  &__counter {
+    color: $secondary-color;
   }
 }

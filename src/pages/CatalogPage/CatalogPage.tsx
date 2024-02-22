@@ -1,6 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useEffect, useMemo } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
+
 import { Pagination } from '../../components/Pagination';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { actions as productsActions } from '../../features/productsSlice';
@@ -62,6 +62,28 @@ export const CatalogPage = () => {
 
       {!isLoading && !errorMessage && (
         <>
+          <div className="catalog-page__dropdowns-container">
+            <div className="catalog-page__sort-dropdown">
+              <span className="catalog-page__dropdown-title">Sort by</span>
+              <Dropdown
+                onSelected={handleSortParamsChanged}
+                options={Object.keys(SortOptions)}
+                selectedOption={sortOption}
+              />
+            </div>
+
+            <div className="catalog-page__items-per-page-dropdown">
+              <span className="catalog-page__dropdown-title">
+                Items on page
+              </span>
+              <Dropdown
+                onSelected={handleItemsPerPageChanged}
+                options={itemsPerPageOptions}
+                selectedOption={itemsPerPage}
+              />
+            </div>
+          </div>
+
           <ProductTable products={filteredProducts} />
 
           <div className="wrapper">
