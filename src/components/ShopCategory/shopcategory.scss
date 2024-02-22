@@ -2,10 +2,10 @@
 @import '../../styles/utils/fonts';
 @import '../../styles/utils/variables';
 
-.shop {
+.categories {
   grid-column: 1 / -1;
 
-  &__categories {
+  &__list {
     display: flex;
     flex-direction: column;
     row-gap: 32px;
@@ -14,13 +14,13 @@
       @include pageGrid;
     }
   }
-}
 
-.section-title {
+  &__title {
   margin-bottom: 24px;
 }
+}
 
-.product {
+.category {
   grid-column: span 4;
 
   @include onDesktop {

@@ -9,19 +9,19 @@ export const ShopCategory: React.FC = () => {
   const { products } = useAppSelector(state => state.productsReducer);
 
   return (
-    <section className="shop" id="shop">
-      <h2 className="section-title h2">Shop by category</h2>
-      <div className="shop__categories">
+    <section className="categories" id="categories">
+      <h2 className="categories__title h2">Shop by category</h2>
+      <div className="categories__list">
         {categories.map((category) => (
-          <article className="product shop__product">
-            <div className="product__photo-container">
-              <span className={`product__photo product__photo--${category}`} />
+          <article className="category">
+            <div className="category__photo-container">
+              <span className={`category__photo category__photo--${category}`} />
             </div>
 
-            <h4 className="product__title h4">
+            <h4 className="category__title h4">
               {category === Category.Phones ? 'Mobile Phones' : category}
             </h4>
-            <span className="product__counter">
+            <span className="category__counter">
               {`${products.filter(product => product.category === category).length} models`}
             </span>
           </article>
