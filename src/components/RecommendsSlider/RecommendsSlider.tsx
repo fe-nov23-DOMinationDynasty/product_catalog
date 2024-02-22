@@ -6,7 +6,6 @@ import { Product } from '../../types/Product';
 
 import { ProductCard } from '../ProductCard';
 import 'swiper/css';
-import './SwiperStyles.scss';
 import './RecommendsSlider.scss';
 import '../../styles/blocks/button.scss';
 
@@ -54,22 +53,24 @@ export const RecommendsSlider: React.FC<Props> = ({ title, products }) => {
       </div>
 
       <div className="slider__products">
-        <Swiper
-          ref={swiperRef}
-          slidesPerView={4}
-          spaceBetween={30}
-          freeMode
-          pagination={{
-            clickable: true,
-          }}
-          modules={[FreeMode]}
-          className="reccomend-swiper">
-          {products.map((product) => (
-            <SwiperSlide className="reccomend-swiper__item" key={product.id}>
-              <ProductCard product={product} />
-            </SwiperSlide>
-          ))}
-        </Swiper>
+        <div className="slider__unlimited">
+          <Swiper
+            ref={swiperRef}
+            slidesPerView={4}
+            spaceBetween={30}
+            freeMode
+            pagination={{
+              clickable: true,
+            }}
+            modules={[FreeMode]}
+            className="reccomend-swiper">
+            {products.map((product) => (
+              <SwiperSlide className="reccomend-swiper__item" key={product.id}>
+                <ProductCard product={product} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
       </div>
     </div>
   );

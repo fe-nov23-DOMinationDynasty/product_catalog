@@ -4,10 +4,6 @@
   margin: 66px 0;
   grid-column: 1 / -1;
 
-  @include onDesktop {
-    grid-column: 1 / -1;
-  }
-
   &__header {
     display: flex;
     justify-content: space-between;
@@ -20,6 +16,11 @@
     column-gap: 16px;
   }
 
-  // &__products {
-  // }
+  // &__products {}
+}
+
+.reccomend-swiper {
+  &__item {
+    height: auto;
+  }
 }
