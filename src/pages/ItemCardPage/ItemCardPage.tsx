@@ -1,3 +1,7 @@
+import './ItemCardPage.scss';
+
 export const ItemCardPage = () => {
-  return <></>;
+  return (
+    <section className="item-card-page" />
+  );
 };
