@@ -22,7 +22,7 @@ export const CartPage = () => {
   const navigate = useNavigate();
 
   const totalCost = products.cartItems.reduce(
-    (total, {product}) => total + product.price * products.totalAmount,
+    (total, { product }) => total + product.price * products.totalAmount,
     0
   );
 

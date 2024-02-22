@@ -1,8 +1,8 @@
 import React from 'react';
 import cn from 'classnames';
-import { Link } from 'react-router-dom';
 import '../../styles/blocks/button.scss';
 import './Pagination.scss';
+import { SearchLink } from '../SearchLink';
 
 interface Props {
   amountOfPages: number;
@@ -15,8 +15,8 @@ export const Pagination: React.FC<Props> = ({
 }) => {
   return (
     <section className="pagination">
-      <Link
-        to={`../${currentPageIndex}`}
+      <SearchLink
+        params={{ page: currentPageIndex === 2 ? null : `${currentPageIndex}` }}
         className={cn('button button--arrow-left', {
           'button--disabled button--arrow-left--disabled':
             currentPageIndex === 0,
@@ -25,19 +25,19 @@ export const Pagination: React.FC<Props> = ({
 
       <ul className="pagination__list">
         {Array.from(Array(amountOfPages).keys()).map((_, index) => (
-          <Link
+          <SearchLink
             key={_}
-            to={`${index + 1 === 1 ? '../' : `../${index + 1}`}`}
+            params={{ page: index === 0 ? null : `${index + 1}` }}
             className={cn('button pagination__item', {
               'pagination__item--selected': index === currentPageIndex,
             })}>
             {index + 1}
-          </Link>
+          </SearchLink>
         ))}
       </ul>
 
-      <Link
-        to={`../${currentPageIndex + 2}`}
+      <SearchLink
+        params={{ page: `${currentPageIndex + 2}` }}
         className={cn('button button--arrow-right', {
           'button--disabled button--arrow-right--disabled':
             currentPageIndex === amountOfPages - 1,

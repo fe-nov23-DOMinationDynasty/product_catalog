@@ -9,24 +9,36 @@ import { Loader } from '../../components/Loader';
 import { ErrorMessage } from '../../components/ErrorMessage';
 import { Dropdown } from '../../components/Dropdown';
 import { SortOptions } from '../../enums/SortOptions';
-import { itemsPerPageOptions } from '../../constants/constants';
 import { getSearchWith } from '../../utils/searchHelper';
 
 import './CatalogPage.scss';
+import { prepareProducts } from '../../utils/productsHelper';
+import { itemsPerPageOptions } from '../../constants/constants';
 
 export const CatalogPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const itemsPerPage = searchParams.get('perPage') || 'all';
-  const sortOption = searchParams.get('sortBy') || 'newest';
-  const { currentPageNumber, productCategory } = useParams();
+  const sortOption = searchParams.get('sortBy') || '';
+  const currentPageNumber = searchParams.get('page') || 1;
+  const { productCategory } = useParams();
   const { products, isLoading, errorMessage } = useAppSelector(
     (state) => state.productsReducer
   );
   const dispatch = useAppDispatch();
 
-  const filteredProducts = useMemo(() => {
+  const categoryProducts = useMemo(() => {
     return products.filter(({ category }) => category === productCategory);
   }, [productCategory, products]);
+
+  const preparedProducts = useMemo(() => {
+    return prepareProducts(
+      categoryProducts,
+      { perPage: +itemsPerPage || null, currentPage: +currentPageNumber! || 1 },
+      sortOption as SortOptions,
+    );
+  }, [categoryProducts, sortOption, itemsPerPage, currentPageNumber]);
+
+  const amountOfPages = Math.floor(categoryProducts.length / +itemsPerPage);
 
   useEffect(() => {
     dispatch(productsActions.loadProducts());
@@ -38,6 +50,7 @@ export const CatalogPage = () => {
     if (newItemsPerPage !== itemsPerPage) {
       const newParams = getSearchWith(searchParams, {
         perPage: newItemsPerPage === 'all' ? null : newItemsPerPage,
+        page: null,
       });
 
       setSearchParams(newParams);
@@ -45,7 +58,8 @@ export const CatalogPage = () => {
   };
 
   const handleSortParamsChanged = (newSortOption: string) => {
-    const normalizedSortOption = newSortOption.toLowerCase();
+    const normalizedSortOption
+      = SortOptions[newSortOption as keyof typeof SortOptions];
 
     if (normalizedSortOption !== sortOption) {
       const newParams = getSearchWith(searchParams, {
@@ -54,6 +68,17 @@ export const CatalogPage = () => {
 
       setSearchParams(newParams);
     }
+  };
+
+  const getSelectedSortOption = (option: string) => {
+    // eslint-disable-next-line no-restricted-syntax
+    for (const key of Object.keys(SortOptions)) {
+      if (SortOptions[key as keyof typeof SortOptions] === option) {
+        return key;
+      }
+    }
+
+    return '';
   };
 
   return (
@@ -68,7 +93,7 @@ export const CatalogPage = () => {
               <Dropdown
                 onSelected={handleSortParamsChanged}
                 options={Object.keys(SortOptions)}
-                selectedOption={sortOption}
+                selectedOption={getSelectedSortOption(sortOption)}
               />
             </div>
 
@@ -84,14 +109,16 @@ export const CatalogPage = () => {
             </div>
           </div>
 
-          <ProductTable products={filteredProducts} />
+          <ProductTable products={preparedProducts} />
 
-          <div className="wrapper">
-            <Pagination
-              amountOfPages={5}
-              currentPageIndex={+(currentPageNumber || 1) - 1}
-            />
-          </div>
+          {amountOfPages > 1 && (
+            <div className="wrapper">
+              <Pagination
+                amountOfPages={amountOfPages}
+                currentPageIndex={+(currentPageNumber || 1) - 1}
+              />
+            </div>
+          )}
         </>
       )}
 

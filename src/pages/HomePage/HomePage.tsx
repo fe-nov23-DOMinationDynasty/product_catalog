@@ -2,12 +2,12 @@ import { useEffect } from 'react';
 import './home-page.scss';
 import '../../styles/utils/text-styles.scss';
 import { PromoSlider } from '../../components/PromoSilder';
-import { tabletWidth } from '../../constants/constants';
 import { useResize } from '../../hooks/useResize';
 import { ShopCategory } from '../../components/ShopCategory';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { actions as productsActions } from '../../features/productsSlice';
 import { promosMobile, promosTabletAndDesktop } from '../../utils/promosHelper';
+import { tabletWidth } from '../../constants/constants';
 
 
 
@@ -20,7 +20,7 @@ export const HomePage = () => {
 
   useEffect(() => {
     dispatch(productsActions.loadProducts());
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

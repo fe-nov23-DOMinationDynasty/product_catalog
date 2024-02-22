@@ -46,7 +46,7 @@ export const Dropdown: React.FC<Props> = ({
         className="dropdown__trigger"
         onClick={handleTriggerButtonClicked}
         onBlur={handleTriggerButtonBlur}>
-        {selectedOption}
+        {selectedOption || 'Select option'}
       </button>
 
       <div
@@ -55,7 +55,7 @@ export const Dropdown: React.FC<Props> = ({
         })}>
         <ul className="dropdown__list">
           {options.map((option) => (
-            <li className="dropdown__item">
+            <li className="dropdown__item" key={option}>
               <button
                 type="button"
                 className="dropdown__option"
