@@ -4,7 +4,6 @@
 .catalog-page {
   &__dropdowns-container {
     display: flex;
-    max-height: 40px;
     gap: 16px;
     margin-bottom: 24px;
   }
@@ -35,7 +34,7 @@
   }
 
   &__dropdown-title {
-    display: inline-block;
+    display: block;
     color: $secondary-color;
   }
 }

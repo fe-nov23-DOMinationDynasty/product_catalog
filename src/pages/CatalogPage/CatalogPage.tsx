@@ -90,7 +90,9 @@ export const CatalogPage = () => {
         <>
           <div className="catalog-page__dropdowns-container">
             <div className="catalog-page__sort-dropdown">
-              <span className="catalog-page__dropdown-title">Sort by</span>
+              <span className="catalog-page__dropdown-title">
+                Sort by
+              </span>
               <Dropdown
                 onSelected={handleSortParamsChanged}
                 options={Object.keys(SortOptions)}
