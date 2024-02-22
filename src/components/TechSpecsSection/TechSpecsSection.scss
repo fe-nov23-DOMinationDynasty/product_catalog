@@ -1,0 +1,35 @@
+@import '../../styles/utils/variables';
+@import '../../styles/utils/mixins';
+
+.tech-specs {
+  grid-column: 1 / -1;
+
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+
+  @include onDesktop {
+    grid-column: 13 / -1;
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+    margin-bottom: 17px;
+  }
+
+  &__line {
+    height: 1px;
+    background-color: $elements-color;
+  }
+
+  &__info {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__key {
+    color: $secondary-color;
+  }
+}

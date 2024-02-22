@@ -7,6 +7,7 @@ import { Category } from '../../enums/Category';
 import { Accessory } from '../../types/Accessory';
 import { Tablet } from '../../types/Tablet';
 import { Phone } from '../../types/Phone';
+import { TechSpecsSection } from '../../components/TechSpecsSection';
 import { AboutSection } from '../../components/AboutSection';
 
 export const ItemCardPage = () => {
@@ -27,12 +28,11 @@ export const ItemCardPage = () => {
       {isLoading && <Loader />}
 
       {!isLoading && (
-        <div>
-          {currentProduct?.capacity || ''}
-        </div>
+        <>
+          <AboutSection description={currentProduct?.description} />
+          <TechSpecsSection product={currentProduct} />
+        </>
       )}
-
-      <AboutSection description={currentProduct?.description} />
     </section>
   );
 };
