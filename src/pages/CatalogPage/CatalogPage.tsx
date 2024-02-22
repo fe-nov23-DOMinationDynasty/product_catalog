@@ -87,6 +87,7 @@ export const CatalogPage = () => {
 
       {!isLoading && !errorMessage && (
         <>
+
           <div className="catalog-page__dropdowns-container">
             <div className="catalog-page__sort-dropdown">
               <span className="catalog-page__dropdown-title">Sort by</span>

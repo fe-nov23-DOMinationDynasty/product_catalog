@@ -4,6 +4,7 @@
 .card-layout {
   display: grid;
   gap: 40px 16px;
+  justify-content: center;
 
   @include onTablet {
     grid-template-columns: repeat(auto-fill, minmax($card-width, 1fr));
