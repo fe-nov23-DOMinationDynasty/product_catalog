@@ -3,6 +3,7 @@ import React, { useCallback, useRef } from 'react';
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
 import { FreeMode } from 'swiper/modules';
 import { Product } from '../../types/Product';
+import { breakpoints } from '../../constants/constants';
 
 import { ProductCard } from '../ProductCard';
 import 'swiper/css';
@@ -32,24 +33,6 @@ export const RecommendsSlider: React.FC<Props> = ({ title, products }) => {
 
     swiperRef.current.swiper.slideNext();
   }, []);
-
-  const breakpoints = {
-    500: {
-      slidesPerView: 2,
-    },
-    640: {
-      slidesPerView: 2.5,
-    },
-    870: {
-      slidesPerView: 3,
-    },
-    1024: {
-      slidesPerView: 3.5,
-    },
-    1200: {
-      slidesPerView: 4,
-    }
-  };
 
   return (
     <div className="slider">
