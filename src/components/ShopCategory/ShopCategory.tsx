@@ -1,5 +1,5 @@
 import React from 'react';
-import './shopcategory.scss';
+import './ShopCategory.scss';
 import '../../styles/utils/text-styles.scss';
 import { Category } from '../../enums/Category';
 

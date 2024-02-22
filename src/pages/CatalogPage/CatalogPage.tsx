@@ -1,9 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { Pagination } from '../../components/Pagination';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { actions as productsActions } from '../../features/productsSlice';
-import { Category } from '../../enums/Category';
 import { ProductTable } from '../../components/ProductTable/ProductTable';
 import { Loader } from '../../components/Loader';
 import { ErrorMessage } from '../../components/ErrorMessage';
@@ -15,8 +14,12 @@ export const CatalogPage = () => {
   );
   const dispatch = useAppDispatch();
 
+  const filteredProducts = useMemo(() => {
+    return products.filter(({ category }) => category === productType);
+  }, [productType, products]);
+
   useEffect(() => {
-    dispatch(productsActions.loadProducts(productType as Category));
+    dispatch(productsActions.loadProducts());
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [productType]);
@@ -27,7 +30,7 @@ export const CatalogPage = () => {
 
       {!isLoading && !errorMessage && (
         <>
-          <ProductTable products={products} />
+          <ProductTable products={filteredProducts} />
 
           <div className="wrapper">
             <Pagination

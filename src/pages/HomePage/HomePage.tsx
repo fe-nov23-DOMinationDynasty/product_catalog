@@ -5,7 +5,6 @@ import { tabletWidth } from '../../constants/constants';
 import { useResize } from '../../hooks/useResize';
 import { ShopCategory } from '../../components/ShopCategory';
 
-
 const promoImagesMobile = [
   './promos/promo-image-mobile.webp',
   './promos/banner-phones.png',
@@ -52,7 +51,6 @@ const promosMobile: Promo[] = promoImagesMobile.map((image, index) => {
 export const HomePage = () => {
   const [windowWidth] = useResize();
 
-
   return (
     <section className="home-page">
       {/* <h1 className="h1">Welcome to Nice Gadgets store!</h1> */}
@@ -70,7 +68,6 @@ export const HomePage = () => {
         <CategoriesFilter />
 
         <CustomSwiper title="Hot prices" items={null} /> */}
-
     </section>
   );
 };

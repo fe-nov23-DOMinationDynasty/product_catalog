@@ -7,50 +7,68 @@ import { getLocalStorage } from '../services/getLocalStorage';
 import { CartItem } from '../types/CartItem';
 import { Product } from '../types/Product';
 
-const [cartProducts, setCartProducts] = getLocalStorage(
+const [localCartItems, setLocalCartItems] = getLocalStorage(
   localStorageCartKey,
   []
 );
 
+const getTotalAmount = (cartItems: CartItem[]) => {
+  return cartItems.reduce((totalAmount, { amount }) => totalAmount + amount, 0);
+};
+
+const initialState = {
+  cartItems: localCartItems as CartItem[],
+  totalAmount: getTotalAmount(localCartItems),
+};
+
 const cartSlice = createSlice({
   name: 'cart',
-  initialState: cartProducts as CartItem[],
+  initialState,
   reducers: {
-    add: (cartItems, action: PayloadAction<Product>) => {
-      const newProducts = [
-        ...cartItems,
+    add: (state, action: PayloadAction<Product>) => {
+      state.cartItems = [
+        ...state.cartItems,
         {
           product: action.payload,
           amount: 1,
         },
       ];
 
-      setCartProducts(newProducts);
+      state.totalAmount += 1;
 
-      return newProducts;
+      setLocalCartItems(state.cartItems);
     },
-    delete: (cartItems, action: PayloadAction<number>) => {
-      const newProducts = cartItems.filter(
+    delete: (state, action: PayloadAction<number>) => {
+      state.cartItems = state.cartItems.filter(
         ({ product }) => product.id !== action.payload
       );
 
-      setCartProducts(newProducts);
+      state.totalAmount -= 1;
 
-      return newProducts;
+      setLocalCartItems(state.cartItems);
     },
-    incrementAmount: (cartItems, action: PayloadAction<number>) => {
-      const productIndex = cartItems.findIndex(
+    incrementAmount: (state, action: PayloadAction<number>) => {
+      const productIndex = state.cartItems.findIndex(
         ({ product }) => product.id === action.payload
       );
 
-      cartItems[productIndex].amount += 1;
+      state.totalAmount += 1;
+
+      state.cartItems[productIndex].amount += 1;
     },
-    decrementAmount: (cartItems, action: PayloadAction<number>) => {
-      const productIndex = cartItems.findIndex(
+    decrementAmount: (state, action: PayloadAction<number>) => {
+      const productIndex = state.cartItems.findIndex(
         ({ product }) => product.id === action.payload
       );
 
-      cartItems[productIndex].amount -= 1;
+      state.totalAmount -= 1;
+
+      state.cartItems[productIndex].amount -= 1;
+    },
+    resetCart: () => {
+      setCartProducts([]);
+
+      return [];
     },
   },
 });
