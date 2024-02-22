@@ -3,8 +3,6 @@
 .slider {
   margin: 66px 0;
   grid-column: 1 / -1;
-  overflow-x: auto;
-  white-space: nowrap;
 
   @include onDesktop {
     grid-column: 1 / -1;

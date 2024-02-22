@@ -1,19 +1,14 @@
-.swiper {
-  display: grid;
-  width: 100%;
+.reccomend-swiper {
   height: 100%;
-}
+  width: 100%;
 
-.swiper-slide {
-  grid-column: 1 / 99;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  &__item {
+    text-align: start;
+  }
 
-// .swiper-slide img {
-//   display: block;
-//   width: 100%;
-//   height: 100%;
-//   object-fit: cover;
-// }
+  &__item img {
+    display: block;
+    object-fit: contain;
+    object-position: center;
+  }
+}

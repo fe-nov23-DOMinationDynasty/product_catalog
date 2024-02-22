@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Promo } from '../../types/Promo';
 import './home-page.scss';
 import { PromoSlider } from '../../components/PromoSilder';
@@ -5,7 +6,9 @@ import { tabletWidth } from '../../constants/constants';
 import { useResize } from '../../hooks/useResize';
 // import { ShopCategory } from '../../components/ShopCategory';
 import { RecommendsSlider } from '../../components/RecommendsSlider';
-import { useAppSelector } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { actions as productsActions } from '../../features/productsSlice';
+
 
 const promoImagesMobile = [
   './promos/promo-image-mobile.webp',
@@ -52,8 +55,15 @@ const promosMobile: Promo[] = promoImagesMobile.map((image, index) => {
 
 export const HomePage = () => {
   const [windowWidth] = useResize();
+  const dispatch = useAppDispatch();
 
   const { products } = useAppSelector(state => state.productsReducer);
+
+  useEffect(() => {
+    dispatch(productsActions.loadProducts());
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const newProducts = products.filter(product => product.year === 2022);
 
