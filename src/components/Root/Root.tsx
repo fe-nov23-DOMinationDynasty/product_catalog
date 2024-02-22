@@ -4,7 +4,7 @@ import { HomePage } from '../../pages/HomePage/HomePage';
 import { CatalogPage } from '../../pages/CatalogPage/CatalogPage';
 import { FavouritesPage } from '../../pages/FavouritesPage/FavouritesPage';
 import { ItemCardPage } from '../../pages/ItemCardPage/ItemCardPage';
-import { CartPage } from '../../pages/CartPage/CartPage';
+// import { CartPage } from '../../pages/CartPage/CartPage';
 
 export const Root = () => (
   <Routes>
@@ -12,15 +12,13 @@ export const Root = () => (
       <Route index element={<HomePage />} />
       <Route path="home" element={<Navigate to="../" replace />} />
       <Route path="catalog">
-        <Route path=":productType">
-          <Route path=":currentPageNumber?" element={<CatalogPage />} />
-        </Route>
+        <Route path=":productCategory" element={<CatalogPage />} />
       </Route>
       <Route path="favourites" element={<FavouritesPage />} />
       <Route path="item">
         <Route path=":itemId" element={<ItemCardPage />} />
       </Route>
-      <Route path="cart" element={<CartPage />} />
+      {/* <Route path="cart" element={<CartPage />} /> */}
     </Route>
   </Routes>
 );

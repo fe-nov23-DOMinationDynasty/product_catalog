@@ -2,10 +2,10 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable no-param-reassign */
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { localStorageCartKey } from '../constants/constants';
 import { getLocalStorage } from '../services/getLocalStorage';
 import { CartItem } from '../types/CartItem';
 import { Product } from '../types/Product';
+import { localStorageCartKey } from '../constants/constants';
 
 const [localCartItems, setLocalCartItems] = getLocalStorage(
   localStorageCartKey,

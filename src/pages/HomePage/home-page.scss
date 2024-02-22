@@ -3,5 +3,8 @@
 .home-page {
   @include pageGrid;
 
-  margin-top: 66px;
+
+  &__title {
+    grid-column: 1 / -1;
+  }
 }
