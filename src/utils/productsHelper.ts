@@ -6,17 +6,25 @@ const paginateProducts = (
   items: Product[],
   { currentPage, perPage }: PaginationParams,
 ) => {
-  return items.slice(currentPage - 1 * perPage, currentPage * perPage);
+  if (!perPage) {
+    return items;
+  }
+
+  return items.slice((currentPage - 1) * perPage, currentPage * perPage);
 };
 
 const sortProducts = (products: Product[], sortOption: SortOptions) => {
   return products.sort((product1, product2) => {
-    switch (typeof product1[sortOption]) {
-      case 'number': {
+    switch (sortOption) {
+      case SortOptions.Cheapest: {
         return +product1[sortOption] - +product2[sortOption];
       }
 
-      case 'string': {
+      case SortOptions.Newest: {
+        return +product2[sortOption] - +product1[sortOption];
+      }
+
+      case SortOptions.Alphabetically: {
         return (product1[sortOption] as string)
           .localeCompare(product2[sortOption] as string);
       }
@@ -28,7 +36,7 @@ const sortProducts = (products: Product[], sortOption: SortOptions) => {
   });
 };
 
-export function preparePeople(
+export function prepareProducts(
   products: Product[],
   paginationParams: PaginationParams,
   sortOption: SortOptions,

@@ -2,9 +2,9 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable no-param-reassign */
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { localStorageFavouritesKey } from '../constants/constants';
 import { getLocalStorage } from '../services/getLocalStorage';
 import { Product } from '../types/Product';
+import { localStorageFavouritesKey } from '../constants/constants';
 
 const [favouriteProducts, setFavouriteProducts] = getLocalStorage(
   localStorageFavouritesKey,
