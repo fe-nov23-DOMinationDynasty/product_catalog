@@ -20,6 +20,7 @@ export const HomePage = () => {
 
   useEffect(() => {
     dispatch(productsActions.loadProducts());
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -37,12 +38,6 @@ export const HomePage = () => {
           />
 
           <ShopCategory />
-
-          {/* <CustomSwiper title="Brand new models" items={null} />
-
-        <CategoriesFilter />
-
-        <CustomSwiper title="Hot prices" items={null} /> */}
         </>
       )}
     </section>
