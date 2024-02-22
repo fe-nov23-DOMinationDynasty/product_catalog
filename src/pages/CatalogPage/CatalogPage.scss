@@ -2,11 +2,40 @@
 @import '../../styles/utils/mixins';
 
 .catalog-page {
+  &__breadcrumbs-container {
+    margin-block: 24px;
+
+    @include onTablet {
+      margin: 24px 0 40px;
+    }
+  }
+
+  &__wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
   &__dropdowns-container {
     display: flex;
     max-height: 40px;
     gap: 16px;
     margin-bottom: 24px;
+  }
+
+  &__title {
+    text-transform: capitalize;
+    margin-bottom: 8px;
+  }
+
+  &__amount-products {
+    margin-bottom: 32px;
+
+    color: $secondary-color;
+
+    @include onTablet {
+      margin-bottom: 40px;
+    }
   }
 
   &__sort-dropdown {
@@ -37,5 +66,21 @@
   &__dropdown-title {
     display: inline-block;
     color: $secondary-color;
+  }
+
+  &__products {
+    margin-bottom: 24px;
+
+    @include onTablet {
+      margin-bottom: 40px;
+    }
+  }
+
+  &__pagination {
+    margin-bottom: 64px;
+
+    @include onDesktop {
+      margin-bottom: 80px;
+    }
   }
 }

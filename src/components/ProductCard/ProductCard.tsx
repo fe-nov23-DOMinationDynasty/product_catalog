@@ -14,7 +14,7 @@ interface Props {
 }
 
 export const ProductCard: React.FC<Props> = ({ product }) => {
-  const { id, category, name, price, fullPrice, image } = product;
+  const { id, itemId, category, name, price, fullPrice, image } = product;
   const { cartItems } = useAppSelector((state) => state.cartReducer);
   const favouriteProducts = useAppSelector((state) => state.favouritesReducer);
   const dispatch = useAppDispatch();
@@ -49,7 +49,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
 
   return (
     <article className="product-card">
-      <Link to={`/item/${id}`} className="product-card__link">
+      <Link to={`/item/${itemId}`} className="product-card__link">
         <img
           src={image}
           alt={`${category}_image`}
