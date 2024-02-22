@@ -115,6 +115,40 @@
   }
 }
 
+.header__input {
+  display: none;
+
+  @include onDesktop{
+    height: 100%;
+    color: $primary-color;
+    font-weight: 600;
+    font-size: 14px;
+    display: block;
+    padding: 0 24px;
+    border: none;
+    border-left: 1px solid $elements-color;
+  }
+}
+
+.header__block__input {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.header__input:focus {
+  outline: none;
+  background-color: #FAFBFC;
+}
+
+.header__input::placeholder {
+  color: #B4BDC3;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+
+
 .header__button {
   @include onTablet {
     box-sizing: border-box;
@@ -151,6 +185,22 @@
 
 //  #region Burger
 
+.burger__preAnimation {
+  transition: all 0.5s;
+  opacity: 0;
+  transform: translateY(-100%);
+  pointer-events: none;
+  overflow: hidden;
+  height: 100vh;
+}
+
+.burger__animation {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+  overflow: visible;
+}
+
 .burger__menu {
   position: fixed;
   z-index: 1;
@@ -158,7 +208,6 @@
   right: 0;
   left: 0;
   background-color: $white-color;
-  height: 100vh;
 }
 
 .burger__logo {
@@ -234,7 +283,6 @@
 }
 
 .burger__buttons {
-
   position: fixed;
   left: 0;
   bottom: 0;

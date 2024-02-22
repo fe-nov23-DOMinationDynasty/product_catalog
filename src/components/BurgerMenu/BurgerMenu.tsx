@@ -6,12 +6,14 @@ import { NavLink } from 'react-router-dom';
 import { LogoLink } from '../LogoLink';
 
 type Props = {
+  openBurger: boolean
   setCloseBurger: (state: boolean) => void;
   currentURL:string;
   setCurrentURL: (state:string) => void
 };
 
 export const BurgerMenu: React.FC<Props> = ({
+  openBurger,
   setCloseBurger,
   currentURL,
   setCurrentURL
@@ -27,20 +29,26 @@ export const BurgerMenu: React.FC<Props> = ({
 
 
   return (
-    <aside id="burgerMenu" className="burger__menu">
+    <aside
+      id="burgerMenu"
+      className={`burger__menu burger__preAnimation  ${openBurger ? 'burger__animation' : ''}`}
+    >
+      {/* // className={classNames("burger__menu",
+      //   {"burger__animation": openBurger}) } */}
+
       <div className="burger__top">
         <div className="burger__logo">
           <LogoLink />
         </div>
 
-        <a
+        <button
+          type='button'
           onClick={() => {
             setCloseBurger(false);
           }}
-          href={`#${currentURL}`}
           className="burger__close">
           <img src="./logos/close.svg" alt="layoutLogo" />
-        </a>
+        </button>
       </div>
 
       <div className="burger__main">

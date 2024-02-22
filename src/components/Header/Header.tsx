@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 import './header.scss';
 
@@ -74,6 +74,13 @@ export const Header = () => {
           </div>
 
           <div className="header__buttons-block">
+            <div className='header__block__input'>
+              <input
+                type="text"
+                placeholder='Search...'
+                className='header__input'
+              />
+            </div>
             <NavLink
               onClick={() => {
                 setCurrentURL('favourites');
@@ -82,16 +89,13 @@ export const Header = () => {
               className={handleHeaderButtonIsActive}
             >
 
-              {currentURL !== 'favourites'
-                ? (
-                  <img src="./logos/favourites.svg" alt="logoFavourite" />
-                ) : (
-                  <img
-                    src="./logos/favourites-selected.svg"
-                    alt="logoFavourite"
-                  />
-                )
-              }
+              <img
+                src={currentURL !== 'favourites'
+                  ? "./logos/favourites.svg"
+                  : "./logos/favourites-selected.svg"}
+                alt="logoFavourite"
+              />
+
             </NavLink>
 
             <NavLink
@@ -106,24 +110,25 @@ export const Header = () => {
           </div>
 
           <div className="burger">
-            <NavLink
+            <Link
               onClick={() => {
                 setOpenBurger(true);
               }}
-              to={currentURL}
+              to="/"
               className="header__burger-menu">
               <img src="./logos/burger-menu.svg" alt="logoShoppingBag" />
-            </NavLink>
+            </Link>
           </div>
         </nav>
       </header>
 
-      {openBurger
-        && <BurgerMenu
-          setCloseBurger={setOpenBurger}
-          currentURL={currentURL}
-          setCurrentURL={setCurrentURL}
-        />}
+
+      <BurgerMenu
+        setCloseBurger={setOpenBurger}
+        openBurger={openBurger}
+        currentURL={currentURL}
+        setCurrentURL={setCurrentURL}
+      />
     </>
   );
 };
