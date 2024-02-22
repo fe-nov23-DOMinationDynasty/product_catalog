@@ -5,13 +5,13 @@ import cn from 'classnames';
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import { Link } from 'react-router-dom';
-import { tabletWidth } from '../../constants/constants';
 import { Promo } from '../../types/Promo';
 
 import 'swiper/css/pagination';
 import 'swiper/css';
 import './PromoSlider.scss';
 import { useResize } from '../../hooks/useResize';
+import { tabletWidth } from '../../constants/constants';
 
 interface Props {
   promos: Promo[];
