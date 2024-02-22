@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 import cn from 'classnames';
 import './productCard.scss';
 import { Product } from '../../types/Product';
-import { shownProductCardCharacteristics } from '../../constants/constants';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { actions as cartActions } from '../../features/cartSlice';
 import { actions as favouriteActions } from '../../features/favouritesSlice';
+import { shownProductCardCharacteristics } from '../../constants/constants';
 
 interface Props {
   product: Product;
@@ -15,7 +15,7 @@ interface Props {
 
 export const ProductCard: React.FC<Props> = ({ product }) => {
   const { id, category, name, price, fullPrice, image } = product;
-  const cartItems = useAppSelector((state) => state.cartReducer);
+  const { cartItems } = useAppSelector((state) => state.cartReducer);
   const favouriteProducts = useAppSelector((state) => state.favouritesReducer);
   const dispatch = useAppDispatch();
 

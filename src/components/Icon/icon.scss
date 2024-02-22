@@ -1,3 +1,5 @@
+@import '../../styles/utils/variables';
+
 .wrapper {
   display: flex;
   position: relative;
@@ -13,9 +15,9 @@
   font-size: 9px;
 
   position: absolute;
-  color: white;
-  background-color: #eb5757;
-  border: solid 1px white;
+  color: $white-color;
+  background-color: $red-color;
+  border: solid 1px $white-color;
   border-radius: 50%;
   left: 50%;
   top: -30%;
