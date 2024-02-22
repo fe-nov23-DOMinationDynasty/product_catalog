@@ -1,0 +1,40 @@
+@import '../../styles/utils/mixins';
+
+.slider {
+  grid-column: 1 / -1;
+  position: relative;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 24px;
+  }
+
+  &__buttons {
+    display: flex;
+    column-gap: 16px;
+  }
+
+  &__products {
+    min-height: 506px;
+  }
+}
+
+.reccomend-swiper {
+  position: absolute;
+  right: -16px;
+  left: 0;
+
+  &__item {
+    height: auto;
+  }
+
+  @include onTablet {
+    right: -24px;
+  }
+
+  @include onDesktop {
+    right: 0;
+  }
+}
