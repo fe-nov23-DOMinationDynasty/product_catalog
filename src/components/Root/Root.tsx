@@ -12,7 +12,7 @@ export const Root = () => (
       <Route index element={<HomePage />} />
       <Route path="home" element={<Navigate to="../" replace />} />
       <Route path="catalog">
-        <Route path=":productType">
+        <Route path=":productCategory">
           <Route path=":currentPageNumber?" element={<CatalogPage />} />
         </Route>
       </Route>
