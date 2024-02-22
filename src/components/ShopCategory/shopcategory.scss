@@ -70,4 +70,8 @@
     text-transform: capitalize;
     margin-bottom: 4px;
   }
+
+  &__counter {
+    color: $secondary-color;
+  }
 }
