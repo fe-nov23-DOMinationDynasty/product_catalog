@@ -11,7 +11,6 @@ import { Promo } from '../../types/Promo';
 import 'swiper/css/pagination';
 import 'swiper/css';
 import './PromoSlider.scss';
-import './swiper-styles.scss';
 import { useResize } from '../../hooks/useResize';
 
 interface Props {
@@ -62,15 +61,15 @@ export const PromoSlider: React.FC<Props> = React.memo(({ promos }) => {
           ref={swiperRef}
           pagination={{
             clickable: true,
-            el: '.promo-swiper__custom-pagination',
+            el: '.promo-swiper__pagination',
             renderBullet: (_index: number, className: string) => {
-              return `<span class="${className}"></span>`;
+              return `<span class="${className} promo-swiper__pagination-bullet"></span>`;
             },
           }}
           modules={[Pagination]}
-          className="promo-swiper">
+          className="promo-swiper__swiper">
           {promos.map((promo) => (
-            <SwiperSlide key={promo.image}>
+            <SwiperSlide key={promo.image} className="promo-swiper__slide">
               <Link to={promo.link} className="promo-swiper__link">
                 <img
                   src={promo.image}
@@ -81,7 +80,7 @@ export const PromoSlider: React.FC<Props> = React.memo(({ promos }) => {
             </SwiperSlide>
           ))}
         </Swiper>
-        <div className="promo-swiper__custom-pagination" />
+        <div className="promo-swiper__pagination" />
       </div>
 
       {isTablet && (

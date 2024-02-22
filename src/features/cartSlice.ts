@@ -31,7 +31,8 @@ const cartSlice = createSlice({
         {
           product: action.payload,
           amount: 1,
-        }];
+        },
+      ];
 
       state.totalAmount += 1;
 
@@ -63,6 +64,11 @@ const cartSlice = createSlice({
       state.totalAmount -= 1;
 
       state.cartItems[productIndex].amount -= 1;
+    },
+    resetCart: () => {
+      setCartProducts([]);
+
+      return [];
     },
   },
 });

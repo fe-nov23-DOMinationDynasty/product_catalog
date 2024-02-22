@@ -23,6 +23,27 @@
     --promo-height: 400px;
   }
 
+  &__swiper {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+
+    @include onTablet {
+      position: static;
+    }
+  }
+
+  &__slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    object-position: center;
+  }
+
   &__wrapper {
     width: calc(100% - $button-width * 2);
   }
@@ -38,8 +59,9 @@
     object-fit: cover;
   }
 
-  &__custom-pagination {
+  &__pagination {
     display: flex;
+
     justify-content: center;
     padding-top: 18px;
 
@@ -48,6 +70,17 @@
     @include onTablet {
       transform: translateY(0);
     }
+  }
+
+  &__pagination-bullet {
+    width: 14px;
+    height: 4px;
+    border-radius: 0;
+    color: $elements-color;
+  }
+
+  &__pagination .swiper-pagination-bullet-active {
+    background: $primary-color;
   }
 
   &__prev-button {
