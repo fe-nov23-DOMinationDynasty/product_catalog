@@ -10,6 +10,12 @@
     }
   }
 
+  &__wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
   &__dropdowns-container {
     display: flex;
     max-height: 40px;

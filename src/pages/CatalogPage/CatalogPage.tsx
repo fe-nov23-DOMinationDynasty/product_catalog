@@ -103,30 +103,31 @@ export const CatalogPage = () => {
             </p>
           </div>
 
-          <div className="catalog-page__dropdowns-container">
-            <div className="catalog-page__sort-dropdown">
-              <span className="catalog-page__dropdown-title">Sort by</span>
-              <Dropdown
-                onSelected={handleSortParamsChanged}
-                options={Object.keys(SortOptions)}
-                selectedOption={getSelectedSortOption(sortOption)}
-              />
+          <div className="catalog-page__wrap">
+            <div className="catalog-page__dropdowns-container">
+              <div className="catalog-page__sort-dropdown">
+                <span className="catalog-page__dropdown-title">Sort by</span>
+                <Dropdown
+                  onSelected={handleSortParamsChanged}
+                  options={Object.keys(SortOptions)}
+                  selectedOption={getSelectedSortOption(sortOption)}
+                />
+              </div>
+              <div className="catalog-page__items-per-page-dropdown">
+                <span className="catalog-page__dropdown-title">
+                  Items on page
+                </span>
+                <Dropdown
+                  onSelected={handleItemsPerPageChanged}
+                  options={itemsPerPageOptions}
+                  selectedOption={itemsPerPage}
+                />
+              </div>
             </div>
 
-            <div className="catalog-page__items-per-page-dropdown">
-              <span className="catalog-page__dropdown-title">
-                Items on page
-              </span>
-              <Dropdown
-                onSelected={handleItemsPerPageChanged}
-                options={itemsPerPageOptions}
-                selectedOption={itemsPerPage}
-              />
+            <div className="catalog-page__products">
+              <ProductTable products={preparedProducts} />
             </div>
-          </div>
-
-          <div className="catalog-page__products">
-            <ProductTable products={preparedProducts} />
           </div>
 
           {amountOfPages > 1 && (
