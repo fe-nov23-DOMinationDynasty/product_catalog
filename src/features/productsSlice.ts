@@ -1,7 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { Product } from '../types/Product';
-import { Category } from '../enums/Category';
 import { getProducts } from '../api/products';
 
 const initialState = {
@@ -10,14 +9,9 @@ const initialState = {
   errorMessage: '',
 };
 
-const loadProducts = createAsyncThunk(
-  'products/fetch',
-  (category: Category) => {
-    return getProducts().then((products) => {
-      return products.filter((product) => product.category === category);
-    });
-  }
-);
+const loadProducts = createAsyncThunk('products/fetch', () => {
+  return getProducts();
+});
 
 const productsSlice = createSlice({
   name: 'products',
