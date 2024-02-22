@@ -33,6 +33,24 @@ export const RecommendsSlider: React.FC<Props> = ({ title, products }) => {
     swiperRef.current.swiper.slideNext();
   }, []);
 
+  const breakpoints = {
+    500: {
+      slidesPerView: 2,
+    },
+    640: {
+      slidesPerView: 2.5,
+    },
+    870: {
+      slidesPerView: 3,
+    },
+    1024: {
+      slidesPerView: 3.5,
+    },
+    1200: {
+      slidesPerView: 4,
+    }
+  };
+
   return (
     <div className="slider">
       <div className="slider__header">
@@ -53,24 +71,23 @@ export const RecommendsSlider: React.FC<Props> = ({ title, products }) => {
       </div>
 
       <div className="slider__products">
-        <div className="slider__unlimited">
-          <Swiper
-            ref={swiperRef}
-            slidesPerView={4}
-            spaceBetween={30}
-            freeMode
-            pagination={{
-              clickable: true,
-            }}
-            modules={[FreeMode]}
-            className="reccomend-swiper">
-            {products.map((product) => (
-              <SwiperSlide className="reccomend-swiper__item" key={product.id}>
-                <ProductCard product={product} />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
+        <Swiper
+          ref={swiperRef}
+          slidesPerView={1.5}
+          breakpoints={breakpoints}
+          spaceBetween={16}
+          freeMode
+          pagination={{
+            clickable: true,
+          }}
+          modules={[FreeMode]}
+          className="reccomend-swiper">
+          {products.map((product) => (
+            <SwiperSlide className="reccomend-swiper__item" key={product.id}>
+              <ProductCard product={product} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
     </div>
   );
