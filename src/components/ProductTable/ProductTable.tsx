@@ -9,7 +9,7 @@ type Props = {
 
 export const ProductTable: React.FC<Props> = ({ products }) => {
   return (
-    <div className="card-layout">
+    <div className="product-table">
       {products.map((product) => (
         <ProductCard product={product} key={product.id} />
       ))}
