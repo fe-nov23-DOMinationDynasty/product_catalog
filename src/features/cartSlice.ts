@@ -65,10 +65,13 @@ const cartSlice = createSlice({
 
       state.cartItems[productIndex].amount -= 1;
     },
-    resetCart: () => {
-      setCartProducts([]);
+    resetCart: (state) => {
+      state.cartItems = [];
+      state.totalAmount = 0;
 
-      return [];
+      setLocalCartItems([]);
+
+      return state;
     },
   },
 });
