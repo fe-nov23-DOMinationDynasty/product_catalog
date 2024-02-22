@@ -35,15 +35,20 @@ export const HomePage = () => {
             Welcome to Nice Gadgets store!
           </h1>
 
-          <PromoSlider
-            promos={
-              windowWidth >= tabletWidth ? promosTabletAndDesktop : promosMobile
-            }
-          />
+          <div className="home-page__content">
+            <PromoSlider
+              promos={
+                windowWidth >= tabletWidth
+                  ? promosTabletAndDesktop
+                  : promosMobile
+              }
+            />
+            <RecommendsSlider title="Brand new models" products={newProducts} />
 
-          <RecommendsSlider title="Brand new models" products={newProducts} />
+            <ShopCategory />
 
-          <ShopCategory />
+            <RecommendsSlider title="Hot prices" products={newProducts} />
+          </div>
         </>
       )}
     </section>

@@ -4,7 +4,7 @@ import { HomePage } from '../../pages/HomePage/HomePage';
 import { CatalogPage } from '../../pages/CatalogPage/CatalogPage';
 import { FavouritesPage } from '../../pages/FavouritesPage/FavouritesPage';
 import { ItemCardPage } from '../../pages/ItemCardPage/ItemCardPage';
-// import { CartPage } from '../../pages/CartPage/CartPage';
+import { CartPage } from '../../pages/CartPage/CartPage';
 
 export const Root = () => (
   <Routes>
@@ -18,7 +18,7 @@ export const Root = () => (
         </Route>
       </Route>
       <Route path="favourites" element={<FavouritesPage />} />
-      {/* <Route path="cart" element={<CartPage />} /> */}
+      <Route path="cart" element={<CartPage />} />
     </Route>
   </Routes>
 );
