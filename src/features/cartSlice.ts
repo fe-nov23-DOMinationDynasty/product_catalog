@@ -31,7 +31,8 @@ const cartSlice = createSlice({
         {
           product: action.payload,
           amount: 1,
-        }];
+        },
+      ];
 
       state.totalAmount += 1;
 
