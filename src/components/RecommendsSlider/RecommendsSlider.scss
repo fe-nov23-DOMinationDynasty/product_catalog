@@ -1,1 +1,27 @@
-// asdsad
+@import '../../styles/utils/mixins';
+
+.slider {
+  margin: 66px 0;
+  grid-column: 1 / -1;
+  overflow-x: auto;
+  white-space: nowrap;
+
+  @include onDesktop {
+    grid-column: 1 / -1;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  // &__title {}
+
+  &__buttons {
+    display: flex;
+    column-gap: 16px;
+  }
+
+  // &__products {
+  // }
+}

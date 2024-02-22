@@ -3,7 +3,9 @@ import './home-page.scss';
 import { PromoSlider } from '../../components/PromoSilder';
 import { tabletWidth } from '../../constants/constants';
 import { useResize } from '../../hooks/useResize';
-import { ShopCategory } from '../../components/ShopCategory';
+// import { ShopCategory } from '../../components/ShopCategory';
+import { RecommendsSlider } from '../../components/RecommendsSlider';
+import { useAppSelector } from '../../app/hooks';
 
 const promoImagesMobile = [
   './promos/promo-image-mobile.webp',
@@ -51,6 +53,10 @@ const promosMobile: Promo[] = promoImagesMobile.map((image, index) => {
 export const HomePage = () => {
   const [windowWidth] = useResize();
 
+  const { products } = useAppSelector(state => state.productsReducer);
+
+  const newProducts = products.filter(product => product.year === 2022);
+
   return (
     <section className="home-page">
       {/* <h1 className="h1">Welcome to Nice Gadgets store!</h1> */}
@@ -61,13 +67,13 @@ export const HomePage = () => {
         }
       />
 
-      <ShopCategory />
+      {/* <ShopCategory /> */}
 
-      {/* <CustomSwiper title="Brand new models" items={null} />
+      <RecommendsSlider title="Brand new models" products={newProducts} />
 
-        <CategoriesFilter />
+      {/* <CategoriesFilter /> */}
 
-        <CustomSwiper title="Hot prices" items={null} /> */}
+      {/* <RecommendsSlider title="Hot prices" products={null} /> */}
     </section>
   );
 };

@@ -68,7 +68,7 @@ export const PromoSlider: React.FC<Props> = React.memo(({ promos }) => {
             },
           }}
           modules={[Pagination]}
-          className="mySwiper">
+          className="promo-swiper">
           {promos.map((promo) => (
             <SwiperSlide key={promo.image}>
               <Link to={promo.link} className="promo-swiper__link">
