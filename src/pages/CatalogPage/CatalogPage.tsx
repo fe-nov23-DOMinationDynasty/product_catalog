@@ -18,12 +18,13 @@ import { itemsPerPageOptions } from '../../constants/constants';
 export const CatalogPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const itemsPerPage = searchParams.get('perPage') || 'all';
-  const sortOption = searchParams.get('sortBy') || 'year';
+  const sortOption = searchParams.get('sortBy') || '';
   const currentPageNumber = searchParams.get('page') || 1;
   const { productCategory } = useParams();
   const { products, isLoading, errorMessage } = useAppSelector(
     (state) => state.productsReducer
   );
+
   const dispatch = useAppDispatch();
 
   const categoryProducts = useMemo(() => {

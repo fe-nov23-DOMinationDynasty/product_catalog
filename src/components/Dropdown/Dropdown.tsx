@@ -46,7 +46,7 @@ export const Dropdown: React.FC<Props> = ({
         className="dropdown__trigger"
         onClick={handleTriggerButtonClicked}
         onBlur={handleTriggerButtonBlur}>
-        {selectedOption}
+        {selectedOption || 'Select option'}
       </button>
 
       <div
