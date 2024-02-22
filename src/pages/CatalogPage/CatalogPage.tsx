@@ -83,7 +83,6 @@ export const CatalogPage = () => {
   };
 
   return (
-    <>
     <div className="catalog-page">
       {isLoading && <Loader />}
 
