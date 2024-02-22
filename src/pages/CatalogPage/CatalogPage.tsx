@@ -24,7 +24,6 @@ export const CatalogPage = () => {
   const { products, isLoading, errorMessage } = useAppSelector(
     (state) => state.productsReducer
   );
-
   const dispatch = useAppDispatch();
 
   const categoryProducts = useMemo(() => {
@@ -39,6 +38,8 @@ export const CatalogPage = () => {
     );
   }, [categoryProducts, sortOption, itemsPerPage, currentPageNumber]);
 
+  const amountOfPages = Math.floor(categoryProducts.length / +itemsPerPage);
+
   useEffect(() => {
     dispatch(productsActions.loadProducts());
 
@@ -49,6 +50,7 @@ export const CatalogPage = () => {
     if (newItemsPerPage !== itemsPerPage) {
       const newParams = getSearchWith(searchParams, {
         perPage: newItemsPerPage === 'all' ? null : newItemsPerPage,
+        page: null,
       });
 
       setSearchParams(newParams);
@@ -109,12 +111,14 @@ export const CatalogPage = () => {
 
           <ProductTable products={preparedProducts} />
 
-          <div className="wrapper">
-            <Pagination
-              amountOfPages={5}
-              currentPageIndex={+(currentPageNumber || 1) - 1}
-            />
-          </div>
+          {amountOfPages > 1 && (
+            <div className="wrapper">
+              <Pagination
+                amountOfPages={amountOfPages}
+                currentPageIndex={+(currentPageNumber || 1) - 1}
+              />
+            </div>
+          )}
         </>
       )}
 
