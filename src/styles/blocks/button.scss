@@ -37,6 +37,8 @@
 
     &--disabled {
       background-image: url(./icons/minus-disabled.svg);
+      pointer-events: none;
+      border: 1px solid $elements-color;
     }
   }
 

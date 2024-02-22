@@ -21,12 +21,12 @@ export const CartPage = () => {
 
   const navigate = useNavigate();
 
-  const totalCost = products.reduce(
-    (total, { product, amount }) => total + product.price * amount,
+  const totalCost = products.cartItems.reduce(
+    (total, {product}) => total + product.price * products.totalAmount,
     0
   );
 
-  const totalQuantity = products
+  const totalQuantity = products.cartItems
     .reduce((total, { amount }) => total + amount, 0);
 
   const handleCheckout = () => {
@@ -51,7 +51,7 @@ export const CartPage = () => {
       </div>
 
       <div className="cart__items">
-        {products.map(({ product, amount }) => (
+        {products.cartItems.map(({ product, amount }) => (
           product ? (
             <CartItem
               key={product.id}
