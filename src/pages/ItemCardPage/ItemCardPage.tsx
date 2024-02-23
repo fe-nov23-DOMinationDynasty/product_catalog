@@ -82,24 +82,25 @@ export const ItemCardPage = () => {
 
       {!isLoading && (
         <>
-          <div className="item-card-page__breadcrumbs-container">
-            <BreadCrumbs />
-          </div>
+          <div className="item-card-page__header">
+            <div className="item-card-page__breadcrumbs-container">
+              <BreadCrumbs />
+            </div>
 
-          <div className="item-card-page__back-button">
-            <BackButton />
-          </div>
+            <div className="item-card-page__back-button">
+              <BackButton />
+            </div>
 
-          <h1 className="item-card-page__title h1">
-            {name}
-          </h1>
+            <h1 className="item-card-page__title h1">
+              {name}
+            </h1>
+          </div>
 
           <div className="item-card-page__swiper">
             <ProductSwiper images={images as string[]} key={itemId} />
           </div>
 
           <div className="item-card-page__actions">
-
             <div className="item-card-page__characteristic-block item-card-page__characteristic-block--color-picker">
               <CharacteristicsBlock
                 onSelected={handleColorChanged}
@@ -127,37 +128,49 @@ export const ItemCardPage = () => {
               )}
             </div>
 
-            <ProductButtons product={currentProduct as Phone | Tablet | Accessory} category={productCategory!} />
+            <div className="item-card-page__actions-buttons">
+              <ProductButtons product={currentProduct as Phone | Tablet | Accessory} category={productCategory!} />
+            </div>
 
-            {Object.keys(TechSpecsForActions).map((specKey) => {
-              const specValue = currentProduct?.[
-                TechSpecs[specKey as keyof typeof TechSpecs] as keyof (
-                  Phone | Tablet | Accessory
-                )
-              ] as string;
 
-              if (specValue !== undefined && specValue !== null) {
-                return (
-                  <p className="item-card-page__actions-info" key={specKey}>
-                    <span className="item-card-page__actions-name">
-                      {specKey}
-                    </span>
-                    <span className="item-card-page__actions-configuration">
-                      {specValue}
-                    </span>
-                  </p>
-                );
-              }
+            <div className="item-card-page__actions-specs">
+              {Object.keys(TechSpecsForActions).map((specKey) => {
+                const specValue = currentProduct?.[
+                  TechSpecs[specKey as keyof typeof TechSpecs] as keyof (
+                    Phone | Tablet | Accessory
+                  )
+                ] as string;
 
-              return null;
-            })}
+                if (specValue !== undefined && specValue !== null) {
+                  return (
+                    <p className="item-card-page__actions-info small-text" key={specKey}>
+                      <span className="item-card-page__actions-name">
+                        {specKey}
+                      </span>
+
+                      <span className="item-card-page__actions-configuration">
+                        {specValue}
+                      </span>
+                    </p>
+                  );
+                }
+
+                return null;
+              })}
+            </div>
           </div>
 
-          <AboutSection description={currentProduct?.description || null} />
+          <div className="item-card-page__container item-card-page__container--about">
+            <AboutSection description={currentProduct?.description || null} />
+          </div>
 
-          <TechSpecsSection product={currentProduct} />
+          <div className="item-card-page__container item-card-page__container--tech">
+            <TechSpecsSection product={currentProduct} />
+          </div>
 
-          <RecommendsSlider title="You may also like" products={products} />
+          <div className="item-card-page__container item-card-page__container--rec">
+            <RecommendsSlider title="You may also like" products={products} />
+          </div>
         </>
       )
       }

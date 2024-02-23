@@ -23,8 +23,8 @@ export const CharacteristicsBlock: React.FC<Props> = ({
 }) => (
   <article className="characteristic-block">
     <div className="characteristic-block__info">
-      <span className="title small-text">{title}</span>
-      <span className="subtitle small-text">{subtitle}</span>
+      <span className="characteristic-block__title small-text">{title}</span>
+      <span className="characteristic-block__subtitle small-text">{subtitle}</span>
     </div>
     <div className="characteristic-block__content">
       {options.map(option => (
