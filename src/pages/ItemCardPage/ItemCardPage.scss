@@ -4,6 +4,19 @@
 .item-card-page {
   @include pageGrid;
 
+  &__breadcrumbs-container {
+    grid-column: 1 / -1;
+    margin-block: 24px;
+
+    @include onTablet {
+      margin: 24px 0 40px;
+    }
+  }
+
+  &__back-button {
+    padding-bottom: 16px;
+  }
+
   &__swiper {
     grid-column: 1 / -1;
     margin-bottom: 40px;

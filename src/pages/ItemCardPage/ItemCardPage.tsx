@@ -18,6 +18,8 @@ import { ProductButtons } from '../../components/ProductButtons';
 import {
   CharacteristicsBlock
 } from '../../components/CharacteristicsBlock/CharacteristicsBlock';
+import { BackButton } from '../../components/BackButton';
+import { BreadCrumbs } from '../../components/BreadCrumbs';
 
 export const ItemCardPage = () => {
   const navigation = useNavigate();
@@ -76,6 +78,14 @@ export const ItemCardPage = () => {
 
       {!isLoading && (
         <>
+          <div className="item-card-page__breadcrumbs-container">
+            <BreadCrumbs />
+          </div>
+
+          <div className="item-card-page__back-button">
+            <BackButton />
+          </div>
+
           <div className="item-card-page__swiper">
             <ProductSwiper images={images as string[]} key={itemId} />
           </div>
