@@ -1,51 +1,17 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React from 'react';
 import { Link } from 'react-router-dom';
-import cn from 'classnames';
 import './productCard.scss';
 import { Product } from '../../types/Product';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { actions as cartActions } from '../../features/cartSlice';
-import { actions as favouriteActions } from '../../features/favouritesSlice';
 import { shownProductCardCharacteristics } from '../../constants/constants';
+import { ProductButtons } from '../ProductButtons';
 
 interface Props {
   product: Product;
 }
 
 export const ProductCard: React.FC<Props> = ({ product }) => {
-  const { id, itemId, category, name, price, fullPrice, image } = product;
-  const { cartItems } = useAppSelector((state) => state.cartReducer);
-  const favouriteProducts = useAppSelector((state) => state.favouritesReducer);
-  const dispatch = useAppDispatch();
-
-  const isInCart = !!cartItems?.find(
-    ({ product: cartProduct }) => cartProduct.id === id
-  );
-
-  const isInFavourite = !!favouriteProducts.find(
-    (favouriteProduct) => favouriteProduct.id === id
-  );
-
-  const handleProductCartStatusChanged = () => {
-    if (isInCart) {
-      dispatch(cartActions.delete(id));
-
-      return;
-    }
-
-    dispatch(cartActions.add(product));
-  };
-
-  const handleFavouriteProductStatusChanged = () => {
-    if (isInFavourite) {
-      dispatch(favouriteActions.delete(id));
-
-      return;
-    }
-
-    dispatch(favouriteActions.add(product));
-  };
+  const { itemId, category, name, price, fullPrice, image } = product;
 
   return (
     <article className="product-card">
@@ -76,7 +42,9 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
             </p>
           ))}
         </div>
-        <div className="product-card__buttons">
+
+        <ProductButtons product={product} />
+        {/* <div className="product-card__buttons">
           <button
             onClick={handleProductCartStatusChanged}
             type="button"
@@ -92,7 +60,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
               'button-favourite--selected': isInFavourite,
             })}
           />
-        </div>
+        </div> */}
       </div>
     </article>
   );

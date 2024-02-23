@@ -9,6 +9,7 @@ import { Tablet } from '../../types/Tablet';
 import { Phone } from '../../types/Phone';
 import { TechSpecsSection } from '../../components/TechSpecsSection';
 import { AboutSection } from '../../components/AboutSection';
+import { TechSpecs, TechSpecsForActions } from '../../enums/TechSpecs';
 
 
 
@@ -31,6 +32,32 @@ export const ItemCardPage = () => {
 
       {!isLoading && (
         <>
+          <div className="actions">
+            {/* <ProductButtons product={currentProduct} /> */}
+
+            {Object.keys(TechSpecsForActions).map((specKey) => {
+              const specValue = currentProduct?.[
+                TechSpecs[specKey as keyof typeof TechSpecs] as keyof (
+                  Phone | Tablet | Accessory
+                )
+              ] as string;
+
+              if (specValue !== undefined && specValue !== null) {
+                return (
+                  <p className="tech-specs__info" key={specKey}>
+                    <span className="tech-specs__name">
+                      {specKey}
+                    </span>
+                    <span className="tech-specs__configuration">
+                      {specValue}
+                    </span>
+                  </p>
+                );
+              }
+
+              return null;
+            })}
+          </div>
           <AboutSection description={currentProduct?.description || null} />
           <TechSpecsSection product={currentProduct} />
         </>
