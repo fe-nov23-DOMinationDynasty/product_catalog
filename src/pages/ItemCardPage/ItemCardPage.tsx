@@ -8,10 +8,12 @@ import { Category } from '../../enums/Category';
 import { Accessory } from '../../types/Accessory';
 import { Tablet } from '../../types/Tablet';
 import { Phone } from '../../types/Phone';
+import { AboutSection } from '../../components/AboutSection';
 import { ProductSwiper } from '../../components/ProductSwiper';
 import {
   CharacteristicsBlock
 } from '../../components/CharacteristicsBlock/CharacteristicsBlock';
+
 
 export const ItemCardPage = () => {
   const navigation = useNavigate();
@@ -95,6 +97,8 @@ export const ItemCardPage = () => {
           </article>
         </>
       )}
+
+      <AboutSection description={currentProduct?.description} />
     </section>
   );
 };
