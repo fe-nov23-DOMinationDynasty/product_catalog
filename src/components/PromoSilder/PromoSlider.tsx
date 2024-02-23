@@ -12,6 +12,7 @@ import './PromoSlider.scss';
 import { useResize } from '../../hooks/useResize';
 import { tabletWidth } from '../../constants/constants';
 
+
 interface Props {
   promos: Promo[];
 }

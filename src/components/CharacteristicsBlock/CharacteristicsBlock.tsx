@@ -3,6 +3,7 @@ import React from 'react';
 import cn from 'classnames';
 
 import './CharacteristicsBlock.scss';
+import { getColorByName } from '../../services/getColorByName';
 
 interface Props {
   onSelected: (options: string) => void,
@@ -40,7 +41,9 @@ export const CharacteristicsBlock: React.FC<Props> = ({
             onClick={() => onSelected(option)}
             type='button'
             style={{
-              backgroundColor: isColorPicker ? option : 'transparent'
+              backgroundColor: isColorPicker
+                ? getColorByName(option)
+                : 'transparent'
             }}
             className={cn('characteristic-block__item', {
               'characteristic-block__item--color-picker': isColorPicker,
