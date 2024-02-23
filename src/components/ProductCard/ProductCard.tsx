@@ -7,9 +7,6 @@ import { Product } from '../../types/Product';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { actions as cartActions } from '../../features/cartSlice';
 import { actions as favouriteActions } from '../../features/favouritesSlice';
-import {
-  actions as selectedProductActions
-} from '../../features/selectedProductSlice';
 import { shownProductCardCharacteristics } from '../../constants/constants';
 import { CartProduct } from '../../types/CartItem';
 
@@ -18,32 +15,31 @@ interface Props {
 }
 
 export const ProductCard: React.FC<Props> = ({ product }) => {
-  const { id, itemId, category, name, price, fullPrice, image } = product;
+  const { itemId, category, name, price, fullPrice, image } = product;
   const { cartItems } = useAppSelector((state) => state.cartReducer);
   const favouriteProducts = useAppSelector((state) => state.favouritesReducer);
   const dispatch = useAppDispatch();
 
   const isInCart = !!cartItems?.find(
-    ({ product: cartProduct }) => cartProduct.id === id
+    ({ product: cartProduct }) => cartProduct.itemId === itemId
   );
 
   const isInFavourite = !!favouriteProducts.find(
-    (favouriteProduct) => favouriteProduct.id === id
+    (favouriteProduct) => favouriteProduct.itemId === itemId
   );
 
   const handleProductCartStatusChanged = () => {
     if (isInCart) {
-      dispatch(cartActions.delete(id));
+      dispatch(cartActions.delete(itemId));
 
       return;
     }
 
     const cartProduct: CartProduct = {
       image,
-      id,
+      itemId,
       name,
       price,
-      itemId,
     };
 
     dispatch(cartActions.add(cartProduct));
@@ -51,7 +47,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
 
   const handleFavouriteProductStatusChanged = () => {
     if (isInFavourite) {
-      dispatch(favouriteActions.delete(id));
+      dispatch(favouriteActions.delete(itemId));
 
       return;
     }
@@ -62,7 +58,6 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
   return (
     <article className="product-card">
       <Link
-        onClick={() => dispatch(selectedProductActions.setProduct(product))}
         to={`/catalog/${category}/${itemId}`}
         className="product-card__link">
         <img

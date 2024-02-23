@@ -55,7 +55,11 @@ export const CartPage = () => {
       <div className="cart__items">
         {products.cartItems.map(({ product, amount }) =>
           product ? (
-            <CartItem key={product.id} product={product} quantity={amount} />
+            <CartItem
+              key={product.itemId}
+              product={product}
+              quantity={amount}
+            />
           ) : null
         )}
       </div>

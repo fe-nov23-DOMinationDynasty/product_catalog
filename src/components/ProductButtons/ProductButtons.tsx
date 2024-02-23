@@ -11,22 +11,32 @@ import { Accessory } from '../../types/Accessory';
 import './ProductButtons.scss';
 
 interface Props {
-  product: Phone | Tablet | Accessory | null;
+  product: Phone | Tablet | Accessory,
+  category: string,
 }
 
-export const ProductButtons: React.FC<Props> = ({ product }) => {
+export const ProductButtons: React.FC<Props> = ({ product, category }) => {
   const { id } = product;
+  const productToSave = {
+    ...product,
+    itemId: id,
+    name: product.name,
+    image: product.images[0],
+    price: product.priceDiscount,
+    fullPrice: product.priceRegular,
+    category,
+  };
 
   const { cartItems } = useAppSelector((state) => state.cartReducer);
   const favouriteProducts = useAppSelector((state) => state.favouritesReducer);
   const dispatch = useAppDispatch();
 
   const isInCart = !!cartItems?.find(
-    ({ product: cartProduct }) => cartProduct.id === id
+    ({ product: cartProduct }) => cartProduct.itemId === id
   );
 
   const isInFavourite = !!favouriteProducts.find(
-    (favouriteProduct) => favouriteProduct.id === id
+    (favouriteProduct) => favouriteProduct.itemId === id
   );
 
   const handleProductCartStatusChanged = () => {
@@ -36,7 +46,7 @@ export const ProductButtons: React.FC<Props> = ({ product }) => {
       return;
     }
 
-    dispatch(cartActions.add(product));
+    dispatch(cartActions.add(productToSave));
   };
 
   const handleFavouriteProductStatusChanged = () => {
@@ -46,7 +56,7 @@ export const ProductButtons: React.FC<Props> = ({ product }) => {
       return;
     }
 
-    dispatch(favouriteActions.add(product));
+    dispatch(favouriteActions.add(productToSave));
   };
 
   return (

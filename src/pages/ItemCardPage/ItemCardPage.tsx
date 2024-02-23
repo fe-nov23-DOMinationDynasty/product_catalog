@@ -30,6 +30,8 @@ export const ItemCardPage = () => {
     color,
     images,
     namespaceId,
+    priceRegular,
+    priceDiscount,
     colorsAvailable,
     capacityAvailable,
   } = currentProduct || {} as Phone | Tablet | Accessory;
@@ -75,17 +77,18 @@ export const ItemCardPage = () => {
       {!isLoading && (
         <>
           <div className="item-card-page__swiper">
-            <ProductSwiper images={images as string[]} />
+            <ProductSwiper images={images as string[]} key={itemId} />
           </div>
 
-          <article className="item-card-page__characteristics">
+          <div className="item-card-page__actions">
+
             <div className="item-card-page__characteristic-block item-card-page__characteristic-block--color-picker">
               <CharacteristicsBlock
                 onSelected={handleColorChanged}
                 options={colorsAvailable}
                 selectedOption={color}
                 title='Available colors'
-                subtitle={`ID: ${5}`}
+                subtitle={`ID: ${itemId}`}
                 isColorPicker
               />
             </div>
@@ -98,11 +101,15 @@ export const ItemCardPage = () => {
                 title='Select capacity'
               />
             </div>
-          </article>
 
-          <div className="item-card-page__actions">
+            <div className="item-card-page__price">
+              <p className="item-card-page__actual-price h2">{`$${priceDiscount}`}</p>
+              {priceRegular !== priceDiscount && (
+                <p className="item-card-page__full-price h3">{`$${priceRegular}`}</p>
+              )}
+            </div>
 
-            <ProductButtons product={currentProduct} />
+            <ProductButtons product={currentProduct as Phone | Tablet | Accessory} category={productCategory!} />
 
             {Object.keys(TechSpecsForActions).map((specKey) => {
               const specValue = currentProduct?.[
@@ -132,7 +139,8 @@ export const ItemCardPage = () => {
 
           <TechSpecsSection product={currentProduct} />
         </>
-      )}
-    </section>
+      )
+      }
+    </section >
   );
 };
