@@ -1,13 +1,13 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React from 'react';
 import cn from 'classnames';
-import { Product } from '../../types/Product';
 import './cartItem.scss';
 import { useAppDispatch } from '../../app/hooks';
 import { actions as cartActions } from '../../features/cartSlice';
+import { CartProduct } from '../../types/CartItem';
 
 interface Props {
-  product: Product;
+  product: CartProduct;
   quantity: number;
 }
 
