@@ -9,7 +9,7 @@ import { CheckoutModal } from '../../components/CheckoutModal';
 
 import { useAppSelector } from '../../app/hooks';
 
-import './CartPage.scss';
+import './cartPage.scss';
 import '../../styles/blocks/button.scss';
 import '../../styles/utils/text-styles.scss';
 

@@ -23,7 +23,7 @@ export const ItemCardPage = () => {
   const { itemId, productCategory } = useParams();
   const [isLoading, setIsLoading] = useState(true);
   const [currentProductInfo, setCurrentProductInfo] = useState<
-    Phone | Tablet | Accessory | null
+  Phone | Tablet | Accessory | null
   >(null);
 
   const {
