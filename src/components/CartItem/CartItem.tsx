@@ -35,8 +35,7 @@ export const CartItem: React.FC<Props> = ({ product, quantity }) => {
         <button
           type="button"
           className="cart-item__delete"
-          onClick={handleDelete}
-        >
+          onClick={handleDelete}>
           <img
             src="./icons/close.svg"
             className="cart-item__delete-icon"

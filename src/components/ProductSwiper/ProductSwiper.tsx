@@ -1,18 +1,18 @@
-import { SwiperSlide, Swiper } from "swiper/react";
+import { SwiperSlide, Swiper } from 'swiper/react';
 
 import { Pagination } from 'swiper/modules';
-import React from "react";
+import React from 'react';
 
 import './ProductSwiper.scss';
 
 interface Props {
-  images: string[]
-};
+  images: string[];
+}
 
 export const ProductSwiper: React.FC<Props> = ({ images }) => {
   const pagination = {
-    bulletClass: "product-swiper__pagination-item",
-    bulletActiveClass: "product-swiper__pagination-item--active",
+    bulletClass: 'product-swiper__pagination-item',
+    bulletActiveClass: 'product-swiper__pagination-item--active',
     clickable: true,
     el: '.product-swiper__pagination',
     renderBullet: (index: number, className: string) => {
@@ -21,10 +21,9 @@ export const ProductSwiper: React.FC<Props> = ({ images }) => {
   };
 
   return (
-
     <div className="product-swiper">
       <Swiper
-        spaceBetween={30}
+        spaceBetween={50}
         pagination={pagination}
         modules={[Pagination]}
         className="product-swiper__swiper">
@@ -32,7 +31,8 @@ export const ProductSwiper: React.FC<Props> = ({ images }) => {
           <SwiperSlide key={image} className="product-swiper__slide">
             <img
               src={image}
-              alt="product_picture" className="product-swiper__picture"
+              alt="product_picture"
+              className="product-swiper__picture"
             />
           </SwiperSlide>
         ))}

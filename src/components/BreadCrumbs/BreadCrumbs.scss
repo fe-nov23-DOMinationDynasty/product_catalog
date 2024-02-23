@@ -20,7 +20,8 @@
   }
 
   &__arrow {
-    background: url('../../../public/icons/arrow-right-disabled.svg') center no-repeat;
+    background: url('../../../public/icons/arrow-right-disabled.svg') center
+      no-repeat;
     width: $crumb-size;
   }
 
@@ -32,8 +33,9 @@
     color: inherit;
   }
 
-  &__home{
-    background: url('../../../public/icons/buttons/icon-home.svg') center no-repeat;
+  &__home {
+    background: url('../../../public/icons/buttons/icon-home.svg') center
+      no-repeat;
     width: $crumb-size;
   }
 }

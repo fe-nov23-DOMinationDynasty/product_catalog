@@ -12,8 +12,9 @@ import { ProductSwiper } from '../../components/ProductSwiper';
 export const ItemCardPage = () => {
   const { itemId, productCategory } = useParams();
   const [isLoading, setIsLoading] = useState(true);
-  const [currentProduct, setCurrentProduct]
-    = useState<Phone | Tablet | Accessory | null>(null);
+  const [currentProduct, setCurrentProduct] = useState<
+    Phone | Tablet | Accessory | null
+  >(null);
 
   useEffect(() => {
     getProductInfo(productCategory as Category, itemId as string)
@@ -23,11 +24,13 @@ export const ItemCardPage = () => {
   }, [itemId]);
 
   return (
-    <section className="item-card-page" >
+    <section className="item-card-page">
       {isLoading && <Loader />}
 
       {!isLoading && (
-        <ProductSwiper images={currentProduct?.images as string[]} />
+        <div className="item-card-page__swiper">
+          <ProductSwiper images={currentProduct?.images as string[]} />
+        </div>
       )}
     </section>
   );
