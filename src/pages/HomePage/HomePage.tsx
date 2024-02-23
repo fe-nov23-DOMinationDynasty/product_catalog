@@ -1,70 +1,55 @@
-import { Promo } from '../../types/Promo';
+import { useEffect } from 'react';
 import './home-page.scss';
+import '../../styles/utils/text-styles.scss';
 import { PromoSlider } from '../../components/PromoSilder';
-import { tabletWidth } from '../../constants/constants';
 import { useResize } from '../../hooks/useResize';
-
-const promoImagesMobile = [
-  './promos/promo-image-mobile.webp',
-  './promos/banner-phones.png',
-  './promos/banner-tablets.png',
-  './promos/banner-accessories.png',
-];
-const promoImagesTabletAndDesktop = [
-  './promos/promo-image-tablet-desktop.webp',
-  './promos/banner-phones.png',
-  './promos/banner-tablets.png',
-  './promos/banner-accessories.png',
-];
-
-const promosTabletAndDesktop: Promo[] = promoImagesTabletAndDesktop.map(
-  (image, index) => {
-    if (index === 0) {
-      return {
-        image,
-        link: 'https://www.apple.com',
-      };
-    }
-
-    return {
-      image,
-      link: image.replace('promos/banner-', 'catalog/').replace('.png', ''),
-    };
-  }
-);
-
-const promosMobile: Promo[] = promoImagesMobile.map((image, index) => {
-  if (index === 0) {
-    return {
-      image,
-      link: 'https://www.apple.com',
-    };
-  }
-
-  return {
-    image,
-    link: image.replace('promos/banner-', 'catalog/').replace('.png', ''),
-  };
-});
+import { RecommendsSlider } from '../../components/RecommendsSlider';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { actions as productsActions } from '../../features/productsSlice';
+import { ShopCategory } from '../../components/ShopCategory';
+import { promosMobile, promosTabletAndDesktop } from '../../utils/promosHelper';
+import { tabletWidth } from '../../constants/constants';
 
 export const HomePage = () => {
   const [windowWidth] = useResize();
+  const dispatch = useAppDispatch();
+
+  const { products, isLoading } = useAppSelector(
+    (state) => state.productsReducer
+  );
+
+  useEffect(() => {
+    dispatch(productsActions.loadProducts());
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const newProducts = products.filter((product) => product.year === 2022);
 
   return (
     <section className="home-page">
-      {/* <h1 className="h1">Welcome to Nice Gadgets store!</h1> */}
+      {!isLoading && (
+        <>
+          <h1 className="h1 home-page__title">
+            Welcome to Nice Gadgets store!
+          </h1>
 
-      <PromoSlider
-        promos={
-          windowWidth >= tabletWidth ? promosTabletAndDesktop : promosMobile
-        }
-      />
+          <div className="home-page__content">
+            <PromoSlider
+              promos={
+                windowWidth >= tabletWidth
+                  ? promosTabletAndDesktop
+                  : promosMobile
+              }
+            />
+            <RecommendsSlider title="Brand new models" products={newProducts} />
 
-      {/* <CustomSwiper title="Brand new models" items={null} />
+            <ShopCategory />
 
-        <CategoriesFilter />
-
-        <CustomSwiper title="Hot prices" items={null} /> */}
+            <RecommendsSlider title="Hot prices" products={newProducts} />
+          </div>
+        </>
+      )}
     </section>
   );
 };

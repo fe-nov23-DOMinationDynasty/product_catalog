@@ -1,0 +1,107 @@
+@import '../../styles/utils/variables';
+@import '../../styles/utils/mixins';
+
+.dropdown {
+  position: relative;
+  height: 100%;
+  width: 100%;
+
+  box-sizing: border-box;
+
+  &__trigger {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    margin-bottom: 4px;
+    padding-left: 12px;
+
+    border: 1px solid $icons-color;
+    transition: border $transition-duration;
+    text-align: start;
+    text-transform: capitalize;
+
+    @include onDesktop {
+      &:hover {
+        border: 1px solid $secondary-color;
+      }
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      right: 12px;
+      top: 50%;
+
+      width: 16px;
+      height: 16px;
+
+      background: url('./icons/arrow-up.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+      transform: translateY(-50%) rotate(0);
+      transition: transform $transition-duration;
+    }
+
+    &:focus {
+      border: 1px solid $primary-color;
+
+      &::after {
+        transform: translateY(-50%) rotate(180deg);
+      }
+    }
+  }
+
+  &__menu {
+    position: absolute;
+    width: 100%;
+
+    z-index: 1;
+    transform: translateY(-20%);
+    opacity: 0;
+    background-color: $white-color;
+
+    transition:
+      transform $transition-slow-duration,
+      opacity $transition-duration;
+
+    pointer-events: none;
+
+    &--active {
+      padding-block: 8px;
+
+      box-sizing: border-box;
+      border: 1px solid $icons-color;
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
+
+  &__list {
+    z-index: 10;
+  }
+
+  &__item {
+    height: 32px;
+    color: $secondary-color;
+    transition:
+      background-color $transition-duration,
+      color $transition-duration;
+
+    @include onDesktop {
+      &:hover {
+        background-color: $hover-background-color;
+        color: $primary-color;
+      }
+    }
+  }
+
+  &__option {
+    height: 100%;
+    width: 100%;
+    padding-left: 12px;
+
+    text-align: start;
+    text-transform: capitalize;
+  }
+}

@@ -9,6 +9,8 @@ import './header.scss';
 import { useState } from 'react';
 import { LogoLink } from '../LogoLink';
 import { BurgerMenu } from '../BurgerMenu';
+import { useAppSelector } from '../../app/hooks';
+import { Icon } from '../Icon';
 
 // function filterDevices(devices, query) {
 //   const normalizedQuery = query.trim().toLowerCase();
@@ -30,10 +32,13 @@ export const Header = () => {
   const [sortField, setSortField] = useState('');
   // const filteredDevices = filterDevices(qw, sortField);
 
-  const handleNavigationIsActive = ({ isActive }: {isActive: boolean}) =>
+  const favouriteProducts = useAppSelector((state) => state.favouritesReducer);
+  const { cartItems } = useAppSelector((state) => state.cartReducer);
+
+  const handleNavigationIsActive = ({ isActive }: { isActive: boolean }) =>
     classNames('nav_link', { 'is-active': isActive });
 
-  const handleHeaderButtonIsActive = ({ isActive }: {isActive: boolean}) =>
+  const handleHeaderButtonIsActive = ({ isActive }: { isActive: boolean }) =>
     classNames('header__button', { 'header__button--is-active': isActive });
 
   return (
@@ -62,9 +67,8 @@ export const Header = () => {
                     setCurrentURL('cart');
                   }}
                   to="catalog/phones"
-                  className={handleNavigationIsActive}
-                >
-                Phones
+                  className={handleNavigationIsActive}>
+                  Phones
                 </NavLink>
               </li>
               <li className="list_item">
@@ -73,9 +77,8 @@ export const Header = () => {
                     setCurrentURL('catalog/tablets');
                   }}
                   to="catalog/tablets"
-                  className={handleNavigationIsActive}
-                >
-                Tablets
+                  className={handleNavigationIsActive}>
+                  Tablets
                 </NavLink>
               </li>
               <li className="list_item">
@@ -84,63 +87,22 @@ export const Header = () => {
                     setCurrentURL('catalog/accessories');
                   }}
                   to="catalog/accessories"
-                  className={handleNavigationIsActive}
-                >
-                Accessories
+                  className={handleNavigationIsActive}>
+                  Accessories
                 </NavLink>
               </li>
             </ul>
           </div>
 
           <div className="header__buttons-block">
-            <div className='header__block__input'>
-              <input
-                onChange={(event) => {
-                  setSortField(event.target.value);
-                }}
-                value={sortField}
-                type="text"
-                placeholder='Search...'
-                className='header__input'
-              />
-              <img
-                tabIndex={0}
-                onClick={() => {
-                  if (sortField) {
-                    setSortField('');
-                  }
-                }}
-                className='icon__search'
-                src={!sortField
-                  ? "./logos/search.svg"
-                  : "./logos/close.svg"}
-                alt="seacrh"
-              />
-            </div>
             <NavLink
-              onClick={() => {
-                setCurrentURL('favourites');
-              }}
               to="favourites"
               className={handleHeaderButtonIsActive}
             >
-
-              <img
-                src={currentURL !== 'favourites'
-                  ? "./logos/favourites.svg"
-                  : "./logos/favourites-selected.svg"}
-                alt="logoFavourite"
-              />
-
+              <img src="./logos/favourites.svg" alt="logoFavourite" />
             </NavLink>
 
-            <NavLink
-              onClick={() => {
-                setCurrentURL('cart');
-              }}
-              to="cart"
-              className={handleHeaderButtonIsActive}
-            >
+            <NavLink to="cart" className={handleHeaderButtonIsActive}>
               <img src="./logos/shopping-bag.svg" alt="logoShoppingBag" />
             </NavLink>
           </div>

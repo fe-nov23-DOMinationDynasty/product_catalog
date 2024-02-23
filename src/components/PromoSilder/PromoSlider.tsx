@@ -1,17 +1,17 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React, { useCallback, useRef, useState } from 'react';
 import cn from 'classnames';
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import { Link } from 'react-router-dom';
-import { tabletWidth } from '../../constants/constants';
 import { Promo } from '../../types/Promo';
 
 import 'swiper/css/pagination';
 import 'swiper/css';
 import './PromoSlider.scss';
-import './swiper-styles.scss';
 import { useResize } from '../../hooks/useResize';
+import { tabletWidth } from '../../constants/constants';
 
 interface Props {
   promos: Promo[];
@@ -57,19 +57,19 @@ export const PromoSlider: React.FC<Props> = React.memo(({ promos }) => {
       )}
       <div className="promo-swiper__wrapper">
         <Swiper
-          onSlideChange={(swiper) => setSlideIndex(swiper.realIndex)}
+          onSlideChange={(swiper: any) => setSlideIndex(swiper.realIndex)}
           ref={swiperRef}
           pagination={{
             clickable: true,
-            el: '.promo-swiper__custom-pagination',
-            renderBullet: (index: number, className: string) => {
-              return `<span class="${className}"></span>`;
+            el: '.promo-swiper__pagination',
+            renderBullet: (_index: number, className: string) => {
+              return `<span class="${className} promo-swiper__pagination-bullet"></span>`;
             },
           }}
           modules={[Pagination]}
-          className="mySwiper">
+          className="promo-swiper__swiper">
           {promos.map((promo) => (
-            <SwiperSlide key={promo.image}>
+            <SwiperSlide key={promo.image} className="promo-swiper__slide">
               <Link to={promo.link} className="promo-swiper__link">
                 <img
                   src={promo.image}
@@ -80,7 +80,7 @@ export const PromoSlider: React.FC<Props> = React.memo(({ promos }) => {
             </SwiperSlide>
           ))}
         </Swiper>
-        <div className="promo-swiper__custom-pagination" />
+        <div className="promo-swiper__pagination" />
       </div>
 
       {isTablet && (

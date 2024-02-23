@@ -1,32 +1,46 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { actions as cartActions } from '../../features/cartSlice';
+
 import { BackButton } from '../../components/BackButton';
 import { CartItem } from '../../components/CartItem';
+import { CheckoutModal } from '../../components/CheckoutModal';
+
+import { useAppSelector } from '../../app/hooks';
+
 import './cartPage.scss';
 import '../../styles/blocks/button.scss';
 import '../../styles/utils/text-styles.scss';
 
 export const CartPage = () => {
-  const items = [
-    {
-      "id": 72,
-      "category": "phones",
-      "itemId": "apple-iphone-14-128gb-midnight",
-      "name": "Apple iPhone 14 128GB Midnight",
-      "fullPrice": 1056,
-      "price": 980,
-      "screen": "6.1' IPS",
-      "capacity": "32GB",
-      "color": "midnight",
-      "ram": "6GB",
-      "year": 2022,
-      "image": "img/phones/apple-iphone-14/midnight/00.webp"
-    },
-  ];
+  const dispatch = useDispatch();
+  const products = useAppSelector((state) => state.cartReducer);
 
-  const [quantity, setQuantity] = useState(items.length);
+  const [showModal, setShowModal] = useState(false);
 
-  const totalCost = items
-    .reduce((total, item) => total + item.price * quantity, 0);
+  const navigate = useNavigate();
+
+  const totalCost = products.cartItems.reduce(
+    (total, { product }) => total + product.price * products.totalAmount,
+    0
+  );
+
+  const totalQuantity = products.cartItems.reduce(
+    (total, { amount }) => total + amount,
+    0
+  );
+
+  const handleCheckout = () => {
+    dispatch(cartActions.resetCart());
+
+    setShowModal(true);
+
+    setTimeout(() => {
+      setShowModal(false);
+      navigate('..');
+    }, 2000);
+  };
 
   return (
     <div className="cart">
@@ -39,34 +53,34 @@ export const CartPage = () => {
       </div>
 
       <div className="cart__items">
-        {items.map((item) => (
-          <CartItem
-            key={item.id}
-            item={item}
-            quantity={quantity}
-            setQuantity={setQuantity}
-          />
-        ))}
+        {products.cartItems.map(({ product, amount }) =>
+          product ? (
+            <CartItem key={product.id} product={product} quantity={amount} />
+          ) : null
+        )}
       </div>
 
-      <article className="total">
-        <div className="total__info">
-          <h2 className="total__price">${totalCost}</h2>
-          <div className="total__count-items">
-            Total for
-            {' '}
-            {quantity}
-            {' '}
-            items
+      {!!totalQuantity && (
+        <article className="total">
+          <div className="total__info">
+            <h2 className="total__price">${totalCost}</h2>
+            <div className="total__count-items">
+              Total for {totalQuantity} items
+            </div>
           </div>
-        </div>
 
-        <span className="total__line" />
+          <span className="total__line" />
 
-        <button type="button" className="button button-add button--cart">
-          Checkout
-        </button>
-      </article>
+          <button
+            type="button"
+            className="button button-add button--cart"
+            onClick={handleCheckout}>
+            Checkout
+          </button>
+        </article>
+      )}
+
+      {showModal && <CheckoutModal />}
     </div>
   );
 };

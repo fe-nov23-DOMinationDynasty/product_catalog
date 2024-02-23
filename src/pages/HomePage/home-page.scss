@@ -3,5 +3,38 @@
 .home-page {
   @include pageGrid;
 
-  margin-top: 66px;
+  padding-bottom: 64px;
+
+  @include onDesktop {
+    padding-bottom: 80px;
+  }
+
+  &__title {
+    grid-column: 1 / -1;
+
+    margin-block: 24px;
+
+    @include onTablet {
+      margin-block: 32px;
+    }
+
+    @include onDesktop {
+      margin-block: 56px;
+    }
+  }
+
+  &__content {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+
+    @include onTablet {
+      gap: 64px;
+    }
+
+    @include onDesktop {
+      gap: 80px;
+    }
+  }
 }

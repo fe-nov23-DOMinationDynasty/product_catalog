@@ -1,3 +1,5 @@
+import { Description } from './Description';
+
 export interface Phone {
   id: string;
   namespaceId: string;
@@ -9,10 +11,7 @@ export interface Phone {
   colorsAvailable: string[];
   color: string;
   images: string[];
-  description: {
-    title: string;
-    text: string[];
-  }[];
+  description: Description[];
   screen: string;
   resolution: string;
   processor: string;

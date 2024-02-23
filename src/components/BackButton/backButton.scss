@@ -17,7 +17,7 @@
   align-items: center;
   gap: 4px;
 
-  transition: color 0.3s;
+  transition: color $transition-duration;
 
   color: $secondary-color;
 

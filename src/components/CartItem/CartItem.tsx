@@ -1,40 +1,41 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React from 'react';
 import cn from 'classnames';
-import { Product } from '../../types/Product';
 import './cartItem.scss';
+import { useAppDispatch } from '../../app/hooks';
+import { actions as cartActions } from '../../features/cartSlice';
+import { CartProduct } from '../../types/CartItem';
 
 interface Props {
-  item: Product;
+  product: CartProduct;
   quantity: number;
-  setQuantity: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export const CartItem: React.FC<Props> = ({
-  item,
-  quantity,
-  setQuantity,
-}) => {
-  const {
-    name,
-    image,
-    price,
-  } = item;
+export const CartItem: React.FC<Props> = ({ product, quantity }) => {
+  const { id, name, image, price } = product;
+  const dispatch = useAppDispatch();
 
   const handleIncrement = () => {
-    setQuantity((prevQuantity) => prevQuantity + 1);
+    dispatch(cartActions.incrementAmount(id));
   };
 
   const handleDecrement = () => {
     if (quantity > 1) {
-      setQuantity((prevQuantity) => prevQuantity - 1);
+      dispatch(cartActions.decrementAmount(id));
     }
+  };
+
+  const handleDelete = () => {
+    dispatch(cartActions.delete(id));
   };
 
   return (
     <article className="cart-item">
       <div className="cart-item__info">
-        <button type="button" className="cart-item__delete">
+        <button
+          type="button"
+          className="cart-item__delete"
+          onClick={handleDelete}>
           <img
             src="./icons/close.svg"
             className="cart-item__delete-icon"
@@ -42,15 +43,9 @@ export const CartItem: React.FC<Props> = ({
           />
         </button>
 
-        <img
-          src={image}
-          alt="iphone-model"
-          className="cart-item__image"
-        />
+        <img src={image} alt="iphone-model" className="cart-item__image" />
 
-        <p className="cart-item__about">
-          {name}
-        </p>
+        <p className="cart-item__about">{name}</p>
       </div>
 
       <div className="cart-item__cost">

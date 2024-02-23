@@ -3,6 +3,7 @@
 
 .promo-swiper {
   $button-width: 32px;
+  $gap-bewtween-swiper-items: 16px;
 
   --promo-height: 350px;
 
@@ -12,6 +13,8 @@
   gap: 16px;
   width: 100%;
   justify-content: center;
+  margin-bottom: 32px;
+  box-sizing: border-box;
 
   grid-column: 1 / -1;
 
@@ -23,8 +26,29 @@
     --promo-height: 400px;
   }
 
+  &__swiper {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+
+    @include onTablet {
+      position: static;
+    }
+  }
+
+  &__slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    object-position: center;
+  }
+
   &__wrapper {
-    width: calc(100% - $button-width * 2);
+    width: calc(100% - ($button-width + $gap-bewtween-swiper-items) * 2);
   }
 
   &__link {
@@ -38,8 +62,9 @@
     object-fit: cover;
   }
 
-  &__custom-pagination {
+  &__pagination {
     display: flex;
+
     justify-content: center;
     padding-top: 18px;
 
@@ -50,10 +75,20 @@
     }
   }
 
+  &__pagination-bullet {
+    width: 14px;
+    height: 4px;
+    border-radius: 0;
+    color: $elements-color;
+  }
+
+  &__pagination .swiper-pagination-bullet-active {
+    background: $primary-color;
+  }
+
   &__prev-button {
-    width: $button-width;
+    min-width: $button-width;
     height: var(--promo-height);
-    flex-shrink: 0;
 
     box-sizing: border-box;
 
@@ -65,9 +100,8 @@
   }
 
   &__next-button {
-    width: $button-width;
+    min-width: $button-width;
     height: var(--promo-height);
-    flex-shrink: 0;
 
     box-sizing: border-box;
 

@@ -37,6 +37,8 @@
 
     &--disabled {
       background-image: url(./icons/minus-disabled.svg);
+      pointer-events: none;
+      border: 1px solid $elements-color;
     }
   }
 
@@ -71,13 +73,10 @@
     background-color: $primary-color;
     color: $white-color;
 
-    transition:
-      box-shadow $transition-duration,
-      border $transition-duration;
+    transition: box-shadow $transition-duration;
 
     @include onDesktop {
       &:hover {
-        border: 0;
         box-shadow: 0 3px 13px 0 $hover-button-shadow-color;
       }
     }
@@ -86,6 +85,13 @@
       color: $green-color;
       border: 1px solid $elements-color;
       background-color: $white-color;
+
+      @include onDesktop {
+        &:hover {
+          border: 1px solid $elements-color;
+          box-shadow: 0 3px 13px 0 $hover-button-shadow-color;
+        }
+      }
     }
   }
 

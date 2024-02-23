@@ -1,25 +1,19 @@
 /* eslint-disable no-param-reassign */
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { Product } from '../types/Product';
-import { Category } from '../enums/Category';
 import { getProducts } from '../api/products';
 
 const initialState = {
   products: [] as Product[],
-  isLoading: false,
+  isLoading: true,
   errorMessage: '',
 };
 
-export const loadProducts = createAsyncThunk(
-  'products/fetch',
-  (category: Category) => {
-    return getProducts().then((products) => {
-      return products.filter((product) => product.category === category);
-    });
-  }
-);
+const loadProducts = createAsyncThunk('products/fetch', () => {
+  return getProducts();
+});
 
-export const productsSlice = createSlice({
+const productsSlice = createSlice({
   name: 'products',
   initialState,
   reducers: {},
@@ -45,3 +39,5 @@ export const productsSlice = createSlice({
 });
 
 export const productsReducer = productsSlice.reducer;
+
+export const actions = { loadProducts };
