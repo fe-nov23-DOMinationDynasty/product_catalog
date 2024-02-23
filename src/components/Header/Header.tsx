@@ -6,9 +6,14 @@ import './header.scss';
 import { useState } from 'react';
 import { LogoLink } from '../LogoLink';
 import { BurgerMenu } from '../BurgerMenu';
+import { useAppSelector } from '../../app/hooks';
+import { Icon } from '../Icon';
 
 export const Header = () => {
   const [openBurger, setOpenBurger] = useState(false);
+
+  const favouriteProducts = useAppSelector((state) => state.favouritesReducer);
+  const { cartItems } = useAppSelector((state) => state.cartReducer);
 
   const handleNavigationIsActive = ({ isActive }: { isActive: boolean }) =>
     classNames('nav_link', { 'is-active': isActive });
@@ -57,11 +62,25 @@ export const Header = () => {
 
           <div className="header__buttons-block">
             <NavLink to="favourites" className={handleHeaderButtonIsActive}>
-              <img src="./logos/favourites.svg" alt="logoFavourite" />
+              {favouriteProducts && favouriteProducts.length > 0 ? (
+                <Icon
+                  pathImage="./logos/favourites.svg"
+                  counter={favouriteProducts.length}
+                />
+              ) : (
+                <img src="./logos/favourites.svg" alt="logoFavourite" />
+              )}
             </NavLink>
 
             <NavLink to="cart" className={handleHeaderButtonIsActive}>
-              <img src="./logos/shopping-bag.svg" alt="logoShoppingBag" />
+              {cartItems && !!cartItems.length ? (
+                <Icon
+                  pathImage="./logos/shopping-bag.svg"
+                  counter={cartItems.length}
+                />
+              ) : (
+                <img src="./logos/shopping-bag.svg" alt="logoShoppingBag" />
+              )}
             </NavLink>
           </div>
 
