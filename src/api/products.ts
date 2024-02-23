@@ -10,6 +10,21 @@ export const getProducts = () => {
 };
 
 export const getProductInfo = (category: Category, itemId: string) => {
-  return request<Phone[] | Accessory[] | Tablet[]>(category)
-    .then(products => products.find(product => product.id === itemId) || null);
+  return request<Phone[] | Accessory[] | Tablet[]>(category).then(
+    (products) => products.find((product) => product.id === itemId) || null
+  );
+};
+
+export const getSpecifiedProduct = (
+  category: Category,
+  namespaceId: string,
+  capacity: string,
+  color: string,
+) => {
+  return request<Phone[] | Accessory[] | Tablet[]>(category).then(
+    (products) => products.find(
+      (product) => product.namespaceId === namespaceId
+        && product.capacity === capacity
+        && product.color === color) || null
+  );
 };

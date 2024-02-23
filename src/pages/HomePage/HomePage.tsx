@@ -14,10 +14,9 @@ export const HomePage = () => {
   const [windowWidth] = useResize();
   const dispatch = useAppDispatch();
 
-  const {
-    products,
-    isLoading,
-  } = useAppSelector(state => state.productsReducer);
+  const { products, isLoading } = useAppSelector(
+    (state) => state.productsReducer
+  );
 
   useEffect(() => {
     dispatch(productsActions.loadProducts());
@@ -25,7 +24,7 @@ export const HomePage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const newProducts = products.filter(product => product.year === 2022);
+  const newProducts = products.filter((product) => product.year === 2022);
 
   return (
     <section className="home-page">

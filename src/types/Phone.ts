@@ -1,4 +1,4 @@
-import { Description } from "./Description";
+import { Description } from './Description';
 
 export interface Phone {
   id: string;
