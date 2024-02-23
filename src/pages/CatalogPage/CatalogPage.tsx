@@ -37,7 +37,7 @@ export const CatalogPage = () => {
     return prepareProducts(
       categoryProducts,
       { perPage: +itemsPerPage || null, currentPage: +currentPageNumber! || 1 },
-      sortOption as SortOptions,
+      sortOption as SortOptions
     );
   }, [categoryProducts, sortOption, itemsPerPage, currentPageNumber]);
 
@@ -97,9 +97,7 @@ export const CatalogPage = () => {
           <div className="catalog-page__header">
             <h1 className="catalog-page__title h1">{productCategory}</h1>
             <p className="catalog-page__amount-products">
-              {categoryProducts.length}
-              {' '}
-              models
+              {categoryProducts.length} models
             </p>
           </div>
 

@@ -2,4 +2,16 @@
 
 .item-card-page {
   @include pageGrid;
+
+  &__swiper {
+    grid-column: 1 / -1;
+
+    @include onTablet {
+      grid-column: 1 / 7;
+    }
+
+    @include onDesktop {
+      grid-column: 1 / 12;
+    }
+  }
 }

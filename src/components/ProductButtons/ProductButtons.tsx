@@ -65,5 +65,5 @@ export const ProductButtons: React.FC<Props> = ({ product }) => {
         })}
       />
     </div>
-  )
-}
+  );
+};

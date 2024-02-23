@@ -1,21 +1,70 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React from 'react';
+import cn from 'classnames';
 import { Link } from 'react-router-dom';
 import './productCard.scss';
 import { Product } from '../../types/Product';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { actions as cartActions } from '../../features/cartSlice';
+import { actions as favouriteActions } from '../../features/favouritesSlice';
+import {
+  actions as selectedProductActions
+} from '../../features/selectedProductSlice';
 import { shownProductCardCharacteristics } from '../../constants/constants';
-import { ProductButtons } from '../ProductButtons';
+import { CartProduct } from '../../types/CartItem';
 
 interface Props {
   product: Product;
 }
 
 export const ProductCard: React.FC<Props> = ({ product }) => {
-  const { itemId, category, name, price, fullPrice, image } = product;
+  const { id, itemId, category, name, price, fullPrice, image } = product;
+  const { cartItems } = useAppSelector((state) => state.cartReducer);
+  const favouriteProducts = useAppSelector((state) => state.favouritesReducer);
+  const dispatch = useAppDispatch();
+
+  const isInCart = !!cartItems?.find(
+    ({ product: cartProduct }) => cartProduct.id === id
+  );
+
+  const isInFavourite = !!favouriteProducts.find(
+    (favouriteProduct) => favouriteProduct.id === id
+  );
+
+  const handleProductCartStatusChanged = () => {
+    if (isInCart) {
+      dispatch(cartActions.delete(id));
+
+      return;
+    }
+
+    const cartProduct: CartProduct = {
+      image,
+      id,
+      name,
+      price,
+      itemId,
+    };
+
+    dispatch(cartActions.add(cartProduct));
+  };
+
+  const handleFavouriteProductStatusChanged = () => {
+    if (isInFavourite) {
+      dispatch(favouriteActions.delete(id));
+
+      return;
+    }
+
+    dispatch(favouriteActions.add(product));
+  };
 
   return (
     <article className="product-card">
-      <Link to={`/catalog/${category}/${itemId}`} className="product-card__link">
+      <Link
+        onClick={() => dispatch(selectedProductActions.setProduct(product))}
+        to={`/catalog/${category}/${itemId}`}
+        className="product-card__link">
         <img
           src={image}
           alt={`${category}_image`}
@@ -43,8 +92,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
           ))}
         </div>
 
-        <ProductButtons product={product} />
-        {/* <div className="product-card__buttons">
+        <div className="product-card__buttons">
           <button
             onClick={handleProductCartStatusChanged}
             type="button"
@@ -60,7 +108,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
               'button-favourite--selected': isInFavourite,
             })}
           />
-        </div> */}
+        </div>
       </div>
     </article>
   );

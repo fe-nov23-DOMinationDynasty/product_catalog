@@ -1,4 +1,4 @@
-import { Promo } from "../types/Promo";
+import { Promo } from '../types/Promo';
 
 const promoImagesMobile = [
   './promos/promo-image-mobile.webp',

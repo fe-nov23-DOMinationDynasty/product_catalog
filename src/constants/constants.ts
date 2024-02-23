@@ -18,5 +18,5 @@ export const breakpoints = {
   },
   1200: {
     slidesPerView: 4,
-  }
+  },
 };
