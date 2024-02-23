@@ -12,21 +12,21 @@ interface Props {
 }
 
 export const CartItem: React.FC<Props> = ({ product, quantity }) => {
-  const { id, name, image, price } = product;
+  const { itemId, name, image, price } = product;
   const dispatch = useAppDispatch();
 
   const handleIncrement = () => {
-    dispatch(cartActions.incrementAmount(id));
+    dispatch(cartActions.incrementAmount(itemId));
   };
 
   const handleDecrement = () => {
     if (quantity > 1) {
-      dispatch(cartActions.decrementAmount(id));
+      dispatch(cartActions.decrementAmount(itemId));
     }
   };
 
   const handleDelete = () => {
-    dispatch(cartActions.delete(id));
+    dispatch(cartActions.delete(itemId));
   };
 
   return (
