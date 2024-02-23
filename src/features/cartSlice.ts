@@ -3,7 +3,7 @@
 /* eslint-disable no-param-reassign */
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { getLocalStorage } from '../services/getLocalStorage';
-import { CartItem } from '../types/CartItem';
+import { CartItem, CartProduct } from '../types/CartItem';
 import { Product } from '../types/Product';
 import { localStorageCartKey } from '../constants/constants';
 
@@ -25,7 +25,7 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    add: (state, action: PayloadAction<Product>) => {
+    add: (state, action: PayloadAction<CartProduct>) => {
       state.cartItems = [
         ...state.cartItems,
         {
@@ -38,32 +38,36 @@ const cartSlice = createSlice({
 
       setLocalCartItems(state.cartItems);
     },
-    delete: (state, action: PayloadAction<number>) => {
+    delete: (state, action: PayloadAction<string>) => {
       state.cartItems = state.cartItems.filter(
-        ({ product }) => product.id !== action.payload
+        ({ product }) => product.itemId !== action.payload
       );
 
       state.totalAmount -= 1;
 
       setLocalCartItems(state.cartItems);
     },
-    incrementAmount: (state, action: PayloadAction<number>) => {
+    incrementAmount: (state, action: PayloadAction<string>) => {
       const productIndex = state.cartItems.findIndex(
-        ({ product }) => product.id === action.payload
+        ({ product }) => product.itemId === action.payload
       );
 
       state.totalAmount += 1;
 
       state.cartItems[productIndex].amount += 1;
+
+      setLocalCartItems(state.cartItems);
     },
-    decrementAmount: (state, action: PayloadAction<number>) => {
+    decrementAmount: (state, action: PayloadAction<string>) => {
       const productIndex = state.cartItems.findIndex(
-        ({ product }) => product.id === action.payload
+        ({ product }) => product.itemId === action.payload
       );
 
       state.totalAmount -= 1;
 
       state.cartItems[productIndex].amount -= 1;
+
+      setLocalCartItems(state.cartItems);
     },
     resetCart: (state) => {
       state.cartItems = [];

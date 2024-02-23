@@ -1,45 +1,53 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React from 'react';
-import { Link } from 'react-router-dom';
 import cn from 'classnames';
+import { Link } from 'react-router-dom';
 import './productCard.scss';
 import { Product } from '../../types/Product';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { actions as cartActions } from '../../features/cartSlice';
 import { actions as favouriteActions } from '../../features/favouritesSlice';
 import { shownProductCardCharacteristics } from '../../constants/constants';
+import { CartProduct } from '../../types/CartItem';
 
 interface Props {
   product: Product;
 }
 
 export const ProductCard: React.FC<Props> = ({ product }) => {
-  const { id, itemId, category, name, price, fullPrice, image } = product;
+  const { itemId, category, name, price, fullPrice, image } = product;
   const { cartItems } = useAppSelector((state) => state.cartReducer);
   const favouriteProducts = useAppSelector((state) => state.favouritesReducer);
   const dispatch = useAppDispatch();
 
   const isInCart = !!cartItems?.find(
-    ({ product: cartProduct }) => cartProduct.id === id
+    ({ product: cartProduct }) => cartProduct.itemId === itemId
   );
 
   const isInFavourite = !!favouriteProducts.find(
-    (favouriteProduct) => favouriteProduct.id === id
+    (favouriteProduct) => favouriteProduct.itemId === itemId
   );
 
   const handleProductCartStatusChanged = () => {
     if (isInCart) {
-      dispatch(cartActions.delete(id));
+      dispatch(cartActions.delete(itemId));
 
       return;
     }
 
-    dispatch(cartActions.add(product));
+    const cartProduct: CartProduct = {
+      image,
+      itemId,
+      name,
+      price,
+    };
+
+    dispatch(cartActions.add(cartProduct));
   };
 
   const handleFavouriteProductStatusChanged = () => {
     if (isInFavourite) {
-      dispatch(favouriteActions.delete(id));
+      dispatch(favouriteActions.delete(itemId));
 
       return;
     }
@@ -49,7 +57,9 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
 
   return (
     <article className="product-card">
-      <Link to={`/catalog/${category}/${itemId}`} className="product-card__link">
+      <Link
+        to={`/catalog/${category}/${itemId}`}
+        className="product-card__link">
         <img
           src={image}
           alt={`${category}_image`}
@@ -76,6 +86,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
             </p>
           ))}
         </div>
+
         <div className="product-card__buttons">
           <button
             onClick={handleProductCartStatusChanged}

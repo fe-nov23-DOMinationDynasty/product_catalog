@@ -22,9 +22,9 @@ const favouritesSlice = createSlice({
 
       return newProductsIds;
     },
-    delete: (productsIds, action: PayloadAction<number>) => {
+    delete: (productsIds, action: PayloadAction<string>) => {
       const newProductsIds = productsIds.filter(
-        ({ id }) => id !== action.payload
+        ({ itemId }) => itemId !== action.payload
       );
 
       setFavouriteProducts(newProductsIds);

@@ -1,6 +1,6 @@
 import { Description } from './Description';
 
-export interface Phone {
+export interface Accessory {
   id: string;
   namespaceId: string;
   name: string;
@@ -16,7 +16,5 @@ export interface Phone {
   resolution: string;
   processor: string;
   ram: string;
-  camera: string;
-  zoom: string;
   cell: string[];
 }

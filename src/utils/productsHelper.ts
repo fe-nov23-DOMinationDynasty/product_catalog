@@ -1,10 +1,10 @@
-import { SortOptions } from "../enums/SortOptions";
-import { PaginationParams } from "../types/PaginationParams";
-import { Product } from "../types/Product";
+import { SortOptions } from '../enums/SortOptions';
+import { PaginationParams } from '../types/PaginationParams';
+import { Product } from '../types/Product';
 
 const paginateProducts = (
   items: Product[],
-  { currentPage, perPage }: PaginationParams,
+  { currentPage, perPage }: PaginationParams
 ) => {
   if (!perPage) {
     return items;
@@ -25,8 +25,9 @@ const sortProducts = (products: Product[], sortOption: SortOptions) => {
       }
 
       case SortOptions.Alphabetically: {
-        return (product1[sortOption] as string)
-          .localeCompare(product2[sortOption] as string);
+        return (product1[sortOption] as string).localeCompare(
+          product2[sortOption] as string
+        );
       }
 
       default: {
@@ -39,7 +40,7 @@ const sortProducts = (products: Product[], sortOption: SortOptions) => {
 export function prepareProducts(
   products: Product[],
   paginationParams: PaginationParams,
-  sortOption: SortOptions,
+  sortOption: SortOptions
 ): Product[] {
   const paginatedProducts = paginateProducts(products, paginationParams);
 
