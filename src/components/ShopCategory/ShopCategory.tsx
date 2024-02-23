@@ -1,8 +1,9 @@
 import React from 'react';
-import './shopcategory.scss';
 import '../../styles/utils/text-styles.scss';
+import { Link } from 'react-router-dom';
 import { Category } from '../../enums/Category';
 import { useAppSelector } from '../../app/hooks';
+import './ShopCategory.scss';
 
 export const ShopCategory: React.FC = () => {
   const categories = Object.values(Category);
