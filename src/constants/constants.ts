@@ -1,14 +1,4 @@
 export const shownProductCardCharacteristics = ['Screen', 'Capacity', 'RAM'];
-export const techSpecs = [
-  'Screen',
-  'Resolution',
-  'Processor',
-  'RAM',
-  'Capacity',
-  'Camera',
-  'Zoom',
-  'Cell',
-];
 export const tabletWidth = 640;
 export const localStorageFavouritesKey = 'favourites';
 export const localStorageCartKey = 'cart';

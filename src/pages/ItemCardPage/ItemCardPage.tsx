@@ -10,6 +10,8 @@ import { Phone } from '../../types/Phone';
 import { TechSpecsSection } from '../../components/TechSpecsSection';
 import { AboutSection } from '../../components/AboutSection';
 
+
+
 export const ItemCardPage = () => {
   const { itemId, productCategory } = useParams();
   const [isLoading, setIsLoading] = useState(true);
@@ -29,7 +31,7 @@ export const ItemCardPage = () => {
 
       {!isLoading && (
         <>
-          <AboutSection description={currentProduct?.description} />
+          <AboutSection description={currentProduct?.description || null} />
           <TechSpecsSection product={currentProduct} />
         </>
       )}
