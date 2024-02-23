@@ -15,7 +15,7 @@ const favouritesSlice = createSlice({
   name: 'favourites',
   initialState: favouriteProducts as Product[],
   reducers: {
-    add: (products, action: PayloadAction<Product>) => {
+    add: (products, action) => {
       const newProductsIds = [...products, action.payload];
 
       setFavouriteProducts(newProductsIds);
