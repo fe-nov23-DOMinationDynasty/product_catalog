@@ -8,3 +8,10 @@ export enum TechSpecs {
   'Zoom' = 'zoom',
   'Cell' = 'cell',
 }
+
+export enum TechSpecsForActions {
+  'Screen' = 'screen',
+  'Resolution' = 'resolution',
+  'Processor' = 'processor',
+  'RAM' = 'ram',
+}

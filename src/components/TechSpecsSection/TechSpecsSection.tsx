@@ -30,7 +30,6 @@ export const TechSpecsSection: React.FC<Props> = ({ product }) => {
       if (specKey === 'Built in memory'
         && product.capacity.includes('mm')
       ) {
-
         return 'Size';
       }
     }
