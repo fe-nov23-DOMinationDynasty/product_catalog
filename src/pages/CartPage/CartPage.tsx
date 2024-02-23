@@ -22,12 +22,14 @@ export const CartPage = () => {
   const navigate = useNavigate();
 
   const totalCost = products.cartItems.reduce(
-    (total, {product}) => total + product.price * products.totalAmount,
+    (total, { product }) => total + product.price * products.totalAmount,
     0
   );
 
-  const totalQuantity = products.cartItems
-    .reduce((total, { amount }) => total + amount, 0);
+  const totalQuantity = products.cartItems.reduce(
+    (total, { amount }) => total + amount,
+    0
+  );
 
   const handleCheckout = () => {
     dispatch(cartActions.resetCart());
@@ -51,15 +53,11 @@ export const CartPage = () => {
       </div>
 
       <div className="cart__items">
-        {products.cartItems.map(({ product, amount }) => (
+        {products.cartItems.map(({ product, amount }) =>
           product ? (
-            <CartItem
-              key={product.id}
-              product={product}
-              quantity={amount}
-            />
+            <CartItem key={product.id} product={product} quantity={amount} />
           ) : null
-        ))}
+        )}
       </div>
 
       {!!totalQuantity && (
@@ -67,11 +65,7 @@ export const CartPage = () => {
           <div className="total__info">
             <h2 className="total__price">${totalCost}</h2>
             <div className="total__count-items">
-              Total for
-              {' '}
-              {totalQuantity}
-              {' '}
-              items
+              Total for {totalQuantity} items
             </div>
           </div>
 
@@ -80,8 +74,7 @@ export const CartPage = () => {
           <button
             type="button"
             className="button button-add button--cart"
-            onClick={handleCheckout}
-          >
+            onClick={handleCheckout}>
             Checkout
           </button>
         </article>

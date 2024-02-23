@@ -4,17 +4,21 @@ import { Link } from 'react-router-dom';
 import cn from 'classnames';
 import './productCard.scss';
 import { Product } from '../../types/Product';
-import { shownProductCardCharacteristics } from '../../constants/constants';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { actions as cartActions } from '../../features/cartSlice';
 import { actions as favouriteActions } from '../../features/favouritesSlice';
+import {
+  actions as selectedProductActions
+} from '../../features/selectedProductSlice';
+import { shownProductCardCharacteristics } from '../../constants/constants';
+import { CartProduct } from '../../types/CartItem';
 
 interface Props {
   product: Product;
 }
 
 export const ProductCard: React.FC<Props> = ({ product }) => {
-  const { id, category, name, price, fullPrice, image } = product;
+  const { id, itemId, category, name, price, fullPrice, image } = product;
   const { cartItems } = useAppSelector((state) => state.cartReducer);
   const favouriteProducts = useAppSelector((state) => state.favouritesReducer);
   const dispatch = useAppDispatch();
@@ -34,7 +38,15 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
       return;
     }
 
-    dispatch(cartActions.add(product));
+    const cartProduct: CartProduct = {
+      image,
+      id,
+      name,
+      price,
+      itemId,
+    };
+
+    dispatch(cartActions.add(cartProduct));
   };
 
   const handleFavouriteProductStatusChanged = () => {
@@ -49,7 +61,10 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
 
   return (
     <article className="product-card">
-      <Link to={`/item/${id}`} className="product-card__link">
+      <Link
+        onClick={() => dispatch(selectedProductActions.setProduct(product))}
+        to={`/catalog/${category}/${itemId}`}
+        className="product-card__link">
         <img
           src={image}
           alt={`${category}_image`}

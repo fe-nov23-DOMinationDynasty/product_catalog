@@ -3,6 +3,7 @@
 
 .promo-swiper {
   $button-width: 32px;
+  $gap-bewtween-swiper-items: 16px;
 
   --promo-height: 350px;
 
@@ -12,6 +13,8 @@
   gap: 16px;
   width: 100%;
   justify-content: center;
+  margin-bottom: 32px;
+  box-sizing: border-box;
 
   grid-column: 1 / -1;
 
@@ -45,7 +48,7 @@
   }
 
   &__wrapper {
-    width: calc(100% - $button-width * 2);
+    width: calc(100% - ($button-width + $gap-bewtween-swiper-items) * 2);
   }
 
   &__link {
@@ -84,9 +87,8 @@
   }
 
   &__prev-button {
-    width: $button-width;
+    min-width: $button-width;
     height: var(--promo-height);
-    flex-shrink: 0;
 
     box-sizing: border-box;
 
@@ -98,9 +100,8 @@
   }
 
   &__next-button {
-    width: $button-width;
+    min-width: $button-width;
     height: var(--promo-height);
-    flex-shrink: 0;
 
     box-sizing: border-box;
 
