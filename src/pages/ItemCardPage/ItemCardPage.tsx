@@ -12,6 +12,7 @@ import { ProductSwiper } from '../../components/ProductSwiper';
 import { TechSpecsSection } from '../../components/TechSpecsSection';
 import { AboutSection } from '../../components/AboutSection';
 import { TechSpecs, TechSpecsForActions } from '../../enums/TechSpecs';
+import { ProductButtons } from '../../components/ProductButtons';
 
 
 
@@ -37,8 +38,9 @@ export const ItemCardPage = () => {
             <ProductSwiper images={currentProduct?.images as string[]} />
           </div>
 
-          <div className="actions">
-            {/* <ProductButtons product={currentProduct} /> */}
+          <div className="item-card-page__actions">
+
+            <ProductButtons product={currentProduct} />
 
             {Object.keys(TechSpecsForActions).map((specKey) => {
               const specValue = currentProduct?.[
@@ -63,7 +65,9 @@ export const ItemCardPage = () => {
               return null;
             })}
           </div>
+
           <AboutSection description={currentProduct?.description || null} />
+
           <TechSpecsSection product={currentProduct} />
         </>
       )}

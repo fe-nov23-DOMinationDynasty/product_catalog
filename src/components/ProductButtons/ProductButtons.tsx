@@ -5,10 +5,13 @@ import cn from 'classnames';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { actions as cartActions } from '../../features/cartSlice';
 import { actions as favouriteActions } from '../../features/favouritesSlice';
-import { Product } from '../../types/Product';
+import { Phone } from '../../types/Phone';
+import { Tablet } from '../../types/Tablet';
+import { Accessory } from '../../types/Accessory';
+import './ProductButtons.scss';
 
 interface Props {
-  product: Product;
+  product: Phone | Tablet | Accessory | null;
 }
 
 export const ProductButtons: React.FC<Props> = ({ product }) => {
@@ -51,7 +54,7 @@ export const ProductButtons: React.FC<Props> = ({ product }) => {
       <button
         onClick={handleProductCartStatusChanged}
         type="button"
-        className={cn('button button-add', {
+        className={cn('product-buttons__button-add button button-add', {
           'button-add--selected': isInCart,
         })}>
         {isInCart ? 'Added to cart' : 'Add to cart'}
@@ -60,7 +63,7 @@ export const ProductButtons: React.FC<Props> = ({ product }) => {
       <button
         onClick={handleFavouriteProductStatusChanged}
         type="button"
-        className={cn('button button-favourite', {
+        className={cn('button button-favourite product-buttons__button-fav', {
           'button-favourite--selected': isInFavourite,
         })}
       />
