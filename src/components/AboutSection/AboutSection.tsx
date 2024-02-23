@@ -4,7 +4,7 @@ import '../../styles/utils/fonts.scss';
 import './AboutSection.scss';
 
 interface Props {
-  description: Description[] | undefined,
+  description: Description[] | null,
 }
 
 export const AboutSection: React.FC<Props> = ({ description }) => {

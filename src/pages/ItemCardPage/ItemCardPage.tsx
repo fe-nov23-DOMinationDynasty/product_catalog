@@ -8,11 +8,14 @@ import { Category } from '../../enums/Category';
 import { Accessory } from '../../types/Accessory';
 import { Tablet } from '../../types/Tablet';
 import { Phone } from '../../types/Phone';
+import { TechSpecsSection } from '../../components/TechSpecsSection';
 import { AboutSection } from '../../components/AboutSection';
 import { ProductSwiper } from '../../components/ProductSwiper';
 import {
   CharacteristicsBlock
 } from '../../components/CharacteristicsBlock/CharacteristicsBlock';
+
+
 
 
 export const ItemCardPage = () => {
@@ -95,10 +98,11 @@ export const ItemCardPage = () => {
               />
             </div>
           </article>
+
+          <AboutSection description={currentProduct?.description || null} />
+          <TechSpecsSection product={currentProduct} />
         </>
       )}
-
-      <AboutSection description={currentProduct?.description} />
     </section>
   );
 };
