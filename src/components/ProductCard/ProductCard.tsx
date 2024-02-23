@@ -7,6 +7,9 @@ import { Product } from '../../types/Product';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { actions as cartActions } from '../../features/cartSlice';
 import { actions as favouriteActions } from '../../features/favouritesSlice';
+import {
+  actions as selectedProductActions
+} from '../../features/selectedProductSlice';
 import { shownProductCardCharacteristics } from '../../constants/constants';
 import { CartProduct } from '../../types/CartItem';
 
@@ -59,6 +62,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
   return (
     <article className="product-card">
       <Link
+        onClick={() => dispatch(selectedProductActions.setProduct(product))}
         to={`/catalog/${category}/${itemId}`}
         className="product-card__link">
         <img
