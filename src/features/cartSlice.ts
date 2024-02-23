@@ -3,7 +3,7 @@
 /* eslint-disable no-param-reassign */
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { getLocalStorage } from '../services/getLocalStorage';
-import { CartItem } from '../types/CartItem';
+import { CartItem, CartProduct } from '../types/CartItem';
 import { Product } from '../types/Product';
 import { localStorageCartKey } from '../constants/constants';
 
@@ -25,7 +25,7 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    add: (state, action: PayloadAction<Product>) => {
+    add: (state, action: PayloadAction<CartProduct>) => {
       state.cartItems = [
         ...state.cartItems,
         {
