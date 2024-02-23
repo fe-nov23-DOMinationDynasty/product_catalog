@@ -7,6 +7,7 @@ import { Category } from '../../enums/Category';
 import { Accessory } from '../../types/Accessory';
 import { Tablet } from '../../types/Tablet';
 import { Phone } from '../../types/Phone';
+import { ProductSwiper } from '../../components/ProductSwiper';
 
 export const ItemCardPage = () => {
   const { itemId, productCategory } = useParams();
@@ -18,7 +19,7 @@ export const ItemCardPage = () => {
     getProductInfo(productCategory as Category, itemId as string)
       .then(setCurrentProduct)
       .finally(() => setIsLoading(false));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [itemId]);
 
   return (
@@ -26,9 +27,7 @@ export const ItemCardPage = () => {
       {isLoading && <Loader />}
 
       {!isLoading && (
-        <div>
-          {currentProduct?.capacity || ''}
-        </div>
+        <ProductSwiper images={currentProduct?.images as string[]} />
       )}
     </section>
   );
