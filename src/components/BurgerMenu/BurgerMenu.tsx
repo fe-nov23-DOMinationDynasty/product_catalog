@@ -33,9 +33,6 @@ export const BurgerMenu: React.FC<Props> = ({
       id="burgerMenu"
       className={`burger__menu burger__preAnimation  ${openBurger ? 'burger__animation' : ''}`}
     >
-      {/* // className={classNames("burger__menu",
-      //   {"burger__animation": openBurger}) } */}
-
       <div className="burger__top">
         <div className="burger__logo">
           <LogoLink />

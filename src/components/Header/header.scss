@@ -124,6 +124,7 @@
     font-weight: 600;
     font-size: 14px;
     display: block;
+    width: 327px;
     padding: 0 24px;
     border: none;
     border-left: 1px solid $elements-color;
@@ -145,6 +146,11 @@
   color: #B4BDC3;
   font-weight: 600;
   font-size: 14px;
+}
+
+.icon__search {
+  position: absolute;
+  transform: translateX(2200%);
 }
 
 
@@ -198,10 +204,15 @@
   opacity: 1;
   transform: translateY(0);
   pointer-events: all;
-  overflow: visible;
+
 }
 
+// html:has(.burger__preAnimation:target) {
+//   overflow: hidden;
+// }
+
 .burger__menu {
+  overflow: hidden;
   position: fixed;
   z-index: 1;
   top: 0;

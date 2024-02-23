@@ -1,3 +1,6 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/no-noninteractive-tabindex */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import classNames from 'classnames';
 import { Link, NavLink } from 'react-router-dom';
 
@@ -7,9 +10,25 @@ import { useState } from 'react';
 import { LogoLink } from '../LogoLink';
 import { BurgerMenu } from '../BurgerMenu';
 
+// function filterDevices(devices, query) {
+//   const normalizedQuery = query.trim().toLowerCase();
+//   let copyDevices = [...devices];
+
+//   if (normalizedQuery) {
+//     copyDevices = copyDevices.filter(
+//       device => device.title.toLowerCase().includes(normalizedQuery)
+//         || device.description.toLowerCase().includes(normalizedQuery),
+//     );
+//   }
+
+//   return copyDevices;
+// }
+
 export const Header = () => {
   const [openBurger, setOpenBurger] = useState(false);
   const [currentURL, setCurrentURL] = useState('');
+  const [sortField, setSortField] = useState('');
+  // const filteredDevices = filterDevices(qw, sortField);
 
   const handleNavigationIsActive = ({ isActive }: {isActive: boolean}) =>
     classNames('nav_link', { 'is-active': isActive });
@@ -76,9 +95,26 @@ export const Header = () => {
           <div className="header__buttons-block">
             <div className='header__block__input'>
               <input
+                onChange={(event) => {
+                  setSortField(event.target.value);
+                }}
+                value={sortField}
                 type="text"
                 placeholder='Search...'
                 className='header__input'
+              />
+              <img
+                tabIndex={0}
+                onClick={() => {
+                  if (sortField) {
+                    setSortField('');
+                  }
+                }}
+                className='icon__search'
+                src={!sortField
+                  ? "./logos/search.svg"
+                  : "./logos/close.svg"}
+                alt="seacrh"
               />
             </div>
             <NavLink
@@ -114,7 +150,7 @@ export const Header = () => {
               onClick={() => {
                 setOpenBurger(true);
               }}
-              to="/"
+              to={currentURL}
               className="header__burger-menu">
               <img src="./logos/burger-menu.svg" alt="logoShoppingBag" />
             </Link>
