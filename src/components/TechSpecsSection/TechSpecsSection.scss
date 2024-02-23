@@ -8,6 +8,8 @@
   flex-direction: column;
   row-gap: 8px;
 
+  margin-bottom: 32px;
+
   @include onDesktop {
     grid-column: 13 / -1;
   }

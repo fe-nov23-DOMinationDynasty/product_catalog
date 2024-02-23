@@ -20,14 +20,18 @@ import {
 } from '../../components/CharacteristicsBlock/CharacteristicsBlock';
 import { BackButton } from '../../components/BackButton';
 import { BreadCrumbs } from '../../components/BreadCrumbs';
+import { RecommendsSlider } from '../../components/RecommendsSlider';
+import { useAppSelector } from '../../app/hooks';
 
 export const ItemCardPage = () => {
   const navigation = useNavigate();
+  const { products } = useAppSelector(state => state.productsReducer);
   const { itemId, productCategory } = useParams();
   const [isLoading, setIsLoading] = useState(true);
   const [currentProduct, setCurrentProduct] = useState<Phone | Tablet | Accessory | null>(null);
 
   const {
+    name,
     capacity,
     color,
     images,
@@ -85,6 +89,10 @@ export const ItemCardPage = () => {
           <div className="item-card-page__back-button">
             <BackButton />
           </div>
+
+          <h1 className="item-card-page__title h1">
+            {name}
+          </h1>
 
           <div className="item-card-page__swiper">
             <ProductSwiper images={images as string[]} key={itemId} />
@@ -148,6 +156,8 @@ export const ItemCardPage = () => {
           <AboutSection description={currentProduct?.description || null} />
 
           <TechSpecsSection product={currentProduct} />
+
+          <RecommendsSlider title="You may also like" products={products} />
         </>
       )
       }
