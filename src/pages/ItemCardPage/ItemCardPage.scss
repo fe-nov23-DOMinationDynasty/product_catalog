@@ -29,15 +29,26 @@
   }
 
   &__swiper {
+    height: 100%;
+    width: 100%;
     grid-column: 1 / -1;
     margin-bottom: 40px;
 
+    min-height: calc(100vw + var(--product-pagination-size));
+
     @include onTablet {
-      grid-column: 1 / 7;
+      grid-column: 1 / 8;
+      min-height: 0;
     }
 
     @include onDesktop {
       grid-column: 1 / 12;
+    }
+
+    &--loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
 
