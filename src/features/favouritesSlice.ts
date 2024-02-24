@@ -3,8 +3,8 @@
 /* eslint-disable no-param-reassign */
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { getLocalStorage } from '../services/getLocalStorage';
-import { Product } from '../types/Product';
 import { localStorageFavouritesKey } from '../constants/constants';
+import { LocalFavouriteProducts } from '../types/localFavouriteProducts';
 
 const [favouriteProducts, setFavouriteProducts] = getLocalStorage(
   localStorageFavouritesKey,
@@ -13,7 +13,7 @@ const [favouriteProducts, setFavouriteProducts] = getLocalStorage(
 
 const favouritesSlice = createSlice({
   name: 'favourites',
-  initialState: favouriteProducts as Product[],
+  initialState: favouriteProducts as LocalFavouriteProducts[],
   reducers: {
     add: (products, action) => {
       const newProductsIds = [...products, action.payload];

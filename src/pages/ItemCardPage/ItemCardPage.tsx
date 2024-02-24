@@ -1,20 +1,16 @@
 /* eslint-disable max-len */
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import cn from 'classnames';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getProductInfo, getSpecifiedProduct } from '../../api/products';
 import { Loader } from '../../components/Loader';
 import './ItemCardPage.scss';
 import { Category } from '../../enums/Category';
-import { Accessory } from '../../types/Accessory';
-import { Tablet } from '../../types/Tablet';
-import { Phone } from '../../types/Phone';
 import { ProductSwiper } from '../../components/ProductSwiper';
 import { TechSpecsSection } from '../../components/TechSpecsSection';
 import { AboutSection } from '../../components/AboutSection';
 import { TechSpecs, TechSpecsForActions } from '../../enums/TechSpecs';
 import { ProductButtons } from '../../components/ProductButtons';
-
-
 import {
   CharacteristicsBlock
 } from '../../components/CharacteristicsBlock/CharacteristicsBlock';
@@ -22,13 +18,28 @@ import { BackButton } from '../../components/BackButton';
 import { BreadCrumbs } from '../../components/BreadCrumbs';
 import { RecommendsSlider } from '../../components/RecommendsSlider';
 import { useAppSelector } from '../../app/hooks';
+import { ProductInfo } from '../../types/ProductInfo';
 
 export const ItemCardPage = () => {
   const navigation = useNavigate();
   const { products } = useAppSelector(state => state.productsReducer);
   const { itemId, productCategory } = useParams();
+  const selectedProductId = useMemo(() => (
+    (products.find(product => product.itemId === itemId)?.id
+    )), [itemId, products]);
   const [isLoading, setIsLoading] = useState(true);
-  const [currentProduct, setCurrentProduct] = useState<Phone | Tablet | Accessory | null>(null);
+  const [isSwiperLoading, setIsSwiperLoading] = useState(false);
+  const [currentProduct, setCurrentProduct] = useState<ProductInfo | null>(null);
+
+  useEffect(() => {
+    getProductInfo(productCategory as Category, itemId as string)
+      .then(setCurrentProduct)
+      .finally(() => {
+        setIsLoading(false);
+        setIsSwiperLoading(false);
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [itemId]);
 
   const {
     name,
@@ -40,40 +51,38 @@ export const ItemCardPage = () => {
     priceDiscount,
     colorsAvailable,
     capacityAvailable,
-  } = currentProduct || {} as Phone | Tablet | Accessory;
-
-
-  useEffect(() => {
-    getProductInfo(productCategory as Category, itemId as string)
-      .then(setCurrentProduct)
-      .finally(() => setIsLoading(false));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [itemId]);
+  } = currentProduct || {} as ProductInfo;
 
   const handleCapacityChanged = (newCapacity: string) => {
-    getSpecifiedProduct(
-      productCategory as Category,
-      namespaceId!,
-      newCapacity,
-      color
-    )
-      .then((product) => {
-        setCurrentProduct(product);
-        navigation(`../${product?.id}`);
-      });
+    if (newCapacity !== capacity) {
+      setIsSwiperLoading(true);
+
+      getSpecifiedProduct(
+        productCategory as Category,
+        namespaceId,
+        newCapacity,
+        color
+      )
+        .then((product) => {
+          navigation(`../${product?.id}`);
+        });
+    }
   };
 
   const handleColorChanged = (newColor: string) => {
-    getSpecifiedProduct(
-      productCategory as Category,
-      namespaceId!,
-      capacity,
-      newColor
-    )
-      .then((product) => {
-        setCurrentProduct(product);
-        navigation(`../${product?.id}`);
-      });
+    if (newColor !== color) {
+      setIsSwiperLoading(true);
+
+      getSpecifiedProduct(
+        productCategory as Category,
+        namespaceId,
+        capacity,
+        newColor
+      )
+        .then((product) => {
+          navigation(`../${product?.id}`);
+        });
+    }
   };
 
   return (
@@ -96,8 +105,13 @@ export const ItemCardPage = () => {
             </h1>
           </div>
 
-          <div className="item-card-page__swiper">
-            <ProductSwiper images={images as string[]} key={itemId} />
+          <div className={cn('item-card-page__swiper', {
+            'item-card-page__swiper--loading': isSwiperLoading,
+          })}>
+            {isSwiperLoading
+              ? <Loader />
+              : <ProductSwiper images={images} />
+            }
           </div>
 
           <div className="item-card-page__actions">
@@ -107,7 +121,7 @@ export const ItemCardPage = () => {
                 options={colorsAvailable}
                 selectedOption={color}
                 title='Available colors'
-                subtitle={`ID: ${itemId}`}
+                subtitle={`ID: ${selectedProductId}`}
                 isColorPicker
               />
             </div>
@@ -129,16 +143,14 @@ export const ItemCardPage = () => {
             </div>
 
             <div className="item-card-page__actions-buttons">
-              <ProductButtons product={currentProduct as Phone | Tablet | Accessory} category={productCategory!} />
+              <ProductButtons product={currentProduct as ProductInfo} category={productCategory!} />
             </div>
 
 
             <div className="item-card-page__actions-specs">
               {Object.keys(TechSpecsForActions).map((specKey) => {
                 const specValue = currentProduct?.[
-                  TechSpecs[specKey as keyof typeof TechSpecs] as keyof (
-                    Phone | Tablet | Accessory
-                  )
+                  TechSpecs[specKey as keyof typeof TechSpecs] as keyof ProductInfo
                 ] as string;
 
                 if (specValue !== undefined && specValue !== null) {

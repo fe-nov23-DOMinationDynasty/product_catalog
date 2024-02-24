@@ -17,18 +17,16 @@
     width: 100%;
     height: 100%;
     aspect-ratio: 1 / 1;
-
-    @include onTablet {
-      max-height: 320px;
-    }
-
-    @include onDesktop {
-      max-height: none;
-    }
   }
 
   &__slide {
+    display: flex;
+    justify-content: center;
     height: 100%;
+
+    @include onTablet {
+      align-items: start;
+    }
   }
 
   &__picture {
@@ -36,7 +34,8 @@
     object-fit: contain;
     aspect-ratio: 1 / 1;
 
-    @include onDesktop {
+    @include onTablet {
+      height: auto;
       width: 100%;
     }
   }
@@ -63,8 +62,8 @@
     height: 100%;
     width: 100%;
 
-    max-width: 50px;
-    max-height: 50px;
+    max-width: var(--product-pagination-size);
+    max-height: var(--product-pagination-size);
 
     padding: 3.5px;
 
@@ -79,13 +78,11 @@
     }
 
     @include onTablet {
-      max-width: 35px;
-      max-height: 35px;
+      --product-pagination-size: 35px;
     }
 
     @include onDesktop {
-      max-width: 80px;
-      max-height: 80px;
+      --product-pagination-size: 80px;
     }
   }
 
