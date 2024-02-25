@@ -19,15 +19,15 @@ export const HomePage = () => {
   );
 
   const hotPricesProducts = useMemo(() => {
-    const unicProducts = getUnicProducts(products);
+    const sortedProducts = sortProducts(products, SortOptions.HotPrices);
 
-    return sortProducts(unicProducts, SortOptions.HotPrices).slice(0, 16);
+    return getUnicProducts(sortedProducts).slice(0, 16);
   }, [products]);
 
   const newModelsProducts = useMemo(() => {
-    const unicProducts = getUnicProducts(products);
+    const sortedProducts = sortProducts(products, SortOptions.Newest);
 
-    return sortProducts(unicProducts, SortOptions.Newest).slice(0, 16);
+    return getUnicProducts(sortedProducts).slice(0, 16);
   }, [products]);
 
   return (
