@@ -28,7 +28,7 @@
 
     @include onDesktop {
       &:hover {
-        transform: scale(110%);
+        transform: scale($transform-scale);
       }
     }
   }

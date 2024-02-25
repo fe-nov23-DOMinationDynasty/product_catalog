@@ -29,6 +29,16 @@
   width: 32px;
 }
 
+@mixin hoverEffect($property, $value) {
+  @include onDesktop {
+    transition: #{$property} $transition-duration;
+
+    &:hover {
+      #{$property}: $value;
+    }
+  }
+}
+
 @mixin pageGrid {
   --columns: 4;
 

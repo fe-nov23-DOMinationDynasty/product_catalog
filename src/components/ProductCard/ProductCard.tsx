@@ -51,6 +51,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
       itemId,
       name,
       price,
+      category,
     };
 
     dispatch(cartActions.add(cartProduct));
