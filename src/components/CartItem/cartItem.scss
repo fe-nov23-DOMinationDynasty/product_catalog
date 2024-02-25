@@ -5,56 +5,65 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 16px;
+  gap: $spacing-medium;
 
-  padding: 16px;
+  padding: $spacing-medium;
   border: 1px solid $elements-color;
 
   @include onTablet {
     flex-direction: row;
-    column-gap: 24px;
-
-    padding: 24px;
+    column-gap: $spacing-large;
+    padding: $spacing-large;
   }
 
-  &__info {
+  &__info,
+  &__link {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: $spacing-medium;
 
     @include onTablet {
-      column-gap: 24px;
+      column-gap: $spacing-large;
     }
   }
 
   &__delete {
-    width: 16px;
-    height: 16px;
-    padding: 0;
-
-    background-color: #fff;
-    border: none;
     cursor: pointer;
+  }
+
+  &__delete-icon {
+    transition: filter $transition-duration;
+
+    &:hover {
+      filter: brightness(.5);
+    }
   }
 
   &__image {
     max-width: 80px;
+
+    transition: transform $transition-duration;
+
+    &:hover {
+      transform: scale($transform-scale);
+    }
   }
 
   &__about {
     font-weight: 600;
-    line-height: 21px;
+
+    transition: color $transition-duration;
+
+    &:hover {
+      color: $secondary-color;
+    }
   }
 
-  &__cost {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
+  &__cost,
   &__counter {
     display: flex;
     align-items: center;
+    justify-content: space-between;
   }
 
   &__count {
@@ -67,8 +76,6 @@
 
   &__price {
     width: 80px;
-    font-size: 22px;
-    font-weight: 800;
     text-align: end;
   }
 }
