@@ -1,30 +1,34 @@
-import { useEffect } from 'react';
+import { useMemo } from 'react';
 import './home-page.scss';
 import '../../styles/utils/text-styles.scss';
 import { PromoSlider } from '../../components/PromoSilder';
 import { useResize } from '../../hooks/useResize';
 import { RecommendsSlider } from '../../components/RecommendsSlider';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { actions as productsActions } from '../../features/productsSlice';
+import { useAppSelector } from '../../app/hooks';
 import { ShopCategory } from '../../components/ShopCategory';
 import { promosMobile, promosTabletAndDesktop } from '../../utils/promosHelper';
 import { tabletWidth } from '../../constants/constants';
+import { getUnicProducts, sortProducts } from '../../utils/productsHelper';
+import { SortOptions } from '../../enums/SortOptions';
 
 export const HomePage = () => {
   const [windowWidth] = useResize();
-  const dispatch = useAppDispatch();
 
   const { products, isLoading } = useAppSelector(
     (state) => state.productsReducer
   );
 
-  useEffect(() => {
-    dispatch(productsActions.loadProducts());
+  const hotPricesProducts = useMemo(() => {
+    const unicProducts = getUnicProducts(products);
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    return sortProducts(unicProducts, SortOptions.HotPrices).slice(0, 16);
+  }, [products]);
 
-  const newProducts = products.filter((product) => product.year === 2022);
+  const newModelsProducts = useMemo(() => {
+    const unicProducts = getUnicProducts(products);
+
+    return sortProducts(unicProducts, SortOptions.Newest).slice(0, 16);
+  }, [products]);
 
   return (
     <section className="home-page">
@@ -42,11 +46,17 @@ export const HomePage = () => {
                   : promosMobile
               }
             />
-            <RecommendsSlider title="Brand new models" products={newProducts} />
+            <RecommendsSlider
+              title="Brand new models"
+              products={newModelsProducts}
+            />
 
             <ShopCategory />
 
-            <RecommendsSlider title="Hot prices" products={newProducts} />
+            <RecommendsSlider
+              title="Hot prices"
+              products={hotPricesProducts}
+            />
           </div>
         </>
       )}
