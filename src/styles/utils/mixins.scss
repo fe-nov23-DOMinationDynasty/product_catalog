@@ -45,7 +45,7 @@
   display: grid;
   box-sizing: border-box;
 
-  column-gap: 16px;
+  column-gap: $page-grid-gap;
   grid-template-columns: repeat(var(--columns), 1fr);
 
   @include onTablet {
