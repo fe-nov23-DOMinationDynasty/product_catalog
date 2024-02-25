@@ -21,23 +21,27 @@ export const ProductSwiper: React.FC<Props> = ({ images }) => {
   };
 
   return (
-    <div className="product-swiper">
-      <Swiper
-        spaceBetween={50}
-        pagination={pagination}
-        modules={[Pagination]}
-        className="product-swiper__swiper">
-        {images.map((image) => (
-          <SwiperSlide key={image} className="product-swiper__slide">
-            <img
-              src={image}
-              alt="product_picture"
-              className="product-swiper__picture"
-            />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+    <>
+
+      <div className="product-swiper">
+        <Swiper
+          spaceBetween={50}
+          pagination={pagination}
+          modules={[Pagination]}
+          className="product-swiper__swiper">
+          {images.map((image) => (
+            <SwiperSlide key={image} className="product-swiper__slide">
+              <img
+                src={image}
+                alt="product_picture"
+                className="product-swiper__picture"
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+
       <div className="product-swiper__pagination" />
-    </div>
+    </>
   );
 };
