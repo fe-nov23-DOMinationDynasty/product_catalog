@@ -1,0 +1,63 @@
+@import '../../styles/utils/mixins';
+
+.not-found {
+  @include pageGrid;
+
+  &__banner {
+    grid-column: 1 / -1;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @include onTablet {
+      grid-row: 1;
+      grid-column: 1 / span 6;
+    }
+  }
+
+  &__404 {
+    font-weight: normal;
+    font-size: 120px;
+    line-height: 120px;
+  }
+
+  &__error {
+    background-image: url(./logos/not-found.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    width: 332px;
+    height: 61.5px;
+    padding-block: 30px;
+  }
+
+  &__text {
+    font-size: 60px;
+    line-height: 60px;
+    margin-bottom: 30px;
+  }
+
+  &__page-not-found {
+    text-transform: uppercase;
+  }
+
+  &__images {
+    grid-column: 1 / -1;
+
+    @include onTablet {
+      grid-column: 7 / -1;
+    }
+
+    @include onDesktop {
+      object-fit: contain;
+      grid-column: 13 / -2;
+      grid-row: 1;
+    }
+  }
+
+  &__img {
+    height: 600px;
+    width: 100%;
+  }
+}
