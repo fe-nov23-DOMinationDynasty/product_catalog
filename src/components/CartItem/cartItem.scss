@@ -32,31 +32,19 @@
   }
 
   &__delete-icon {
-    transition: filter $transition-duration;
-
-    &:hover {
-      filter: brightness(.5);
-    }
+    @include hoverEffect(filter, brightness(0.5));
   }
 
   &__image {
     max-width: 80px;
 
-    transition: transform $transition-duration;
-
-    &:hover {
-      transform: scale($transform-scale);
-    }
+    @include hoverEffect(transform, scale($transform-scale));
   }
 
   &__about {
     font-weight: 600;
 
-    transition: color $transition-duration;
-
-    &:hover {
-      color: $secondary-color;
-    }
+    @include hoverEffect(color, $secondary-color);
   }
 
   &__cost,
