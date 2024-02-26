@@ -1,9 +1,7 @@
 @import '../../styles/utils/variables';
 @import '../../styles/utils/mixins';
 
-.wrapper {
-  display: none;
-
+.icon__wrapper {
   @include onTablet {
     display: flex;
   }
@@ -16,6 +14,20 @@
     box-sizing: border-box;
     display: flex;
     align-items: center;
+  }
+}
+
+.icon__image {
+  transition: transform 0.5s ease-out;
+
+  &:hover {
+    @include onTablet {
+      transform: rotateY(360deg);
+    }
+
+    @include onDesktop {
+      transform: rotateY(360deg);
+    }
   }
 }
 

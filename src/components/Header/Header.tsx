@@ -62,25 +62,21 @@ export const Header = () => {
 
           <div className="header__buttons-block">
             <NavLink to="favourites" className={handleHeaderButtonIsActive}>
-              {favouriteProducts && favouriteProducts.length > 0 ? (
+              <div className="header__icon-wrapper">
                 <Icon
                   pathImage="./logos/favourites.svg"
                   counter={favouriteProducts.length}
                 />
-              ) : (
-                <img src="./logos/favourites.svg" alt="logoFavourite" />
-              )}
+              </div>
             </NavLink>
 
             <NavLink to="cart" className={handleHeaderButtonIsActive}>
-              {cartItems && !!cartItems.length ? (
+              <div className="header__icon-wrapper">
                 <Icon
                   pathImage="./logos/shopping-bag.svg"
                   counter={cartItems.length}
                 />
-              ) : (
-                <img src="./logos/shopping-bag.svg" alt="logoShoppingBag" />
-              )}
+              </div>
             </NavLink>
           </div>
 

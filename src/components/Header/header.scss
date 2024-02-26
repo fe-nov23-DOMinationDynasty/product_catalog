@@ -115,7 +115,7 @@
 
 .header__button {
   box-sizing: border-box;
-  
+
   @include onTablet {
     border-left: 1px solid $elements-color;
     display: flex;
@@ -125,6 +125,19 @@
 
   @include onDesktop {
     padding: 24px;
+  }
+
+  &:hover .header__icon-wrapper {
+    transition: transform 0.5s ease-out;
+
+    @include onTablet {
+      transform: rotateY(360deg);
+    }
+    
+    @include onDesktop {
+      transform: rotateY(360deg);
+    }
+
   }
 }
 
