@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import '../../styles/utils/text-styles.scss';
 import 'aos/dist/aos.css';
-import Aos from 'aos';
 import { Link } from 'react-router-dom';
 import { Category } from '../../enums/Category';
 import { useAppSelector } from '../../app/hooks';
@@ -11,10 +10,6 @@ import { animDuration } from '../../styles/utils/AOS';
 export const ShopCategory: React.FC = () => {
   const categories = Object.values(Category);
   const { products } = useAppSelector((state) => state.productsReducer);
-
-  useEffect(() => {
-    Aos.init();
-  }, []);
 
   return (
     <section className="categories" id="categories" >

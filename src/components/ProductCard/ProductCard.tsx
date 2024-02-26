@@ -1,8 +1,7 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
-import React, { useEffect } from 'react';
+import React from 'react';
 import cn from 'classnames';
 import 'aos/dist/aos.css';
-import Aos from 'aos';
 import { Link } from 'react-router-dom';
 import './productCard.scss';
 import { Product } from '../../types/Product';
@@ -22,10 +21,6 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
   const { cartItems } = useAppSelector((state) => state.cartReducer);
   const favouriteProducts = useAppSelector((state) => state.favouritesReducer);
   const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    Aos.init();
-  }, []);
 
   const isInCart = !!cartItems?.find(
     ({ product: cartProduct }) => cartProduct.itemId === itemId

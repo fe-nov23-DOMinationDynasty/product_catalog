@@ -1,8 +1,7 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
-import React, { useEffect } from 'react';
+import React from 'react';
 import cn from 'classnames';
 import 'aos/dist/aos.css';
-import Aos from 'aos';
 import './cartItem.scss';
 import { useAppDispatch } from '../../app/hooks';
 import { actions as cartActions } from '../../features/cartSlice';
@@ -17,11 +16,6 @@ interface Props {
 export const CartItem: React.FC<Props> = ({ product, quantity }) => {
   const { itemId, name, image, price } = product;
   const dispatch = useAppDispatch();
-
-
-  useEffect(() => {
-    Aos.init();
-  }, []);
 
   const handleIncrement = () => {
     dispatch(cartActions.incrementAmount(itemId));

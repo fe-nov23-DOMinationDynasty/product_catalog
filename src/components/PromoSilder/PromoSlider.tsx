@@ -1,12 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable jsx-a11y/control-has-associated-label */
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import cn from 'classnames';
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import { Link } from 'react-router-dom';
 import 'aos/dist/aos.css';
-import Aos from 'aos';
 import { Promo } from '../../types/Promo';
 
 import 'swiper/css/pagination';
@@ -27,10 +26,6 @@ export const PromoSlider: React.FC<Props> = React.memo(({ promos }) => {
   const isTablet = windowWidth >= tabletWidth;
 
   const swiperRef = useRef<SwiperRef>(null);
-
-  useEffect(() => {
-    Aos.init();
-  }, []);
 
   const handlePrev = useCallback(() => {
     if (!swiperRef.current) {
