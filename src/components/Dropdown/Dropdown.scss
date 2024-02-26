@@ -94,6 +94,11 @@
         color: $primary-color;
       }
     }
+
+    &--selected {
+      background-color: $hover-background-color;
+      color: $primary-color;
+    }
   }
 
   &__option {

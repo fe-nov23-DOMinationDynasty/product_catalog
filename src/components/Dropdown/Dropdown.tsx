@@ -55,7 +55,12 @@ export const Dropdown: React.FC<Props> = ({
         })}>
         <ul className="dropdown__list">
           {options.map((option) => (
-            <li className="dropdown__item" key={option}>
+            <li
+              className={cn('dropdown__item', {
+                'dropdown__item--selected': selectedOption === option,
+              })}
+              key={option}
+            >
               <button
                 type="button"
                 className="dropdown__option"
