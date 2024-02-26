@@ -29,15 +29,34 @@
   }
 
   &__swiper {
-    grid-column: 1 / -1;
+    --product-swiper-columns: 4;
+
+    display: grid;
+    gap: $page-grid-gap;
+    row-gap: 22px;
+    grid-template-columns: repeat(var(--product-swiper-columns), 1fr);
+
+
+    grid-column: span var(--product-swiper-columns);
     margin-bottom: 40px;
 
+    min-height: calc(100vw + var(--product-pagination-size));
+
     @include onTablet {
-      grid-column: 1 / 7;
+      --product-swiper-columns: 7;
+
+      row-gap: 0;
+      min-height: 0;
     }
 
     @include onDesktop {
-      grid-column: 1 / 12;
+      --product-swiper-columns: 12;
+    }
+
+    &--loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
 

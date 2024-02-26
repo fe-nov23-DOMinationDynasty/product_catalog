@@ -10,6 +10,9 @@ export const getColorByName = (name: string) => {
   return (colorNames['colorNameList' as keyof typeof colorNames] as unknown as ColorObject[])
     .find(color => color.name.
       toLowerCase()
-      .split(' ')
-      .join('') === name.replace('gray', 'grey'))?.hex || '';
+      .replaceAll(' ', '')
+      === name
+        .toLowerCase()
+        .replaceAll(' ', '')
+        .replace('gray', 'grey'))?.hex || '';
 };
