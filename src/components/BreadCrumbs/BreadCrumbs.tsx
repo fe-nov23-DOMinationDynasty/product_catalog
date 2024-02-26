@@ -16,11 +16,9 @@ export const BreadCrumbs: React.FC = () => {
         <React.Fragment key={crumb}>
           <div className="bread-crumbs__crumb bread-crumbs__arrow" />
           <div className="bread-crumbs__crumb" key={crumb}>
-            {/* {crumb!=='catalog' && ( */}
             <Link className="bread-crumbs__link" to={currentLink}>
               {crumb}
             </Link>
-            {/* )} */}
           </div>
         </React.Fragment>
       );

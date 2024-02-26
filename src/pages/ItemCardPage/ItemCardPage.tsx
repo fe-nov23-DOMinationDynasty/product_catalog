@@ -156,7 +156,7 @@ export const ItemCardPage = () => {
                   TechSpecs[specKey as keyof typeof TechSpecs] as keyof ProductInfo
                 ] as string;
 
-                if (specValue !== undefined && specValue !== null) {
+                if (!specValue) {
                   return (
                     <p className="item-card-page__actions-info small-text" key={specKey}>
                       <span className="item-card-page__actions-name">
