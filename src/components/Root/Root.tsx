@@ -6,6 +6,7 @@ import { CatalogPage } from '../../pages/CatalogPage/CatalogPage';
 import { FavouritesPage } from '../../pages/FavouritesPage/FavouritesPage';
 import { ItemCardPage } from '../../pages/ItemCardPage/ItemCardPage';
 import { CartPage } from '../../pages/CartPage/CartPage';
+import { NotFoundPage } from '../../pages/NotFound';
 import { Category } from '../../enums/Category';
 
 export const Root = () => (
@@ -23,6 +24,8 @@ export const Root = () => (
       </Route>
       <Route path="favourites" element={<FavouritesPage />} />
       <Route path="cart" element={<CartPage />} />
+
+      <Route path="*" element={<NotFoundPage />} />
     </Route>
   </Routes>
 );
