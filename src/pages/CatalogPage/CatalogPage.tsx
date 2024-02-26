@@ -16,6 +16,7 @@ import '../../styles/blocks/button.scss';
 import { prepareProducts } from '../../utils/productsHelper';
 import { itemsPerPageOptions } from '../../constants/constants';
 import { BreadCrumbs } from '../../components/BreadCrumbs';
+import { capitalizeFirstLetter } from '../../services/capitalizeFirstLetter';
 
 export const CatalogPage = () => {
   const location = useLocation();
@@ -88,7 +89,13 @@ export const CatalogPage = () => {
           </div>
 
           <div className="catalog-page__header">
-            <h1 className="catalog-page__title h1">{productCategory}</h1>
+            <h1 className="catalog-page__title h1">
+              {capitalizeFirstLetter(
+                productCategory === 'phones'
+                  ? 'Mobile phones'
+                  : productCategory!
+              )}
+            </h1>
             <p className="catalog-page__amount-products">
               {categoryProducts.length} models
             </p>
