@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 
 import { Pagination } from '../../components/Pagination';
@@ -77,6 +77,10 @@ export const CatalogPage = () => {
 
     return '';
   };
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  }, [currentPageNumber]);
 
   return (
     <div className="catalog-page">
