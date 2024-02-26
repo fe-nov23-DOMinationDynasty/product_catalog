@@ -1,6 +1,8 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
-import React from 'react';
+import React, { useEffect } from 'react';
 import cn from 'classnames';
+import 'aos/dist/aos.css';
+import Aos from 'aos';
 import { Link } from 'react-router-dom';
 import './productCard.scss';
 import { Product } from '../../types/Product';
@@ -9,6 +11,7 @@ import { actions as cartActions } from '../../features/cartSlice';
 import { actions as favouriteActions } from '../../features/favouritesSlice';
 import { shownProductCardCharacteristics } from '../../constants/constants';
 import { CartProduct } from '../../types/CartItem';
+import { animDuration } from '../../styles/utils/AOS';
 
 interface Props {
   product: Product;
@@ -19,6 +22,10 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
   const { cartItems } = useAppSelector((state) => state.cartReducer);
   const favouriteProducts = useAppSelector((state) => state.favouritesReducer);
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    Aos.init();
+  }, []);
 
   const isInCart = !!cartItems?.find(
     ({ product: cartProduct }) => cartProduct.itemId === itemId
@@ -56,7 +63,12 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
   };
 
   return (
-    <article className="product-card">
+    <article
+      className="product-card"
+      data-aos="fade-up"
+      data-aos-anchor-placement="top-bottom"
+      data-aos-duration={animDuration}
+    >
       <Link
         to={`/catalog/${category}/${itemId}`}
         className="product-card__link">
