@@ -67,7 +67,7 @@ export const ItemCardPage = () => {
         color
       )
         .then((product) => {
-          navigation(`../${product?.id}`);
+          navigation(`../${productCategory}/${product?.id}`);
         });
     }
   };
@@ -83,10 +83,14 @@ export const ItemCardPage = () => {
         newColor
       )
         .then((product) => {
-          navigation(`../${product?.id}`);
+          navigation(`../${productCategory}/${product?.id}`);
         });
     }
   };
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  }, [itemId]);
 
   return (
     <section className="item-card-page">

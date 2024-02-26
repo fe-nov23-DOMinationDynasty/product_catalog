@@ -9,6 +9,8 @@ interface Props {
   options: string[];
 }
 
+const dropdownOptionClass = 'dropdown__option';
+
 export const Dropdown: React.FC<Props> = ({
   options,
   selectedOption,
@@ -33,7 +35,7 @@ export const Dropdown: React.FC<Props> = ({
   const handleTriggerButtonBlur = (
     event: React.FocusEvent<HTMLButtonElement, Element>
   ) => {
-    if (event.relatedTarget?.className !== 'dropdown__option') {
+    if (event.relatedTarget?.className !== dropdownOptionClass) {
       setIsDropdownOpened(false);
     }
   };
@@ -63,7 +65,7 @@ export const Dropdown: React.FC<Props> = ({
             >
               <button
                 type="button"
-                className="dropdown__option"
+                className={dropdownOptionClass}
                 onClick={() => handleSelect(option)}>
                 {option}
               </button>

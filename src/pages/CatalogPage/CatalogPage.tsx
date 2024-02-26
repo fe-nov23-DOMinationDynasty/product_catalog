@@ -41,7 +41,7 @@ export const CatalogPage = () => {
     );
   }, [categoryProducts, sortOption, itemsPerPage, currentPageNumber]);
 
-  const amountOfPages = Math.floor(categoryProducts.length / +itemsPerPage);
+  const amountOfPages = Math.ceil(categoryProducts.length / +itemsPerPage);
 
   const handleItemsPerPageChanged = (newItemsPerPage: string) => {
     if (newItemsPerPage !== itemsPerPage) {
@@ -138,7 +138,7 @@ export const CatalogPage = () => {
             <div className="catalog-page__pagination wrapper">
               <Pagination
                 amountOfPages={amountOfPages}
-                currentPageIndex={+(currentPageNumber || 1) - 1}
+                currentPageNumber={+currentPageNumber}
               />
             </div>
           )}
