@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 
 import { Pagination } from '../../components/Pagination';
@@ -28,6 +28,7 @@ export const CatalogPage = () => {
   const { products, isLoading, errorMessage } = useAppSelector(
     (state) => state.productsReducer
   );
+  const dropdownsRef = useRef<HTMLDivElement>(null);
 
   const categoryProducts = useMemo(() => {
     return products.filter(({ category }) => category === productCategory);
@@ -79,7 +80,7 @@ export const CatalogPage = () => {
   };
 
   useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    dropdownsRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [currentPageNumber]);
 
   return (
@@ -107,7 +108,7 @@ export const CatalogPage = () => {
 
           <div className="catalog-page__wrap">
             <div className="catalog-page__dropdowns-container">
-              <div className="catalog-page__sort-dropdown">
+              <div className="catalog-page__sort-dropdown" ref={dropdownsRef}>
                 <span className="catalog-page__dropdown-title small-text">
                   Sort by
                 </span>
