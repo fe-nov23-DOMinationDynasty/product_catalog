@@ -3,8 +3,8 @@ import './ProductTable.scss';
 import { ProductCard } from '../ProductCard';
 import { Product } from '../../types/Product';
 
-type Props = {
-  products: Partial<Product>[];
+interface Props {
+  products: Partial<Product>[],
 };
 
 export const ProductTable: React.FC<Props> = ({ products }) => (

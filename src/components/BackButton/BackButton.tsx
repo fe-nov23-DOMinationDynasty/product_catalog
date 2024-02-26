@@ -12,11 +12,9 @@ export const BackButton = () => {
   };
 
   return (
-    <>
-      <button type="button" className="back-button small-text" onClick={goBack}>
-        <i className="back-button__arrow-left" />
-        Back
-      </button>
-    </>
+    <button type="button" className="back-button small-text" onClick={goBack}>
+      <i className="back-button__arrow-left" />
+      Back
+    </button>
   );
 };
