@@ -104,7 +104,9 @@ export const CatalogPage = () => {
           <div className="catalog-page__wrap">
             <div className="catalog-page__dropdowns-container">
               <div className="catalog-page__sort-dropdown">
-                <span className="catalog-page__dropdown-title">Sort by</span>
+                <span className="catalog-page__dropdown-title small-text">
+                  Sort by
+                </span>
                 <Dropdown
                   onSelected={handleSortParamsChanged}
                   options={Object.keys(SortOptions)}
@@ -112,7 +114,7 @@ export const CatalogPage = () => {
                 />
               </div>
               <div className="catalog-page__items-per-page-dropdown">
-                <span className="catalog-page__dropdown-title">
+                <span className="catalog-page__dropdown-title small-text">
                   Items on page
                 </span>
                 <Dropdown
