@@ -9,7 +9,7 @@ interface Props {
 export const Icon: React.FC<Props> = ({ pathImage, counter }) => {
   return (
     <>
-      <div className="wrapper">
+      <div className="icon-wrapper">
         <button type="button" className="icon">
           <img src={pathImage} alt="Icon" className="icon__image" />
         </button>
