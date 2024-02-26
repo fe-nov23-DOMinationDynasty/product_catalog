@@ -10,7 +10,7 @@ export const NotFoundPage = () => {
       </div>
 
       <div className="not-found__banner">
-        <p className="not-found__404 h1">
+        <p className="not-found__404">
           404
         </p>
 
