@@ -9,7 +9,7 @@ import { actions as cartActions } from '../../features/cartSlice';
 import { actions as favouriteActions } from '../../features/favouritesSlice';
 import { shownProductCardCharacteristics } from '../../constants/constants';
 import { CartProduct } from '../../types/CartItem';
-import { LocalFavouriteProducts } from '../../types/localFavouriteProducts';
+import { LocalFavouriteProducts } from '../../types/LocalFavouriteProducts';
 
 interface Props {
   product: Product;

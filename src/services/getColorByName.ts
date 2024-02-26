@@ -1,18 +1,9 @@
 /* eslint-disable max-len */
-import colorNames from 'color-name-list';
+import { colord, extend } from "colord";
+import namesPlugin from "colord/plugins/names";
 
-interface ColorObject {
-  name: string,
-  hex: string,
-}
+extend([namesPlugin]);
 
 export const getColorByName = (name: string) => {
-  return (colorNames['colorNameList' as keyof typeof colorNames] as unknown as ColorObject[])
-    .find(color => color.name.
-      toLowerCase()
-      .replaceAll(' ', '')
-      === name
-        .toLowerCase()
-        .replaceAll(' ', '')
-        .replace('gray', 'grey'))?.hex || '';
+  return colord(name).toHex();
 };

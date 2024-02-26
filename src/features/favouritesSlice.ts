@@ -4,7 +4,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { getLocalStorage } from '../services/getLocalStorage';
 import { localStorageFavouritesKey } from '../constants/constants';
-import { LocalFavouriteProducts } from '../types/localFavouriteProducts';
+import { LocalFavouriteProducts } from '../types/LocalFavouriteProducts';
 
 const [favouriteProducts, setFavouriteProducts] = getLocalStorage(
   localStorageFavouritesKey,
