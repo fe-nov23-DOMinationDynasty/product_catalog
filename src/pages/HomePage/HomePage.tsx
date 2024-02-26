@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import './home-page.scss';
+import './HomePage.scss';
 import '../../styles/utils/text-styles.scss';
 import { PromoSlider } from '../../components/PromoSilder';
 import { useResize } from '../../hooks/useResize';

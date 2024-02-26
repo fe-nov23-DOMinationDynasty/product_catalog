@@ -2,7 +2,7 @@
 import React from 'react';
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
-import './productCard.scss';
+import './ProductCard.scss';
 import { Product } from '../../types/Product';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { actions as cartActions } from '../../features/cartSlice';

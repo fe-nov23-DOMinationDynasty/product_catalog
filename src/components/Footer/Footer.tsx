@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import { LogoLink } from '../LogoLink';
-import './footer.scss';
+import './Footer.scss';
 import '../../styles/blocks/button.scss';
 import '../../styles/utils/text-styles.scss';
 
