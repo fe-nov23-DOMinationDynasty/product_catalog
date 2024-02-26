@@ -13,7 +13,7 @@ import { SortOptions } from '../../enums/SortOptions';
 import {
   promosMobile,
   promosTabletAndDesktop
-} from '../../components/PromoSilder/promosHelper';
+} from '../../components/PromoSilder/promoSliderUtils';
 
 export const HomePage = () => {
   const [windowWidth] = useResize();
