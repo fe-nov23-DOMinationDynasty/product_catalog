@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 
 import { Pagination } from '../../components/Pagination';
