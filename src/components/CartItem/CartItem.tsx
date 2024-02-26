@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import cn from 'classnames';
 import 'aos/dist/aos.css';
 import Aos from 'aos';
@@ -15,7 +16,7 @@ interface Props {
 }
 
 export const CartItem: React.FC<Props> = ({ product, quantity }) => {
-  const { itemId, name, image, price } = product;
+  const { itemId, name, image, price, category } = product;
   const dispatch = useAppDispatch();
 
 
@@ -55,9 +56,15 @@ export const CartItem: React.FC<Props> = ({ product, quantity }) => {
           />
         </button>
 
-        <img src={image} alt="iphone-model" className="cart-item__image" />
+        <Link to={`/catalog/${category}/${itemId}`} className="cart-item__link" >
+          <img
+            src={image}
+            alt={`${category}_image`}
+            className="cart-item__image"
+          />
 
-        <p className="cart-item__about">{name}</p>
+          <p className="cart-item__about buttons">{name}</p>
+        </Link>
       </div>
 
       <div className="cart-item__cost">

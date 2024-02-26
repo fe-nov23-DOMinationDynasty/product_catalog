@@ -6,15 +6,14 @@
 @import './styles/blocks/wrapper';
 @import './styles/blocks/button';
 @import './styles/blocks/container';
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 iframe {
   display: none;
 }
 
 body {
+  --product-pagination-size: 50px;
+
   @include defaultFont;
 }
 

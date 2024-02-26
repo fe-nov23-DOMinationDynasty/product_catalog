@@ -12,13 +12,24 @@ import { actions as favouriteActions } from '../../features/favouritesSlice';
 import { shownProductCardCharacteristics } from '../../constants/constants';
 import { CartProduct } from '../../types/CartItem';
 import { animDuration } from '../../styles/utils/AOS';
+import { LocalFavouriteProducts } from '../../types/localFavouriteProducts';
 
 interface Props {
   product: Product;
 }
 
 export const ProductCard: React.FC<Props> = ({ product }) => {
-  const { itemId, category, name, price, fullPrice, image } = product;
+  const {
+    itemId,
+    category,
+    name,
+    price,
+    fullPrice,
+    image,
+    capacity,
+    screen,
+    ram,
+  } = product;
   const { cartItems } = useAppSelector((state) => state.cartReducer);
   const favouriteProducts = useAppSelector((state) => state.favouritesReducer);
   const dispatch = useAppDispatch();
@@ -47,6 +58,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
       itemId,
       name,
       price,
+      category,
     };
 
     dispatch(cartActions.add(cartProduct));
@@ -59,7 +71,19 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
       return;
     }
 
-    dispatch(favouriteActions.add(product));
+    const favProduct: LocalFavouriteProducts = {
+      image,
+      itemId,
+      name,
+      price,
+      fullPrice,
+      screen,
+      capacity,
+      ram,
+      category,
+    };
+
+    dispatch(favouriteActions.add(favProduct));
   };
 
   return (
