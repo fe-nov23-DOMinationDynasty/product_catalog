@@ -1,9 +1,14 @@
 import './NotFoundPage.scss';
 import '../../styles/utils/text-styles.scss';
+import { BackButton } from '../../components/BackButton';
 
 export const NotFoundPage = () => {
   return (
     <section className="not-found">
+      <div className="not-found__back">
+        <BackButton />
+      </div>
+
       <div className="not-found__banner">
         <p className="not-found__404 h1">
           404
