@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import './BreadCrumbs.scss';
+import React from 'react';
 
 export const BreadCrumbs: React.FC = () => {
   const location = useLocation();
@@ -12,7 +13,7 @@ export const BreadCrumbs: React.FC = () => {
       currentLink += `/${crumb}`;
 
       return (
-        <>
+        <React.Fragment key={crumb}>
           <div className="bread-crumbs__crumb bread-crumbs__arrow" />
           <div className="bread-crumbs__crumb" key={crumb}>
             {/* {crumb!=='catalog' && ( */}
@@ -21,7 +22,7 @@ export const BreadCrumbs: React.FC = () => {
             </Link>
             {/* )} */}
           </div>
-        </>
+        </React.Fragment>
       );
     });
 

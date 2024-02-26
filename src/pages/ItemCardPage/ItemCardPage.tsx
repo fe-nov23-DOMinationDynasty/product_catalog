@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { getProductInfo, getSpecifiedProduct } from '../../api/products';
 import { Loader } from '../../components/Loader';
 import './ItemCardPage.scss';
@@ -24,9 +24,11 @@ import { RecommendsSlider } from '../../components/RecommendsSlider';
 import { useAppSelector } from '../../app/hooks';
 
 export const ItemCardPage = () => {
+  const location = useLocation();
   const navigation = useNavigate();
   const { products } = useAppSelector(state => state.productsReducer);
-  const { itemId, productCategory } = useParams();
+  const { itemId } = useParams();
+  const productCategory = location.pathname.split('/').at(-2);
   const [isLoading, setIsLoading] = useState(true);
   const [currentProduct, setCurrentProduct] = useState<Phone | Tablet | Accessory | null>(null);
 
