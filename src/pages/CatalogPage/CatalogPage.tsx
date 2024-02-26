@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useMemo } from 'react';
-import { useParams, useSearchParams } from 'react-router-dom';
+import { useEffect, useMemo } from 'react';
+import { useLocation, useSearchParams } from 'react-router-dom';
 
 import { Pagination } from '../../components/Pagination';
 import { useAppSelector } from '../../app/hooks';
@@ -18,11 +18,12 @@ import { itemsPerPageOptions } from '../../constants/constants';
 import { BreadCrumbs } from '../../components/BreadCrumbs';
 
 export const CatalogPage = () => {
+  const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
   const itemsPerPage = searchParams.get('perPage') || 'all';
   const sortOption = searchParams.get('sortBy') || '';
   const currentPageNumber = searchParams.get('page') || 1;
-  const { productCategory } = useParams();
+  const productCategory = location.pathname.split('/').at(-1);
   const { products, isLoading, errorMessage } = useAppSelector(
     (state) => state.productsReducer
   );

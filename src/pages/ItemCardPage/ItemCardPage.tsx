@@ -1,7 +1,8 @@
 /* eslint-disable max-len */
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useMemo, useState } from 'react';
 import cn from 'classnames';
-import { useNavigate, useParams } from 'react-router-dom';
+
 import { getProductInfo, getSpecifiedProduct } from '../../api/products';
 import { Loader } from '../../components/Loader';
 import './ItemCardPage.scss';
@@ -21,9 +22,11 @@ import { useAppSelector } from '../../app/hooks';
 import { ProductInfo } from '../../types/ProductInfo';
 
 export const ItemCardPage = () => {
+  const location = useLocation();
   const navigation = useNavigate();
   const { products } = useAppSelector(state => state.productsReducer);
-  const { itemId, productCategory } = useParams();
+  const { itemId } = useParams();
+  const productCategory = location.pathname.split('/').at(-2);
   const selectedProductId = useMemo(() => (
     (products.find(product => product.itemId === itemId)?.id
     )), [itemId, products]);
