@@ -26,7 +26,7 @@ export const ItemCardPage = () => {
   const navigation = useNavigate();
   const { products } = useAppSelector(state => state.productsReducer);
   const { itemId } = useParams();
-  const productCategory = location.pathname.split('/').at(-2);
+  const productCategory = location.pathname.split('/').at(-2) as Category;
   const selectedProductId = useMemo(() => (
     (products.find(product => product.itemId === itemId)?.id
     )), [itemId, products]);
@@ -112,9 +112,11 @@ export const ItemCardPage = () => {
             </h1>
           </div>
 
-          <div className={cn('item-card-page__swiper', {
-            'item-card-page__swiper--loading': isSwiperLoading,
-          })}>
+          <div
+            className={cn('item-card-page__swiper', {
+              'item-card-page__swiper--loading': isSwiperLoading,
+            })}
+          >
             {isSwiperLoading
               ? <Loader />
               : <ProductSwiper images={images} />
@@ -184,7 +186,7 @@ export const ItemCardPage = () => {
           </div>
 
           <div className="item-card-page__container item-card-page__container--tech">
-            <TechSpecsSection product={currentProduct} />
+            <TechSpecsSection product={currentProduct!} productCategory={productCategory!} />
           </div>
 
           <div className="item-card-page__container item-card-page__container--rec">
