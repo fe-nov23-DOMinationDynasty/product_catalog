@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { LogoLink } from '../LogoLink';
 import './footer.scss';
 import '../../styles/blocks/button.scss';
@@ -24,13 +25,13 @@ export const Footer: React.FC = () => {
             Github
           </a>
 
-          <a href="#" className="footer__link">
+          <Link to="/contacts" className="footer__link">
             Contacts
-          </a>
+          </Link>
 
-          <a href="#" className="footer__link">
+          <Link to="/rights" className="footer__link">
             Rights
-          </a>
+          </Link>
         </div>
 
         <button type="button" className="footer__go-top" onClick={scrollToTop}>
