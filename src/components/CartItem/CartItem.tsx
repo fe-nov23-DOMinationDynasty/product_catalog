@@ -1,10 +1,13 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
-import React from 'react';
+import React, { useEffect } from 'react';
 import cn from 'classnames';
+import 'aos/dist/aos.css';
+import Aos from 'aos';
 import './cartItem.scss';
 import { useAppDispatch } from '../../app/hooks';
 import { actions as cartActions } from '../../features/cartSlice';
 import { CartProduct } from '../../types/CartItem';
+import { animDuration } from '../../styles/utils/AOS';
 
 interface Props {
   product: CartProduct;
@@ -14,6 +17,11 @@ interface Props {
 export const CartItem: React.FC<Props> = ({ product, quantity }) => {
   const { itemId, name, image, price } = product;
   const dispatch = useAppDispatch();
+
+
+  useEffect(() => {
+    Aos.init();
+  }, []);
 
   const handleIncrement = () => {
     dispatch(cartActions.incrementAmount(itemId));
@@ -30,7 +38,11 @@ export const CartItem: React.FC<Props> = ({ product, quantity }) => {
   };
 
   return (
-    <article className="cart-item">
+    <article
+      className="cart-item"
+      data-aos="fade-right"
+      data-aos-duration={animDuration}
+    >
       <div className="cart-item__info">
         <button
           type="button"
