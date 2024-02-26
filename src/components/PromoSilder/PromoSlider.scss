@@ -7,12 +7,13 @@
 
   --promo-height: 350px;
 
-  height: var(--promo-height);
-
   display: flex;
   gap: 16px;
-  width: 100%;
   justify-content: center;
+
+  height: var(--promo-height);
+  width: 100%;
+
   margin-bottom: 32px;
   box-sizing: border-box;
 
@@ -42,8 +43,6 @@
     justify-content: center;
     align-items: center;
 
-    text-align: center;
-
     object-position: center;
   }
 
@@ -60,11 +59,18 @@
     height: 100%;
     width: 100%;
     object-fit: cover;
+
+    @include onTablet {
+      object-fit: fill;
+    }
+
+    @include onDesktop {
+      object-fit: cover;
+    }
   }
 
   &__pagination {
     display: flex;
-
     justify-content: center;
     padding-top: 18px;
 
@@ -78,17 +84,19 @@
   &__pagination-bullet {
     width: 14px;
     height: 4px;
-    border-radius: 0;
-    color: $elements-color;
-  }
+    margin-inline: 4px;
 
-  &__pagination .swiper-pagination-bullet-active {
-    background: $primary-color;
+    border-radius: 0;
+    background: $elements-color;
+
+    &--active {
+      background: $primary-color;
+    }
   }
 
   &__prev-button {
-    min-width: $button-width;
     height: var(--promo-height);
+    min-width: $button-width;
 
     box-sizing: border-box;
 
@@ -100,8 +108,8 @@
   }
 
   &__next-button {
-    min-width: $button-width;
     height: var(--promo-height);
+    min-width: $button-width;
 
     box-sizing: border-box;
 

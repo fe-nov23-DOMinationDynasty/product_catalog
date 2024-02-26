@@ -4,7 +4,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { getLocalStorage } from '../services/getLocalStorage';
 import { CartItem, CartProduct } from '../types/CartItem';
-import { Product } from '../types/Product';
 import { localStorageCartKey } from '../constants/constants';
 
 const [localCartItems, setLocalCartItems] = getLocalStorage(
