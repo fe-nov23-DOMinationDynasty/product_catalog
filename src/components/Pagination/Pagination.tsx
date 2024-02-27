@@ -1,58 +1,66 @@
+/* eslint-disable no-plusplus */
 import React from 'react';
 import cn from 'classnames';
 import '../../styles/blocks/button.scss';
 import './Pagination.scss';
 import { SearchLink } from '../SearchLink';
+import { getPaginationPages } from '../../services/getPaginationPages';
 
 interface Props {
   amountOfPages: number;
-  currentPageIndex: number;
+  currentPageNumber: number;
 }
+
+const amountOfVisiblePages = 4;
+const startPageIndex = 0;
 
 export const Pagination: React.FC<Props> = ({
   amountOfPages,
-  currentPageIndex,
+  currentPageNumber,
 }) => {
-  let startPage = Math.max(currentPageIndex - 1, 0);
-  const endPage = Math.min(startPage + 3, amountOfPages - 1);
-
-  if (endPage - startPage < 3) {
-    startPage = Math.max(endPage - 3, 0);
-  }
+  const pages = getPaginationPages(
+    currentPageNumber,
+    amountOfPages,
+    amountOfVisiblePages
+  );
 
   return (
     <section className="pagination">
       <SearchLink
-        params={{ page: currentPageIndex === 1 ? null : `${currentPageIndex}` }}
+        params={{ page: currentPageNumber === 2 ? null : `${currentPageNumber - 1}` }}
         className={cn('button button--arrow-left', {
           'button--disabled button--arrow-left--disabled':
-            currentPageIndex === 0,
+            currentPageNumber === 1,
         })}
       />
 
       <ul className="pagination__list">
-        {Array.from(Array(4).keys()).map((_, index) => {
-          const pageIndex = startPage + index;
+        {pages.map((pageNumber) => {
+          const pageIndex = pageNumber - 1;
 
           return (
             <SearchLink
-              key={pageIndex}
-              params={{ page: pageIndex === 0 ? null : `${pageIndex + 1}` }}
+              key={pageNumber}
+              params={{
+                page: pageIndex === startPageIndex
+                  ? null
+                  : `${pageIndex + 1}`
+              }}
               className={cn('button pagination__item', {
-                'pagination__item--selected': pageIndex === currentPageIndex,
+                'pagination__item--selected': pageNumber === currentPageNumber,
               })}
             >
-              {pageIndex + 1}
+              {pageNumber}
             </SearchLink>
           );
         })}
       </ul>
 
       <SearchLink
-        params={{ page: `${currentPageIndex + 2}` }}
+        params={{ page: `${currentPageNumber + 1}` }}
         className={cn('button button--arrow-right', {
           'button--disabled button--arrow-right--disabled':
-            currentPageIndex === amountOfPages - 1,
+            currentPageNumber === amountOfPages,
         })}
       />
     </section>
