@@ -11,7 +11,7 @@
 
     @include onDesktop {
       &:hover {
-        transform: rotateY(360deg);
+        transform: rotate(180deg);
       }
     }
   }
