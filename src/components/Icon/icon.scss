@@ -1,14 +1,12 @@
 @import '../../styles/utils/variables';
 @import '../../styles/utils/mixins';
 
-.icon-wrapper {
-  position: relative;
-  display: none;
-
+.icon__wrapper {
   @include onTablet {
     display: flex;
   }
 
+  position: relative;
 }
 
 .icon {
@@ -17,22 +15,37 @@
     display: flex;
     align-items: center;
   }
+}
 
-  &__counter {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.icon__image {
+  transition: transform 0.5s ease-out;
 
-    height: 14px;
-    width: 14px;
-    font-size: 9px;
+  &:hover {
+    @include onTablet {
+      transform: rotateY(360deg);
+    }
 
-    position: absolute;
-    color: $white-color;
-    background-color: $red-color;
-    border: solid 1px $white-color;
-    border-radius: 50%;
-    left: 50%;
-    top: -30%;
+    @include onDesktop {
+      transform: rotateY(360deg);
+    }
   }
+}
+
+
+.icon__counter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 14px;
+  width: 14px;
+  font-size: 9px;
+
+  position: absolute;
+  color: $white-color;
+  background-color: $red-color;
+  border: solid 1px $white-color;
+  border-radius: 50%;
+  left: 50%;
+  top: -30%;
 }
