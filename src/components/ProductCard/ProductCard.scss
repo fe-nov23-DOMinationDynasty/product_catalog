@@ -1,6 +1,8 @@
 @import '../../styles/utils/variables';
 @import '../../styles/utils/mixins';
 
+$price-cross-line: 2px;
+
 .product-card {
   display: flex;
   flex-direction: column;
@@ -48,7 +50,7 @@
     &::after {
       content: '';
       position: absolute;
-      bottom: -8px;
+      bottom: -$spacing-small;
       width: 100%;
       height: 1px;
 
@@ -74,9 +76,9 @@
       top: 50%;
       left: 0;
       right: 0;
-      transform: translateY(-2px);
+      transform: translateY(-$price-cross-line);
 
-      height: 2px;
+      height: $price-cross-line;
       background-color: $secondary-color;
       mix-blend-mode: color-dodge;
     }

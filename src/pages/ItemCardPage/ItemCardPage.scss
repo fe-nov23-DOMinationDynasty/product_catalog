@@ -30,6 +30,7 @@
 
   &__swiper {
     --product-swiper-columns: 4;
+    --product-swiper-slide-columns: 4;
 
     display: grid;
     gap: $page-grid-gap;
@@ -44,13 +45,18 @@
 
     @include onTablet {
       --product-swiper-columns: 7;
+      --product-swiper-slide-columns: 6;
 
       row-gap: 0;
       min-height: 0;
+
+      height: calc((((
+        (min((100vw - var(--inline-container-padding) * 2), $max-window-width) - $page-grid-gap * (var(--columns) - 1) ) / var(--columns))) * var(--product-swiper-slide-columns) + $page-grid-gap * (var(--product-swiper-slide-columns) - 1)));
     }
 
     @include onDesktop {
       --product-swiper-columns: 12;
+      --product-swiper-slide-columns: 10;
     }
 
     &--loading {
