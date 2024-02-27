@@ -1,7 +1,4 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable jsx-a11y/no-noninteractive-tabindex */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import './header.scss';
 
@@ -10,30 +7,15 @@ import { LogoLink } from '../LogoLink';
 import { BurgerMenu } from '../BurgerMenu';
 import { useAppSelector } from '../../app/hooks';
 import { Icon } from '../Icon';
-import { handleHeaderButtonIsActive, handleNavigationIsActive } from './utils';
-
-// function filterDevices(devices, query) {
-//   const normalizedQuery = query.trim().toLowerCase();
-//   let copyDevices = [...devices];
-
-//   if (normalizedQuery) {
-//     copyDevices = copyDevices.filter(
-//       device => device.title.toLowerCase().includes(normalizedQuery)
-//         || device.description.toLowerCase().includes(normalizedQuery),
-//     );
-//   }
-
-//   return copyDevices;
-// }
+import {
+  handleIsActive,
+} from './utils';
 
 export const Header = () => {
 
   const [openBurger, setOpenBurger] = useState(false);
   const [currentURL, setCurrentURL] = useState('');
   const [sortField, setSortField] = useState('');
-  // const filteredDevices = filterDevices(qw, sortField);
-
-
 
   const favouriteProducts = useAppSelector((state) => state.favouritesReducer);
   const { cartItems } = useAppSelector((state) => state.cartReducer);
@@ -41,52 +23,52 @@ export const Header = () => {
   return (
     <>
       <header className="header">
-        <nav className="nav">
-          <div className="nav_menu_start">
+        <nav className="header__nav">
+          <div className="header__nav_menu-start">
             <div className="header__logo">
               <LogoLink />
             </div>
 
-            <ul className="nav_list">
-              <li className="list_item">
+            <ul className="header__nav-list">
+              <li className="header__nav-list-item">
                 <NavLink
                   onClick={() => {
                     setCurrentURL('/');
                   }}
                   to="/"
-                  className={handleNavigationIsActive}>
+                  className={handleIsActive('header__nav-link', 'is-active')}>
                 Home
                 </NavLink>
               </li>
-              <li className="list_item">
+              <li className="header__nav-list-item">
                 <NavLink
                   onClick={() => {
                     setCurrentURL('catalog/phones');
                   }}
                   to="catalog/phones"
-                  className={handleNavigationIsActive}
+                  className={handleIsActive('header__nav-link', 'is-active')}
                 >
                 Phones
                 </NavLink>
               </li>
-              <li className="list_item">
+              <li className="header__nav-list-item">
                 <NavLink
                   onClick={() => {
                     setCurrentURL('catalog/tablets');
                   }}
                   to="catalog/tablets"
-                  className={handleNavigationIsActive}
+                  className={handleIsActive('header__nav-link', 'is-active')}
                 >
                 Tablets
                 </NavLink>
               </li>
-              <li className="list_item">
+              <li className="header__nav-list-item">
                 <NavLink
                   onClick={() => {
                     setCurrentURL('catalog/accessories');
                   }}
                   to="catalog/accessories"
-                  className={handleNavigationIsActive}
+                  className={handleIsActive('header__nav-link', 'is-active')}
                 >
                 Accessories
                 </NavLink>
@@ -95,7 +77,7 @@ export const Header = () => {
           </div>
 
           <div className="header__buttons-block">
-            <div className='header__block__input'>
+            <div className='header__input-block'>
               <input
                 onChange={(event) => {
                   setSortField(event.target.value);
@@ -113,7 +95,7 @@ export const Header = () => {
                     setSortField('');
                   }
                 }}
-                className='icon__search'
+                className='header__search-icon'
 
               >
                 <img src={!sortField
@@ -123,11 +105,13 @@ export const Header = () => {
               </button>
             </div>
             <NavLink
-              to="favourites"
               onClick={() => {
                 setCurrentURL('favourites');
               }}
-              className={handleHeaderButtonIsActive}
+              to="favourites"
+              className={
+                handleIsActive('header__button', 'header__button--is-active')
+              }
             >
               {favouriteProducts && favouriteProducts.length > 0 ? (
                 <Icon
@@ -145,11 +129,10 @@ export const Header = () => {
             </NavLink>
 
             <NavLink
-              onClick={() => {
-                setCurrentURL('cart');
-              }}
               to="cart"
-              className={handleHeaderButtonIsActive}
+              className={
+                handleIsActive('header__button', 'header__button--is-active')
+              }
             >
               {cartItems && !!cartItems.length ? (
                 <Icon
@@ -162,15 +145,15 @@ export const Header = () => {
             </NavLink>
           </div>
 
-          <div className="burger">
-            <Link
+          <div className="header__burger-menu">
+            <button
+              type='button'
               onClick={() => {
                 setOpenBurger(true);
               }}
-              to={currentURL}
-              className="header__burger-menu">
+              className="header__burger-button">
               <img src="./logos/burger-menu.svg" alt="logoShoppingBag" />
-            </Link>
+            </button>
           </div>
         </nav>
       </header>
