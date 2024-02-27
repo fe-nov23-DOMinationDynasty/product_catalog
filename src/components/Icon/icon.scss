@@ -9,7 +9,7 @@
   position: relative;
 }
 
-.icon {
+.icon__button {
   @include onTablet {
     box-sizing: border-box;
     display: flex;
