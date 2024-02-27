@@ -26,7 +26,7 @@ export const ItemCardPage = () => {
   const navigation = useNavigate();
   const { products } = useAppSelector(state => state.productsReducer);
   const { itemId } = useParams();
-  const productCategory = location.pathname.split('/').at(-2);
+  const productCategory = location.pathname.split('/').at(-2) as Category;
   const selectedProductId = useMemo(() => (
     (products.find(product => product.itemId === itemId)?.id
     )), [itemId, products]);
@@ -67,7 +67,7 @@ export const ItemCardPage = () => {
         color
       )
         .then((product) => {
-          navigation(`../${product?.id}`);
+          navigation(`../${productCategory}/${product?.id}`);
         });
     }
   };
@@ -83,10 +83,14 @@ export const ItemCardPage = () => {
         newColor
       )
         .then((product) => {
-          navigation(`../${product?.id}`);
+          navigation(`../${productCategory}/${product?.id}`);
         });
     }
   };
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  }, [itemId]);
 
   return (
     <section className="item-card-page">
@@ -108,9 +112,11 @@ export const ItemCardPage = () => {
             </h1>
           </div>
 
-          <div className={cn('item-card-page__swiper', {
-            'item-card-page__swiper--loading': isSwiperLoading,
-          })}>
+          <div
+            className={cn('item-card-page__swiper', {
+              'item-card-page__swiper--loading': isSwiperLoading,
+            })}
+          >
             {isSwiperLoading
               ? <Loader />
               : <ProductSwiper images={images} />
@@ -156,7 +162,7 @@ export const ItemCardPage = () => {
                   TechSpecs[specKey as keyof typeof TechSpecs] as keyof ProductInfo
                 ] as string;
 
-                if (specValue !== undefined && specValue !== null) {
+                if (!specValue) {
                   return (
                     <p className="item-card-page__actions-info small-text" key={specKey}>
                       <span className="item-card-page__actions-name">
@@ -180,7 +186,7 @@ export const ItemCardPage = () => {
           </div>
 
           <div className="item-card-page__container item-card-page__container--tech">
-            <TechSpecsSection product={currentProduct} />
+            <TechSpecsSection product={currentProduct!} productCategory={productCategory!} />
           </div>
 
           <div className="item-card-page__container item-card-page__container--rec">

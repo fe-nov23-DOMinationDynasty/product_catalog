@@ -20,38 +20,4 @@
     display: flex;
     gap: 8px;
   }
-
-  &__item-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid $elements-color;
-    padding-inline: 8px;
-    padding-block: 7px 4px;
-
-
-    &--color-picker {
-      padding: 0;
-      border-radius: 50%;
-
-      &--selected {
-        border: 1px solid $primary-color;
-      }
-    }
-
-    &--selected {
-      background-color: $primary-color;
-      color: $white-color;
-      border: 0;
-    }
-  }
-
-  &__item {
-    &--color-picker {
-      height: 30px;
-      width: 30px;
-      border: 2px solid $white-color;
-      border-radius: 50%;
-    }
-  }
 }

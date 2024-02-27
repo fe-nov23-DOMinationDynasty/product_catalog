@@ -11,16 +11,16 @@ export const FavouritesPage: React.FC = () => {
 
   return (
     <section className="favourites-page">
-      <>
-        <div className="favourites-page__wrapper"><BreadCrumbs /></div>
-        <h1 className="favourites-page__favourites h1">Favourites</h1>
-        <span className="favourites-page__info">
-          {favouriteProducts.length} items
-        </span>
-        <div className="favourites-page__items-container">
-          <ProductTable products={favouriteProducts} />
-        </div>
-      </>
+      <div className="favourites-page__bread-crumbs-wrapper">
+        <BreadCrumbs />
+      </div>
+      <h1 className="favourites-page__title h1">Favourites</h1>
+      <span className="favourites-page__items-amount">
+        {favouriteProducts.length} items
+      </span>
+      <div className="favourites-page__items-container">
+        <ProductTable products={favouriteProducts} />
+      </div>
     </section>
   );
 };

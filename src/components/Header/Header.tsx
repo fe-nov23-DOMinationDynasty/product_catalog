@@ -9,17 +9,17 @@ import { BurgerMenu } from '../BurgerMenu';
 import { useAppSelector } from '../../app/hooks';
 import { Icon } from '../Icon';
 
+const handleNavigationIsActive = ({ isActive }: { isActive: boolean }) =>
+  classNames('nav_link', { 'is-active': isActive });
+
+const handleHeaderButtonIsActive = ({ isActive }: { isActive: boolean }) =>
+  classNames('header__button', { 'header__button--is-active': isActive });
+
 export const Header = () => {
   const [openBurger, setOpenBurger] = useState(false);
 
   const favouriteProducts = useAppSelector((state) => state.favouritesReducer);
   const { cartItems } = useAppSelector((state) => state.cartReducer);
-
-  const handleNavigationIsActive = ({ isActive }: { isActive: boolean }) =>
-    classNames('nav_link', { 'is-active': isActive });
-
-  const handleHeaderButtonIsActive = ({ isActive }: { isActive: boolean }) =>
-    classNames('header__button', { 'header__button--is-active': isActive });
 
   return (
     <>

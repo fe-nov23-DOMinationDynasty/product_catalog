@@ -9,6 +9,8 @@
   box-sizing: border-box;
 
   &__trigger {
+    display: flex;
+    align-items: center;
     position: relative;
     height: 100%;
     width: 100%;
@@ -17,7 +19,6 @@
 
     border: 1px solid $icons-color;
     transition: border $transition-duration;
-    text-align: start;
     text-transform: capitalize;
 
     @include onDesktop {
@@ -94,14 +95,21 @@
         color: $primary-color;
       }
     }
+
+    &--selected {
+      background-color: $hover-background-color;
+      color: $primary-color;
+    }
   }
 
   &__option {
+    display: flex;
+    justify-content: start;
+    align-items: center;
     height: 100%;
     width: 100%;
     padding-left: 12px;
 
-    text-align: start;
     text-transform: capitalize;
   }
 }
