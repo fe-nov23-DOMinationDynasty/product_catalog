@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import classNames from 'classnames';
 import { Link, NavLink } from 'react-router-dom';
 
 import './header.scss';
@@ -11,6 +10,7 @@ import { LogoLink } from '../LogoLink';
 import { BurgerMenu } from '../BurgerMenu';
 import { useAppSelector } from '../../app/hooks';
 import { Icon } from '../Icon';
+import { handleHeaderButtonIsActive, handleNavigationIsActive } from './utils';
 
 // function filterDevices(devices, query) {
 //   const normalizedQuery = query.trim().toLowerCase();
@@ -27,19 +27,16 @@ import { Icon } from '../Icon';
 // }
 
 export const Header = () => {
+
   const [openBurger, setOpenBurger] = useState(false);
   const [currentURL, setCurrentURL] = useState('');
   const [sortField, setSortField] = useState('');
   // const filteredDevices = filterDevices(qw, sortField);
 
+
+
   const favouriteProducts = useAppSelector((state) => state.favouritesReducer);
   const { cartItems } = useAppSelector((state) => state.cartReducer);
-
-  const handleNavigationIsActive = ({ isActive }: { isActive: boolean }) =>
-    classNames('nav_link', { 'is-active': isActive });
-
-  const handleHeaderButtonIsActive = ({ isActive }: { isActive: boolean }) =>
-    classNames('header__button', { 'header__button--is-active': isActive });
 
   return (
     <>
@@ -64,11 +61,12 @@ export const Header = () => {
               <li className="list_item">
                 <NavLink
                   onClick={() => {
-                    setCurrentURL('cart');
+                    setCurrentURL('catalog/phones');
                   }}
                   to="catalog/phones"
-                  className={handleNavigationIsActive}>
-                  Phones
+                  className={handleNavigationIsActive}
+                >
+                Phones
                 </NavLink>
               </li>
               <li className="list_item">
@@ -77,8 +75,9 @@ export const Header = () => {
                     setCurrentURL('catalog/tablets');
                   }}
                   to="catalog/tablets"
-                  className={handleNavigationIsActive}>
-                  Tablets
+                  className={handleNavigationIsActive}
+                >
+                Tablets
                 </NavLink>
               </li>
               <li className="list_item">
@@ -87,23 +86,79 @@ export const Header = () => {
                     setCurrentURL('catalog/accessories');
                   }}
                   to="catalog/accessories"
-                  className={handleNavigationIsActive}>
-                  Accessories
+                  className={handleNavigationIsActive}
+                >
+                Accessories
                 </NavLink>
               </li>
             </ul>
           </div>
 
           <div className="header__buttons-block">
+            <div className='header__block__input'>
+              <input
+                onChange={(event) => {
+                  setSortField(event.target.value);
+                }}
+                value={sortField}
+                type="text"
+                placeholder='Search...'
+                className='header__input'
+              />
+              <button
+                type='button'
+                tabIndex={0}
+                onClick={() => {
+                  if (sortField) {
+                    setSortField('');
+                  }
+                }}
+                className='icon__search'
+
+              >
+                <img src={!sortField
+                  ? "./logos/search.svg"
+                  : "./logos/close.svg"}
+                alt="seacrh"/>
+              </button>
+            </div>
             <NavLink
               to="favourites"
+              onClick={() => {
+                setCurrentURL('favourites');
+              }}
               className={handleHeaderButtonIsActive}
             >
-              <img src="./logos/favourites.svg" alt="logoFavourite" />
+              {favouriteProducts && favouriteProducts.length > 0 ? (
+                <Icon
+                  pathImage="./logos/favourites.svg"
+                  counter={favouriteProducts.length}
+                />
+              ) : (
+                <img
+                  src={currentURL !== 'favourites'
+                    ? "./logos/favourites.svg"
+                    : "./logos/favourites-selected.svg"}
+                  alt="logoFavourite"
+                />
+              )}
             </NavLink>
 
-            <NavLink to="cart" className={handleHeaderButtonIsActive}>
-              <img src="./logos/shopping-bag.svg" alt="logoShoppingBag" />
+            <NavLink
+              onClick={() => {
+                setCurrentURL('cart');
+              }}
+              to="cart"
+              className={handleHeaderButtonIsActive}
+            >
+              {cartItems && !!cartItems.length ? (
+                <Icon
+                  pathImage="./logos/shopping-bag.svg"
+                  counter={cartItems.length}
+                />
+              ) : (
+                <img src="./logos/shopping-bag.svg" alt="logoShoppingBag" />
+              )}
             </NavLink>
           </div>
 
@@ -130,3 +185,5 @@ export const Header = () => {
     </>
   );
 };
+
+

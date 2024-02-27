@@ -1,9 +1,10 @@
 // import { useState } from 'react';
-import classNames from 'classnames';
 
 import '../Header/header.scss';
 import { NavLink } from 'react-router-dom';
+import { useEffect } from 'react';
 import { LogoLink } from '../LogoLink';
+import { handleBurgerButtonIsActive, handleBurgerLinkIsActive } from './utils';
 
 type Props = {
   openBurger: boolean
@@ -15,21 +16,28 @@ type Props = {
 export const BurgerMenu: React.FC<Props> = ({
   openBurger,
   setCloseBurger,
-  // currentURL,
+  currentURL,
   setCurrentURL
 }) => {
   // const [currentURL, setCurrentURL] = useState('');
 
-  const handleBurgerLinkIsActive = ({ isActive }: { isActive: boolean }) =>
-    classNames('burger__nav__link', { 'burger__is--active': isActive });
+  useEffect(() => {
+    if (openBurger) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
 
-  const handleBurgerButtonIsActive = ({ isActive }: { isActive: boolean }) =>
-    classNames('burger__button', { 'burger__button--is-active': isActive });
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [openBurger]);
 
   return (
     <aside
       id="burgerMenu"
-      className={`burger__menu burger__preAnimation  ${openBurger ? 'burger__animation' : ''}`}
+      className={`burger__menu burger__preAnimation
+       ${openBurger ? 'burger__animation' : ''}`}
     >
       <div className="burger__top">
         <div className="burger__logo">
@@ -103,7 +111,11 @@ export const BurgerMenu: React.FC<Props> = ({
             to="favourites"
             className={handleBurgerButtonIsActive}
           >
-            <img src="./logos/favourites.svg" alt="logoFavourite" />
+            <img
+              src={currentURL !== 'favourites'
+                ? "./logos/favourites.svg"
+                : "./logos/favourites-selected.svg"}
+              alt="logoFavourite" />
           </NavLink>
 
           <NavLink
