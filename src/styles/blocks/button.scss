@@ -3,6 +3,7 @@
 
 .button {
   pointer-events: all;
+  cursor: pointer;
 
   @include withButtonSize;
   @include withButtonBorder;
@@ -21,6 +22,8 @@
 
     &--disabled {
       background-image: url(../icons/arrow-left-disabled.svg);
+      cursor: default;
+      pointer-events: none;
     }
   }
 
@@ -29,6 +32,8 @@
 
     &--disabled {
       background-image: url(../icons/arrow-right-disabled.svg);
+      cursor: default;
+      pointer-events: none;
     }
   }
 
@@ -37,8 +42,9 @@
 
     &--disabled {
       background-image: url(../icons/minus-disabled.svg);
-      pointer-events: none;
       border: 1px solid $elements-color;
+      cursor: default;
+      pointer-events: none;
     }
   }
 
@@ -51,6 +57,7 @@
   }
 
   &--disabled {
+    cursor: default;
     pointer-events: none;
     border: 1px solid $elements-color;
   }
