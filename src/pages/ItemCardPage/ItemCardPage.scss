@@ -28,6 +28,8 @@
     }
   }
 
+  --product-swiper-columns: 4;
+
   &__swiper {
     display: grid;
     gap: $page-grid-gap;
@@ -43,6 +45,8 @@
     @include onTablet {
       row-gap: 0;
       min-height: 0;
+
+      --product-swiper-columns: 7;
     }
 
     @include onDesktop {

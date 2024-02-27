@@ -1,0 +1,6 @@
+[
+  {"image": "./promos/promo-image-tablet-desktop.webp", "link": "https://www.apple.com"},
+  {"image": "./promos/banner-phones.png", "link": "phones"},
+  {"image": "./promos/banner-tablets.png", "link": "tablets"},
+  {"image": "./promos/banner-accessories.png", "link": "accessories"}
+]

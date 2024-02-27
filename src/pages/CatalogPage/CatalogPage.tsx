@@ -2,10 +2,10 @@
 import { useEffect, useMemo, useRef } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 
+import Skeleton from 'react-loading-skeleton';
 import { Pagination } from '../../components/Pagination';
-import { useAppSelector } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { ProductTable } from '../../components/ProductTable/ProductTable';
-import { Loader } from '../../components/Loader';
 import { ErrorMessage } from '../../components/ErrorMessage';
 import { Dropdown } from '../../components/Dropdown';
 import { SortOptions } from '../../enums/SortOptions';
@@ -17,6 +17,13 @@ import { prepareProducts } from '../../utils/productsHelper';
 import { itemsPerPageOptions } from '../../constants/constants';
 import { BreadCrumbs } from '../../components/BreadCrumbs';
 import { capitalizeFirstLetter } from '../../services/capitalizeFirstLetter';
+import { actions as productsActions } from '../../features/productsSlice';
+import { getMockArray } from '../../services/getMockArray';
+import { wait } from '../../utils/fetchClient';
+
+const lengthOfSkeletonCards = 8;
+
+const mockProductCards = getMockArray(lengthOfSkeletonCards);
 
 export const CatalogPage = () => {
   const location = useLocation();
@@ -25,13 +32,25 @@ export const CatalogPage = () => {
   const sortOption = searchParams.get('sortBy') || '';
   const currentPageNumber = searchParams.get('page') || 1;
   const productCategory = location.pathname.split('/').at(-1);
-  const { products, isLoading, errorMessage } = useAppSelector(
+  const { products, errorMessage } = useAppSelector(
     (state) => state.productsReducer
   );
   const dropdownsRef = useRef<HTMLDivElement>(null);
 
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(productsActions.clear());
+
+    wait(1000)
+      .then(() => {
+        dispatch(productsActions.loadProducts());
+      });
+
+  }, [productCategory, currentPageNumber]);
+
   const categoryProducts = useMemo(() => {
-    return products.filter(({ category }) => category === productCategory);
+    return products?.filter(({ category }) => category === productCategory);
   }, [productCategory, products]);
 
   const preparedProducts = useMemo(() => {
@@ -87,9 +106,7 @@ export const CatalogPage = () => {
 
   return (
     <div className="catalog-page">
-      {isLoading && <Loader />}
-
-      {!isLoading && !errorMessage && (
+      {!errorMessage && (
         <>
           <div className="catalog-page__breadcrumbs-container">
             <BreadCrumbs />
@@ -103,9 +120,13 @@ export const CatalogPage = () => {
                   : productCategory!
               )}
             </h1>
-            <p className="catalog-page__amount-products">
-              {categoryProducts.length} models
-            </p>
+            {categoryProducts.length
+              ? (
+                <p className="catalog-page__amount-products">
+                  {categoryProducts.length} models
+                </p>)
+              : <Skeleton className='catalog-page__amount-products--skeleton' />
+            }
           </div>
 
           <div className="catalog-page__wrap">
@@ -133,7 +154,7 @@ export const CatalogPage = () => {
             </div>
 
             <div className="catalog-page__products">
-              <ProductTable products={preparedProducts} />
+              <ProductTable products={preparedProducts || mockProductCards} />
             </div>
           </div>
 
@@ -148,7 +169,7 @@ export const CatalogPage = () => {
         </>
       )}
 
-      {!isLoading && !!errorMessage && (
+      {!!errorMessage && (
         <ErrorMessage errorMessage={errorMessage} />
       )}
     </div>

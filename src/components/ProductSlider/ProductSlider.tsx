@@ -4,30 +4,22 @@ import { Pagination } from 'swiper/modules';
 import React from 'react';
 
 import './ProductSlider.scss';
+import { getPagination } from './productSwiperUtils';
 
 interface Props {
   images: string[];
 }
 
 export const ProductSwiper: React.FC<Props> = ({ images }) => {
-  const pagination = {
-    bulletClass: 'product-swiper__pagination-item',
-    bulletActiveClass: 'product-swiper__pagination-item--active',
-    clickable: true,
-    el: '.product-swiper__pagination',
-    renderBullet: (index: number, className: string) => {
-      return `<div class="${className}"><img src="${images[index]}" alt="pagination_item" class="product-swiper__pagination-image" /></div>`;
-    },
-  };
-
   return (
     <>
       <div className="product-swiper">
         <Swiper
           spaceBetween={50}
-          pagination={pagination}
+          pagination={getPagination(images)}
           modules={[Pagination]}
           className="product-swiper__swiper"
+          wrapperClass='product-swiper__swiper-wrapper swiper-wrapper'
         >
           {images.map((image) => (
             <SwiperSlide key={image} className="product-swiper__slide">

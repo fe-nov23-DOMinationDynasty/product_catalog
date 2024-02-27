@@ -20,6 +20,10 @@
     }
   }
 
+  &__swiper-wrapper {
+    height: auto;
+  }
+
   &__slide {
     display: flex;
     justify-content: center;

@@ -14,14 +14,12 @@ export const Root = () => (
     <Route path="/" element={<App />}>
       <Route index element={<HomePage />} />
       <Route path="home" element={<Navigate to="../" replace />} />
-      <Route path="catalog">
-        {Object.values(Category).map(category => (
-          <React.Fragment key={category}>
-            <Route path={category} element={<CatalogPage />} />
-            <Route path={`${category}/:itemId`} element={<ItemCardPage />} />
-          </React.Fragment>
-        ))}
-      </Route>
+      {Object.values(Category).map(category => (
+        <React.Fragment key={category}>
+          <Route path={category} element={<CatalogPage />} />
+          <Route path={`${category}/:itemId`} element={<ItemCardPage />} />
+        </React.Fragment>
+      ))}
       <Route path="favourites" element={<FavouritesPage />} />
       <Route path="cart" element={<CartPage />} />
 

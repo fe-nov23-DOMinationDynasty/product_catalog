@@ -51,21 +51,21 @@ export const Header = () => {
               </li>
               <li className="list_item">
                 <NavLink
-                  to="catalog/phones"
+                  to="/phones"
                   className={handleNavigationIsActive}>
                   Phones
                 </NavLink>
               </li>
               <li className="list_item">
                 <NavLink
-                  to="catalog/tablets"
+                  to="/tablets"
                   className={handleNavigationIsActive}>
                   Tablets
                 </NavLink>
               </li>
               <li className="list_item">
                 <NavLink
-                  to="catalog/accessories"
+                  to="/accessories"
                   className={handleNavigationIsActive}>
                   Accessories
                 </NavLink>
