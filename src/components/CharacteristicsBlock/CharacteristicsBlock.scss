@@ -29,6 +29,7 @@
     padding-inline: 8px;
     padding-block: 7px 4px;
 
+    @include hoverEffect(transform, translateY(-15%));
 
     &--color-picker {
       padding: 0;
