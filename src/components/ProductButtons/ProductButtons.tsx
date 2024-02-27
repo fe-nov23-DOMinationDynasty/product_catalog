@@ -64,8 +64,8 @@ export const ProductButtons: React.FC<Props> = ({ product, category }) => {
       <button
         onClick={handleProductCartStatusChanged}
         type="button"
-        className={cn('product-buttons__button-add button button-add', {
-          'button-add--selected': isInCart,
+        className={cn('product-buttons__button-add button button--add', {
+          'button--add--selected': isInCart,
         })}>
         {isInCart ? 'Added to cart' : 'Add to cart'}
       </button>
@@ -73,8 +73,8 @@ export const ProductButtons: React.FC<Props> = ({ product, category }) => {
       <button
         onClick={handleFavouriteProductStatusChanged}
         type="button"
-        className={cn('button button-favourite product-buttons__button-fav', {
-          'button-favourite--selected': isInFavourite,
+        className={cn('button button--favourite product-buttons__button-fav', {
+          'button--favourite--selected': isInFavourite,
         })}
       />
     </div>

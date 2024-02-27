@@ -1,5 +1,5 @@
 import React from 'react';
-import './icon.scss';
+import './Icon.scss';
 
 interface Props {
   pathImage: string;

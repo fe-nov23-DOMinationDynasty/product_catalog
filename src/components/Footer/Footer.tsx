@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { LogoLink } from '../LogoLink';
-import './footer.scss';
+import './Footer.scss';
 import '../../styles/blocks/button.scss';
 import '../../styles/utils/text-styles.scss';
 

@@ -61,24 +61,23 @@
     }
   }
 
-  &-add {
+  &--add {
     display: flex;
     align-items: center;
     justify-content: center;
 
     height: 40px;
-    width: 160px;
+    width: 100%;
 
     border: 0;
     background-color: $primary-color;
+    font-size: 12px;
     color: $white-color;
 
-    transition: box-shadow $transition-duration;
+    @include hoverEffect(box-shadow, 0 3px 13px 0 $hover-button-shadow-color);
 
-    @include onDesktop {
-      &:hover {
-        box-shadow: 0 3px 13px 0 $hover-button-shadow-color;
-      }
+    @include onTablet {
+      font-size: 14px;
     }
 
     &--selected {
@@ -96,11 +95,11 @@
   }
 
   &--cart {
-    width: 100%;
     height: 48px;
   }
 
-  &-favourite {
+  &--favourite {
+    flex-shrink: 0;
     width: 40px;
     height: 40px;
     background-image: url('../icons/buttons/icon-favourites.svg');
