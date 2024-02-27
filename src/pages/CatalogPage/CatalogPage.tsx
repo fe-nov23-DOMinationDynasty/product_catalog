@@ -80,7 +80,9 @@ export const CatalogPage = () => {
   };
 
   useEffect(() => {
-    dropdownsRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (currentPageNumber !== 1) {
+      dropdownsRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }
   }, [currentPageNumber]);
 
   return (
