@@ -7,7 +7,7 @@
   justify-content: space-between;
 
   padding: 32px;
-  min-height: 520px;
+  min-height: 521px;
 
   box-sizing: border-box;
   border: 1px solid $elements-color;
@@ -28,7 +28,7 @@
 
     @include onDesktop {
       &:hover {
-        transform: scale(110%);
+        transform: scale($transform-scale);
       }
     }
   }

@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import { useNavigate } from 'react-router-dom';
 
-import './backButton.scss';
+import './BackButton.scss';
 import '../../styles/utils/text-styles.scss';
 
 export const BackButton = () => {

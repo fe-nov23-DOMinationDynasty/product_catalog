@@ -1,7 +1,8 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React from 'react';
+import { Link } from 'react-router-dom';
 import cn from 'classnames';
-import './cartItem.scss';
+import './CartItem.scss';
 import { useAppDispatch } from '../../app/hooks';
 import { actions as cartActions } from '../../features/cartSlice';
 import { CartProduct } from '../../types/CartItem';
@@ -12,21 +13,21 @@ interface Props {
 }
 
 export const CartItem: React.FC<Props> = ({ product, quantity }) => {
-  const { id, name, image, price } = product;
+  const { itemId, name, image, price, category } = product;
   const dispatch = useAppDispatch();
 
   const handleIncrement = () => {
-    dispatch(cartActions.incrementAmount(id));
+    dispatch(cartActions.incrementAmount(itemId));
   };
 
   const handleDecrement = () => {
     if (quantity > 1) {
-      dispatch(cartActions.decrementAmount(id));
+      dispatch(cartActions.decrementAmount(itemId));
     }
   };
 
   const handleDelete = () => {
-    dispatch(cartActions.delete(id));
+    dispatch(cartActions.delete(itemId));
   };
 
   return (
@@ -43,9 +44,15 @@ export const CartItem: React.FC<Props> = ({ product, quantity }) => {
           />
         </button>
 
-        <img src={image} alt="iphone-model" className="cart-item__image" />
+        <Link to={`/catalog/${category}/${itemId}`} className="cart-item__link" >
+          <img
+            src={image}
+            alt={`${category}_image`}
+            className="cart-item__image"
+          />
 
-        <p className="cart-item__about">{name}</p>
+          <p className="cart-item__about buttons">{name}</p>
+        </Link>
       </div>
 
       <div className="cart-item__cost">

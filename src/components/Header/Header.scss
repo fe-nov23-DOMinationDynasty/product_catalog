@@ -114,8 +114,9 @@
 }
 
 .header__button {
+  box-sizing: border-box;
+  
   @include onTablet {
-    box-sizing: border-box;
     border-left: 1px solid $elements-color;
     display: flex;
     align-items: center;

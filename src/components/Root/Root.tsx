@@ -1,10 +1,13 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
+import React from 'react';
 import { App } from '../../App';
 import { HomePage } from '../../pages/HomePage/HomePage';
 import { CatalogPage } from '../../pages/CatalogPage/CatalogPage';
 import { FavouritesPage } from '../../pages/FavouritesPage/FavouritesPage';
 import { ItemCardPage } from '../../pages/ItemCardPage/ItemCardPage';
 import { CartPage } from '../../pages/CartPage/CartPage';
+import { NotFoundPage } from '../../pages/NotFound';
+import { Category } from '../../enums/Category';
 
 export const Root = () => (
   <Routes>
@@ -12,13 +15,17 @@ export const Root = () => (
       <Route index element={<HomePage />} />
       <Route path="home" element={<Navigate to="../" replace />} />
       <Route path="catalog">
-        <Route path=":productCategory">
-          <Route index element={<CatalogPage />} />
-          <Route path=":itemId" element={<ItemCardPage />} />
-        </Route>
+        {Object.values(Category).map(category => (
+          <React.Fragment key={category}>
+            <Route path={category} element={<CatalogPage />} />
+            <Route path={`${category}/:itemId`} element={<ItemCardPage />} />
+          </React.Fragment>
+        ))}
       </Route>
       <Route path="favourites" element={<FavouritesPage />} />
       <Route path="cart" element={<CartPage />} />
+
+      <Route path="*" element={<NotFoundPage />} />
     </Route>
   </Routes>
 );

@@ -13,8 +13,31 @@ const paginateProducts = (
   return items.slice((currentPage - 1) * perPage, currentPage * perPage);
 };
 
-const sortProducts = (products: Product[], sortOption: SortOptions) => {
-  return products.sort((product1, product2) => {
+export const getUnicProducts = (products: Product[]) => {
+  const unicProducts: Product[] = [];
+
+  // eslint-disable-next-line no-restricted-syntax
+  for (const product of products) {
+    const itemId = product.itemId
+      .replace(product.color, '')
+      .split('-')
+      .slice(0, -2)
+      .join('-');
+
+    if (unicProducts.every(currentProduct =>
+      !currentProduct.itemId.includes(itemId))
+    ) {
+      unicProducts.push(product);
+    }
+  }
+
+  return unicProducts;
+};
+
+export const sortProducts = (products: Product[], sortOption: SortOptions) => {
+  const productsCopy = [...products];
+
+  return productsCopy.sort((product1, product2) => {
     switch (sortOption) {
       case SortOptions.Cheapest: {
         return +product1[sortOption] - +product2[sortOption];
@@ -28,6 +51,13 @@ const sortProducts = (products: Product[], sortOption: SortOptions) => {
         return (product1[sortOption] as string).localeCompare(
           product2[sortOption] as string
         );
+      }
+
+      case SortOptions.HotPrices: {
+        const product1Discount = product1.fullPrice - product1.price;
+        const product2Discount = product2.fullPrice - product2.price;
+
+        return product2Discount - product1Discount;
       }
 
       default: {

@@ -1,0 +1,80 @@
+@import '../../styles/utils/variables';
+@import '../../styles/utils/mixins';
+
+.product-swiper {
+  grid-column: 1 / -1;
+
+  @include onTablet {
+    grid-column: 2 / 8;
+  }
+
+  @include onDesktop {
+    grid-column: 3 / 13;
+  }
+
+  &__swiper {
+    display: flex;
+
+    @include onTablet {
+      justify-content: start;
+    }
+  }
+
+  &__slide {
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+  &__picture {
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    box-sizing: border-box;
+
+    @include onTablet {
+      width: 100%;
+    }
+  }
+
+  &__pagination {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+
+    @include onTablet {
+      flex-direction: column;
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    @include onDesktop {
+      grid-column: span 2;
+    }
+  }
+
+  &__pagination-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-basis: 100%;
+    padding: 3.5px;
+
+    box-sizing: border-box;
+    border: 1px solid $elements-color;
+
+    &--active {
+      border: 1px solid $primary-color;
+    }
+
+    @include onTablet {
+      flex-basis: 0;
+    }
+  }
+
+  &__pagination-image {
+    width: 100%;
+    object-fit: contain;
+    aspect-ratio: 1 / 1;
+  }
+}

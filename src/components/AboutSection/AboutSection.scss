@@ -2,15 +2,9 @@
 @import '../../styles/utils/mixins';
 
 .about {
-  grid-column: 1 / -1;
-
   display: flex;
   flex-direction: column;
   row-gap: 32px;
-
-  @include onDesktop {
-    grid-column: 1 / span 12;
-  }
 
   &__header {
     display: flex;

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import classNames from 'classnames';
 
-import '../Header/header.scss';
+import '../Header/Header.scss';
 import { NavLink } from 'react-router-dom';
 import { LogoLink } from '../LogoLink';
 
