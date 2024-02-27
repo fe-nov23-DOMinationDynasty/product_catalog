@@ -7,6 +7,7 @@ $button-border-primary: 1px solid $primary-color;
 
 .button {
   pointer-events: all;
+  cursor: pointer;
 
   @include withButtonSize;
   @include withButtonBorder;
@@ -25,6 +26,8 @@ $button-border-primary: 1px solid $primary-color;
 
     &--disabled {
       background-image: url(../icons/arrow-left-disabled.svg);
+      cursor: default;
+      pointer-events: none;
     }
   }
 
@@ -33,6 +36,8 @@ $button-border-primary: 1px solid $primary-color;
 
     &--disabled {
       background-image: url(../icons/arrow-right-disabled.svg);
+      cursor: default;
+      pointer-events: none;
     }
   }
 
@@ -41,8 +46,9 @@ $button-border-primary: 1px solid $primary-color;
 
     &--disabled {
       background-image: url(../icons/minus-disabled.svg);
-      pointer-events: none;
       border: $button-border;
+      cursor: default;
+      pointer-events: none;
     }
   }
 
@@ -55,6 +61,7 @@ $button-border-primary: 1px solid $primary-color;
   }
 
   &--disabled {
+    cursor: default;
     pointer-events: none;
     border: $button-border;
   }
@@ -126,6 +133,7 @@ $button-border-primary: 1px solid $primary-color;
 
   &--color-picker {
     @include hoverEffect(border, 1px solid $icons-color);
+
     padding: 0;
     border-radius: 50%;
 

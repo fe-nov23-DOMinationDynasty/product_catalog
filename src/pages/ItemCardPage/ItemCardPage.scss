@@ -55,8 +55,7 @@
     }
 
     @include onDesktop {
-      --product-swiper-columns: 12;
-      --product-swiper-slide-columns: 10;
+      --product-swiper-columns: 11;
     }
 
     &--loading {
@@ -150,7 +149,7 @@
 
     &--about {
       @include onDesktop {
-        grid-column: 1 / span 12;
+        grid-column: span 11;
       }
     }
 

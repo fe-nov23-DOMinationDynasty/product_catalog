@@ -20,10 +20,9 @@ interface Props {
 
 export const PromoSlider: React.FC<Props> = React.memo(({ promos }) => {
   const [windowWidth] = useResize();
+  const swiperRef = useRef<SwiperRef>(null);
 
   const isTablet = windowWidth >= tabletWidth;
-
-  const swiperRef = useRef<SwiperRef>(null);
 
   const handlePrev = useCallback(() => {
     if (!swiperRef.current) {
