@@ -17,37 +17,37 @@
   background-color: $white-color;
 
   &--arrow-left {
-    background-image: url(./icons/arrow-left.svg);
+    background-image: url(../icons/arrow-left.svg);
 
     &--disabled {
-      background-image: url(./icons/arrow-left-disabled.svg);
+      background-image: url(../icons/arrow-left-disabled.svg);
     }
   }
 
   &--arrow-right {
-    background-image: url(./icons/arrow-right.svg);
+    background-image: url(../icons/arrow-right.svg);
 
     &--disabled {
-      background-image: url(./icons/arrow-right-disabled.svg);
+      background-image: url(../icons/arrow-right-disabled.svg);
     }
   }
 
   &--minus {
-    background-image: url(./icons/minus.svg);
+    background-image: url(../icons/minus.svg);
 
     &--disabled {
-      background-image: url(./icons/minus-disabled.svg);
+      background-image: url(../icons/minus-disabled.svg);
       pointer-events: none;
       border: 1px solid $elements-color;
     }
   }
 
   &--plus {
-    background-image: url(./public/icons/plus.svg);
+    background-image: url(../icons/plus.svg);
   }
 
   &--top {
-    background-image: url(./public/icons/go-top.svg);
+    background-image: url(../icons/go-top.svg);
   }
 
   &--disabled {
@@ -102,10 +102,10 @@
     flex-shrink: 0;
     width: 40px;
     height: 40px;
-    background-image: url('./icons/buttons/icon-favourites.svg');
+    background-image: url('../icons/buttons/icon-favourites.svg');
 
     &--selected {
-      background-image: url('./icons/buttons/icon-favourites-selected.svg');
+      background-image: url('../icons/buttons/icon-favourites-selected.svg');
     }
   }
 }
