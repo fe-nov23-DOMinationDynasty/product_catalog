@@ -5,6 +5,16 @@
   display: flex;
   background-color: $white-color;
   border-bottom: 1px solid $elements-color;
+
+  &__theme-toggler {
+    transition: transform $transition-slow-duration;
+
+    @include onDesktop {
+      &:hover {
+        transform: rotateY(360deg);
+      }
+    }
+  }
 }
 
 .header__logo {
@@ -110,12 +120,14 @@
 
   @include onTablet {
     display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 
 .header__button {
   box-sizing: border-box;
-  
+
   @include onTablet {
     border-left: 1px solid $elements-color;
     display: flex;
