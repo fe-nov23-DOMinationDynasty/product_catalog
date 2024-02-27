@@ -37,32 +37,31 @@
     height: 100%;
     background-size: cover;
     background-repeat: no-repeat;
-    transition: filter $transition-slow-duration;
+    transition: background-position $transition-slow-duration;
 
     margin-bottom: 24px;
 
+    background-position: left 60px top 50px;
+
     @include onDesktop {
       &:hover {
-        filter: blur(1px);
+        background-position: left 25px top 20px;
       }
     }
 
     &--phones {
-      background-image: url(./img/category-phones.png);
-      background-color: #f5e7cd;
-      background-position: left 49px top 40px;
+      background-image: url(./img/category-phones.webp);
+      background-color: #717378;
     }
 
     &--tablets {
-      background-image: url(./img/category-tablets.png);
+      background-image: url(./img/category-tablets.webp);
       background-color: #86878b;
-      background-position: left 49px top 67px;
     }
 
     &--accessories {
-      background-image: url(./img/category-accessories.png);
+      background-image: url(./img/category-accessories.webp);
       background-color: #ac385e;
-      background-position: left 49px top 77px;
     }
   }
 
@@ -70,6 +69,8 @@
     text-transform: capitalize;
     margin-bottom: 4px;
     color: $primary-color;
+
+    @include hoverEffect(color, $secondary-color);
   }
 
   &__counter {
