@@ -7,7 +7,7 @@ import { getProductInfo, getSpecifiedProduct } from '../../api/products';
 import { Loader } from '../../components/Loader';
 import './ItemCardPage.scss';
 import { Category } from '../../enums/Category';
-import { ProductSwiper } from '../../components/ProductSwiper';
+import { ProductSwiper } from '../../components/ProductSlider';
 import { TechSpecsSection } from '../../components/TechSpecsSection';
 import { AboutSection } from '../../components/AboutSection';
 import { TechSpecs, TechSpecsForActions } from '../../enums/TechSpecs';

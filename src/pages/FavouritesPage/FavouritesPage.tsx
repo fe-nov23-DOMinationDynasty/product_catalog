@@ -2,7 +2,7 @@ import React from 'react';
 import { ProductTable } from '../../components/ProductTable/ProductTable';
 import '../../styles/utils/text-styles.scss';
 
-import './favourites.scss';
+import './FavouritesPage.scss';
 import { useAppSelector } from '../../app/hooks';
 import { BreadCrumbs } from '../../components/BreadCrumbs';
 
