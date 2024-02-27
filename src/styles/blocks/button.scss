@@ -1,6 +1,10 @@
 @import '../utils/mixins';
 @import '../utils/variables';
 
+$button-padding: 8px;
+$button-border: 1px solid $elements-color;
+$button-border-primary: 1px solid $primary-color;
+
 .button {
   pointer-events: all;
 
@@ -8,7 +12,7 @@
   @include withButtonBorder;
 
   box-sizing: border-box;
-  padding: 8px;
+  padding: $button-padding;
 
   background-repeat: no-repeat;
   background-position: center;
@@ -38,7 +42,7 @@
     &--disabled {
       background-image: url(../icons/minus-disabled.svg);
       pointer-events: none;
-      border: 1px solid $elements-color;
+      border: $button-border;
     }
   }
 
@@ -52,12 +56,12 @@
 
   &--disabled {
     pointer-events: none;
-    border: 1px solid $elements-color;
+    border: $button-border;
   }
 
   @include onDesktop {
     &:hover {
-      border: 1px solid $primary-color;
+      border: $button-border-primary;
     }
   }
 
@@ -82,12 +86,12 @@
 
     &--selected {
       color: $green-color;
-      border: 1px solid $elements-color;
+      border: $button-border;
       background-color: $white-color;
 
       @include onDesktop {
         &:hover {
-          border: 1px solid $elements-color;
+          border: $button-border;
           box-shadow: 0 3px 13px 0 $hover-button-shadow-color;
         }
       }
@@ -110,29 +114,30 @@
   }
 }
 
-.color-selector {
+.selector {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid $elements-color;
-  padding-inline: 8px;
+  border: $button-border;
+  padding-inline: $button-padding;
   padding-block: 7px 4px;
 
-  @include hoverEffect(border, 1px solid $icons-color);
+  @include hoverEffect(border, $button-border-primary);
 
   &--color-picker {
+    @include hoverEffect(border, 1px solid $icons-color);
     padding: 0;
     border-radius: 50%;
 
     &--selected {
-      border: 1px solid $primary-color;
+      border: $button-border-primary;
     }
   }
 
   &--selected {
     background-color: $primary-color;
     color: $white-color;
-    border: 0;
+    border: $button-border-primary;
   }
 
   &__item {
