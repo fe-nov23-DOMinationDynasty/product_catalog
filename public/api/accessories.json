@@ -1,6 +1,6 @@
 [
   {
-    "id": "apple-watch-series-3-38mm-space-gray",
+    "id": "apple-watch-series-3-38mm-spacegray",
     "namespaceId": "apple-watch-series-3",
     "name": "Apple Watch Series 3 38mm Space Gray",
     "capacityAvailable": ["38mm", "42mm"],
@@ -41,7 +41,7 @@
     "cell": ["Wi-Fi", "Bluetooth", "LTE"]
   },
   {
-    "id": "apple-watch-series-3-42mm-space-gray",
+    "id": "apple-watch-series-3-42mm-spacegray",
     "namespaceId": "apple-watch-series-3",
     "name": "Apple Watch Series 3 42mm Space Gray",
     "capacityAvailable": ["38mm", "42mm"],
@@ -246,7 +246,7 @@
     "cell": ["Wi-Fi", "Bluetooth", "LTE"]
   },
   {
-    "id": "apple-watch-series-6-40mm-space-gray",
+    "id": "apple-watch-series-6-40mm-spacegray",
     "namespaceId": "apple-watch-series-6",
     "name": "Apple Watch Series 6 40mm Space Gray",
     "capacityAvailable": ["40mm", "44mm"],
@@ -287,7 +287,7 @@
     "cell": ["Wi-Fi", "Bluetooth", "LTE"]
   },
   {
-    "id": "apple-watch-series-6-44mm-space-gray",
+    "id": "apple-watch-series-6-44mm-spacegray",
     "namespaceId": "apple-watch-series-6",
     "name": "Apple Watch Series 6 44mm Space Gray",
     "capacityAvailable": ["40mm", "44mm"],
@@ -1066,7 +1066,7 @@
     "cell": ["Wi-Fi", "Bluetooth", "LTE"]
   },
   {
-    "id": "apple-watch-series-4-40mm-space-gray",
+    "id": "apple-watch-series-4-40mm-spacegray",
     "namespaceId": "apple-watch-series-4",
     "name": "Apple Watch Series 4 40mm Space Gray",
     "capacityAvailable": ["40mm", "44mm"],
@@ -1107,7 +1107,7 @@
     "cell": ["Wi-Fi", "Bluetooth", "LTE"]
   },
   {
-    "id": "apple-watch-series-4-44mm-space-gray",
+    "id": "apple-watch-series-4-44mm-spacegray",
     "namespaceId": "apple-watch-series-4",
     "name": "Apple Watch Series 4 44mm Space Gray",
     "capacityAvailable": ["40mm", "44mm"],
@@ -1312,7 +1312,7 @@
     "cell": ["Wi-Fi", "Bluetooth", "LTE"]
   },
   {
-    "id": "apple-watch-se-40mm-space-gray",
+    "id": "apple-watch-se-40mm-spacegray",
     "namespaceId": "apple-watch-se",
     "name": "Apple Watch SE 40mm Space Gray",
     "capacityAvailable": ["40mm", "44mm"],
@@ -1353,7 +1353,7 @@
     "cell": ["Wi-Fi", "Bluetooth", "LTE"]
   },
   {
-    "id": "apple-watch-se-44mm-space-gray",
+    "id": "apple-watch-se-44mm-spacegray",
     "namespaceId": "apple-watch-se",
     "name": "Apple Watch SE 44mm Space Gray",
     "capacityAvailable": ["40mm", "44mm"],

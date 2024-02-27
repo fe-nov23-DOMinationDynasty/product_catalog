@@ -2,12 +2,16 @@ import classNames from 'classnames';
 import { NavLink } from 'react-router-dom';
 
 import './Header.scss';
+import "@theme-toggles/react/css/Classic.css";
 
 import { useState } from 'react';
+import { Classic } from '@theme-toggles/react';
 import { LogoLink } from '../LogoLink';
 import { BurgerMenu } from '../BurgerMenu';
-import { useAppSelector } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { Icon } from '../Icon';
+import { Theme } from '../../enums/Theme';
+import { actions as themeActions } from '../../features/themeSlice';
 
 const handleNavigationIsActive = ({ isActive }: { isActive: boolean }) =>
   classNames('nav_link', { 'is-active': isActive });
@@ -18,8 +22,17 @@ const handleHeaderButtonIsActive = ({ isActive }: { isActive: boolean }) =>
 export const Header = () => {
   const [openBurger, setOpenBurger] = useState(false);
 
+  const dispatch = useAppDispatch();
+
   const favouriteProducts = useAppSelector((state) => state.favouritesReducer);
   const { cartItems } = useAppSelector((state) => state.cartReducer);
+  const isDarkMode = useAppSelector(state => state.themeReducer) === Theme.Dark;
+
+  const handleThemeChanged = (isToggled: boolean) => {
+    const theme = isToggled ? Theme.Dark : Theme.Light;
+
+    dispatch(themeActions.setTheme(theme));
+  };
 
   return (
     <>
@@ -61,6 +74,16 @@ export const Header = () => {
           </div>
 
           <div className="header__buttons-block">
+            <Classic
+              toggled={isDarkMode}
+              onToggle={handleThemeChanged}
+              style={{
+                fontSize: '30px'
+              }}
+              className='header__theme-toggler'
+              placeholder={null}
+            />
+
             <NavLink to="favourites" className={handleHeaderButtonIsActive}>
               <div className="header__icon-wrapper">
                 <Icon
