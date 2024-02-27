@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import { NavLink } from 'react-router-dom';
 
 import './Header.scss';
-import "@theme-toggles/react/css/Classic.css";
+import '@theme-toggles/react/css/Classic.css';
 
 import { useState } from 'react';
 import { Classic } from '@theme-toggles/react';
@@ -26,7 +26,8 @@ export const Header = () => {
 
   const favouriteProducts = useAppSelector((state) => state.favouritesReducer);
   const { cartItems } = useAppSelector((state) => state.cartReducer);
-  const isDarkMode = useAppSelector(state => state.themeReducer) === Theme.Dark;
+  const isDarkMode
+  = useAppSelector((state) => state.themeReducer) === Theme.Dark;
 
   const handleThemeChanged = (isToggled: boolean) => {
     const theme = isToggled ? Theme.Dark : Theme.Light;
@@ -74,15 +75,17 @@ export const Header = () => {
           </div>
 
           <div className="header__buttons-block">
-            <Classic
-              toggled={isDarkMode}
-              onToggle={handleThemeChanged}
-              style={{
-                fontSize: '30px'
-              }}
-              className='header__theme-toggler'
-              placeholder={null}
-            />
+            <div className="header__icon-theme">
+              <Classic
+                toggled={isDarkMode}
+                onToggle={handleThemeChanged}
+                style={{
+                  fontSize: '30px',
+                }}
+                className="header__theme-toggler"
+                placeholder={null}
+              />
+            </div>
 
             <NavLink to="favourites" className={handleHeaderButtonIsActive}>
               <div className="header__icon-wrapper">

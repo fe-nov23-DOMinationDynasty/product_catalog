@@ -145,12 +145,19 @@
     @include onTablet {
       transform: rotateY(360deg);
     }
-    
+
     @include onDesktop {
       transform: rotateY(360deg);
     }
 
   }
+}
+
+.header__icon-theme {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-inline: 24px;
 }
 
 .burger {
