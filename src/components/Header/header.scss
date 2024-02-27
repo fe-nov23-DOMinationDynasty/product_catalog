@@ -12,6 +12,10 @@
   background-color: $white-color;
   border-bottom: 1px solid $elements-color;
 
+  @include onDesktop {
+    margin-bottom: 64px;
+  }
+
   &__nav {
     margin: 0 auto;
     width: 100%;
@@ -154,11 +158,11 @@
 
   &__input:focus {
     outline: none;
-    background-color: #FAFBFC;
+    background-color: $hover-background-color;
   }
 
   &__input::placeholder {
-    color: #B4BDC3;
+    color: $icons-color;
     font-weight: 600;
     font-size: 14px;
   }
@@ -201,21 +205,17 @@
   bottom: 0;
 }
 
-
-
-
-
 .burger_menu {
   overflow: hidden;
   position: fixed;
-  z-index: 1;
+  z-index: 15;
   top: 0;
   right: 0;
   left: 0;
   background-color: $white-color;
 
   &--pre-animation {
-    transition: all 0.5s;
+    transition: all $transition-slow-duration;
     opacity: 0;
     transform: translateY(-100%);
     pointer-events: none;
@@ -337,7 +337,6 @@
     right: 0;
 
   }
-
 
   &__button:not(:last-child) {
     border-right: 2px solid $elements-color;

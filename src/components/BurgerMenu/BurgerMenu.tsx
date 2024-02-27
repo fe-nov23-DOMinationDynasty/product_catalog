@@ -1,5 +1,3 @@
-// import { useState } from 'react';
-
 import '../Header/header.scss';
 import { NavLink } from 'react-router-dom';
 import { useEffect } from 'react';
