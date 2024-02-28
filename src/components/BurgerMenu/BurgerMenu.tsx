@@ -68,7 +68,7 @@ export const BurgerMenu: React.FC<Props> = ({
           </li>
           <li className="burger_menu__list_item">
             <NavLink
-              to="catalog/phones"
+              to="phones"
               onClick={() => {
                 setCloseBurger(false);
               }}
@@ -83,7 +83,7 @@ export const BurgerMenu: React.FC<Props> = ({
           </li>
           <li className="burger_menu__list_item">
             <NavLink
-              to="catalog/tablets"
+              to="tablets"
               onClick={() => {
                 setCloseBurger(false);
               }}
@@ -98,7 +98,7 @@ export const BurgerMenu: React.FC<Props> = ({
           </li>
           <li className="burger_menu__list_item">
             <NavLink
-              to="catalog/accessories"
+              to="accessories"
               onClick={() => {
                 setCloseBurger(false);
               }}
