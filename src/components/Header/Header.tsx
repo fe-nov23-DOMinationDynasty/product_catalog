@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
 import './header.scss';
 
@@ -12,13 +12,12 @@ import {
 } from './utils';
 
 export const Header = () => {
-
   const [openBurger, setOpenBurger] = useState(false);
-  const [currentURL, setCurrentURL] = useState('');
   const [sortField, setSortField] = useState('');
 
   const favouriteProducts = useAppSelector((state) => state.favouritesReducer);
   const { cartItems } = useAppSelector((state) => state.cartReducer);
+  const location = useLocation();
 
   return (
     <>
@@ -32,9 +31,6 @@ export const Header = () => {
             <ul className="header__nav-list">
               <li className="header__nav-list-item">
                 <NavLink
-                  onClick={() => {
-                    setCurrentURL('/');
-                  }}
                   to="/"
                   className={handleIsActive('header__nav-link', 'is-active')}>
                 Home
@@ -42,9 +38,6 @@ export const Header = () => {
               </li>
               <li className="header__nav-list-item">
                 <NavLink
-                  onClick={() => {
-                    setCurrentURL('catalog/phones');
-                  }}
                   to="catalog/phones"
                   className={handleIsActive('header__nav-link', 'is-active')}
                 >
@@ -53,9 +46,6 @@ export const Header = () => {
               </li>
               <li className="header__nav-list-item">
                 <NavLink
-                  onClick={() => {
-                    setCurrentURL('catalog/tablets');
-                  }}
                   to="catalog/tablets"
                   className={handleIsActive('header__nav-link', 'is-active')}
                 >
@@ -64,9 +54,6 @@ export const Header = () => {
               </li>
               <li className="header__nav-list-item">
                 <NavLink
-                  onClick={() => {
-                    setCurrentURL('catalog/accessories');
-                  }}
                   to="catalog/accessories"
                   className={handleIsActive('header__nav-link', 'is-active')}
                 >
@@ -105,9 +92,6 @@ export const Header = () => {
               </button>
             </div>
             <NavLink
-              onClick={() => {
-                setCurrentURL('favourites');
-              }}
               to="favourites"
               className={
                 handleIsActive('header__button', 'header__button--is-active')
@@ -120,7 +104,7 @@ export const Header = () => {
                 />
               ) : (
                 <img
-                  src={currentURL !== 'favourites'
+                  src={location.pathname !== '/favourites'
                     ? "./logos/favourites.svg"
                     : "./logos/favourites-selected.svg"}
                   alt="logoFavourite"
@@ -162,8 +146,7 @@ export const Header = () => {
       <BurgerMenu
         setCloseBurger={setOpenBurger}
         openBurger={openBurger}
-        currentURL={currentURL}
-        setCurrentURL={setCurrentURL}
+        location={location.pathname}
       />
     </>
   );

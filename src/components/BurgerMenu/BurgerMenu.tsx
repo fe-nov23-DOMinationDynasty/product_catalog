@@ -7,15 +7,13 @@ import { handleIsActive } from '../Header/utils';
 type Props = {
   openBurger: boolean
   setCloseBurger: (state: boolean) => void;
-  currentURL:string;
-  setCurrentURL: (state:string) => void
+  location: string
 };
 
 export const BurgerMenu: React.FC<Props> = ({
   openBurger,
   setCloseBurger,
-  currentURL,
-  setCurrentURL
+  location
 }) => {
   useEffect(() => {
     if (openBurger) {
@@ -57,7 +55,6 @@ export const BurgerMenu: React.FC<Props> = ({
               to="/"
               onClick={() => {
                 setCloseBurger(false);
-                setCurrentURL('/');
               }}
               className={
                 handleIsActive(
@@ -72,7 +69,6 @@ export const BurgerMenu: React.FC<Props> = ({
             <NavLink
               to="catalog/phones"
               onClick={() => {
-                setCurrentURL('catalog/phones');
                 setCloseBurger(false);
               }}
               className={
@@ -89,7 +85,6 @@ export const BurgerMenu: React.FC<Props> = ({
               to="catalog/tablets"
               onClick={() => {
                 setCloseBurger(false);
-                setCurrentURL('catalog/tablets');
               }}
               className={
                 handleIsActive(
@@ -104,7 +99,6 @@ export const BurgerMenu: React.FC<Props> = ({
             <NavLink
               to="catalog/accessories"
               onClick={() => {
-                setCurrentURL('catalog/accessories');
                 setCloseBurger(false);
               }}
               className={
@@ -121,7 +115,6 @@ export const BurgerMenu: React.FC<Props> = ({
         <div className="burger_menu__buttons">
           <NavLink
             onClick={() => {
-              setCurrentURL('favourites');
               setCloseBurger(false);
             }}
             to="favourites"
@@ -132,7 +125,7 @@ export const BurgerMenu: React.FC<Props> = ({
             }
           >
             <img
-              src={currentURL !== 'favourites'
+              src={location !== '/favourites'
                 ? "./logos/favourites.svg"
                 : "./logos/favourites-selected.svg"}
               alt="logoFavourite" />
@@ -140,7 +133,6 @@ export const BurgerMenu: React.FC<Props> = ({
 
           <NavLink
             onClick={() => {
-              setCurrentURL('cart');
               setCloseBurger(false);
             }}
             to="cart"
