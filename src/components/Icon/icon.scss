@@ -2,11 +2,11 @@
 @import '../../styles/utils/mixins';
 
 .icon__wrapper {
+  position: relative;
+
   @include onTablet {
     display: flex;
   }
-
-  position: relative;
 }
 
 .icon__button {
