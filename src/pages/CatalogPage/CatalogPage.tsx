@@ -27,6 +27,7 @@ import { actions as productsActions } from '../../features/productsSlice';
 import { getMockArray } from '../../services/getMockArray';
 import { wait } from '../../utils/fetchClient';
 import { Product } from '../../types/Product';
+import { NoItemsMessage } from '../../components/NoItemsMessage';
 
 const lengthOfSkeletonCards = 8;
 
@@ -92,7 +93,7 @@ export const CatalogPage = () => {
   }, [itemsPerPage, currentPageNumber, preparedProducts]);
 
   const amountOfPages = Math.ceil(
-    preparedProducts?.length || 0 / +itemsPerPage
+    preparedProducts?.length as number / +itemsPerPage
   );
 
   const handleItemsPerPageChanged = (newItemsPerPage: string) => {
@@ -213,17 +214,28 @@ export const CatalogPage = () => {
               />
             </div>
 
-            <div className="catalog-page__products">
-              <ProductTable
-                products={
-                  paginatedProducts
-                  || getMockArray(Math.min(
-                    lengthOfSkeletonCards,
-                    (+itemsPerPage || 8))
-                  )
-                }
-              />
-            </div>
+            {!!query && !paginatedProducts?.length
+              ? (
+                <div className="catalog-page__no-items-message">
+                  <NoItemsMessage
+                    message='No items matching'
+                    image='./img/no-matching-items.webp'
+                  />
+                </div>
+              )
+              : (
+                <div className="catalog-page__products">
+                  <ProductTable
+                    products={
+                      paginatedProducts
+                      || getMockArray(Math.min(
+                        lengthOfSkeletonCards,
+                        (+itemsPerPage || 8))
+                      )
+                    }
+                  />
+                </div>
+              )}
           </div>
 
           {amountOfPages > 1 && (

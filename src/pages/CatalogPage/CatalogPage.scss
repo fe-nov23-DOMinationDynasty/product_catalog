@@ -10,6 +10,10 @@
     }
   }
 
+  &__no-items-message {
+    grid-column: 1 / -1;
+  }
+
   &__wrap {
     grid-column: 1 / -1;
     align-items: center;
@@ -107,10 +111,15 @@
     background-position: right 10px top 50%;
 
     @include onDesktop {
-      &:hover, &:focus {
+      &:hover {
         box-shadow: 0 2px 15px 0 #0000000D;
         background-position: right -10% top 50%;
       }
+    }
+
+    &:focus {
+      box-shadow: 0 2px 15px 0 #0000000D;
+      background-position: right -10% top 50%;
     }
 
     &:focus-visible {
