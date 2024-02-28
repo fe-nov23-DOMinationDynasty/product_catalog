@@ -17,10 +17,21 @@
 
     @include defaultFont;
 
+    &--dark {
+      color: $dark-primary-color;
+      background-color: $surface-primary-dark-theme-color;
+    }
+
     &--selected {
-      color: white;
+      color: $white-color;
       background-color: $primary-color;
       pointer-events: none;
+
+      &--dark {
+        color: $dark-primary-color;
+        border: 1px solid $accent-dark-theme-color;
+        background-color: $accent-dark-theme-color;
+      }
     }
   }
 

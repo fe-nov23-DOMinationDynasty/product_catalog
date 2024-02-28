@@ -13,7 +13,6 @@ import { useAppDispatch, useAppSelector } from './app/hooks';
 import { actions as productsActions } from './features/productsSlice';
 import { Theme } from './enums/Theme';
 
-
 export const App = () => {
   const isDark = useAppSelector(state => state.themeReducer) === Theme.Dark;
 

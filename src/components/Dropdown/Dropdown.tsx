@@ -2,6 +2,8 @@
 import React, { useRef, useState } from 'react';
 import cn from 'classnames';
 import './Dropdown.scss';
+import { useAppSelector } from '../../app/hooks';
+import { Theme } from '../../enums/Theme';
 
 interface Props {
   onSelected: (option: string) => void;
@@ -18,6 +20,8 @@ export const Dropdown: React.FC<Props> = ({
 }) => {
   const [isDropdownOpened, setIsDropdownOpened] = useState(false);
   const triggerButton = useRef<HTMLButtonElement>(null);
+  const isDark = useAppSelector(state => state.themeReducer) === Theme.Dark;
+
 
   const handleSelect = (option: string) => {
     onSelected(option);
@@ -45,7 +49,9 @@ export const Dropdown: React.FC<Props> = ({
       <button
         type="button"
         ref={triggerButton}
-        className="dropdown__trigger"
+        className={cn('dropdown__trigger', {
+          'dropdown__trigger--dark': isDark,
+        })}
         onClick={handleTriggerButtonClicked}
         onBlur={handleTriggerButtonBlur}>
         {selectedOption || 'Select option'}
@@ -54,6 +60,7 @@ export const Dropdown: React.FC<Props> = ({
       <div
         className={cn('dropdown__menu', {
           'dropdown__menu--active': isDropdownOpened,
+          'dropdown__menu--active--dark': isDropdownOpened && isDark,
         })}>
         <ul className="dropdown__list">
           {options.map((option) => (

@@ -30,11 +30,16 @@
   &__amount-products {
     margin-bottom: 32px;
 
-    color: $secondary-color;
+    color: var(--secondary-text-color);
 
     @include onTablet {
       margin-bottom: 40px;
     }
+  }
+
+  &__dropdown-title {
+    display: inline-block;
+    color: var(--secondary-text-color);
   }
 
   &__sort-dropdown {
@@ -60,11 +65,6 @@
     @include onDesktop {
       width: 130px;
     }
-  }
-
-  &__dropdown-title {
-    display: inline-block;
-    color: $secondary-color;
   }
 
   &__products {

@@ -1,8 +1,11 @@
 @import './variables';
 
 .dark-theme {
+  --background-color: #{$dark-theme-background-color};
   --primary-text-color: #{$dark-primary-color};
   --secondary-text-color: #{$secondary-text-dark-theme-color};
-  --icons-color: #{$icons-color};
+  --icons-color: #{$icons-dark-theme-color};
   --elements-color: #{$elements-dark-theme-color};
+  --hover-color: #{$accent-dark-hover};
+  --hover-button-background-color: #{$surface-secondary-dark-theme-color};
 }

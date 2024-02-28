@@ -23,6 +23,12 @@ $button-border-primary: 1px solid $primary-color;
 
   @include hoverEffect(border, $button-border-primary);
 
+  &--disabled {
+    cursor: default;
+    pointer-events: none;
+    border: $button-border;
+  }
+
   &--dark {
     border: none;
     background-color: $surface-secondary-dark-theme-color;
@@ -91,12 +97,6 @@ $button-border-primary: 1px solid $primary-color;
     &--dark {
       background-image: url(../icons/go-top-dark.svg);
     }
-  }
-
-  &--disabled {
-    cursor: default;
-    pointer-events: none;
-    border: $button-border;
   }
 
   &--add {

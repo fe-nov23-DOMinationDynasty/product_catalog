@@ -12,6 +12,8 @@ import { Icon } from '../Icon';
 import {
   handleIsActive,
 } from './utils';
+import { Theme } from '../../enums/Theme';
+import { actions as themeActions } from '../../features/themeSlice';
 
 export const Header = () => {
   const [openBurger, setOpenBurger] = useState(false);
