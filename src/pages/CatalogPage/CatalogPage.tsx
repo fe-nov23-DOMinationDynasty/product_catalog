@@ -1,7 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useMemo, useRef } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 
+import debounce from 'lodash.debounce';
 import { Pagination } from '../../components/Pagination';
 import { useAppSelector } from '../../app/hooks';
 import { ProductTable } from '../../components/ProductTable/ProductTable';
@@ -13,10 +14,11 @@ import { getSearchWith } from '../../utils/searchHelper';
 
 import './CatalogPage.scss';
 import '../../styles/blocks/button.scss';
-import { prepareProducts } from '../../utils/productsHelper';
-import { itemsPerPageOptions } from '../../constants/constants';
+import { paginateProducts, prepareProducts } from '../../utils/productsHelper';
+import { debounceDelay, itemsPerPageOptions } from '../../constants/constants';
 import { BreadCrumbs } from '../../components/BreadCrumbs';
 import { capitalizeFirstLetter } from '../../services/capitalizeFirstLetter';
+import { FilterOptions } from '../../types/FilterOptions';
 
 export const CatalogPage = () => {
   const location = useLocation();
@@ -24,11 +26,19 @@ export const CatalogPage = () => {
   const itemsPerPage = searchParams.get('perPage') || 'all';
   const sortOption = searchParams.get('sortBy') || '';
   const currentPageNumber = searchParams.get('page') || 1;
+  const query = searchParams.get('query') || '';
   const productCategory = location.pathname.split('/').at(-1);
   const { products, isLoading, errorMessage } = useAppSelector(
     (state) => state.productsReducer
   );
   const dropdownsRef = useRef<HTMLDivElement>(null);
+  const [inputQuery, setInputQuery] = useState(query);
+  const updateQuery = useCallback(debounce((newParams: string) => {
+
+    if (newParams !== searchParams.toString()) {
+      setSearchParams(newParams);
+    }
+  }, debounceDelay), [searchParams]);
 
   const categoryProducts = useMemo(() => {
     return products.filter(({ category }) => category === productCategory);
@@ -37,12 +47,21 @@ export const CatalogPage = () => {
   const preparedProducts = useMemo(() => {
     return prepareProducts(
       categoryProducts,
-      { perPage: +itemsPerPage || null, currentPage: +currentPageNumber! || 1 },
-      sortOption as SortOptions
+      sortOption as SortOptions,
+      { query } as FilterOptions
     );
-  }, [categoryProducts, sortOption, itemsPerPage, currentPageNumber]);
+  }, [categoryProducts, sortOption, itemsPerPage, currentPageNumber, query]);
 
-  const amountOfPages = Math.ceil(categoryProducts.length / +itemsPerPage);
+  const paginatedProducts = useMemo(() => (
+    paginateProducts(
+      preparedProducts,
+      {
+        perPage: +itemsPerPage || null,
+        currentPage: +currentPageNumber! || 1
+      })
+  ), [itemsPerPage, currentPageNumber, preparedProducts]);
+
+  const amountOfPages = Math.ceil(preparedProducts.length / +itemsPerPage);
 
   const handleItemsPerPageChanged = (newItemsPerPage: string) => {
     if (newItemsPerPage !== itemsPerPage) {
@@ -79,11 +98,25 @@ export const CatalogPage = () => {
     return '';
   };
 
+  const handleQueryChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const normalizedQuery = event.target.value.toLowerCase().trim();
+
+    updateQuery(
+      getSearchWith(searchParams, { 'query': normalizedQuery || null })
+    );
+
+    setInputQuery(event.target.value);
+  };
+
   useEffect(() => {
     if (currentPageNumber !== 1) {
       dropdownsRef.current?.scrollIntoView({ behavior: 'smooth' });
     }
   }, [currentPageNumber]);
+
+  useEffect(() => {
+    setInputQuery(query);
+  }, [productCategory]);
 
   return (
     <div className="catalog-page">
@@ -116,7 +149,8 @@ export const CatalogPage = () => {
                 </span>
                 <Dropdown
                   onSelected={handleSortParamsChanged}
-                  options={Object.keys(SortOptions)}
+                  options={Object.keys(SortOptions)
+                    .filter(item => item !== 'HotPrices')}
                   selectedOption={getSelectedSortOption(sortOption)}
                 />
               </div>
@@ -132,8 +166,21 @@ export const CatalogPage = () => {
               </div>
             </div>
 
+            <div className="catalog-page__search-wrapper">
+              <span className="catalog-page__search-title small-text">
+                Search
+              </span>
+              <input
+                value={inputQuery}
+                onChange={handleQueryChanged}
+                placeholder={`Search in ${productCategory}`}
+                type="search"
+                className='catalog-page__search'
+              />
+            </div>
+
             <div className="catalog-page__products">
-              <ProductTable products={preparedProducts} />
+              <ProductTable products={paginatedProducts} />
             </div>
           </div>
 
