@@ -1,0 +1,18 @@
+.no-items-message {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__image {
+    user-select: none;
+    -webkit-user-select: none;
+    max-width: 300px;
+    aspect-ratio: 1 / 1;
+  }
+
+  &__info {
+    user-select: none;
+    -webkit-user-select: none;
+  }
+}

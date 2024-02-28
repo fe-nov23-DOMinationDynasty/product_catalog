@@ -11,24 +11,14 @@
 
 .icon__button {
   @include onTablet {
-    box-sizing: border-box;
     display: flex;
     align-items: center;
+    box-sizing: border-box;
   }
 }
 
 .icon__image {
-  transition: transform 0.5s ease-out;
-
-  &:hover {
-    @include onTablet {
-      transform: rotateY(360deg);
-    }
-
-    @include onDesktop {
-      transform: rotateY(360deg);
-    }
-  }
+  transition: transform $transition-slow-duration ease-out;
 }
 
 
