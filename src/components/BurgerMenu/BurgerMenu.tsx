@@ -1,106 +1,148 @@
-import { useState } from 'react';
-import classNames from 'classnames';
-
 import '../Header/Header.scss';
 import { NavLink } from 'react-router-dom';
+import { useEffect } from 'react';
 import { LogoLink } from '../LogoLink';
+import { handleIsActive } from '../Header/utils';
 
-interface Props {
-  setCloseBurger: (state: boolean) => void,
+
+type Props = {
+  openBurger: boolean
+  setCloseBurger: (state: boolean) => void;
+  location: string
 };
 
-export const BurgerMenu: React.FC<Props> = ({ setCloseBurger }) => {
-  const [currentURL, setCurrentURL] = useState('');
+export const BurgerMenu: React.FC<Props> = ({
+  openBurger,
+  setCloseBurger,
+  location
+}) => {
+  useEffect(() => {
+    if (openBurger) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
 
-  const handleBurgerLinkIsActive = ({ isActive }: { isActive: boolean }) =>
-    classNames('burger__nav__link', { 'burger__is--active': isActive });
-
-  const handleBurgerButtonIsActive = ({ isActive }: { isActive: boolean }) =>
-    classNames('burger__button', { 'burger__button--is-active': isActive });
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [openBurger]);
 
   return (
-    <aside id="burgerMenu" className="burger__menu">
-      <div className="burger__top">
-        <div className="burger__logo">
+    <aside
+      id="burgerMenu"
+      className={`burger_menu burger_menu--pre-animation
+       ${openBurger ? 'burger_menu--animation' : ''}`}
+    >
+      <div className="burger_menu__top">
+        <div className="burger_menu__logo">
           <LogoLink />
         </div>
 
-        <a
+        <button
+          type='button'
           onClick={() => {
             setCloseBurger(false);
           }}
-          href={`#${currentURL}`}
-          className="burger__close">
+          className="burger_menu__close">
           <img src="./logos/close.svg" alt="layoutLogo" />
-        </a>
+        </button>
       </div>
 
-      <div className="burger__main">
-        <ul className="burger__nav__list">
-          <li className="burger__list__item">
+      <div className="burger_menu__main">
+        <ul className="burger_menu__nav_list">
+          <li className="burger_menu__list_item">
             <NavLink
               to="/"
               onClick={() => {
-                setCurrentURL('/');
                 setCloseBurger(false);
               }}
-              className={handleBurgerLinkIsActive}>
+              className={
+                handleIsActive(
+                  'burger_menu__nav_link', 'burger_menu--is-active'
+                )
+              }
+            >
               Home
             </NavLink>
           </li>
-          <li className="burger__list__item">
+          <li className="burger_menu__list_item">
             <NavLink
-              to="catalog/phones"
+              to="phones"
               onClick={() => {
-                setCurrentURL('catalog/phones');
                 setCloseBurger(false);
               }}
-              className={handleBurgerLinkIsActive}>
+              className={
+                handleIsActive(
+                  'burger_menu__nav_link', 'burger_menu--is-active'
+                )
+              }
+            >
               Phones
             </NavLink>
           </li>
-          <li className="burger__list__item">
+          <li className="burger_menu__list_item">
             <NavLink
-              to="catalog/tablets"
+              to="tablets"
               onClick={() => {
-                setCurrentURL('catalog/tablets');
                 setCloseBurger(false);
               }}
-              className={handleBurgerLinkIsActive}>
+              className={
+                handleIsActive(
+                  'burger_menu__nav_link', 'burger_menu--is-active'
+                )
+              }
+            >
               Tablets
             </NavLink>
           </li>
-          <li className="burger__list__item">
+          <li className="burger_menu__list_item">
             <NavLink
-              to="catalog/accessories"
+              to="accessories"
               onClick={() => {
-                setCurrentURL('catalog/accessories');
                 setCloseBurger(false);
               }}
-              className={handleBurgerLinkIsActive}>
+              className={
+                handleIsActive(
+                  'burger_menu__nav_link', 'burger_menu--is-active'
+                )
+              }
+            >
               Accessories
             </NavLink>
           </li>
         </ul>
 
-        <div className="burger__buttons">
+        <div className="burger_menu__buttons">
           <NavLink
             onClick={() => {
-              setCurrentURL('favourites');
               setCloseBurger(false);
             }}
             to="favourites"
-            className={handleBurgerButtonIsActive}>
-            <img src="./logos/favourites.svg" alt="logoFavourite" />
+            className={
+              handleIsActive(
+                'burger_menu__button', 'burger_menu__button--is-active'
+              )
+            }
+          >
+            <img
+              src={location !== '/favourites'
+                ? "./logos/favourites.svg"
+                : "./logos/favourites-selected.svg"}
+              alt="logoFavourite" />
           </NavLink>
 
           <NavLink
             onClick={() => {
-              setCurrentURL('cart');
               setCloseBurger(false);
             }}
             to="cart"
-            className={handleBurgerButtonIsActive}>
+            className={
+              handleIsActive(
+                'burger_menu__button', 'burger_menu__button--is-active'
+              )
+            }
+          >
             <img src="./logos/shopping-bag.svg" alt="logoShoppingBag" />
           </NavLink>
         </div>

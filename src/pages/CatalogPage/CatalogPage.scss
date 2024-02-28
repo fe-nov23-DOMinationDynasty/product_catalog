@@ -46,6 +46,13 @@
     @include onTablet {
       margin-bottom: 40px;
     }
+
+    &--skeleton {
+      height: 21px;
+      max-width: 80px;
+      margin-bottom: 32px;
+
+    }
   }
 
   &__sort-dropdown {

@@ -7,17 +7,16 @@
 
   --promo-height: 350px;
 
+  grid-column: 1 / -1;
   display: flex;
   gap: 16px;
   justify-content: center;
 
   height: var(--promo-height);
   width: 100%;
-
   margin-bottom: 32px;
-  box-sizing: border-box;
 
-  grid-column: 1 / -1;
+  box-sizing: border-box;
 
   @include onTablet {
     --promo-height: 270px;
@@ -35,6 +34,18 @@
 
     @include onTablet {
       position: static;
+    }
+
+    &--skeleton {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: var(--promo-height);
+      border-radius: 0;
+
+      @include onTablet {
+        position: relative;
+      }
     }
   }
 
@@ -119,5 +130,12 @@
     background-repeat: no-repeat;
     background-position: center;
     background-color: $white-color;
+  }
+
+  &__button-skeleton {
+    @include onTablet {
+      height: var(--promo-height);
+      min-width: $button-width;
+    }
   }
 }

@@ -9,8 +9,8 @@ interface Props {
 
 export const ProductTable: React.FC<Props> = ({ products }) => (
   <div className="product-table">
-    {products.map((product) => (
-      <ProductCard product={product as Product} key={product.id} />
+    {products.map((product, index) => (
+      <ProductCard product={product as Product} key={product?.id || index} />
     ))}
   </div>
 );

@@ -3,10 +3,10 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 
 import debounce from 'lodash.debounce';
+import Skeleton from 'react-loading-skeleton';
 import { Pagination } from '../../components/Pagination';
-import { useAppSelector } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { ProductTable } from '../../components/ProductTable/ProductTable';
-import { Loader } from '../../components/Loader';
 import { ErrorMessage } from '../../components/ErrorMessage';
 import { Dropdown } from '../../components/Dropdown';
 import { SortOptions } from '../../enums/SortOptions';
@@ -15,10 +15,20 @@ import { getSearchWith } from '../../utils/searchHelper';
 import './CatalogPage.scss';
 import '../../styles/blocks/button.scss';
 import { paginateProducts, prepareProducts } from '../../utils/productsHelper';
-import { debounceDelay, itemsPerPageOptions } from '../../constants/constants';
-import { BreadCrumbs } from '../../components/BreadCrumbs';
 import { capitalizeFirstLetter } from '../../services/capitalizeFirstLetter';
 import { FilterOptions } from '../../types/FilterOptions';
+import {
+  debounceDelay,
+  itemsPerPageOptions,
+  requestDelay
+} from '../../constants/constants';
+import { BreadCrumbs } from '../../components/BreadCrumbs';
+import { actions as productsActions } from '../../features/productsSlice';
+import { getMockArray } from '../../services/getMockArray';
+import { wait } from '../../utils/fetchClient';
+import { Product } from '../../types/Product';
+
+const lengthOfSkeletonCards = 8;
 
 export const CatalogPage = () => {
   const location = useLocation();
@@ -28,7 +38,7 @@ export const CatalogPage = () => {
   const currentPageNumber = searchParams.get('page') || 1;
   const query = searchParams.get('query') || '';
   const productCategory = location.pathname.split('/').at(-1);
-  const { products, isLoading, errorMessage } = useAppSelector(
+  const { products, errorMessage } = useAppSelector(
     (state) => state.productsReducer
   );
   const dropdownsRef = useRef<HTMLDivElement>(null);
@@ -38,13 +48,29 @@ export const CatalogPage = () => {
     if (newParams !== searchParams.toString()) {
       setSearchParams(newParams);
     }
-  }, debounceDelay), [searchParams]);
+  }, debounceDelay), [searchParams, productCategory]);
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(productsActions.clear());
+
+    wait(requestDelay)
+      .then(() => {
+        dispatch(productsActions.loadProducts());
+      });
+
+  }, [productCategory, currentPageNumber]);
 
   const categoryProducts = useMemo(() => {
-    return products.filter(({ category }) => category === productCategory);
+    return products?.filter(({ category }) => category === productCategory);
   }, [productCategory, products]);
 
   const preparedProducts = useMemo(() => {
+    if (!products.length) {
+      return null;
+    }
+
     return prepareProducts(
       categoryProducts,
       sortOption as SortOptions,
@@ -52,16 +78,22 @@ export const CatalogPage = () => {
     );
   }, [categoryProducts, sortOption, itemsPerPage, currentPageNumber, query]);
 
-  const paginatedProducts = useMemo(() => (
-    paginateProducts(
-      preparedProducts,
+  const paginatedProducts = useMemo(() => {
+    if (!products.length) {
+      return null;
+    }
+
+    return paginateProducts(
+      preparedProducts as Product[],
       {
         perPage: +itemsPerPage || null,
         currentPage: +currentPageNumber! || 1
-      })
-  ), [itemsPerPage, currentPageNumber, preparedProducts]);
+      });
+  }, [itemsPerPage, currentPageNumber, preparedProducts]);
 
-  const amountOfPages = Math.ceil(preparedProducts.length / +itemsPerPage);
+  const amountOfPages = Math.ceil(
+    preparedProducts?.length || 0 / +itemsPerPage
+  );
 
   const handleItemsPerPageChanged = (newItemsPerPage: string) => {
     if (newItemsPerPage !== itemsPerPage) {
@@ -120,9 +152,7 @@ export const CatalogPage = () => {
 
   return (
     <div className="catalog-page">
-      {isLoading && <Loader />}
-
-      {!isLoading && !errorMessage && (
+      {!errorMessage && (
         <>
           <div className="catalog-page__breadcrumbs-container">
             <BreadCrumbs />
@@ -136,9 +166,13 @@ export const CatalogPage = () => {
                   : productCategory!
               )}
             </h1>
-            <p className="catalog-page__amount-products">
-              {categoryProducts.length} models
-            </p>
+            {categoryProducts.length
+              ? (
+                <p className="catalog-page__amount-products">
+                  {categoryProducts.length} models
+                </p>)
+              : <Skeleton className='catalog-page__amount-products--skeleton' />
+            }
           </div>
 
           <div className="catalog-page__wrap">
@@ -180,7 +214,15 @@ export const CatalogPage = () => {
             </div>
 
             <div className="catalog-page__products">
-              <ProductTable products={paginatedProducts} />
+              <ProductTable
+                products={
+                  paginatedProducts
+                  || getMockArray(Math.min(
+                    lengthOfSkeletonCards,
+                    (+itemsPerPage || 8))
+                  )
+                }
+              />
             </div>
           </div>
 
@@ -195,7 +237,7 @@ export const CatalogPage = () => {
         </>
       )}
 
-      {!isLoading && !!errorMessage && (
+      {!!errorMessage && (
         <ErrorMessage errorMessage={errorMessage} />
       )}
     </div>

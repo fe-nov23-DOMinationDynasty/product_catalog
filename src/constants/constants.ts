@@ -4,6 +4,7 @@ export const localStorageFavouritesKey = 'favourites';
 export const localStorageCartKey = 'cart';
 export const itemsPerPageOptions = ['4', '8', '16', 'all'];
 export const debounceDelay = 700;
+export const requestDelay = 300;
 export const breakpoints = {
   500: {
     slidesPerView: 2,
