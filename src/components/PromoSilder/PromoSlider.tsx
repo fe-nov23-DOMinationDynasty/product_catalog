@@ -12,7 +12,8 @@ import 'swiper/css';
 import './PromoSlider.scss';
 import { useResize } from '../../hooks/useResize';
 import { tabletWidth } from '../../constants/constants';
-import { animDuration } from '../../styles/utils/AOS';
+import { animDuration } from '../../styles/utils/AOS'
+import { getPagination } from './promoSliderUtils';
 
 
 interface Props {
@@ -21,10 +22,9 @@ interface Props {
 
 export const PromoSlider: React.FC<Props> = React.memo(({ promos }) => {
   const [windowWidth] = useResize();
+  const swiperRef = useRef<SwiperRef>(null);
 
   const isTablet = windowWidth >= tabletWidth;
-
-  const swiperRef = useRef<SwiperRef>(null);
 
   const handlePrev = useCallback(() => {
     if (!swiperRef.current) {
@@ -60,15 +60,7 @@ export const PromoSlider: React.FC<Props> = React.memo(({ promos }) => {
           loop
           autoplay
           ref={swiperRef}
-          pagination={{
-            bulletClass: "promo-swiper__pagination-bullet",
-            bulletActiveClass: "promo-swiper__pagination-bullet--active",
-            clickable: true,
-            el: '.promo-swiper__pagination',
-            renderBullet: (_index: number, className: string) => {
-              return `<span class="${className} promo-swiper__pagination-bullet"></span>`;
-            },
-          }}
+          pagination={getPagination()}
           modules={[Pagination, Autoplay]}
           className="promo-swiper__swiper">
           {promos.map((promo) => (

@@ -77,7 +77,7 @@ export const CartPage = () => {
 
           <button
             type="button"
-            className="button button-add button--cart"
+            className="button button--add button--cart"
             onClick={handleCheckout}>
             Checkout
           </button>

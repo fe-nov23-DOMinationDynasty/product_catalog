@@ -1,0 +1,38 @@
+@import '../../styles/utils/text-styles';
+@import '../../styles/utils/variables';
+
+.favourites-page {
+  &__bread-crumbs-wrapper {
+    margin-block: 24px;
+
+    @include onTablet {
+      margin-bottom: 40px;
+    }
+  }
+
+  &__title {
+    margin-bottom: 8px;
+  }
+
+  &__items-amount {
+    display: block;
+    margin-bottom: 32px;
+    color: $secondary-color;
+
+    @include onTablet {
+      margin-bottom: 40px;
+    }
+  }
+
+  &__items-container {
+    margin-bottom: 56px;
+
+    @include onTablet {
+      margin-bottom: 64px;
+    }
+
+    @include onDesktop {
+      margin-bottom: 80px;
+    }
+  }
+}

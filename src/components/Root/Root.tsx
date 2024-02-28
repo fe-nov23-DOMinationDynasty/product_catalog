@@ -1,13 +1,13 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import React from 'react';
 import { App } from '../../App';
-import { HomePage } from '../../pages/HomePage/HomePage';
-import { CatalogPage } from '../../pages/CatalogPage/CatalogPage';
-import { FavouritesPage } from '../../pages/FavouritesPage/FavouritesPage';
-import { ItemCardPage } from '../../pages/ItemCardPage/ItemCardPage';
-import { CartPage } from '../../pages/CartPage/CartPage';
 import { NotFoundPage } from '../../pages/NotFound';
 import { Category } from '../../enums/Category';
+import { HomePage } from '../../pages/HomePage';
+import { CatalogPage } from '../../pages/CatalogPage';
+import { ItemCardPage } from '../../pages/ItemCardPage';
+import { FavouritesPage } from '../../pages/FavouritesPage';
+import { CartPage } from '../../pages/CartPage';
 
 export const Root = () => (
   <Routes>

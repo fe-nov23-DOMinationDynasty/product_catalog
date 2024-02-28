@@ -1,15 +1,19 @@
 import { useMemo } from 'react';
-import './home-page.scss';
+import './HomePage.scss';
 import '../../styles/utils/text-styles.scss';
 import { PromoSlider } from '../../components/PromoSilder';
 import { useResize } from '../../hooks/useResize';
 import { RecommendsSlider } from '../../components/RecommendsSlider';
 import { useAppSelector } from '../../app/hooks';
 import { ShopCategory } from '../../components/ShopCategory';
-import { promosMobile, promosTabletAndDesktop } from '../../utils/promosHelper';
+
 import { tabletWidth } from '../../constants/constants';
 import { getUnicProducts, sortProducts } from '../../utils/productsHelper';
 import { SortOptions } from '../../enums/SortOptions';
+import {
+  promosMobile,
+  promosTabletAndDesktop
+} from '../../components/PromoSilder/promoSliderUtils';
 
 export const HomePage = () => {
   const [windowWidth] = useResize();

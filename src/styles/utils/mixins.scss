@@ -14,6 +14,12 @@
   letter-spacing: 0;
 }
 
+@mixin textEllipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 @mixin onDesktop {
   @media (min-width: $min-desktop-width) {
     @content;

@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useMemo } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 
 import { Pagination } from '../../components/Pagination';
@@ -16,6 +16,7 @@ import '../../styles/blocks/button.scss';
 import { prepareProducts } from '../../utils/productsHelper';
 import { itemsPerPageOptions } from '../../constants/constants';
 import { BreadCrumbs } from '../../components/BreadCrumbs';
+import { capitalizeFirstLetter } from '../../services/capitalizeFirstLetter';
 
 export const CatalogPage = () => {
   const location = useLocation();
@@ -27,6 +28,7 @@ export const CatalogPage = () => {
   const { products, isLoading, errorMessage } = useAppSelector(
     (state) => state.productsReducer
   );
+  const dropdownsRef = useRef<HTMLDivElement>(null);
 
   const categoryProducts = useMemo(() => {
     return products.filter(({ category }) => category === productCategory);
@@ -40,7 +42,7 @@ export const CatalogPage = () => {
     );
   }, [categoryProducts, sortOption, itemsPerPage, currentPageNumber]);
 
-  const amountOfPages = Math.floor(categoryProducts.length / +itemsPerPage);
+  const amountOfPages = Math.ceil(categoryProducts.length / +itemsPerPage);
 
   const handleItemsPerPageChanged = (newItemsPerPage: string) => {
     if (newItemsPerPage !== itemsPerPage) {
@@ -77,6 +79,12 @@ export const CatalogPage = () => {
     return '';
   };
 
+  useEffect(() => {
+    if (currentPageNumber !== 1) {
+      dropdownsRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [currentPageNumber]);
+
   return (
     <div className="catalog-page">
       {isLoading && <Loader />}
@@ -88,7 +96,13 @@ export const CatalogPage = () => {
           </div>
 
           <div className="catalog-page__header">
-            <h1 className="catalog-page__title h1">{productCategory}</h1>
+            <h1 className="catalog-page__title h1">
+              {capitalizeFirstLetter(
+                productCategory === 'phones'
+                  ? 'Mobile phones'
+                  : productCategory!
+              )}
+            </h1>
             <p className="catalog-page__amount-products">
               {categoryProducts.length} models
             </p>
@@ -96,8 +110,10 @@ export const CatalogPage = () => {
 
           <div className="catalog-page__wrap">
             <div className="catalog-page__dropdowns-container">
-              <div className="catalog-page__sort-dropdown">
-                <span className="catalog-page__dropdown-title">Sort by</span>
+              <div className="catalog-page__sort-dropdown" ref={dropdownsRef}>
+                <span className="catalog-page__dropdown-title small-text">
+                  Sort by
+                </span>
                 <Dropdown
                   onSelected={handleSortParamsChanged}
                   options={Object.keys(SortOptions)}
@@ -105,7 +121,7 @@ export const CatalogPage = () => {
                 />
               </div>
               <div className="catalog-page__items-per-page-dropdown">
-                <span className="catalog-page__dropdown-title">
+                <span className="catalog-page__dropdown-title small-text">
                   Items on page
                 </span>
                 <Dropdown
@@ -125,7 +141,7 @@ export const CatalogPage = () => {
             <div className="catalog-page__pagination wrapper">
               <Pagination
                 amountOfPages={amountOfPages}
-                currentPageIndex={+(currentPageNumber || 1) - 1}
+                currentPageNumber={+currentPageNumber}
               />
             </div>
           )}

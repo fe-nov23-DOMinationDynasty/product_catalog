@@ -30,10 +30,10 @@ export const CharacteristicsBlock: React.FC<Props> = ({
     <div className="characteristic-block__content">
       {options.map(option => (
         <div
-          className={cn('characteristic-block__item-wrapper', {
-            'characteristic-block__item-wrapper--selected': selectedOption === option && !isColorPicker,
-            'characteristic-block__item-wrapper--color-picker': isColorPicker,
-            'characteristic-block__item-wrapper--color-picker--selected': isColorPicker && selectedOption === option
+          className={cn('selector', {
+            'selector--selected': selectedOption === option && !isColorPicker,
+            'selector--color-picker': isColorPicker,
+            'selector--color-picker--selected': isColorPicker && selectedOption === option
           })}
           key={option}
         >
@@ -45,9 +45,10 @@ export const CharacteristicsBlock: React.FC<Props> = ({
                 ? getColorByName(option)
                 : 'transparent'
             }}
-            className={cn('characteristic-block__item', {
-              'characteristic-block__item--color-picker': isColorPicker,
-            })}>
+            className={cn('selector__item', {
+              'selector__item--color-picker': isColorPicker,
+            })}
+          >
             {isColorPicker ? '' : option}
           </button>
         </div>

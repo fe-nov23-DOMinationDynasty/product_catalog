@@ -1,5 +1,6 @@
 $min-tablet-width: 640px;
 $min-desktop-width: 1200px;
+$max-window-width: 1200px;
 
 $page-grid-gap: 16px;
 
@@ -12,6 +13,19 @@ $hover-button-shadow-color: #17203166;
 $white-color: #fff;
 $green-color: #27ae60;
 $red-color: #eb5757;
+$background-color: $white-color;
+$accent-color: $primary-color;
+$surface-primary-color: $white-color;
+$surface-secondary-color: $white-color;
+
+$dark-theme-background-color: #0f1121;
+$surface-primary-dark-theme-color: #161827;
+$surface-secondary-dark-theme-color: #323542;
+$elements-dark-theme-color: #3b3e4a;
+$icons-dark-theme-color: #4a4d58;
+$secondary-text-dark-theme-color: #75767f;
+$accent-dark-theme-color: #905bff;
+
 $card-width: 270px;
 
 $spacing-small: 8px;
