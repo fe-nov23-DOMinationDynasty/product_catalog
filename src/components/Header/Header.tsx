@@ -26,7 +26,7 @@ export const Header = () => {
 
   const favouriteProducts = useAppSelector((state) => state.favouritesReducer);
   const { cartItems } = useAppSelector((state) => state.cartReducer);
-  const isDarkMode = useAppSelector(state => state.themeReducer) === Theme.Dark;
+  const isDark = useAppSelector(state => state.themeReducer) === Theme.Dark;
 
   const handleThemeChanged = (isToggled: boolean) => {
     const theme = isToggled ? Theme.Dark : Theme.Light;
@@ -75,7 +75,7 @@ export const Header = () => {
 
           <div className="header__buttons-block">
             <Classic
-              toggled={isDarkMode}
+              toggled={isDark}
               onToggle={handleThemeChanged}
               style={{
                 fontSize: '30px'

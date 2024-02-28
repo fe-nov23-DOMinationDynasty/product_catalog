@@ -1,6 +1,10 @@
+/* eslint-disable max-len */
 import { useMemo } from 'react';
+import cn from 'classnames';
 import './HomePage.scss';
 import '../../styles/utils/text-styles.scss';
+import '../../styles/utils/dark-theme.scss';
+
 import { PromoSlider } from '../../components/PromoSilder';
 import { useResize } from '../../hooks/useResize';
 import { RecommendsSlider } from '../../components/RecommendsSlider';
@@ -14,8 +18,10 @@ import {
   promosMobile,
   promosTabletAndDesktop
 } from '../../components/PromoSilder/promoSliderUtils';
+import { Theme } from '../../enums/Theme';
 
 export const HomePage = () => {
+  const isDark = useAppSelector(state => state.themeReducer) === Theme.Dark;
   const [windowWidth] = useResize();
 
   const { products, isLoading } = useAppSelector(
@@ -35,7 +41,9 @@ export const HomePage = () => {
   }, [products]);
 
   return (
-    <section className="home-page">
+    <section className={cn('home-page', {
+      'dark-theme': isDark,
+    })}>
       {!isLoading && (
         <>
           <h1 className="h1 home-page__title">
@@ -50,6 +58,7 @@ export const HomePage = () => {
                   : promosMobile
               }
             />
+
             <RecommendsSlider
               title="Brand new models"
               products={newModelsProducts}

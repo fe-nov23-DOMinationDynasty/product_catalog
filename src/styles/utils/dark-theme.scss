@@ -1,0 +1,8 @@
+@import './variables';
+
+.dark-theme {
+  --primary-text-color: #{$dark-primary-color};
+  --secondary-text-color: #{$secondary-text-dark-theme-color};
+  --icons-color: #{$icons-color};
+  --elements-color: #{$elements-dark-theme-color};
+}

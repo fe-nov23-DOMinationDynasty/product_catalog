@@ -49,6 +49,7 @@ export const PromoSlider: React.FC<Props> = React.memo(({ promos }) => {
           className="promo-swiper__prev-button button--arrow-left"
         />
       )}
+
       <div className="promo-swiper__wrapper">
         <Swiper
           loop
