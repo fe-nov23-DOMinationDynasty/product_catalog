@@ -144,6 +144,8 @@ $button-border-primary: 1px solid $primary-color;
 
     &--selected {
       border: $button-border-primary;
+
+      @include hoverEffect(border, $button-border-primary);
     }
 
     &--skeloton {

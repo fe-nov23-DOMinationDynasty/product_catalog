@@ -61,6 +61,10 @@ export const CatalogPage = () => {
         dispatch(productsActions.loadProducts());
       });
 
+    return () => {
+      dispatch(productsActions.clear());
+    };
+
   }, [productCategory, currentPageNumber]);
 
   const categoryProducts = useMemo(() => {

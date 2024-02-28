@@ -44,11 +44,9 @@ export const HomePage = () => {
       .then(() => getPromos())
       .then(setPromos);
 
-    if (!products.length) {
-      wait(requestDelay)
-        .then(() => dispatch(productsActions.loadProducts()));
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    wait(requestDelay)
+      .then(() => dispatch(productsActions.loadProducts()));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

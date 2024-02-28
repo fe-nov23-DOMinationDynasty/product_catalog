@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './BreadCrumbs.scss';
-import { Crumb } from './Crumb';
+import { Crumb } from '../Crumb/Crumb';
 
 export const BreadCrumbs: React.FC = () => {
   const location = useLocation();

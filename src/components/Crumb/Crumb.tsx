@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './BreadCrumbs.scss';
+import '../BreadCrumbs/BreadCrumbs.scss';
 
 interface Props {
   location: string,
