@@ -1,7 +1,7 @@
 import { NavLink, useLocation } from 'react-router-dom';
 
 import './Header.scss';
-import "@theme-toggles/react/css/Classic.css";
+import '@theme-toggles/react/css/Classic.css';
 
 import { useState } from 'react';
 import { Classic } from '@theme-toggles/react';
@@ -22,14 +22,16 @@ export const Header = () => {
 
   const favouriteProducts = useAppSelector((state) => state.favouritesReducer);
   const { cartItems } = useAppSelector((state) => state.cartReducer);
-  const location = useLocation();
-  const isDarkMode = useAppSelector(state => state.themeReducer) === Theme.Dark;
+  const isDarkMode
+    = useAppSelector((state) => state.themeReducer) === Theme.Dark;
 
   const handleThemeChanged = (isToggled: boolean) => {
     const theme = isToggled ? Theme.Dark : Theme.Light;
 
     dispatch(themeActions.setTheme(theme));
   };
+
+  const location = useLocation();
 
   return (
     <>
@@ -76,51 +78,42 @@ export const Header = () => {
           </div>
 
           <div className="header__buttons-block">
-            <Classic
-              toggled={isDarkMode}
-              onToggle={handleThemeChanged}
-              style={{
-                fontSize: '30px'
-              }}
-              className='header__theme-toggler'
-              placeholder={null}
-            />
+            <div className="header__icon-theme">
+              <Classic
+                toggled={isDarkMode}
+                onToggle={handleThemeChanged}
+                style={{
+                  fontSize: '30px',
+                }}
+                className="header__theme-toggler"
+                placeholder={null}
+              />
+            </div>
 
             <NavLink
               to="favourites"
               className={
-                handleIsActive('header__button', 'header__button--is-active')
-              }
+                handleIsActive('header__button', 'header__button--is-active')}
             >
-              {favouriteProducts && favouriteProducts.length > 0 ? (
+              <div className="header__icon-wrapper">
                 <Icon
                   pathImage="./logos/favourites.svg"
                   counter={favouriteProducts.length}
                 />
-              ) : (
-                <img
-                  src={location.pathname !== '/favourites'
-                    ? "./logos/favourites.svg"
-                    : "./logos/favourites-selected.svg"}
-                  alt="logoFavourite"
-                />
-              )}
+              </div>
             </NavLink>
 
             <NavLink
               to="cart"
               className={
-                handleIsActive('header__button', 'header__button--is-active')
-              }
+                handleIsActive('header__button', 'header__button--is-active')}
             >
-              {cartItems && !!cartItems.length ? (
+              <div className="header__icon-wrapper">
                 <Icon
                   pathImage="./logos/shopping-bag.svg"
                   counter={cartItems.length}
                 />
-              ) : (
-                <img src="./logos/shopping-bag.svg" alt="logoShoppingBag" />
-              )}
+              </div>
             </NavLink>
           </div>
 

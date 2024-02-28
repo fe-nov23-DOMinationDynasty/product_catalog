@@ -1,0 +1,41 @@
+@import '../../styles/utils/variables';
+@import '../../styles/utils/mixins';
+
+.icon__wrapper {
+  position: relative;
+
+  @include onTablet {
+    display: flex;
+  }
+}
+
+.icon__button {
+  @include onTablet {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+  }
+}
+
+.icon__image {
+  transition: transform $transition-slow-duration ease-out;
+}
+
+
+.icon__counter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 14px;
+  width: 14px;
+  font-size: 9px;
+
+  position: absolute;
+  color: $white-color;
+  background-color: $red-color;
+  border: solid 1px $white-color;
+  border-radius: 50%;
+  left: 50%;
+  top: -30%;
+}

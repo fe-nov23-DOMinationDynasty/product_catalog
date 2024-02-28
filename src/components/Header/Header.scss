@@ -16,6 +16,10 @@
     margin-bottom: 64px;
   }
 
+  &__icon-wrapper {
+    transition: transform $transition-slow-duration;
+  }
+
   &__nav {
     margin: 0 auto;
     width: 100%;
@@ -121,7 +125,22 @@
     &--is-active {
       position: relative;
     }
+
+    &:hover .header__icon-wrapper {
+      @include onDesktop {
+        transform: scale($transform-scale-big);
+      }
+    }
   }
+
+.header__icon-theme {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-inline: 24px;
+
+  @include hoverEffect(transform, rotate(180deg))
+}
 
   &__button--is-active::after {
     content: '';
