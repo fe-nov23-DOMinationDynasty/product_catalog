@@ -2,11 +2,11 @@
 @import '../../styles/utils/mixins';
 
 .icon__wrapper {
+  position: relative;
+
   @include onTablet {
     display: flex;
   }
-
-  position: relative;
 }
 
 .icon__button {
@@ -18,16 +18,8 @@
 }
 
 .icon__image {
-  transition: transform 0.5s ease-out;
-
-  &:hover {
-    @include onTablet {
-      transform: rotateY(360deg);
-    }
-
-    @include onDesktop {
-      transform: rotateY(360deg);
-    }
+  @include onDesktop {
+    @include hoverEffect(transform,rotateY(360deg))
   }
 }
 
