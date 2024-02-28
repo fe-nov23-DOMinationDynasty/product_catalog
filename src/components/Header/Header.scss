@@ -130,10 +130,6 @@
   &:hover .header__icon-wrapper {
     transition: transform 0.5s ease-out;
 
-    @include onTablet {
-      transform: rotateY(360deg);
-    }
-    
     @include onDesktop {
       transform: rotateY(360deg);
     }
