@@ -28,6 +28,11 @@
     }
   }
 
+  &__title-skeleton {
+    height: 50px;
+    width: 100%;
+  }
+
   --product-swiper-columns: 4;
 
   &__swiper {
@@ -51,12 +56,6 @@
 
     @include onDesktop {
       --product-swiper-columns: 11;
-    }
-
-    &--loading {
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
   }
 
@@ -97,6 +96,11 @@
     align-items: center;
     gap: 8px;
     margin-bottom: 16px;
+  }
+
+  &__price-skeleton {
+    width: 140px;
+    height: 45px;
   }
 
   &__full-price {

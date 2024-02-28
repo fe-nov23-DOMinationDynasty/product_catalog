@@ -13,6 +13,7 @@ import { getPromos } from '../../api/promos';
 import { wait } from '../../utils/fetchClient';
 import { getMockArray } from '../../services/getMockArray';
 import { actions as productsActions } from '../../features/productsSlice';
+import { requestDelay } from '../../constants/constants';
 
 export const HomePage = () => {
   const [promos, setPromos] = useState<Promo[] | null>(null);
@@ -39,12 +40,12 @@ export const HomePage = () => {
   }, [products]);
 
   useEffect(() => {
-    wait(1000)
+    wait(requestDelay)
       .then(() => getPromos())
       .then(setPromos);
 
     if (!products.length) {
-      wait(1000)
+      wait(requestDelay)
         .then(() => dispatch(productsActions.loadProducts()));
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps

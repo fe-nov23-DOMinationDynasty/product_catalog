@@ -14,7 +14,7 @@ import { getSearchWith } from '../../utils/searchHelper';
 import './CatalogPage.scss';
 import '../../styles/blocks/button.scss';
 import { prepareProducts } from '../../utils/productsHelper';
-import { itemsPerPageOptions } from '../../constants/constants';
+import { itemsPerPageOptions, requestDelay } from '../../constants/constants';
 import { BreadCrumbs } from '../../components/BreadCrumbs';
 import { capitalizeFirstLetter } from '../../services/capitalizeFirstLetter';
 import { actions as productsActions } from '../../features/productsSlice';
@@ -22,8 +22,6 @@ import { getMockArray } from '../../services/getMockArray';
 import { wait } from '../../utils/fetchClient';
 
 const lengthOfSkeletonCards = 8;
-
-const mockProductCards = getMockArray(lengthOfSkeletonCards);
 
 export const CatalogPage = () => {
   const location = useLocation();
@@ -42,7 +40,7 @@ export const CatalogPage = () => {
   useEffect(() => {
     dispatch(productsActions.clear());
 
-    wait(1000)
+    wait(requestDelay)
       .then(() => {
         dispatch(productsActions.loadProducts());
       });
@@ -154,7 +152,15 @@ export const CatalogPage = () => {
             </div>
 
             <div className="catalog-page__products">
-              <ProductTable products={preparedProducts || mockProductCards} />
+              <ProductTable
+                products={
+                  preparedProducts
+                  || getMockArray(Math.min(
+                    lengthOfSkeletonCards,
+                    (+itemsPerPage || 8))
+                  )
+                }
+              />
             </div>
           </div>
 
