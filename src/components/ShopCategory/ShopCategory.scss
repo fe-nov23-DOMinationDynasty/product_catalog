@@ -71,9 +71,19 @@
     color: $primary-color;
 
     @include hoverEffect(color, $secondary-color);
+
+    &--dark {
+      color: $dark-primary-color;
+
+      @include hoverEffect(color, $accent-dark-hover);
+    }
   }
 
   &__counter {
     color: $secondary-color;
+
+    &--dark {
+      color: $secondary-text-dark-theme-color;
+    }
   }
 }

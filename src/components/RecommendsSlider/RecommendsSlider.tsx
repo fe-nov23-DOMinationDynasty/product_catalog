@@ -10,6 +10,8 @@ import { ProductCard } from '../ProductCard';
 import 'swiper/css';
 import './RecommendsSlider.scss';
 import '../../styles/blocks/button.scss';
+import { useAppSelector } from '../../app/hooks';
+import { Theme } from '../../enums/Theme';
 
 interface Props {
   title: string;
@@ -17,9 +19,9 @@ interface Props {
 }
 
 export const RecommendsSlider: React.FC<Props> = ({ title, products }) => {
+  const isDark = useAppSelector(state => state.themeReducer) === Theme.Dark;
   const swiperRef = useRef<SwiperRef>(null);
   const [slideIndex, setSlideIndex] = useState(0);
-
 
   const handlePrev = useCallback(() => {
     if (!swiperRef.current) {
@@ -37,6 +39,11 @@ export const RecommendsSlider: React.FC<Props> = ({ title, products }) => {
     swiperRef.current.swiper.slideNext();
   }, []);
 
+  const isStartOfIndex = slideIndex === 0;
+
+  // eslint-disable-next-line max-len
+  const isEndOfIndex = swiperRef.current && slideIndex === products.length - swiperRef.current.swiper.slidesPerViewDynamic();
+
   return (
     <div className="slider">
       <div className="slider__header">
@@ -46,17 +53,18 @@ export const RecommendsSlider: React.FC<Props> = ({ title, products }) => {
           <button
             type="button"
             className={cn('button button--arrow-left', {
-              'button--arrow-left--disabled':
-                slideIndex === 0
+              'button--arrow-left--disabled': isStartOfIndex,
+              'button--arrow-left--disabled--dark': isStartOfIndex && isDark,
+              'button--dark button--arrow-left--dark': isDark,
             })}
             onClick={handlePrev}
           />
           <button
             type="button"
             className={cn('button button--arrow-right', {
-              'button--arrow-right--disabled':
-                swiperRef.current && slideIndex === products.length
-                - swiperRef.current.swiper.slidesPerViewDynamic()
+              'button--arrow-right--disabled': isEndOfIndex,
+              'button--arrow-right--disabled--dark': isDark && isEndOfIndex,
+              'button--dark button--arrow-right--dark': isDark,
             })}
             onClick={handleNext}
           />

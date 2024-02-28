@@ -1,10 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React, { useCallback, useRef } from 'react';
+import cn from 'classnames';
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 import { Link } from 'react-router-dom';
 import { Promo } from '../../types/Promo';
+
 
 import 'swiper/css/pagination';
 import 'swiper/css';
@@ -12,6 +14,8 @@ import './PromoSlider.scss';
 import { useResize } from '../../hooks/useResize';
 import { tabletWidth } from '../../constants/constants';
 import { getPagination } from './promoSliderUtils';
+import { Theme } from '../../enums/Theme';
+import { useAppSelector } from '../../app/hooks';
 
 
 interface Props {
@@ -19,6 +23,8 @@ interface Props {
 }
 
 export const PromoSlider: React.FC<Props> = React.memo(({ promos }) => {
+  const isDark = useAppSelector(state => state.themeReducer) === Theme.Dark;
+
   const [windowWidth] = useResize();
   const swiperRef = useRef<SwiperRef>(null);
 
@@ -46,7 +52,10 @@ export const PromoSlider: React.FC<Props> = React.memo(({ promos }) => {
         <button
           type="button"
           onClick={handlePrev}
-          className="promo-swiper__prev-button button--arrow-left"
+          className={cn('promo-swiper__prev-button button--arrow-left', {
+            'promo-swiper__prev-button--dark': isDark,
+            'button--arrow-left--dark': isDark,
+          })}
         />
       )}
 
@@ -55,7 +64,7 @@ export const PromoSlider: React.FC<Props> = React.memo(({ promos }) => {
           loop
           autoplay
           ref={swiperRef}
-          pagination={getPagination()}
+          pagination={getPagination(isDark)}
           modules={[Pagination, Autoplay]}
           className="promo-swiper__swiper">
           {promos.map((promo) => (
@@ -77,7 +86,10 @@ export const PromoSlider: React.FC<Props> = React.memo(({ promos }) => {
         <button
           type="button"
           onClick={handleNext}
-          className="promo-swiper__next-button button--arrow-right"
+          className={cn('promo-swiper__prev-button button--arrow-right', {
+            'promo-swiper__prev-button--dark': isDark,
+            'button--arrow-right--dark': isDark,
+          })}
         />
       )}
     </div>

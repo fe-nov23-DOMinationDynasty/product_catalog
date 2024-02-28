@@ -1,3 +1,4 @@
+import cn from 'classnames';
 import { Promo } from '../../types/Promo';
 
 const promoImagesMobile = [
@@ -43,14 +44,18 @@ export const promosMobile: Promo[] = promoImagesMobile.map((image, index) => {
   };
 });
 
-export const getPagination = () => (
+export const getPagination = (isDark: boolean) => (
   {
-    bulletClass: "promo-swiper__pagination-bullet",
-    bulletActiveClass: "promo-swiper__pagination-bullet--active",
+    bulletClass: `${cn('promo-swiper__pagination-bullet', {
+      'promo-swiper__pagination-bullet--dark': isDark,
+    })}`,
+    bulletActiveClass: `${cn('promo-swiper__pagination-bullet--active', {
+      'promo-swiper__pagination-bullet--active-dark': isDark,
+    })}`,
     clickable: true,
     el: '.promo-swiper__pagination',
     renderBullet: (_index: number, className: string) => {
-      return `<span class="${className} promo-swiper__pagination-bullet"></span>`;
+      return `<span class="${className}"></span>`;
     },
   }
 );

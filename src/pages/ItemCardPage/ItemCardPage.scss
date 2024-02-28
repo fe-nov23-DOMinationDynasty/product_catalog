@@ -81,7 +81,7 @@
   &__characteristic-block {
     padding-bottom: 24px;
     margin-bottom: 32px;
-    border-bottom: 1px solid $elements-color;
+    border-bottom: 1px solid var(--elements-color);
 
     &--color-picker {
       margin-bottom: 24px;

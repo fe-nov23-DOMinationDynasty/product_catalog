@@ -73,7 +73,7 @@
   flex-direction: column;
   gap: 16px;
 
-  border: solid 1px $elements-color;
+  border: solid 1px var(--elements-color);
 
   &__price {
     font-size: 32px;
@@ -90,6 +90,6 @@
 
   &__line {
     height: 1px;
-    background-color: $elements-color;
+    background-color: var(--elements-color);
   }
 }

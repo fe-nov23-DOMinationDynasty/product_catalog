@@ -1,13 +1,16 @@
 import React from 'react';
+import cn from 'classnames';
 import '../../styles/utils/text-styles.scss';
 import { Link } from 'react-router-dom';
 import { Category } from '../../enums/Category';
 import { useAppSelector } from '../../app/hooks';
 import './ShopCategory.scss';
+import { Theme } from '../../enums/Theme';
 
 export const ShopCategory: React.FC = () => {
-  const categories = Object.values(Category);
+  const isDark = useAppSelector(state => state.themeReducer) === Theme.Dark;
   const { products } = useAppSelector((state) => state.productsReducer);
+  const categories = Object.values(Category);
 
   return (
     <section className="categories" id="categories">
@@ -21,10 +24,15 @@ export const ShopCategory: React.FC = () => {
               />
             </div>
 
-            <h4 className="category__title h4">
+            <h4 className={cn('category__title h4', {
+              'category__title--dark': isDark,
+            })}>
               {category === Category.Phones ? 'Mobile Phones' : category}
             </h4>
-            <span className="category__counter">
+
+            <span className={cn('category__counter', {
+              'category__counter--dark': isDark,
+            })}>
               {`${products.filter((product) => product.category === category).length} models`}
             </span>
           </Link>

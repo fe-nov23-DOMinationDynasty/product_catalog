@@ -21,23 +21,52 @@ $button-border-primary: 1px solid $primary-color;
 
   background-color: $white-color;
 
+  @include hoverEffect(border, $button-border-primary);
+
+  &--dark {
+    border: none;
+    background-color: $surface-secondary-dark-theme-color;
+
+    @include hoverEffect(background-color, $icons-dark-theme-color);
+  }
+
   &--arrow-left {
     background-image: url(../icons/arrow-left.svg);
+
+    &--dark {
+      background-image: url(../icons/arrow-left-white.svg);
+    }
 
     &--disabled {
       background-image: url(../icons/arrow-left-disabled.svg);
       cursor: default;
       pointer-events: none;
+
+      &--dark {
+        border: 1px solid $elements-dark-theme-color;
+        background-image: url(../icons/arrow-left-disabled-dark.svg);
+        background-color: $dark-theme-background-color;
+      }
     }
   }
 
   &--arrow-right {
     background-image: url(../icons/arrow-right.svg);
 
+    &--dark {
+      background-image: url(../icons/arrow-right-white.svg);
+    }
+
     &--disabled {
       background-image: url(../icons/arrow-right-disabled.svg);
       cursor: default;
       pointer-events: none;
+
+      &--dark {
+        border: 1px solid $elements-dark-theme-color;
+        background-image: url(../icons/arrow-right-disabled-dark.svg);
+        background-color: $dark-theme-background-color;
+      }
     }
   }
 
@@ -58,18 +87,16 @@ $button-border-primary: 1px solid $primary-color;
 
   &--top {
     background-image: url(../icons/go-top.svg);
+
+    &--dark {
+      background-image: url(../icons/go-top-dark.svg);
+    }
   }
 
   &--disabled {
     cursor: default;
     pointer-events: none;
     border: $button-border;
-  }
-
-  @include onDesktop {
-    &:hover {
-      border: $button-border-primary;
-    }
   }
 
   &--add {
@@ -91,6 +118,16 @@ $button-border-primary: 1px solid $primary-color;
       font-size: 14px;
     }
 
+    &--dark {
+      background-color: $accent-dark-theme-color;
+
+      &:hover {
+        border: none;
+      }
+
+      @include hoverEffect(background-color, $accent-dark-hover);
+    }
+
     &--selected {
       color: $green-color;
       border: $button-border;
@@ -100,6 +137,20 @@ $button-border-primary: 1px solid $primary-color;
         &:hover {
           border: $button-border;
           box-shadow: 0 3px 13px 0 $hover-button-shadow-color;
+        }
+      }
+
+      &--dark {
+        border: none;
+        color: $dark-primary-color;
+        background-color: $surface-secondary-dark-theme-color;
+
+        @include onDesktop {
+          &:hover {
+            border: none;
+            background-color: $surface-secondary-dark-theme-color;
+            box-shadow: 0 3px 13px 0 $hover-button-shadow-color;
+          }
         }
       }
     }
@@ -115,8 +166,22 @@ $button-border-primary: 1px solid $primary-color;
     height: 40px;
     background-image: url('../icons/buttons/icon-favourites.svg');
 
+    &--dark {
+      border: none;
+      background-color:
+        $surface-secondary-dark-theme-color;
+      background-image: url('../icons/buttons/icon-favourites-dark.svg');
+
+      @include hoverEffect(background-color, $icons-dark-theme-color);
+    }
+
     &--selected {
       background-image: url('../icons/buttons/icon-favourites-selected.svg');
+
+      &--dark {
+        border: 1px solid $elements-dark-theme-color;
+        background-color: $surface-primary-dark-theme-color;
+      }
     }
   }
 }
