@@ -1,41 +1,44 @@
 @import '../../styles/utils/variables';
+@import '../../styles/utils/mixins';
 
 .bread-crumbs {
-  $crumb-size: 16px;
   $crumb-gap: 8px;
+  $crumb-size: 16px;
 
   display: flex;
   gap: $crumb-gap;
 
+
   text-transform: capitalize;
 
   &__crumb {
+    min-width: $crumb-size;
+    flex: 0 0 auto;
     height: $crumb-size;
 
     position: relative;
     display: flex;
     align-items: center;
+    text-overflow: ellipsis;
 
-    color: $secondary-color;
+    color: $primary-color;
+
+    &:last-child {
+      color: $secondary-color;
+    }
   }
 
   &__arrow {
-    background: url('../../../public/icons/arrow-right-disabled.svg') center
-      no-repeat;
-    width: $crumb-size;
-  }
-
-  &__crumb:last-child {
-    color: $primary-color;
+    background: url('../../../public/icons/arrow-right-disabled.svg') center no-repeat;
   }
 
   &__link {
     color: inherit;
+
+    @include textEllipsis;
   }
 
   &__home {
-    background: url('../../../public/icons/buttons/icon-home.svg') center
-      no-repeat;
-    width: $crumb-size;
+    background: url('../../../public/icons/buttons/icon-home.svg') center no-repeat;
   }
 }
