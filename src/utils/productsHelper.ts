@@ -71,7 +71,11 @@ export function prepareProducts(
   products: Product[],
   paginationParams: PaginationParams,
   sortOption: SortOptions
-): Product[] {
+): Product[] | null {
+  if (!products.length) {
+    return null;
+  }
+
   const paginatedProducts = paginateProducts(products, paginationParams);
 
   if (sortOption) {

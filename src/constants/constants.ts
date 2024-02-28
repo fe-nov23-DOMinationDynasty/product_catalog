@@ -3,6 +3,7 @@ export const tabletWidth = 640;
 export const localStorageFavouritesKey = 'favourites';
 export const localStorageCartKey = 'cart';
 export const itemsPerPageOptions = ['all', '4', '8', '16'];
+export const requestDelay = 300;
 export const breakpoints = {
   500: {
     slidesPerView: 2,

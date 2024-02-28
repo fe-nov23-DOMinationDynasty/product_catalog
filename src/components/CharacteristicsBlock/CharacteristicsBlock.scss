@@ -9,6 +9,11 @@
     color: $icons-color;
   }
 
+  &__subtitle-skeleton {
+    width: 35px;
+    height: 15px;
+  }
+
   &__subtitle {
     @include onDesktop {
       position: absolute;
@@ -19,5 +24,21 @@
   &__content {
     display: flex;
     gap: 8px;
+  }
+
+  &__skeleton-wrapper {
+    height: 35px;
+    width: 60px;
+    border-radius: 0;
+
+  &--round {
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+  &__skeleton {
+    height: 100%;
+    width: 100%;
   }
 }

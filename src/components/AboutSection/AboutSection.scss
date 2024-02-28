@@ -19,12 +19,20 @@
 
   &__info-title {
     margin-bottom: 16px;
+
+    &--skeleton {
+      height: 25px;
+    }
   }
 
   &__info-describtion {
     display: flex;
     flex-direction: column;
     gap: 16px;
+  }
+
+  &__info-description-skeleton {
+    height: 25px;
   }
 
   &__info-describtion-text {
