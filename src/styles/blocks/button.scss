@@ -131,6 +131,11 @@ $button-border-primary: 1px solid $primary-color;
 
   @include hoverEffect(border, $button-border-primary);
 
+  &--skeleton {
+    height: 35px;
+    border-radius: 0
+  }
+
   &--color-picker {
     @include hoverEffect(border, 1px solid $icons-color);
 
@@ -139,6 +144,13 @@ $button-border-primary: 1px solid $primary-color;
 
     &--selected {
       border: $button-border-primary;
+
+      @include hoverEffect(border, $button-border-primary);
+    }
+
+    &--skeloton {
+      max-width: 30px;
+      border-radius: 50%;
     }
   }
 

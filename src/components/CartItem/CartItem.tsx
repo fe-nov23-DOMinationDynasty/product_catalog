@@ -50,7 +50,7 @@ export const CartItem: React.FC<Props> = ({ product, quantity }) => {
           />
         </button>
 
-        <Link to={`/catalog/${category}/${itemId}`} className="cart-item__link" >
+        <Link to={`/${category}/${itemId}`} className="cart-item__link" >
           <img
             src={image}
             alt={`${category}_image`}

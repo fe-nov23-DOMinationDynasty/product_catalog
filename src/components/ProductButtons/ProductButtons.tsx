@@ -1,29 +1,30 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React from 'react';
 import cn from 'classnames';
+import 'react-loading-skeleton/dist/skeleton.css';
+import Skeleton from 'react-loading-skeleton';
 
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { actions as cartActions } from '../../features/cartSlice';
 import { actions as favouriteActions } from '../../features/favouritesSlice';
-import { Phone } from '../../types/Phone';
-import { Tablet } from '../../types/Tablet';
-import { Accessory } from '../../types/Accessory';
 import './ProductButtons.scss';
+import { ProductInfo } from '../../types/ProductInfo';
+import { CartProduct } from '../../types/CartItem';
 
 interface Props {
-  product: Phone | Tablet | Accessory,
+  product: ProductInfo | null,
   category: string,
 }
 
 export const ProductButtons: React.FC<Props> = ({ product, category }) => {
-  const { id } = product;
+  const { id } = product || {};
   const productToSave = {
     ...product,
     itemId: id,
-    name: product.name,
-    image: product.images[0],
-    price: product.priceDiscount,
-    fullPrice: product.priceRegular,
+    name: product?.name,
+    image: product?.images[0],
+    price: product?.priceDiscount,
+    fullPrice: product?.priceRegular,
     category,
   };
 
@@ -41,17 +42,17 @@ export const ProductButtons: React.FC<Props> = ({ product, category }) => {
 
   const handleProductCartStatusChanged = () => {
     if (isInCart) {
-      dispatch(cartActions.delete(id));
+      dispatch(cartActions.delete(id!));
 
       return;
     }
 
-    dispatch(cartActions.add(productToSave));
+    dispatch(cartActions.add(productToSave as CartProduct));
   };
 
   const handleFavouriteProductStatusChanged = () => {
     if (isInFavourite) {
-      dispatch(favouriteActions.delete(id));
+      dispatch(favouriteActions.delete(id!));
 
       return;
     }
@@ -61,22 +62,33 @@ export const ProductButtons: React.FC<Props> = ({ product, category }) => {
 
   return (
     <div className="product-buttons">
-      <button
-        onClick={handleProductCartStatusChanged}
-        type="button"
-        className={cn('product-buttons__button-add button button--add', {
-          'button--add--selected': isInCart,
-        })}>
-        {isInCart ? 'Added to cart' : 'Add to cart'}
-      </button>
+      {product
+        ? (
+          <>
+            <button
+              onClick={handleProductCartStatusChanged}
+              type="button"
+              className={cn('product-buttons__button-add button button--add', {
+                'button--add--selected': isInCart,
+              })}>
+              {isInCart ? 'Added to cart' : 'Add to cart'}
+            </button>
 
-      <button
-        onClick={handleFavouriteProductStatusChanged}
-        type="button"
-        className={cn('button button--favourite product-buttons__button-fav', {
-          'button--favourite--selected': isInFavourite,
-        })}
-      />
+            <button
+              onClick={handleFavouriteProductStatusChanged}
+              type="button"
+              className={
+                cn('button button--favourite product-buttons__button-fav', {
+                  'button--favourite--selected': isInFavourite,
+                })}
+            />
+          </>
+        )
+        : (
+          <div className="skeleton-wrapper">
+            <Skeleton className='product-buttons__skeleton' />
+          </div>
+        )}
     </div>
   );
 };

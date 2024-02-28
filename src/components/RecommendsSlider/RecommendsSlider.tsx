@@ -42,25 +42,27 @@ export const RecommendsSlider: React.FC<Props> = ({ title, products }) => {
       <div className="slider__header">
         <h2 className="slider__title h2">{title}</h2>
 
-        <div className="slider__buttons">
-          <button
-            type="button"
-            className={cn('button button--arrow-left', {
-              'button--arrow-left--disabled':
-                slideIndex === 0
-            })}
-            onClick={handlePrev}
-          />
-          <button
-            type="button"
-            className={cn('button button--arrow-right', {
-              'button--arrow-right--disabled':
-                swiperRef.current && slideIndex === products.length
-                - swiperRef.current.swiper.slidesPerViewDynamic()
-            })}
-            onClick={handleNext}
-          />
-        </div>
+        {products[0] && (
+          <div className="slider__buttons">
+            <button
+              type="button"
+              className={cn('button button--arrow-left', {
+                'button--arrow-left--disabled':
+                  slideIndex === 0
+              })}
+              onClick={handlePrev}
+            />
+            <button
+              type="button"
+              className={cn('button button--arrow-right', {
+                'button--arrow-right--disabled':
+                  swiperRef.current && slideIndex === products.length
+                  - swiperRef.current.swiper.slidesPerViewDynamic()
+              })}
+              onClick={handleNext}
+            />
+          </div>
+        )}
       </div>
 
       <div className="slider__products">
@@ -77,8 +79,11 @@ export const RecommendsSlider: React.FC<Props> = ({ title, products }) => {
           }}
           modules={[FreeMode]}
           className="reccomend-swiper">
-          {products.map((product) => (
-            <SwiperSlide className="reccomend-swiper__item" key={product.id}>
+          {products.map((product, index) => (
+            <SwiperSlide
+              className="reccomend-swiper__item"
+              key={product?.id || index}
+            >
               <ProductCard product={product} />
             </SwiperSlide>
           ))}

@@ -5,19 +5,21 @@ import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 import { Link } from 'react-router-dom';
 import 'aos/dist/aos.css';
+import Skeleton from 'react-loading-skeleton';
 import { Promo } from '../../types/Promo';
 
+import 'react-loading-skeleton/dist/skeleton.css';
 import 'swiper/css/pagination';
 import 'swiper/css';
 import './PromoSlider.scss';
 import { useResize } from '../../hooks/useResize';
 import { tabletWidth } from '../../constants/constants';
-import { animDuration } from '../../styles/utils/AOS'
+import { animDuration } from '../../styles/utils/AOS';
 import { getPagination } from './promoSliderUtils';
 
 
 interface Props {
-  promos: Promo[];
+  promos: Promo[] | null;
 }
 
 export const PromoSlider: React.FC<Props> = React.memo(({ promos }) => {
@@ -45,46 +47,64 @@ export const PromoSlider: React.FC<Props> = React.memo(({ promos }) => {
   return (
     <div
       className="promo-swiper"
-      data-aos="fade-down"
-      data-aos-duration={animDuration}
     >
-      {isTablet && (
-        <button
-          type="button"
-          onClick={handlePrev}
-          className="promo-swiper__prev-button button--arrow-left"
-        />
-      )}
+      {isTablet && promos
+        ? (
+          <button
+            data-aos="zoom-out"
+            data-aos-duration={animDuration}
+            type="button"
+            onClick={handlePrev}
+            className="promo-swiper__prev-button button--arrow-left"
+          />
+        )
+        : (
+          <Skeleton className="promo-swiper__button-skeleton" />
+        )}
       <div className="promo-swiper__wrapper">
-        <Swiper
-          loop
-          autoplay
-          ref={swiperRef}
-          pagination={getPagination()}
-          modules={[Pagination, Autoplay]}
-          className="promo-swiper__swiper">
-          {promos.map((promo) => (
-            <SwiperSlide key={promo.image} className="promo-swiper__slide">
-              <Link to={promo.link} className="promo-swiper__link">
-                <img
-                  src={promo.image}
-                  alt="promo"
-                  className="promo-swiper__slide-image"
-                />
-              </Link>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+        {promos
+          ? (<Swiper
+            data-aos="zoom-out"
+            data-aos-duration={animDuration}
+            loop
+            autoplay
+            ref={swiperRef}
+            pagination={getPagination()}
+            modules={[Pagination, Autoplay]}
+            className="promo-swiper__swiper">
+            {promos.map((promo) => (
+              <SwiperSlide key={promo.image} className="promo-swiper__slide">
+                <Link to={promo.link} className="promo-swiper__link">
+                  <img
+                    src={promo.image}
+                    alt="promo"
+                    className="promo-swiper__slide-image"
+                  />
+                </Link>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+          )
+          : (
+            <Skeleton className='promo-swiper__swiper--skeleton' />
+          )}
+
         <div className="promo-swiper__pagination" />
       </div>
 
-      {isTablet && (
-        <button
-          type="button"
-          onClick={handleNext}
-          className="promo-swiper__next-button button--arrow-right"
-        />
-      )}
+      {isTablet && promos
+        ? (
+          <button
+            data-aos="zoom-out"
+            data-aos-duration={animDuration}
+            type="button"
+            onClick={handleNext}
+            className="promo-swiper__next-button button--arrow-right"
+          />
+        )
+        : (
+          <Skeleton className="promo-swiper__button-skeleton" />
+        )}
     </div>
   );
 });
