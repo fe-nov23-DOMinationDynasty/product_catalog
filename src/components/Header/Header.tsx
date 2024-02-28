@@ -8,10 +8,12 @@ import { Classic } from '@theme-toggles/react';
 import { LogoLink } from '../LogoLink';
 import { BurgerMenu } from '../BurgerMenu';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { actions as themeActions } from '../../features/themeSlice';
 import { Icon } from '../Icon';
 import {
   handleIsActive,
 } from './utils';
+import { Theme } from '../../enums/Theme';
 
 export const Header = () => {
   const [openBurger, setOpenBurger] = useState(false);
@@ -43,7 +45,7 @@ export const Header = () => {
                 <NavLink
                   to="/"
                   className={handleIsActive('header__nav-link', 'is-active')}>
-                Home
+                  Home
                 </NavLink>
               </li>
               <li className="header__nav-list-item">
@@ -51,7 +53,7 @@ export const Header = () => {
                   to="catalog/phones"
                   className={handleIsActive('header__nav-link', 'is-active')}
                 >
-                Phones
+                  Phones
                 </NavLink>
               </li>
               <li className="header__nav-list-item">
@@ -59,7 +61,7 @@ export const Header = () => {
                   to="catalog/tablets"
                   className={handleIsActive('header__nav-link', 'is-active')}
                 >
-                Tablets
+                  Tablets
                 </NavLink>
               </li>
               <li className="header__nav-list-item">
@@ -67,7 +69,7 @@ export const Header = () => {
                   to="catalog/accessories"
                   className={handleIsActive('header__nav-link', 'is-active')}
                 >
-                Accessories
+                  Accessories
                 </NavLink>
               </li>
             </ul>

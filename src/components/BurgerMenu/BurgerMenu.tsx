@@ -1,4 +1,4 @@
-import '../Header/header.scss';
+import '../Header/Header.scss';
 import { NavLink } from 'react-router-dom';
 import { useEffect } from 'react';
 import { LogoLink } from '../LogoLink';
