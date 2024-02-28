@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { LogoLink } from '../LogoLink';
 import { handleIsActive } from '../Header/utils';
 
+
 type Props = {
   openBurger: boolean
   setCloseBurger: (state: boolean) => void;

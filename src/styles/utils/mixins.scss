@@ -14,6 +14,12 @@
   letter-spacing: 0;
 }
 
+@mixin textEllipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 @mixin onDesktop {
   @media (min-width: $min-desktop-width) {
     @content;
@@ -29,13 +35,23 @@
   width: 32px;
 }
 
+@mixin hoverEffect($property, $value) {
+  @include onDesktop {
+    transition: #{$property} $transition-duration;
+
+    &:hover {
+      #{$property}: $value;
+    }
+  }
+}
+
 @mixin pageGrid {
   --columns: 4;
 
   display: grid;
   box-sizing: border-box;
 
-  column-gap: 16px;
+  column-gap: $page-grid-gap;
   grid-template-columns: repeat(var(--columns), 1fr);
 
   @include onTablet {

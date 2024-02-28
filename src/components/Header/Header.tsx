@@ -1,11 +1,13 @@
 import { NavLink, useLocation } from 'react-router-dom';
 
-import './header.scss';
+import './Header.scss';
+import "@theme-toggles/react/css/Classic.css";
 
 import { useState } from 'react';
+import { Classic } from '@theme-toggles/react';
 import { LogoLink } from '../LogoLink';
 import { BurgerMenu } from '../BurgerMenu';
-import { useAppSelector } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { Icon } from '../Icon';
 import {
   handleIsActive,
@@ -13,11 +15,19 @@ import {
 
 export const Header = () => {
   const [openBurger, setOpenBurger] = useState(false);
-  const [sortField, setSortField] = useState('');
+
+  const dispatch = useAppDispatch();
 
   const favouriteProducts = useAppSelector((state) => state.favouritesReducer);
   const { cartItems } = useAppSelector((state) => state.cartReducer);
   const location = useLocation();
+  const isDarkMode = useAppSelector(state => state.themeReducer) === Theme.Dark;
+
+  const handleThemeChanged = (isToggled: boolean) => {
+    const theme = isToggled ? Theme.Dark : Theme.Light;
+
+    dispatch(themeActions.setTheme(theme));
+  };
 
   return (
     <>
@@ -64,33 +74,16 @@ export const Header = () => {
           </div>
 
           <div className="header__buttons-block">
-            <div className='header__input-block'>
-              <input
-                onChange={(event) => {
-                  setSortField(event.target.value);
-                }}
-                value={sortField}
-                type="text"
-                placeholder='Search...'
-                className='header__input'
-              />
-              <button
-                type='button'
-                tabIndex={0}
-                onClick={() => {
-                  if (sortField) {
-                    setSortField('');
-                  }
-                }}
-                className='header__search-icon'
+            <Classic
+              toggled={isDarkMode}
+              onToggle={handleThemeChanged}
+              style={{
+                fontSize: '30px'
+              }}
+              className='header__theme-toggler'
+              placeholder={null}
+            />
 
-              >
-                <img src={!sortField
-                  ? "./logos/search.svg"
-                  : "./logos/close.svg"}
-                alt="seacrh"/>
-              </button>
-            </div>
             <NavLink
               to="favourites"
               className={

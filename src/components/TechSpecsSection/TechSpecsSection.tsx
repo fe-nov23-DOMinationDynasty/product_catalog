@@ -1,16 +1,18 @@
 import React from 'react';
 import '../../styles/utils/fonts.scss';
 import './TechSpecsSection.scss';
-import { Phone } from '../../types/Phone';
-import { Tablet } from '../../types/Tablet';
-import { Accessory } from '../../types/Accessory';
-import { TechSpecs } from '../../enums/TechSpecs';
+import { ProductInfo } from '../../types/ProductInfo';
+import { TechSpecType, TechSpecs } from '../../types/TechSpecs';
 
 interface Props {
-  product: Phone | Tablet | Accessory | null,
+  product: ProductInfo,
+  productCategory: keyof typeof TechSpecs,
 }
 
-export const TechSpecsSection: React.FC<Props> = ({ product }) => {
+export const TechSpecsSection: React.FC<Props> = ({
+  product,
+  productCategory,
+}) => {
   const renderSpecValue = (specValue: string | string[]): string => {
     if (Array.isArray(specValue)) {
       return specValue.join(', ');
@@ -19,24 +21,7 @@ export const TechSpecsSection: React.FC<Props> = ({ product }) => {
     return specValue;
   };
 
-  const isAccessory = (
-    item: Phone | Tablet | Accessory | null
-  ): item is Accessory => {
-    return item !== null && 'capacity' in item;
-  };
-
-  const getSpecDisplayName = (specKey: string): string => {
-    if (isAccessory(product)) {
-      if (specKey === 'Built in memory'
-        && product.capacity.includes('mm')
-      ) {
-
-        return 'Size';
-      }
-    }
-
-    return specKey;
-  };
+  const techSpecObject = TechSpecs[productCategory];
 
   return (
     <article className="tech-specs">
@@ -45,28 +30,24 @@ export const TechSpecsSection: React.FC<Props> = ({ product }) => {
 
         <span className="tech-specs__line" />
       </div>
-      {Object.keys(TechSpecs).map((specKey) => {
-        const specValue = product?.[
-          TechSpecs[specKey as keyof typeof TechSpecs] as keyof (
-            Phone | Tablet | Accessory
-          )
-        ] as string;
+      {
+        Object.keys(techSpecObject)
+          .map(specKey => {
+            const specValue = product[
+              techSpecObject[specKey as keyof TechSpecType] as keyof ProductInfo
+            ] as string;
 
-        if (specValue !== undefined && specValue !== null) {
-          return (
-            <p className="tech-specs__info" key={specKey}>
-              <span className="tech-specs__name">
-                {getSpecDisplayName(specKey)}
-              </span>
-              <span className="tech-specs__configuration">
-                {renderSpecValue(specValue)}
-              </span>
-            </p>
-          );
-        }
-
-        return null;
-      })}
+            return (
+              <p className="tech-specs__info" key={specKey}>
+                <span className="tech-specs__name">
+                  {specKey}
+                </span>
+                <span className="tech-specs__configuration">
+                  {renderSpecValue(specValue)}
+                </span>
+              </p>
+            );
+          })}
     </article>
   );
 };

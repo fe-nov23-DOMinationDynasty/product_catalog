@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import './logoLink.scss';
+import './LogoLink.scss';
 
 export const LogoLink = () => (
   <Link to="/" className="logo">

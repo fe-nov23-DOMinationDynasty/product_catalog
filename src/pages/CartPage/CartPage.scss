@@ -40,6 +40,7 @@
     grid-column: span 4;
     display: grid;
     row-gap: 16px;
+    grid-auto-rows: 1fr;
 
     @include onTablet {
       grid-column: span 12;
@@ -48,6 +49,10 @@
     @include onDesktop {
       grid-column: span 16;
     }
+  }
+
+  &__no-items-message {
+    grid-column: 1 / -1;
   }
 }
 

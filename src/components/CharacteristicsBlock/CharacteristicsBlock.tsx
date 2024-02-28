@@ -3,6 +3,7 @@ import React from 'react';
 import cn from 'classnames';
 
 import './CharacteristicsBlock.scss';
+import { getColorByName } from '../../services/getColorByName';
 
 interface Props {
   onSelected: (options: string) => void,
@@ -23,16 +24,16 @@ export const CharacteristicsBlock: React.FC<Props> = ({
 }) => (
   <article className="characteristic-block">
     <div className="characteristic-block__info">
-      <span className="title small-text">{title}</span>
-      <span className="subtitle small-text">{subtitle}</span>
+      <span className="characteristic-block__title small-text">{title}</span>
+      <span className="characteristic-block__subtitle small-text">{subtitle}</span>
     </div>
     <div className="characteristic-block__content">
       {options.map(option => (
         <div
-          className={cn('characteristic-block__item-wrapper', {
-            'characteristic-block__item-wrapper--selected': selectedOption === option && !isColorPicker,
-            'characteristic-block__item-wrapper--color-picker': isColorPicker,
-            'characteristic-block__item-wrapper--color-picker--selected': isColorPicker && selectedOption === option
+          className={cn('selector', {
+            'selector--selected': selectedOption === option && !isColorPicker,
+            'selector--color-picker': isColorPicker,
+            'selector--color-picker--selected': isColorPicker && selectedOption === option
           })}
           key={option}
         >
@@ -40,11 +41,14 @@ export const CharacteristicsBlock: React.FC<Props> = ({
             onClick={() => onSelected(option)}
             type='button'
             style={{
-              backgroundColor: isColorPicker ? option : 'transparent'
+              backgroundColor: isColorPicker
+                ? getColorByName(option)
+                : 'transparent'
             }}
-            className={cn('characteristic-block__item', {
-              'characteristic-block__item--color-picker': isColorPicker,
-            })}>
+            className={cn('selector__item', {
+              'selector__item--color-picker': isColorPicker,
+            })}
+          >
             {isColorPicker ? '' : option}
           </button>
         </div>

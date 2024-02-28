@@ -1,49 +1,57 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React from 'react';
-import { Link } from 'react-router-dom';
 import cn from 'classnames';
-import './productCard.scss';
+import { Link } from 'react-router-dom';
+import './ProductCard.scss';
 import { Product } from '../../types/Product';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { actions as cartActions } from '../../features/cartSlice';
 import { actions as favouriteActions } from '../../features/favouritesSlice';
-import {
-  actions as selectedProductActions
-} from '../../features/selectedProductSlice';
 import { shownProductCardCharacteristics } from '../../constants/constants';
 import { CartProduct } from '../../types/CartItem';
+import { LocalFavouriteProducts } from '../../types/LocalFavouriteProducts';
 
 interface Props {
   product: Product;
 }
 
 export const ProductCard: React.FC<Props> = ({ product }) => {
-  const { id, itemId, category, name, price, fullPrice, image } = product;
+  const {
+    itemId,
+    category,
+    name,
+    price,
+    fullPrice,
+    image,
+    capacity,
+    screen,
+    ram,
+  } = product;
   const { cartItems } = useAppSelector((state) => state.cartReducer);
   const favouriteProducts = useAppSelector((state) => state.favouritesReducer);
   const dispatch = useAppDispatch();
 
   const isInCart = !!cartItems?.find(
-    ({ product: cartProduct }) => cartProduct.id === id
+    ({ product: cartProduct }) => cartProduct.itemId === itemId
   );
 
   const isInFavourite = !!favouriteProducts.find(
-    (favouriteProduct) => favouriteProduct.id === id
+    (favouriteProduct) => favouriteProduct.itemId === itemId
   );
 
   const handleProductCartStatusChanged = () => {
     if (isInCart) {
-      dispatch(cartActions.delete(id));
+      dispatch(cartActions.delete(itemId));
 
       return;
     }
 
     const cartProduct: CartProduct = {
       image,
-      id,
+      itemId,
       name,
       price,
-      itemId,
+      category,
     };
 
     dispatch(cartActions.add(cartProduct));
@@ -51,18 +59,29 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
 
   const handleFavouriteProductStatusChanged = () => {
     if (isInFavourite) {
-      dispatch(favouriteActions.delete(id));
+      dispatch(favouriteActions.delete(itemId));
 
       return;
     }
 
-    dispatch(favouriteActions.add(product));
+    const favProduct: LocalFavouriteProducts = {
+      image,
+      itemId,
+      name,
+      price,
+      fullPrice,
+      screen,
+      capacity,
+      ram,
+      category,
+    };
+
+    dispatch(favouriteActions.add(favProduct));
   };
 
   return (
     <article className="product-card">
       <Link
-        onClick={() => dispatch(selectedProductActions.setProduct(product))}
         to={`/catalog/${category}/${itemId}`}
         className="product-card__link">
         <img
@@ -72,39 +91,47 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
         />
         <p className="product-card__title">{name}</p>
       </Link>
+
       <div className="product-card__bottom-part">
         <div className="product-card__price">
-          <p className="product-card__actual-price h3">{`$${price}`}</p>
+          <p className="product-card__actual-price">
+            {`$${price}`}
+          </p>
+
           {fullPrice !== price && (
-            <p className="product-card__full-price h3">{`$${fullPrice}`}</p>
+            <p className="product-card__full-price">
+              {`$${fullPrice}`}
+            </p>
           )}
         </div>
+
         <div className="product-card__characteristics">
           {shownProductCardCharacteristics.map((characteristic) => (
             <p className="product-card__characteristic" key={characteristic}>
               <span className="product-card__characteristic-name small-text">
                 {characteristic}
               </span>
-              <span className="product-card__characteristic-value small-text">
+              <span className="small-text product-card__characteristic-value">
                 {product[characteristic.toLowerCase() as keyof Product]}
               </span>
             </p>
           ))}
         </div>
+
         <div className="product-card__buttons">
           <button
             onClick={handleProductCartStatusChanged}
             type="button"
-            className={cn('button button-add', {
-              'button-add--selected': isInCart,
+            className={cn('button button--add', {
+              'button--add--selected': isInCart,
             })}>
             {isInCart ? 'Added to cart' : 'Add to cart'}
           </button>
           <button
             onClick={handleFavouriteProductStatusChanged}
             type="button"
-            className={cn('button button-favourite', {
-              'button-favourite--selected': isInFavourite,
+            className={cn('button button--favourite', {
+              'button--favourite--selected': isInFavourite,
             })}
           />
         </div>

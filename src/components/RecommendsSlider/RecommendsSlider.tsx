@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
+import cn from 'classnames';
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
 import { FreeMode } from 'swiper/modules';
 import { Product } from '../../types/Product';
@@ -17,6 +18,8 @@ interface Props {
 
 export const RecommendsSlider: React.FC<Props> = ({ title, products }) => {
   const swiperRef = useRef<SwiperRef>(null);
+  const [slideIndex, setSlideIndex] = useState(0);
+
 
   const handlePrev = useCallback(() => {
     if (!swiperRef.current) {
@@ -42,12 +45,19 @@ export const RecommendsSlider: React.FC<Props> = ({ title, products }) => {
         <div className="slider__buttons">
           <button
             type="button"
-            className="button button--arrow-left"
+            className={cn('button button--arrow-left', {
+              'button--arrow-left--disabled':
+                slideIndex === 0
+            })}
             onClick={handlePrev}
           />
           <button
             type="button"
-            className="button button--arrow-right"
+            className={cn('button button--arrow-right', {
+              'button--arrow-right--disabled':
+                swiperRef.current && slideIndex === products.length
+                - swiperRef.current.swiper.slidesPerViewDynamic()
+            })}
             onClick={handleNext}
           />
         </div>
@@ -55,6 +65,8 @@ export const RecommendsSlider: React.FC<Props> = ({ title, products }) => {
 
       <div className="slider__products">
         <Swiper
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          onSlideChange={(swiper: any) => setSlideIndex(swiper.realIndex)}
           ref={swiperRef}
           slidesPerView={1.5}
           breakpoints={breakpoints}
