@@ -20,7 +20,7 @@ export const Crumb:React.FC<Props> = ({ location }) => {
             <div className="bread-crumbs__crumb bread-crumbs__arrow" />
             <div className="bread-crumbs__crumb" key={crumb}>
               <Link className="bread-crumbs__link" to={currentLink}>
-                {crumb}
+                {crumb.replace(/-/g, ' ')}
               </Link>
             </div>
           </>

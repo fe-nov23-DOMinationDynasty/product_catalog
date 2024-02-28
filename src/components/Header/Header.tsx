@@ -1,23 +1,19 @@
-import classNames from 'classnames';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
 import './Header.scss';
-import "@theme-toggles/react/css/Classic.css";
+import '@theme-toggles/react/css/Classic.css';
 
 import { useState } from 'react';
 import { Classic } from '@theme-toggles/react';
 import { LogoLink } from '../LogoLink';
 import { BurgerMenu } from '../BurgerMenu';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { Icon } from '../Icon';
-import { Theme } from '../../enums/Theme';
 import { actions as themeActions } from '../../features/themeSlice';
-
-const handleNavigationIsActive = ({ isActive }: { isActive: boolean }) =>
-  classNames('nav_link', { 'is-active': isActive });
-
-const handleHeaderButtonIsActive = ({ isActive }: { isActive: boolean }) =>
-  classNames('header__button', { 'header__button--is-active': isActive });
+import { Icon } from '../Icon';
+import {
+  handleIsActive,
+} from './utils';
+import { Theme } from '../../enums/Theme';
 
 export const Header = () => {
   const [openBurger, setOpenBurger] = useState(false);
@@ -26,7 +22,8 @@ export const Header = () => {
 
   const favouriteProducts = useAppSelector((state) => state.favouritesReducer);
   const { cartItems } = useAppSelector((state) => state.cartReducer);
-  const isDarkMode = useAppSelector(state => state.themeReducer) === Theme.Dark;
+  const isDarkMode
+    = useAppSelector((state) => state.themeReducer) === Theme.Dark;
 
   const handleThemeChanged = (isToggled: boolean) => {
     const theme = isToggled ? Theme.Dark : Theme.Light;
@@ -34,39 +31,46 @@ export const Header = () => {
     dispatch(themeActions.setTheme(theme));
   };
 
+  const location = useLocation();
+
   return (
     <>
       <header className="header">
-        <nav className="nav">
-          <div className="nav_menu_start">
+        <nav className="header__nav">
+          <div className="header__nav_menu-start">
             <div className="header__logo">
               <LogoLink />
             </div>
 
-            <ul className="nav_list">
-              <li className="list_item">
-                <NavLink to="/" className={handleNavigationIsActive}>
+            <ul className="header__nav-list">
+              <li className="header__nav-list-item">
+                <NavLink
+                  to="/"
+                  className={handleIsActive('header__nav-link', 'is-active')}>
                   Home
                 </NavLink>
               </li>
-              <li className="list_item">
+              <li className="header__nav-list-item">
                 <NavLink
-                  to="/phones"
-                  className={handleNavigationIsActive}>
+                  to="catalog/phones"
+                  className={handleIsActive('header__nav-link', 'is-active')}
+                >
                   Phones
                 </NavLink>
               </li>
-              <li className="list_item">
+              <li className="header__nav-list-item">
                 <NavLink
-                  to="/tablets"
-                  className={handleNavigationIsActive}>
+                  to="catalog/tablets"
+                  className={handleIsActive('header__nav-link', 'is-active')}
+                >
                   Tablets
                 </NavLink>
               </li>
-              <li className="list_item">
+              <li className="header__nav-list-item">
                 <NavLink
-                  to="/accessories"
-                  className={handleNavigationIsActive}>
+                  to="catalog/accessories"
+                  className={handleIsActive('header__nav-link', 'is-active')}
+                >
                   Accessories
                 </NavLink>
               </li>
@@ -74,53 +78,66 @@ export const Header = () => {
           </div>
 
           <div className="header__buttons-block">
-            <Classic
-              toggled={isDarkMode}
-              onToggle={handleThemeChanged}
-              style={{
-                fontSize: '30px'
-              }}
-              className='header__theme-toggler'
-              placeholder={null}
-            />
+            <div className="header__icon-theme">
+              <Classic
+                toggled={isDarkMode}
+                onToggle={handleThemeChanged}
+                style={{
+                  fontSize: '30px',
+                }}
+                className="header__theme-toggler"
+                placeholder={null}
+              />
+            </div>
 
-            <NavLink to="favourites" className={handleHeaderButtonIsActive}>
-              {favouriteProducts && favouriteProducts.length > 0 ? (
+            <NavLink
+              to="favourites"
+              className={
+                handleIsActive('header__button', 'header__button--is-active')}
+            >
+              <div className="header__icon-wrapper">
                 <Icon
                   pathImage="./logos/favourites.svg"
                   counter={favouriteProducts.length}
                 />
-              ) : (
-                <img src="./logos/favourites.svg" alt="logoFavourite" />
-              )}
+              </div>
             </NavLink>
 
-            <NavLink to="cart" className={handleHeaderButtonIsActive}>
-              {cartItems && !!cartItems.length ? (
+            <NavLink
+              to="cart"
+              className={
+                handleIsActive('header__button', 'header__button--is-active')}
+            >
+              <div className="header__icon-wrapper">
                 <Icon
                   pathImage="./logos/shopping-bag.svg"
                   counter={cartItems.length}
                 />
-              ) : (
-                <img src="./logos/shopping-bag.svg" alt="logoShoppingBag" />
-              )}
+              </div>
             </NavLink>
           </div>
 
-          <div className="burger">
-            <NavLink
+          <div className="header__burger-menu">
+            <button
+              type='button'
               onClick={() => {
                 setOpenBurger(true);
               }}
-              to="#/"
-              className="header__burger-menu">
+              className="header__burger-button">
               <img src="./logos/burger-menu.svg" alt="logoShoppingBag" />
-            </NavLink>
+            </button>
           </div>
         </nav>
       </header>
 
-      {openBurger && <BurgerMenu setCloseBurger={setOpenBurger} />}
+
+      <BurgerMenu
+        setCloseBurger={setOpenBurger}
+        openBurger={openBurger}
+        location={location.pathname}
+      />
     </>
   );
 };
+
+
