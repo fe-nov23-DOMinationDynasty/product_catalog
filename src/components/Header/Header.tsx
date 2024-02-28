@@ -1,5 +1,4 @@
-import classNames from 'classnames';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
 import './Header.scss';
 import "@theme-toggles/react/css/Classic.css";
@@ -10,14 +9,9 @@ import { LogoLink } from '../LogoLink';
 import { BurgerMenu } from '../BurgerMenu';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { Icon } from '../Icon';
-import { Theme } from '../../enums/Theme';
-import { actions as themeActions } from '../../features/themeSlice';
-
-const handleNavigationIsActive = ({ isActive }: { isActive: boolean }) =>
-  classNames('nav_link', { 'is-active': isActive });
-
-const handleHeaderButtonIsActive = ({ isActive }: { isActive: boolean }) =>
-  classNames('header__button', { 'header__button--is-active': isActive });
+import {
+  handleIsActive,
+} from './utils';
 
 export const Header = () => {
   const [openBurger, setOpenBurger] = useState(false);
@@ -26,6 +20,7 @@ export const Header = () => {
 
   const favouriteProducts = useAppSelector((state) => state.favouritesReducer);
   const { cartItems } = useAppSelector((state) => state.cartReducer);
+  const location = useLocation();
   const isDark = useAppSelector(state => state.themeReducer) === Theme.Dark;
 
   const handleThemeChanged = (isToggled: boolean) => {
@@ -37,37 +32,42 @@ export const Header = () => {
   return (
     <>
       <header className="header">
-        <nav className="nav">
-          <div className="nav_menu_start">
+        <nav className="header__nav">
+          <div className="header__nav_menu-start">
             <div className="header__logo">
               <LogoLink />
             </div>
 
-            <ul className="nav_list">
-              <li className="list_item">
-                <NavLink to="/" className={handleNavigationIsActive}>
-                  Home
+            <ul className="header__nav-list">
+              <li className="header__nav-list-item">
+                <NavLink
+                  to="/"
+                  className={handleIsActive('header__nav-link', 'is-active')}>
+                Home
                 </NavLink>
               </li>
-              <li className="list_item">
+              <li className="header__nav-list-item">
                 <NavLink
                   to="catalog/phones"
-                  className={handleNavigationIsActive}>
-                  Phones
+                  className={handleIsActive('header__nav-link', 'is-active')}
+                >
+                Phones
                 </NavLink>
               </li>
-              <li className="list_item">
+              <li className="header__nav-list-item">
                 <NavLink
                   to="catalog/tablets"
-                  className={handleNavigationIsActive}>
-                  Tablets
+                  className={handleIsActive('header__nav-link', 'is-active')}
+                >
+                Tablets
                 </NavLink>
               </li>
-              <li className="list_item">
+              <li className="header__nav-list-item">
                 <NavLink
                   to="catalog/accessories"
-                  className={handleNavigationIsActive}>
-                  Accessories
+                  className={handleIsActive('header__nav-link', 'is-active')}
+                >
+                Accessories
                 </NavLink>
               </li>
             </ul>
@@ -84,18 +84,33 @@ export const Header = () => {
               placeholder={null}
             />
 
-            <NavLink to="favourites" className={handleHeaderButtonIsActive}>
+            <NavLink
+              to="favourites"
+              className={
+                handleIsActive('header__button', 'header__button--is-active')
+              }
+            >
               {favouriteProducts && favouriteProducts.length > 0 ? (
                 <Icon
                   pathImage="./logos/favourites.svg"
                   counter={favouriteProducts.length}
                 />
               ) : (
-                <img src="./logos/favourites.svg" alt="logoFavourite" />
+                <img
+                  src={location.pathname !== '/favourites'
+                    ? "./logos/favourites.svg"
+                    : "./logos/favourites-selected.svg"}
+                  alt="logoFavourite"
+                />
               )}
             </NavLink>
 
-            <NavLink to="cart" className={handleHeaderButtonIsActive}>
+            <NavLink
+              to="cart"
+              className={
+                handleIsActive('header__button', 'header__button--is-active')
+              }
+            >
               {cartItems && !!cartItems.length ? (
                 <Icon
                   pathImage="./logos/shopping-bag.svg"
@@ -107,20 +122,27 @@ export const Header = () => {
             </NavLink>
           </div>
 
-          <div className="burger">
-            <NavLink
+          <div className="header__burger-menu">
+            <button
+              type='button'
               onClick={() => {
                 setOpenBurger(true);
               }}
-              to="#/"
-              className="header__burger-menu">
+              className="header__burger-button">
               <img src="./logos/burger-menu.svg" alt="logoShoppingBag" />
-            </NavLink>
+            </button>
           </div>
         </nav>
       </header>
 
-      {openBurger && <BurgerMenu setCloseBurger={setOpenBurger} />}
+
+      <BurgerMenu
+        setCloseBurger={setOpenBurger}
+        openBurger={openBurger}
+        location={location.pathname}
+      />
     </>
   );
 };
+
+
