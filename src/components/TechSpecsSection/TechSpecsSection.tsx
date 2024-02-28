@@ -38,7 +38,7 @@ export const TechSpecsSection: React.FC<Props> = ({
             .map(specKey => {
               const specValue = product[
                 techSpecObject[
-                specKey as keyof TechSpecType] as keyof ProductInfo
+                  specKey as keyof TechSpecType] as keyof ProductInfo
               ] as string;
 
               return (

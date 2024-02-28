@@ -52,7 +52,7 @@ export const Header = () => {
               </li>
               <li className="header__nav-list-item">
                 <NavLink
-                  to="catalog/phones"
+                  to="phones"
                   className={handleIsActive('header__nav-link', 'is-active')}
                 >
                   Phones
@@ -60,7 +60,7 @@ export const Header = () => {
               </li>
               <li className="header__nav-list-item">
                 <NavLink
-                  to="catalog/tablets"
+                  to="tablets"
                   className={handleIsActive('header__nav-link', 'is-active')}
                 >
                   Tablets
@@ -68,7 +68,7 @@ export const Header = () => {
               </li>
               <li className="header__nav-list-item">
                 <NavLink
-                  to="catalog/accessories"
+                  to="accessories"
                   className={handleIsActive('header__nav-link', 'is-active')}
                 >
                   Accessories
