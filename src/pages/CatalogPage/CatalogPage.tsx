@@ -1,7 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useMemo, useRef } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 
+import debounce from 'lodash.debounce';
 import Skeleton from 'react-loading-skeleton';
 import { Pagination } from '../../components/Pagination';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
@@ -13,13 +14,20 @@ import { getSearchWith } from '../../utils/searchHelper';
 
 import './CatalogPage.scss';
 import '../../styles/blocks/button.scss';
-import { prepareProducts } from '../../utils/productsHelper';
-import { itemsPerPageOptions, requestDelay } from '../../constants/constants';
-import { BreadCrumbs } from '../../components/BreadCrumbs';
+import { paginateProducts, prepareProducts } from '../../utils/productsHelper';
 import { capitalizeFirstLetter } from '../../services/capitalizeFirstLetter';
+import { FilterOptions } from '../../types/FilterOptions';
+import {
+  debounceDelay,
+  itemsPerPageOptions,
+  requestDelay
+} from '../../constants/constants';
+import { BreadCrumbs } from '../../components/BreadCrumbs';
 import { actions as productsActions } from '../../features/productsSlice';
 import { getMockArray } from '../../services/getMockArray';
 import { wait } from '../../utils/fetchClient';
+import { Product } from '../../types/Product';
+import { NoItemsMessage } from '../../components/NoItemsMessage';
 
 const lengthOfSkeletonCards = 8;
 
@@ -29,11 +37,19 @@ export const CatalogPage = () => {
   const itemsPerPage = searchParams.get('perPage') || 'all';
   const sortOption = searchParams.get('sortBy') || '';
   const currentPageNumber = searchParams.get('page') || 1;
+  const query = searchParams.get('query') || '';
   const productCategory = location.pathname.split('/').at(-1);
   const { products, errorMessage } = useAppSelector(
     (state) => state.productsReducer
   );
   const dropdownsRef = useRef<HTMLDivElement>(null);
+  const [inputQuery, setInputQuery] = useState(query);
+  const updateQuery = useCallback(debounce((newParams: string) => {
+
+    if (newParams !== searchParams.toString()) {
+      setSearchParams(newParams);
+    }
+  }, debounceDelay), [searchParams, productCategory]);
 
   const dispatch = useAppDispatch();
 
@@ -52,14 +68,33 @@ export const CatalogPage = () => {
   }, [productCategory, products]);
 
   const preparedProducts = useMemo(() => {
+    if (!products.length) {
+      return null;
+    }
+
     return prepareProducts(
       categoryProducts,
-      { perPage: +itemsPerPage || null, currentPage: +currentPageNumber! || 1 },
-      sortOption as SortOptions
+      sortOption as SortOptions,
+      { query } as FilterOptions
     );
-  }, [categoryProducts, sortOption, itemsPerPage, currentPageNumber]);
+  }, [categoryProducts, sortOption, itemsPerPage, currentPageNumber, query]);
 
-  const amountOfPages = Math.ceil(categoryProducts.length / +itemsPerPage);
+  const paginatedProducts = useMemo(() => {
+    if (!products.length) {
+      return null;
+    }
+
+    return paginateProducts(
+      preparedProducts as Product[],
+      {
+        perPage: +itemsPerPage || null,
+        currentPage: +currentPageNumber! || 1
+      });
+  }, [itemsPerPage, currentPageNumber, preparedProducts]);
+
+  const amountOfPages = Math.ceil(
+    preparedProducts?.length as number / +itemsPerPage
+  );
 
   const handleItemsPerPageChanged = (newItemsPerPage: string) => {
     if (newItemsPerPage !== itemsPerPage) {
@@ -96,11 +131,25 @@ export const CatalogPage = () => {
     return '';
   };
 
+  const handleQueryChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const normalizedQuery = event.target.value.toLowerCase().trim();
+
+    updateQuery(
+      getSearchWith(searchParams, { 'query': normalizedQuery || null })
+    );
+
+    setInputQuery(event.target.value);
+  };
+
   useEffect(() => {
     if (currentPageNumber !== 1) {
       dropdownsRef.current?.scrollIntoView({ behavior: 'smooth' });
     }
   }, [currentPageNumber]);
+
+  useEffect(() => {
+    setInputQuery(query);
+  }, [productCategory]);
 
   return (
     <div className="catalog-page">
@@ -135,7 +184,8 @@ export const CatalogPage = () => {
                 </span>
                 <Dropdown
                   onSelected={handleSortParamsChanged}
-                  options={Object.keys(SortOptions)}
+                  options={Object.keys(SortOptions)
+                    .filter(item => item !== 'HotPrices')}
                   selectedOption={getSelectedSortOption(sortOption)}
                 />
               </div>
@@ -151,17 +201,41 @@ export const CatalogPage = () => {
               </div>
             </div>
 
-            <div className="catalog-page__products">
-              <ProductTable
-                products={
-                  preparedProducts
-                  || getMockArray(Math.min(
-                    lengthOfSkeletonCards,
-                    (+itemsPerPage || 8))
-                  )
-                }
+            <div className="catalog-page__search-wrapper">
+              <span className="catalog-page__search-title small-text">
+                Search
+              </span>
+              <input
+                value={inputQuery}
+                onChange={handleQueryChanged}
+                placeholder={`Search in ${productCategory}`}
+                type="search"
+                className='catalog-page__search'
               />
             </div>
+
+            {!!query && !paginatedProducts?.length
+              ? (
+                <div className="catalog-page__no-items-message">
+                  <NoItemsMessage
+                    message='No items matching'
+                    image='./img/no-matching-items.webp'
+                  />
+                </div>
+              )
+              : (
+                <div className="catalog-page__products">
+                  <ProductTable
+                    products={
+                      paginatedProducts
+                      || getMockArray(Math.min(
+                        lengthOfSkeletonCards,
+                        (+itemsPerPage || 8))
+                      )
+                    }
+                  />
+                </div>
+              )}
           </div>
 
           {amountOfPages > 1 && (
