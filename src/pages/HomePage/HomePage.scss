@@ -3,6 +3,8 @@
 .home-page {
   @include pageGrid;
 
+  overflow: hidden;
+
   padding-bottom: 64px;
 
   @include onDesktop {

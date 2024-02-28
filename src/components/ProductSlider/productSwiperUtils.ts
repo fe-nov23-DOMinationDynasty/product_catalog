@@ -4,7 +4,7 @@ export const getPagination = (images: string[]) => ({
   clickable: true,
   el: '.product-swiper__pagination',
   renderBullet: (index: number, className: string) => {
-    return `<div class="${className}"><img src="${images[index]}" alt="pagination_item" class="product-swiper__pagination-image" /></div>`;
+    return `<div class="${className}"><img src="${images[index]}" alt="pagination_item" class="product-swiper__pagination-image" data-aos="zoom-in"/></div>`;
   },
 }
 );

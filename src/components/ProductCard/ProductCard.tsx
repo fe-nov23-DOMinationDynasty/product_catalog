@@ -1,11 +1,12 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React from 'react';
 import cn from 'classnames';
+import 'aos/dist/aos.css';
+import { Link } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import './ProductCard.scss';
 import '../../styles/blocks/skeleton-wrapper.scss';
-import { Link } from 'react-router-dom';
 import { Product } from '../../types/Product';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { actions as cartActions } from '../../features/cartSlice';
@@ -83,7 +84,9 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
   };
 
   return (
-    <article className="product-card">
+    <article
+      className="product-card"
+    >
       <Link
         to={product ? `/${category}/${itemId}` : ''}
         className="product-card__link">

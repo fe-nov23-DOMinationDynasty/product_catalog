@@ -181,7 +181,10 @@ export const CatalogPage = () => {
           </div>
 
           <div className="catalog-page__wrap">
-            <div className="catalog-page__dropdowns-container">
+            <div
+              className="catalog-page__dropdowns-container"
+              data-aos="fade-right"
+            >
               <div className="catalog-page__sort-dropdown" ref={dropdownsRef}>
                 <span className="catalog-page__dropdown-title small-text">
                   Sort by
@@ -205,7 +208,7 @@ export const CatalogPage = () => {
               </div>
             </div>
 
-            <div className="catalog-page__search-wrapper">
+            <div className="catalog-page__search-wrapper" data-aos="fade-left">
               <span className="catalog-page__search-title small-text">
                 Search
               </span>
@@ -228,7 +231,7 @@ export const CatalogPage = () => {
                 </div>
               )
               : (
-                <div className="catalog-page__products">
+                <div className="catalog-page__products" data-aos="fade-up">
                   <ProductTable
                     products={
                       paginatedProducts

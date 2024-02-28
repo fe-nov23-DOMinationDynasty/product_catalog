@@ -2,10 +2,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
+import 'aos/dist/aos.css';
 import './CartItem.scss';
 import { useAppDispatch } from '../../app/hooks';
 import { actions as cartActions } from '../../features/cartSlice';
 import { CartProduct } from '../../types/CartItem';
+import { animDuration } from '../../styles/utils/AOS';
 
 interface Props {
   product: CartProduct;
@@ -31,7 +33,11 @@ export const CartItem: React.FC<Props> = ({ product, quantity }) => {
   };
 
   return (
-    <article className="cart-item">
+    <article
+      className="cart-item"
+      data-aos="fade-right"
+      data-aos-duration={animDuration}
+    >
       <div className="cart-item__info">
         <button
           type="button"

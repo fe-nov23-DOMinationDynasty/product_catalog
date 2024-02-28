@@ -130,12 +130,12 @@ export const ItemCardPage = () => {
         </h1>
       </div>
 
-      <div className="item-card-page__swiper">
+      <div className="item-card-page__swiper" data-aos="fade-right">
         <ProductSwiper images={images} key={color} />
       </div>
 
       <div className="item-card-page__actions">
-        <div className="item-card-page__characteristic-block item-card-page__characteristic-block--color-picker">
+        <div className="item-card-page__characteristic-block item-card-page__characteristic-block--color-picker" data-aos="fade-left">
           <CharacteristicsBlock
             onSelected={handleColorChanged}
             options={colorsAvailable}
@@ -147,7 +147,7 @@ export const ItemCardPage = () => {
           />
         </div>
 
-        <div className="item-card-page__characteristic-block">
+        <div className="item-card-page__characteristic-block" data-aos="fade-left">
           <CharacteristicsBlock
             onSelected={handleCapacityChanged}
             options={capacityAvailable}
@@ -156,7 +156,7 @@ export const ItemCardPage = () => {
           />
         </div>
 
-        <div className="item-card-page__price">
+        <div className="item-card-page__price" data-aos="fade-left">
           {priceRegular
             ? (
               <>
@@ -171,12 +171,12 @@ export const ItemCardPage = () => {
             )}
         </div>
 
-        <div className="item-card-page__actions-buttons">
+        <div className="item-card-page__actions-buttons" data-aos="fade-left">
           <ProductButtons product={currentProduct as ProductInfo} category={productCategory!} />
         </div>
 
 
-        <div className="item-card-page__actions-specs">
+        <div className="item-card-page__actions-specs" data-aos="fade-left">
           {
             currentProduct
               ? (

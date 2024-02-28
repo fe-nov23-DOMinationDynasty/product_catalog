@@ -18,7 +18,7 @@ const amountOfSkeletonPagination = 4;
 export const ProductSwiper: React.FC<Props> = ({ images }) => {
   return (
     <>
-      <div className="product-swiper">
+      <div className="product-swiper"  >
         <Swiper
           spaceBetween={50}
           pagination={images ? getPagination(images) : {}}
@@ -28,8 +28,9 @@ export const ProductSwiper: React.FC<Props> = ({ images }) => {
         >
           {images
             ? images.map((image) => (
-              <SwiperSlide key={image} className="product-swiper__slide">
+              <SwiperSlide key={image} className="product-swiper__slide" >
                 <img
+                  data-aos="zoom-in"
                   src={image}
                   alt="product_picture"
                   className="product-swiper__picture"
