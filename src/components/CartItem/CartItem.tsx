@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
 import 'aos/dist/aos.css';
-import './cartItem.scss';
+import './CartItem.scss';
 import { useAppDispatch } from '../../app/hooks';
 import { actions as cartActions } from '../../features/cartSlice';
 import { CartProduct } from '../../types/CartItem';

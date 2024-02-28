@@ -3,7 +3,7 @@ import { SwiperSlide, Swiper } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import React from 'react';
 
-import './ProductSwiper.scss';
+import './ProductSlider.scss';
 
 interface Props {
   images: string[];

@@ -4,13 +4,13 @@
 .tech-specs {
   display: flex;
   flex-direction: column;
-  row-gap: 8px;
+  row-gap: $spacing-small;
 
   &__header {
     display: flex;
     flex-direction: column;
-    row-gap: 16px;
-    margin-bottom: 17px;
+    row-gap: $spacing-medium;
+    margin-bottom: $spacing-medium;
   }
 
   &__line {
@@ -21,9 +21,14 @@
   &__info {
     display: flex;
     justify-content: space-between;
+    column-gap: $spacing-small;
   }
 
   &__name {
     color: $secondary-color;
+  }
+
+  &__configuration {
+    @include textEllipsis;
   }
 }
