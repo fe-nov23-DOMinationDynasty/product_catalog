@@ -3,12 +3,13 @@ import './NoItemsMessage.scss';
 
 interface Props {
   message: string,
+  image: string,
 }
 
-export const NoItemsMessage: React.FC<Props> = ({ message }) => (
+export const NoItemsMessage: React.FC<Props> = ({ message, image }) => (
   <div className="no-items-message">
     <img
-      src="./img/no-items-image.webp"
+      src={image}
       alt="noItemsPicture"
       className="no-items-message__image"
     />

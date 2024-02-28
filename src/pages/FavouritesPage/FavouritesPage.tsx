@@ -28,7 +28,10 @@ export const FavouritesPage: React.FC = () => {
           </>
         )
         : (
-          <NoItemsMessage message="No favourites yet" />
+          <NoItemsMessage
+            message="No favourites yet"
+            image='./img/no-favourites.webp'
+          />
         )
       }
     </section>

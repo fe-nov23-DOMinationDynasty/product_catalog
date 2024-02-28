@@ -86,7 +86,10 @@ export const CartPage = () => {
       )
         : (
           <div className="cart__no-items-message">
-            <NoItemsMessage message='Your cart is empty' />
+            <NoItemsMessage
+              message='Your cart is empty'
+              image='./img/no-cart-items.webp'
+            />
           </div>
         )}
 
