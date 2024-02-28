@@ -12,6 +12,7 @@ import { useAppSelector } from '../../app/hooks';
 import './CartPage.scss';
 import '../../styles/blocks/button.scss';
 import '../../styles/utils/text-styles.scss';
+import { NoItemsMessage } from '../../components/NoItemsMessage';
 
 export const CartPage = () => {
   const dispatch = useDispatch();
@@ -64,7 +65,7 @@ export const CartPage = () => {
         )}
       </div>
 
-      {!!totalQuantity && (
+      {totalQuantity ? (
         <article className="total">
           <div className="total__info">
             <h2 className="total__price">${totalCost}</h2>
@@ -82,7 +83,15 @@ export const CartPage = () => {
             Checkout
           </button>
         </article>
-      )}
+      )
+        : (
+          <div className="cart__no-items-message">
+            <NoItemsMessage
+              message='Your cart is empty'
+              image='./img/no-cart-items.webp'
+            />
+          </div>
+        )}
 
       {showModal && <CheckoutModal />}
     </div>
