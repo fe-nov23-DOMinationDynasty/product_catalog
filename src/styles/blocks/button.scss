@@ -34,6 +34,7 @@ $button-border-primary: 1px solid $primary-color;
     background-color: $surface-secondary-dark-theme-color;
 
     @include hoverEffect(background-color, $icons-dark-theme-color);
+    @include hoverEffect(border, 1px solid $surface-secondary-dark-theme-color);
   }
 
   &--arrow-left {
@@ -79,16 +80,30 @@ $button-border-primary: 1px solid $primary-color;
   &--minus {
     background-image: url(../icons/minus.svg);
 
+    &--dark {
+      background-image: url(../icons/minus-dark.svg);
+    }
+
     &--disabled {
       background-image: url(../icons/minus-disabled.svg);
       border: $button-border;
       cursor: default;
       pointer-events: none;
+
+      &--dark {
+        border: 1px solid $elements-dark-theme-color;
+        background-color: $dark-theme-background-color;
+        background-image: url(../icons/minus-disabled-dark.svg);
+      }
     }
   }
 
   &--plus {
     background-image: url(../icons/plus.svg);
+
+    &--dark {
+      background-image: url(../icons/plus-dark.svg);
+    }
   }
 
   &--top {
@@ -167,9 +182,8 @@ $button-border-primary: 1px solid $primary-color;
     background-image: url('../icons/buttons/icon-favourites.svg');
 
     &--dark {
-      border: none;
-      background-color:
-        $surface-secondary-dark-theme-color;
+      border: 1px solid $surface-secondary-dark-theme-color;
+      background-color: $surface-secondary-dark-theme-color;
       background-image: url('../icons/buttons/icon-favourites-dark.svg');
 
       @include hoverEffect(background-color, $icons-dark-theme-color);
@@ -196,11 +210,22 @@ $button-border-primary: 1px solid $primary-color;
 
   @include hoverEffect(border, $button-border-primary);
 
+  &--dark {
+    border: 1px solid $icons-dark-theme-color;
+    color: $dark-primary-color;
+  }
+
   &--color-picker {
     @include hoverEffect(border, 1px solid $icons-color);
 
     padding: 0;
     border-radius: 50%;
+
+    &--dark {
+      border: 1px solid $elements-dark-theme-color;
+
+      @include hoverEffect(border, 1px solid $secondary-text-dark-theme-color);
+    }
 
     &--selected {
       border: $button-border-primary;
@@ -211,13 +236,18 @@ $button-border-primary: 1px solid $primary-color;
     background-color: $primary-color;
     color: $white-color;
     border: $button-border-primary;
+
+    &--dark {
+      color: $dark-theme-background-color;
+      background-color: $dark-primary-color;
+    }
   }
 
   &__item {
     &--color-picker {
       height: 30px;
       width: 30px;
-      border: 2px solid $white-color;
+      border: 2px solid var(--background-color);
       border-radius: 50%;
     }
   }

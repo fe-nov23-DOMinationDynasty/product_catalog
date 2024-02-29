@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import cn from 'classnames';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { actions as cartActions } from '../../features/cartSlice';
@@ -13,10 +14,13 @@ import './CartPage.scss';
 import '../../styles/blocks/button.scss';
 import '../../styles/utils/text-styles.scss';
 import { NoItemsMessage } from '../../components/NoItemsMessage';
+import { Theme } from '../../enums/Theme';
 
 export const CartPage = () => {
   const dispatch = useDispatch();
   const products = useAppSelector((state) => state.cartReducer);
+  const isDark = useAppSelector(state => state.themeReducer) === Theme.Dark;
+
 
   const [showModal, setShowModal] = useState(false);
 
@@ -78,7 +82,9 @@ export const CartPage = () => {
 
           <button
             type="button"
-            className="button button--add button--cart"
+            className={cn('button button--add button--cart', {
+              'button--dark button--add--dark': isDark,
+            })}
             onClick={handleCheckout}>
             Checkout
           </button>

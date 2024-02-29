@@ -3,9 +3,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
 import './CartItem.scss';
-import { useAppDispatch } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { actions as cartActions } from '../../features/cartSlice';
 import { CartProduct } from '../../types/CartItem';
+import { Theme } from '../../enums/Theme';
 
 interface Props {
   product: CartProduct;
@@ -15,6 +16,8 @@ interface Props {
 export const CartItem: React.FC<Props> = ({ product, quantity }) => {
   const { itemId, name, image, price, category } = product;
   const dispatch = useAppDispatch();
+  const isDark = useAppSelector(state => state.themeReducer) === Theme.Dark;
+
 
   const handleIncrement = () => {
     dispatch(cartActions.incrementAmount(itemId));
@@ -61,6 +64,8 @@ export const CartItem: React.FC<Props> = ({ product, quantity }) => {
             type="button"
             className={cn('button button--minus', {
               'button--minus--disabled': quantity === 1,
+              'button--minus--disabled--dark': quantity === 1 && isDark,
+              'button--dark button--minus--dark': isDark,
             })}
             onClick={handleDecrement}
           />
@@ -69,7 +74,9 @@ export const CartItem: React.FC<Props> = ({ product, quantity }) => {
 
           <button
             type="button"
-            className="button button--plus"
+            className={cn('button button--plus', {
+              'button--dark button--plus--dark': isDark,
+            })}
             onClick={handleIncrement}
           />
         </div>

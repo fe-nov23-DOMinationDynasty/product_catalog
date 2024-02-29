@@ -44,7 +44,7 @@
   &__about {
     font-weight: 600;
 
-    @include hoverEffect(color, $secondary-color);
+    @include hoverEffect(color, var(--hover-color-text));
   }
 
   &__cost,

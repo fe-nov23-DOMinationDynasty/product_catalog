@@ -20,6 +20,7 @@ import { BreadCrumbs } from '../../components/BreadCrumbs';
 import { RecommendsSlider } from '../../components/RecommendsSlider';
 import { useAppSelector } from '../../app/hooks';
 import { ProductInfo } from '../../types/ProductInfo';
+import { Theme } from '../../enums/Theme';
 
 export const ItemCardPage = () => {
   const location = useLocation();
@@ -33,6 +34,7 @@ export const ItemCardPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isSwiperLoading, setIsSwiperLoading] = useState(false);
   const [currentProduct, setCurrentProduct] = useState<ProductInfo | null>(null);
+  const isDark = useAppSelector(state => state.themeReducer) === Theme.Dark;
 
   useEffect(() => {
     getProductInfo(productCategory as Category, itemId as string)
@@ -146,8 +148,13 @@ export const ItemCardPage = () => {
 
             <div className="item-card-page__price">
               <p className="item-card-page__actual-price h2">{`$${priceDiscount}`}</p>
+
               {priceRegular !== priceDiscount && (
-                <p className="item-card-page__full-price h3">{`$${priceRegular}`}</p>
+                <p className={cn('item-card-page__full-price h3', {
+                  'item-card-page__full-price--dark': isDark,
+                })}>
+                  {`$${priceRegular}`}
+                </p>
               )}
             </div>
 

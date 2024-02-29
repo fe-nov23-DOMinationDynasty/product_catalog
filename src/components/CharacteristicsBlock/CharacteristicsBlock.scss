@@ -7,6 +7,10 @@
     justify-content: space-between;
     padding-bottom: 8px;
     color: $icons-color;
+
+    &--dark {
+      color: $secondary-text-dark-theme-color;
+    }
   }
 
   &__subtitle {

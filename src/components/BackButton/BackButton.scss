@@ -17,18 +17,35 @@
   align-items: center;
   gap: 4px;
 
-  transition: color $transition-duration;
-
   color: $secondary-color;
 
-  &:hover {
-    color: $primary-color;
+  @include hoverEffect(color, $primary-color);
+
+  &--dark {
+    color: $dark-primary-color;
+
+    @include onDesktop {
+      transition: color $transition-duration, background-image $transition-duration;
+
+      &:hover {
+        color: $accent-dark-theme-color;
+
+        .back-button__arrow-left {
+          background-image: url(../icons/arrow-left-hover.svg);
+        }
+      }
+    }
   }
 
   &__arrow-left {
     padding: 8px;
+
+    background-image: url(../icons/arrow-left.svg);
     background-repeat: no-repeat;
     background-position: center;
-    background-image: url(./icons/arrow-left.svg);
+
+    &--dark {
+      background-image: url(../icons/arrow-left-white.svg);
+    }
   }
 }
