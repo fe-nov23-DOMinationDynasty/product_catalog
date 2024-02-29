@@ -1936,7 +1936,7 @@
     "capacity": "32GB",
     "priceRegular": 400,
     "priceDiscount": 375,
-    "colorsAvailable": ["black", "rosegold", "gold", "silver"],
+    "colorsAvailable": ["black", "pink", "gold", "silver"],
     "color": "black",
     "images": [
       "img/phones/apple-iphone-7/black/00.webp",
@@ -1983,7 +1983,7 @@
     "capacity": "32GB",
     "priceRegular": 400,
     "priceDiscount": 375,
-    "colorsAvailable": ["black", "rosegold", "gold", "silver"],
+    "colorsAvailable": ["black", "pink", "gold", "silver"],
     "color": "gold",
     "images": [
       "img/phones/apple-iphone-7/gold/00.webp",
@@ -2030,8 +2030,8 @@
     "capacity": "32GB",
     "priceRegular": 400,
     "priceDiscount": 375,
-    "colorsAvailable": ["black", "rosegold", "gold", "silver"],
-    "color": "rosegold",
+    "colorsAvailable": ["black", "pink", "gold", "silver"],
+    "color": "pink",
     "images": [
       "img/phones/apple-iphone-7/rosegold/00.webp",
       "img/phones/apple-iphone-7/rosegold/01.webp",
@@ -2077,7 +2077,7 @@
     "capacity": "32GB",
     "priceRegular": 400,
     "priceDiscount": 375,
-    "colorsAvailable": ["black", "rosegold", "gold", "silver"],
+    "colorsAvailable": ["black", "pink", "gold", "silver"],
     "color": "silver",
     "images": [
       "img/phones/apple-iphone-7/silver/00.webp",
@@ -2124,7 +2124,7 @@
     "capacity": "32GB",
     "priceRegular": 540,
     "priceDiscount": 500,
-    "colorsAvailable": ["black", "rosegold", "gold", "silver"],
+    "colorsAvailable": ["black", "pink", "gold", "silver"],
     "color": "black",
     "images": [
       "img/phones/apple-iphone-7-plus/black/00.webp",
@@ -2171,7 +2171,7 @@
     "capacity": "32GB",
     "priceRegular": 540,
     "priceDiscount": 500,
-    "colorsAvailable": ["black", "rosegold", "gold", "silver"],
+    "colorsAvailable": ["black", "pink", "gold", "silver"],
     "color": "gold",
     "images": [
       "img/phones/apple-iphone-7-plus/gold/00.webp",
@@ -2218,8 +2218,8 @@
     "capacity": "32GB",
     "priceRegular": 540,
     "priceDiscount": 500,
-    "colorsAvailable": ["black", "rosegold", "gold", "silver"],
-    "color": "rosegold",
+    "colorsAvailable": ["black", "pink", "gold", "silver"],
+    "color": "pink",
     "images": [
       "img/phones/apple-iphone-7-plus/rosegold/00.webp",
       "img/phones/apple-iphone-7-plus/rosegold/01.webp",
@@ -2265,7 +2265,7 @@
     "capacity": "32GB",
     "priceRegular": 540,
     "priceDiscount": 500,
-    "colorsAvailable": ["black", "rosegold", "gold", "silver"],
+    "colorsAvailable": ["black", "pink", "gold", "silver"],
     "color": "silver",
     "images": [
       "img/phones/apple-iphone-7-plus/silver/00.webp",

@@ -10,16 +10,16 @@ interface Props {
 }
 
 export const AboutSection: React.FC<Props> = ({ description }) => (
-  <article className="about">
+  <article className="about" data-aos="fade-right">
     <div className="about__header">
-      <h3 className="about__title h3">About</h3>
+      <h3 className="about__title h3" >About</h3>
 
       <span className="about__line" />
     </div>
     {description
       ? (
         description.map(({ title, text }) => (
-          <div className="about__info" key={title}>
+          <div className="about__info" key={title} data-aos="fade-right">
             <h4 className="about__info-title h4">{title}</h4>
 
             <div className="about__info-describtion">

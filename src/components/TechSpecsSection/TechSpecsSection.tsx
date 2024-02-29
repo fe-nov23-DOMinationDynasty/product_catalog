@@ -26,7 +26,7 @@ export const TechSpecsSection: React.FC<Props> = ({
   const techSpecObject = TechSpecs[productCategory];
 
   return (
-    <article className="tech-specs">
+    <article className="tech-specs" data-aos="fade-left">
       <div className="tech-specs__header">
         <h3 className="tech-specs__title h3">Tech specs</h3>
 

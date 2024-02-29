@@ -80,13 +80,9 @@ export const sortProducts = (products: Product[], sortOption: SortOptions) => {
 export function prepareProducts(
   products: Product[],
   sortOption: SortOptions,
-  filterOptions: FilterOptions
+  paginationOptions: PaginationParams
 ): Product[] {
-  const filteredProducts = filterProducts(products, filterOptions);
+  const sortedProducts = sortProducts(products, sortOption);
 
-  if (sortOption) {
-    return sortProducts(filteredProducts, sortOption);
-  }
-
-  return filteredProducts;
+  return paginateProducts(sortedProducts, paginationOptions);
 }

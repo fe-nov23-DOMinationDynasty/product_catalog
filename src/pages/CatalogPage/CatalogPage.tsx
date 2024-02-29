@@ -1,8 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 
-import debounce from 'lodash.debounce';
 import Skeleton from 'react-loading-skeleton';
 import { Pagination } from '../../components/Pagination';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
@@ -14,11 +13,9 @@ import { getSearchWith } from '../../utils/searchHelper';
 
 import './CatalogPage.scss';
 import '../../styles/blocks/button.scss';
-import { paginateProducts, prepareProducts } from '../../utils/productsHelper';
+import { prepareProducts } from '../../utils/productsHelper';
 import { capitalizeFirstLetter } from '../../services/capitalizeFirstLetter';
-import { FilterOptions } from '../../types/FilterOptions';
 import {
-  debounceDelay,
   itemsPerPageOptions,
   requestDelay
 } from '../../constants/constants';
@@ -26,8 +23,6 @@ import { BreadCrumbs } from '../../components/BreadCrumbs';
 import { actions as productsActions } from '../../features/productsSlice';
 import { getMockArray } from '../../services/getMockArray';
 import { wait } from '../../utils/fetchClient';
-import { Product } from '../../types/Product';
-import { NoItemsMessage } from '../../components/NoItemsMessage';
 
 const lengthOfSkeletonCards = 8;
 
@@ -43,13 +38,9 @@ export const CatalogPage = () => {
     (state) => state.productsReducer
   );
   const dropdownsRef = useRef<HTMLDivElement>(null);
-  const [inputQuery, setInputQuery] = useState(query);
-  const updateQuery = useCallback(debounce((newParams: string) => {
+  const [amountOfPages, setAmountOfPages] = useState(0);
+  const [currentPage, setCurrentPage] = useState(currentPageNumber);
 
-    if (newParams !== searchParams.toString()) {
-      setSearchParams(newParams);
-    }
-  }, debounceDelay), [searchParams, productCategory]);
 
   const dispatch = useAppDispatch();
 
@@ -64,7 +55,6 @@ export const CatalogPage = () => {
     return () => {
       dispatch(productsActions.clear());
     };
-
   }, [productCategory, currentPageNumber]);
 
   const categoryProducts = useMemo(() => {
@@ -79,26 +69,22 @@ export const CatalogPage = () => {
     return prepareProducts(
       categoryProducts,
       sortOption as SortOptions,
-      { query } as FilterOptions
-    );
-  }, [categoryProducts, sortOption, itemsPerPage, currentPageNumber, query]);
-
-  const paginatedProducts = useMemo(() => {
-    if (!products.length) {
-      return null;
-    }
-
-    return paginateProducts(
-      preparedProducts as Product[],
       {
         perPage: +itemsPerPage || null,
         currentPage: +currentPageNumber! || 1
-      });
-  }, [itemsPerPage, currentPageNumber, preparedProducts]);
+      }
+    );
+  }, [categoryProducts, sortOption, itemsPerPage, currentPageNumber, query]);
 
-  const amountOfPages = Math.ceil(
-    preparedProducts?.length as number / +itemsPerPage
-  );
+  useEffect(() => {
+    setAmountOfPages(
+      Math.ceil(categoryProducts?.length as number / +itemsPerPage)
+    );
+  }, [categoryProducts]);
+
+  useEffect(() => {
+    setCurrentPage(currentPage);
+  }, []);
 
   const handleItemsPerPageChanged = (newItemsPerPage: string) => {
     if (newItemsPerPage !== itemsPerPage) {
@@ -135,25 +121,11 @@ export const CatalogPage = () => {
     return '';
   };
 
-  const handleQueryChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const normalizedQuery = event.target.value.toLowerCase().trim();
-
-    updateQuery(
-      getSearchWith(searchParams, { 'query': normalizedQuery || null })
-    );
-
-    setInputQuery(event.target.value);
-  };
-
   useEffect(() => {
     if (currentPageNumber !== 1) {
       dropdownsRef.current?.scrollIntoView({ behavior: 'smooth' });
     }
   }, [currentPageNumber]);
-
-  useEffect(() => {
-    setInputQuery(query);
-  }, [productCategory]);
 
   return (
     <div className="catalog-page">
@@ -183,7 +155,6 @@ export const CatalogPage = () => {
           <div className="catalog-page__wrap">
             <div
               className="catalog-page__dropdowns-container"
-              data-aos="fade-right"
             >
               <div className="catalog-page__sort-dropdown" ref={dropdownsRef}>
                 <span className="catalog-page__dropdown-title small-text">
@@ -208,47 +179,23 @@ export const CatalogPage = () => {
               </div>
             </div>
 
-            <div className="catalog-page__search-wrapper" data-aos="fade-left">
-              <span className="catalog-page__search-title small-text">
-                Search
-              </span>
-              <input
-                value={inputQuery}
-                onChange={handleQueryChanged}
-                placeholder={`Search in ${productCategory}`}
-                type="search"
-                className='catalog-page__search'
+            <div className="catalog-page__products" data-aos="fade-up">
+              <ProductTable
+                products={
+                  preparedProducts
+                  || getMockArray(Math.min(
+                    lengthOfSkeletonCards,
+                    (+itemsPerPage || 8))
+                  )
+                }
               />
             </div>
-
-            {!!query && !paginatedProducts?.length
-              ? (
-                <div className="catalog-page__no-items-message">
-                  <NoItemsMessage
-                    message='No items matching'
-                    image='./img/no-matching-items.webp'
-                  />
-                </div>
-              )
-              : (
-                <div className="catalog-page__products" data-aos="fade-up">
-                  <ProductTable
-                    products={
-                      paginatedProducts
-                      || getMockArray(Math.min(
-                        lengthOfSkeletonCards,
-                        (+itemsPerPage || 8))
-                      )
-                    }
-                  />
-                </div>
-              )}
           </div>
 
           {amountOfPages > 1 && (
             <div className="catalog-page__pagination wrapper">
               <Pagination
-                amountOfPages={amountOfPages}
+                amountOfPages={amountOfPages || 4}
                 currentPageNumber={+currentPageNumber}
               />
             </div>

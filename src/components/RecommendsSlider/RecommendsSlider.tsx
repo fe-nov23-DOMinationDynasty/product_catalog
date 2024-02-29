@@ -38,7 +38,7 @@ export const RecommendsSlider: React.FC<Props> = ({ title, products }) => {
   }, []);
 
   return (
-    <div className="slider">
+    <div className="slider" data-aos="fade-up">
       <div className="slider__header">
         <h2 className="slider__title h2">{title}</h2>
 

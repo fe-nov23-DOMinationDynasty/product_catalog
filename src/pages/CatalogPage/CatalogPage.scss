@@ -72,59 +72,27 @@
     }
   }
 
-  &__search-wrapper {
-    grid-column: 1 / -1;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
+  // &__search-wrapper {
+  //   grid-column: 1 / -1;
+  //   display: flex;
+  //   flex-direction: column;
+  //   gap: 2px;
 
-    @include onTablet {
-      grid-column: -6 / -1;
-      grid-row: 1;
-    }
+  //   @include onTablet {
+  //     grid-column: -6 / -1;
+  //     grid-row: 1;
+  //   }
 
-    @include onDesktop {
-      grid-column: -9 / -1;
-    }
-  }
+  //   @include onDesktop {
+  //     grid-column: -9 / -1;
+  //   }
+  // }
 
-  &__search-title {
-    display: inline-block;
-    color: $secondary-color;
-  }
 
-  &__search {
-    height: 40px;
-    padding-inline: 24px 6px;
-    outline: 0;
 
-    @include withButtonBorder;
-
-    box-sizing: border-box;
-    color: $secondary-color;
-    font-size: 16px;
-    transition: box-shadow $transition-duration,
-      background-position $transition-duration;
-
-    background: url('../icons/search-icon.svg');
-    background-repeat: no-repeat;
-    background-position: right 10px top 50%;
-
-    @include onDesktop {
-      &:hover {
-        box-shadow: 0 2px 15px 0 #0000000D;
-        background-position: right -10% top 50%;
-      }
-    }
-
-    &:focus {
-      box-shadow: 0 2px 15px 0 #0000000D;
-      background-position: right -10% top 50%;
-    }
-
-    &:focus-visible {
-      border: 1px solid $primary-color;
-    }
+  &__pagination-skeleton {
+    width: 200px;
+    height: 32px;
   }
 
   &__items-per-page-dropdown {
