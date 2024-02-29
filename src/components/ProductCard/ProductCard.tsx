@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React from 'react';
 import cn from 'classnames';
@@ -14,6 +15,7 @@ import { actions as favouriteActions } from '../../features/favouritesSlice';
 import { shownProductCardCharacteristics } from '../../constants/constants';
 import { CartProduct } from '../../types/CartItem';
 import { LocalFavouriteProducts } from '../../types/LocalFavouriteProducts';
+import { Theme } from '../../enums/Theme';
 
 interface Props {
   product: Product | null;
@@ -31,6 +33,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
     screen,
     ram,
   } = product || {};
+  const isDark = useAppSelector(state => state.themeReducer) === Theme.Dark;
   const { cartItems } = useAppSelector((state) => state.cartReducer);
   const favouriteProducts = useAppSelector((state) => state.favouritesReducer);
   const dispatch = useAppDispatch();
@@ -85,7 +88,9 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
 
   return (
     <article
-      className="product-card"
+      className={cn('product-card', {
+        'product-card--dark': isDark,
+      })}
     >
       <Link
         to={product ? `/${category}/${itemId}` : ''}
@@ -99,6 +104,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
             />)
           : <Skeleton className='product-card__image--skeleton' />
         }
+
         <p className="product-card__title">
           {name || <Skeleton className='product-card__title--skeleton' />}
         </p>
@@ -111,7 +117,9 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
           </p>
 
           {fullPrice !== price && (
-            <p className="product-card__full-price">
+            <p className={cn('product-card__full-price', {
+              'product-card__full-price--dark': isDark,
+            })}>
               {fullPrice && `$${fullPrice}`}
             </p>
           )}
@@ -156,14 +164,19 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
                   type="button"
                   className={cn('button button--add', {
                     'button--add--selected': isInCart,
+                    'button--add--selected--dark': isInCart && isDark,
+                    'button--add--dark': isDark,
                   })}>
                   {isInCart ? 'Added to cart' : 'Add to cart'}
                 </button>
+
                 <button
                   onClick={handleFavouriteProductStatusChanged}
                   type="button"
                   className={cn('button button--favourite', {
                     'button--favourite--selected': isInFavourite,
+                    'button--favourite--selected--dark': isInFavourite && isDark,
+                    'button--favourite--dark': isDark,
                   })}
                 />
               </>

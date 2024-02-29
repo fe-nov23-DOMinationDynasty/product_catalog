@@ -4,7 +4,7 @@
 .footer {
   width: 100%;
   padding-block: 32px;
-  border-top: solid 1px $elements-color;
+  border-top: solid 1px var(--elements-color);
 
   &__wrapper {
     @include pageGrid;
@@ -39,7 +39,13 @@
   }
 
   &__link {
-    @include hoverEffect(color, $primary-color)
+    color: $dark-primary-color;
+
+    @include hoverEffect(color, $primary-color);
+
+    &--dark {
+      @include hoverEffect(color, $accent-dark-hover);
+    }
   }
 
   &__go-top {
@@ -54,9 +60,13 @@
   }
 
   &__go-top-text {
-    color: $secondary-color;
+    color: var(--secondary-text-color);
     font-weight: 700;
 
-    @include hoverEffect(color, $primary-color)
+    @include hoverEffect(color, $primary-color);
+
+    &--dark {
+      @include hoverEffect(color, $accent-dark-hover);
+    }
   }
 }

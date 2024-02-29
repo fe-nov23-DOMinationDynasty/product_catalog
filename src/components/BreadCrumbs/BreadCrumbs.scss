@@ -23,13 +23,20 @@
 
     color: $primary-color;
 
-    &:last-child {
-      color: $secondary-color;
-    }
+    color: var(--primary-text-color);
   }
 
   &__arrow {
-    background: url('../../../public/icons/arrow-right-disabled.svg') center no-repeat;
+    background: url('../icons/arrow-right-disabled.svg') center no-repeat;
+    width: $crumb-size;
+
+    &--dark {
+      background: url('../icons/arrow-right-disabled-dark.svg') center no-repeat;
+    }
+  }
+
+  &__crumb:last-child {
+    color: var(--secondary-text-color);
   }
 
   &__link {
@@ -39,6 +46,11 @@
   }
 
   &__home {
-    background: url('../../../public/icons/buttons/icon-home.svg') center no-repeat;
+    background: url('../icons/buttons/icon-home.svg') center no-repeat;
+    width: $crumb-size;
+
+    &--dark {
+      background: url('../icons/buttons/icon-home-dark.svg') center no-repeat;
+    }
   }
 }

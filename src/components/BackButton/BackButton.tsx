@@ -3,10 +3,14 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import './BackButton.scss';
 import '../../styles/utils/text-styles.scss';
+import cn from 'classnames';
+import { useAppSelector } from '../../app/hooks';
+import { Theme } from '../../enums/Theme';
 
 export const BackButton = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const isDark = useAppSelector(state => state.themeReducer) === Theme.Dark;
 
   const goBack = () => {
     if (location.key === 'default') {
@@ -19,8 +23,18 @@ export const BackButton = () => {
   };
 
   return (
-    <button type="button" className="back-button small-text" onClick={goBack}>
-      <i className="back-button__arrow-left" />
+    <button
+      type="button"
+      className={cn('back-button small-text', {
+        'back-button--dark': isDark,
+      })}
+      onClick={goBack}
+    >
+      <i
+        className={cn('back-button__arrow-left', {
+          'back-button__arrow-left--dark': isDark,
+        })}
+      />
       Back
     </button>
   );

@@ -7,10 +7,8 @@ $price-cross-line: 2px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
   padding: 32px;
   height: 100%;
-
   box-sizing: border-box;
   border: 1px solid $elements-color;
 
@@ -18,6 +16,13 @@ $price-cross-line: 2px;
 
   @include onTablet {
     min-height: 520px;
+  }
+
+  &--dark {
+    border: none;
+    background-color: $surface-primary-dark-theme-color;
+
+    @include hoverEffect(box-shadow, 0 2px 16px 0 $accent-dark-hover);
   }
 
   &__title {
@@ -38,7 +43,7 @@ $price-cross-line: 2px;
   &__image {
     object-fit: contain;
     aspect-ratio: 1 / 1;
-
+    
     @include hoverEffect(scale, $transform-scale);
 
     &--skeleton {
@@ -65,7 +70,6 @@ $price-cross-line: 2px;
       bottom: -$spacing-small;
       width: 100%;
       height: 1px;
-
       background-color: $elements-color;
     }
 
@@ -98,6 +102,11 @@ $price-cross-line: 2px;
       height: $price-cross-line;
       background-color: $secondary-color;
       mix-blend-mode: color-dodge;
+
+      &--dark {
+        background-color: $secondary-text-dark-theme-color;
+        mix-blend-mode: difference;
+      }
     }
   }
 

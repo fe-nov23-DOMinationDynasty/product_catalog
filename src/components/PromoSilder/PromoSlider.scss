@@ -101,11 +101,20 @@
     border-radius: 0;
     background: $elements-color;
 
+    &--dark {
+      background: $elements-dark-theme-color;
+    }
+
     &--active {
       background: $primary-color;
     }
+
+    &--active-dark {
+      background: $dark-primary-color;
+    }
   }
 
+  &__next-button,
   &__prev-button {
     height: var(--promo-height);
     min-width: $button-width;
@@ -117,19 +126,11 @@
     background-repeat: no-repeat;
     background-position: center;
     background-color: $white-color;
-  }
 
-  &__next-button {
-    height: var(--promo-height);
-    min-width: $button-width;
-
-    box-sizing: border-box;
-
-    @include withButtonBorder;
-
-    background-repeat: no-repeat;
-    background-position: center;
-    background-color: $white-color;
+    &--dark {
+      background-color: $surface-secondary-dark-theme-color;
+      border: 1px solid $surface-secondary-dark-theme-color;
+    }
   }
 
   &__button-skeleton {

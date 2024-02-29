@@ -10,6 +10,7 @@ import { actions as favouriteActions } from '../../features/favouritesSlice';
 import './ProductButtons.scss';
 import { ProductInfo } from '../../types/ProductInfo';
 import { CartProduct } from '../../types/CartItem';
+import { Theme } from '../../enums/Theme';
 
 interface Props {
   product: ProductInfo | null,
@@ -28,6 +29,7 @@ export const ProductButtons: React.FC<Props> = ({ product, category }) => {
     category,
   };
 
+  const isDark = useAppSelector(state => state.themeReducer) === Theme.Dark;
   const { cartItems } = useAppSelector((state) => state.cartReducer);
   const favouriteProducts = useAppSelector((state) => state.favouritesReducer);
   const dispatch = useAppDispatch();
@@ -69,8 +71,11 @@ export const ProductButtons: React.FC<Props> = ({ product, category }) => {
               onClick={handleProductCartStatusChanged}
               type="button"
               className={cn('product-buttons__button-add button button--add', {
+                'button--dark button--add--dark': isDark,
                 'button--add--selected': isInCart,
-              })}>
+                'button--add--selected--dark': isInCart && isDark,
+              })}
+            >
               {isInCart ? 'Added to cart' : 'Add to cart'}
             </button>
 
@@ -79,7 +84,9 @@ export const ProductButtons: React.FC<Props> = ({ product, category }) => {
               type="button"
               className={
                 cn('button button--favourite product-buttons__button-fav', {
+                  'button--dark button--favourite--dark': isDark,
                   'button--favourite--selected': isInFavourite,
+                  'button--favourite--selected--dark': isInFavourite && isDark,
                 })}
             />
           </>

@@ -18,14 +18,9 @@
     padding-left: 12px;
 
     border: 1px solid $icons-color;
-    transition: border $transition-duration;
     text-transform: capitalize;
 
-    @include onDesktop {
-      &:hover {
-        border: 1px solid $secondary-color;
-      }
-    }
+    @include hoverEffect(border, 1px solid $secondary-color);
 
     &::after {
       content: '';
@@ -36,7 +31,7 @@
       width: 16px;
       height: 16px;
 
-      background: url('./icons/arrow-up.svg');
+      background: url('../icons/arrow-up.svg');
       background-repeat: no-repeat;
       background-position: center;
       transform: translateY(-50%) rotate(0);
@@ -50,6 +45,20 @@
         transform: translateY(-50%) rotate(180deg);
       }
     }
+
+    &--dark {
+      border: 1px solid $surface-secondary-dark-theme-color;
+      background-color: $surface-secondary-dark-theme-color;
+      color: $dark-primary-color;
+
+      @include hoverEffect(border, 1px solid $icons-dark-theme-color);
+
+      &::after {
+        background: url('../icons/arrow-up-dark.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+    }
   }
 
   &__menu {
@@ -59,7 +68,7 @@
     z-index: 1;
     transform: translateY(-20%);
     opacity: 0;
-    background-color: $white-color;
+    background-color: var(--background-color);
 
     transition:
       transform $transition-slow-duration,
@@ -75,6 +84,10 @@
       transform: translateY(0);
       opacity: 1;
       pointer-events: all;
+
+      &--dark {
+        border: 1px solid $elements-dark-theme-color;
+      }
     }
   }
 
@@ -91,14 +104,14 @@
 
     @include onDesktop {
       &:hover {
-        background-color: $hover-background-color;
-        color: $primary-color;
+        background-color: var(--hover-button-background-color);
+        color: var(--primary-text-color);
       }
     }
 
     &--selected {
-      background-color: $hover-background-color;
-      color: $primary-color;
+      background-color: var(--hover-button-background-color);
+      color: var(--primary-text-color);
     }
   }
 

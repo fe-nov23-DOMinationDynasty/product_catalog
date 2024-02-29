@@ -8,7 +8,7 @@
   gap: $spacing-medium;
 
   padding: $spacing-medium;
-  border: 1px solid $elements-color;
+  border: 1px solid var(--elements-color);
 
   @include onTablet {
     flex-direction: row;
@@ -44,7 +44,7 @@
   &__about {
     font-weight: 600;
 
-    @include hoverEffect(color, $secondary-color);
+    @include hoverEffect(color, var(--hover-color-text));
   }
 
   &__cost,

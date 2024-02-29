@@ -22,16 +22,14 @@ export const Header = () => {
 
   const favouriteProducts = useAppSelector((state) => state.favouritesReducer);
   const { cartItems } = useAppSelector((state) => state.cartReducer);
-  const isDarkMode
-    = useAppSelector((state) => state.themeReducer) === Theme.Dark;
+  const location = useLocation();
+  const isDark = useAppSelector(state => state.themeReducer) === Theme.Dark;
 
   const handleThemeChanged = (isToggled: boolean) => {
     const theme = isToggled ? Theme.Dark : Theme.Light;
 
     dispatch(themeActions.setTheme(theme));
   };
-
-  const location = useLocation();
 
   return (
     <>
@@ -81,7 +79,7 @@ export const Header = () => {
           <div className="header__buttons-block">
             <div className="header__icon-theme">
               <Classic
-                toggled={isDarkMode}
+                toggled={isDark}
                 onToggle={handleThemeChanged}
                 style={{
                   fontSize: '30px',

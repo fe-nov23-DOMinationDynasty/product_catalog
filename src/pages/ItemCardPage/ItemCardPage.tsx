@@ -23,6 +23,7 @@ import { ProductInfo } from '../../types/ProductInfo';
 import { wait } from '../../utils/fetchClient';
 import { actions as productsActions } from '../../features/productsSlice';
 import { requestDelay } from '../../constants/constants';
+import { Theme } from '../../enums/Theme';
 
 export const ItemCardPage = () => {
   const location = useLocation();
@@ -44,6 +45,7 @@ export const ItemCardPage = () => {
   }, [itemId, products]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentProduct, setCurrentProduct] = useState<ProductInfo | null>(null);
+  const isDark = useAppSelector(state => state.themeReducer) === Theme.Dark;
 
   useEffect(() => {
     wait(requestDelay)
@@ -161,8 +163,13 @@ export const ItemCardPage = () => {
             ? (
               <>
                 <p className="item-card-page__actual-price h2">{`$${priceDiscount}`}</p>
+
                 {priceRegular !== priceDiscount && (
-                  <p className="item-card-page__full-price h3">{`$${priceRegular}`}</p>
+                  <p className={cn('item-card-page__full-price h3', {
+                    'item-card-page__full-price--dark': isDark,
+                  })}>
+                    {`$${priceRegular}`}
+                  </p>
                 )}
               </>
             )

@@ -1,12 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React, { useCallback, useRef } from 'react';
+import cn from 'classnames';
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 import { Link } from 'react-router-dom';
 import 'aos/dist/aos.css';
 import Skeleton from 'react-loading-skeleton';
 import { Promo } from '../../types/Promo';
+
 
 import 'react-loading-skeleton/dist/skeleton.css';
 import 'swiper/css/pagination';
@@ -16,6 +18,8 @@ import { useResize } from '../../hooks/useResize';
 import { tabletWidth } from '../../constants/constants';
 import { animDuration } from '../../styles/utils/AOS';
 import { getPagination } from './promoSliderUtils';
+import { Theme } from '../../enums/Theme';
+import { useAppSelector } from '../../app/hooks';
 
 
 interface Props {
@@ -23,6 +27,8 @@ interface Props {
 }
 
 export const PromoSlider: React.FC<Props> = React.memo(({ promos }) => {
+  const isDark = useAppSelector(state => state.themeReducer) === Theme.Dark;
+
   const [windowWidth] = useResize();
   const swiperRef = useRef<SwiperRef>(null);
 
@@ -55,12 +61,16 @@ export const PromoSlider: React.FC<Props> = React.memo(({ promos }) => {
             data-aos-duration={animDuration}
             type="button"
             onClick={handlePrev}
-            className="promo-swiper__prev-button button--arrow-left"
+            className={cn('promo-swiper__prev-button button--arrow-left', {
+              'promo-swiper__prev-button--dark': isDark,
+              'button--arrow-left--dark': isDark,
+            })}
           />
         )
         : (
           <Skeleton className="promo-swiper__button-skeleton" />
         )}
+
       <div className="promo-swiper__wrapper">
         {promos
           ? (<Swiper
@@ -69,7 +79,7 @@ export const PromoSlider: React.FC<Props> = React.memo(({ promos }) => {
             loop
             autoplay
             ref={swiperRef}
-            pagination={getPagination()}
+            pagination={getPagination(isDark)}
             modules={[Pagination, Autoplay]}
             className="promo-swiper__swiper">
             {promos.map((promo) => (
@@ -99,7 +109,10 @@ export const PromoSlider: React.FC<Props> = React.memo(({ promos }) => {
             data-aos-duration={animDuration}
             type="button"
             onClick={handleNext}
-            className="promo-swiper__next-button button--arrow-right"
+            className={cn('promo-swiper__prev-button button--arrow-right', {
+              'promo-swiper__prev-button--dark': isDark,
+              'button--arrow-right--dark': isDark,
+            })}
           />
         )
         : (

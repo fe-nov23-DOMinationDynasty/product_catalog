@@ -5,6 +5,8 @@ import '../../styles/blocks/button.scss';
 import './Pagination.scss';
 import { SearchLink } from '../SearchLink';
 import { getPaginationPages } from '../../services/getPaginationPages';
+import { useAppSelector } from '../../app/hooks';
+import { Theme } from '../../enums/Theme';
 
 interface Props {
   amountOfPages: number;
@@ -23,6 +25,7 @@ export const Pagination: React.FC<Props> = ({
     amountOfPages,
     amountOfVisiblePages
   );
+  const isDark = useAppSelector(state => state.themeReducer) === Theme.Dark;
 
   return (
     <section className="pagination">
@@ -31,6 +34,9 @@ export const Pagination: React.FC<Props> = ({
         className={cn('button button--arrow-left', {
           'button--disabled button--arrow-left--disabled':
             currentPageNumber === 1,
+          'button--disabled--dark button--arrow-left--disabled--dark':
+            currentPageNumber === 1 && isDark,
+          'button--dark button--arrow-left--dark': isDark,
         })}
       />
 
@@ -48,6 +54,9 @@ export const Pagination: React.FC<Props> = ({
               }}
               className={cn('button pagination__item', {
                 'pagination__item--selected': pageNumber === currentPageNumber,
+                'button--dark pagination__item--dark': isDark,
+                // eslint-disable-next-line max-len
+                'pagination__item--selected--dark': pageNumber === currentPageNumber && isDark,
               })}
             >
               {pageNumber}
@@ -61,6 +70,9 @@ export const Pagination: React.FC<Props> = ({
         className={cn('button button--arrow-right', {
           'button--disabled button--arrow-right--disabled':
             currentPageNumber === amountOfPages,
+          'button--disabled--dark button--arrow-right--disabled--dark':
+            currentPageNumber === amountOfPages && isDark,
+          'button--dark button--arrow-right--dark': isDark,
         })}
       />
     </section>

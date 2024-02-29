@@ -21,44 +21,7 @@ $button-border-primary: 1px solid $primary-color;
 
   background-color: $white-color;
 
-  &--arrow-left {
-    background-image: url(../icons/arrow-left.svg);
-
-    &--disabled {
-      background-image: url(../icons/arrow-left-disabled.svg);
-      cursor: default;
-      pointer-events: none;
-    }
-  }
-
-  &--arrow-right {
-    background-image: url(../icons/arrow-right.svg);
-
-    &--disabled {
-      background-image: url(../icons/arrow-right-disabled.svg);
-      cursor: default;
-      pointer-events: none;
-    }
-  }
-
-  &--minus {
-    background-image: url(../icons/minus.svg);
-
-    &--disabled {
-      background-image: url(../icons/minus-disabled.svg);
-      border: $button-border;
-      cursor: default;
-      pointer-events: none;
-    }
-  }
-
-  &--plus {
-    background-image: url(../icons/plus.svg);
-  }
-
-  &--top {
-    background-image: url(../icons/go-top.svg);
-  }
+  @include hoverEffect(border, $button-border-primary);
 
   &--disabled {
     cursor: default;
@@ -66,9 +29,88 @@ $button-border-primary: 1px solid $primary-color;
     border: $button-border;
   }
 
-  @include onDesktop {
-    &:hover {
-      border: $button-border-primary;
+  &--dark {
+    border: none;
+    background-color: $surface-secondary-dark-theme-color;
+
+    @include hoverEffect(background-color, $icons-dark-theme-color);
+    @include hoverEffect(border, 1px solid $surface-secondary-dark-theme-color);
+  }
+
+  &--arrow-left {
+    background-image: url(../icons/arrow-left.svg);
+
+    &--dark {
+      background-image: url(../icons/arrow-left-white.svg);
+    }
+
+    &--disabled {
+      background-image: url(../icons/arrow-left-disabled.svg);
+      cursor: default;
+      pointer-events: none;
+
+      &--dark {
+        border: 1px solid $elements-dark-theme-color;
+        background-image: url(../icons/arrow-left-disabled-dark.svg);
+        background-color: $dark-theme-background-color;
+      }
+    }
+  }
+
+  &--arrow-right {
+    background-image: url(../icons/arrow-right.svg);
+
+    &--dark {
+      background-image: url(../icons/arrow-right-white.svg);
+    }
+
+    &--disabled {
+      background-image: url(../icons/arrow-right-disabled.svg);
+      cursor: default;
+      pointer-events: none;
+
+      &--dark {
+        border: 1px solid $elements-dark-theme-color;
+        background-image: url(../icons/arrow-right-disabled-dark.svg);
+        background-color: $dark-theme-background-color;
+      }
+    }
+  }
+
+  &--minus {
+    background-image: url(../icons/minus.svg);
+
+    &--dark {
+      background-image: url(../icons/minus-dark.svg);
+    }
+
+    &--disabled {
+      background-image: url(../icons/minus-disabled.svg);
+      border: $button-border;
+      cursor: default;
+      pointer-events: none;
+
+      &--dark {
+        border: 1px solid $elements-dark-theme-color;
+        background-color: $dark-theme-background-color;
+        background-image: url(../icons/minus-disabled-dark.svg);
+      }
+    }
+  }
+
+  &--plus {
+    background-image: url(../icons/plus.svg);
+
+    &--dark {
+      background-image: url(../icons/plus-dark.svg);
+    }
+  }
+
+  &--top {
+    background-image: url(../icons/go-top.svg);
+
+    &--dark {
+      background-image: url(../icons/go-top-dark.svg);
     }
   }
 
@@ -91,6 +133,16 @@ $button-border-primary: 1px solid $primary-color;
       font-size: 14px;
     }
 
+    &--dark {
+      background-color: $accent-dark-theme-color;
+
+      &:hover {
+        border: none;
+      }
+
+      @include hoverEffect(background-color, $accent-dark-hover);
+    }
+
     &--selected {
       color: $green-color;
       border: $button-border;
@@ -100,6 +152,20 @@ $button-border-primary: 1px solid $primary-color;
         &:hover {
           border: $button-border;
           box-shadow: 0 3px 13px 0 $hover-button-shadow-color;
+        }
+      }
+
+      &--dark {
+        border: none;
+        color: $dark-primary-color;
+        background-color: $surface-secondary-dark-theme-color;
+
+        @include onDesktop {
+          &:hover {
+            border: none;
+            background-color: $surface-secondary-dark-theme-color;
+            box-shadow: 0 3px 13px 0 $hover-button-shadow-color;
+          }
         }
       }
     }
@@ -115,8 +181,21 @@ $button-border-primary: 1px solid $primary-color;
     height: 40px;
     background-image: url('../icons/buttons/icon-favourites.svg');
 
+    &--dark {
+      border: 1px solid $surface-secondary-dark-theme-color;
+      background-color: $surface-secondary-dark-theme-color;
+      background-image: url('../icons/buttons/icon-favourites-dark.svg');
+
+      @include hoverEffect(background-color, $icons-dark-theme-color);
+    }
+
     &--selected {
       background-image: url('../icons/buttons/icon-favourites-selected.svg');
+
+      &--dark {
+        border: 1px solid $elements-dark-theme-color;
+        background-color: $surface-primary-dark-theme-color;
+      }
     }
   }
 }
@@ -136,11 +215,22 @@ $button-border-primary: 1px solid $primary-color;
     border-radius: 0
   }
 
+  &--dark {
+    border: 1px solid $icons-dark-theme-color;
+    color: $dark-primary-color;
+  }
+
   &--color-picker {
     @include hoverEffect(border, 1px solid $icons-color);
 
     padding: 0;
     border-radius: 50%;
+
+    &--dark {
+      border: 1px solid $elements-dark-theme-color;
+
+      @include hoverEffect(border, 1px solid $secondary-text-dark-theme-color);
+    }
 
     &--selected {
       border: $button-border-primary;
@@ -158,13 +248,18 @@ $button-border-primary: 1px solid $primary-color;
     background-color: $primary-color;
     color: $white-color;
     border: $button-border-primary;
+
+    &--dark {
+      color: $dark-theme-background-color;
+      background-color: $dark-primary-color;
+    }
   }
 
   &__item {
     &--color-picker {
       height: 30px;
       width: 30px;
-      border: 2px solid $white-color;
+      border: 2px solid var(--background-color);
       border-radius: 50%;
     }
   }

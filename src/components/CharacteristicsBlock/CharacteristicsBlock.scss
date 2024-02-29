@@ -7,6 +7,10 @@
     justify-content: space-between;
     padding-bottom: 8px;
     color: $icons-color;
+
+    &--dark {
+      color: $secondary-text-dark-theme-color;
+    }
   }
 
   &__subtitle-skeleton {
@@ -31,7 +35,7 @@
     width: 60px;
     border-radius: 0;
 
-  &--round {
+    &--round {
       width: 30px;
       height: 30px;
     }

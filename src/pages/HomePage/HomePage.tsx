@@ -1,6 +1,9 @@
+/* eslint-disable max-len */
 import { useEffect, useMemo, useState } from 'react';
 import './HomePage.scss';
 import '../../styles/utils/text-styles.scss';
+import '../../styles/utils/dark-theme.scss';
+
 import { PromoSlider } from '../../components/PromoSilder';
 import { RecommendsSlider } from '../../components/RecommendsSlider';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
@@ -59,6 +62,7 @@ export const HomePage = () => {
         <PromoSlider
           promos={promos}
         />
+
         <RecommendsSlider
           title="Brand new models"
           products={newModelsProducts}

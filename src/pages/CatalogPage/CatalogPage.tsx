@@ -145,6 +145,7 @@ export const CatalogPage = () => {
             </h1>
             {categoryProducts.length
               ? (
+
                 <p className="catalog-page__amount-products">
                   {categoryProducts.length} models
                 </p>)
@@ -160,6 +161,7 @@ export const CatalogPage = () => {
                 <span className="catalog-page__dropdown-title small-text">
                   Sort by
                 </span>
+
                 <Dropdown
                   onSelected={handleSortParamsChanged}
                   options={Object.keys(SortOptions)
@@ -167,10 +169,12 @@ export const CatalogPage = () => {
                   selectedOption={getSelectedSortOption(sortOption)}
                 />
               </div>
+
               <div className="catalog-page__items-per-page-dropdown">
                 <span className="catalog-page__dropdown-title small-text">
                   Items on page
                 </span>
+
                 <Dropdown
                   onSelected={handleItemsPerPageChanged}
                   options={itemsPerPageOptions}

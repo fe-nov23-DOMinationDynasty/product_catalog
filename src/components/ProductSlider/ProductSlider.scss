@@ -68,7 +68,7 @@
     padding: 3.5px;
 
     box-sizing: border-box;
-    border: 1px solid $elements-color;
+    border: 1px solid var(--elements-color);
     transition: transform $transition-duration,
       border $transition-duration;
 

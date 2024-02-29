@@ -9,8 +9,8 @@
   z-index: 10;
 
   display: flex;
-  background-color: $white-color;
-  border-bottom: 1px solid $elements-color;
+  border-bottom: 1px solid var(--elements-color);
+  background-color: var(--background-color);
 
   @include onDesktop {
     margin-bottom: 64px;
@@ -48,19 +48,19 @@
       font-size: 12px;
       line-height: 11px;
       font-weight: 700;
-      color: $secondary-color;
+      color: var(--secondary-text-color);
 
     }
 
     &-list-item:hover {
-      color: $primary-color;
+      color: var(--hover-color);
       font-weight: 700;
     }
 
     &-link {
       display: flex;
       align-items: center;
-      color: $secondary-color;
+      color: var(--secondary-text-color);
       text-decoration: none;
       text-transform: uppercase;
       transition: color $transition-duration;
@@ -73,8 +73,9 @@
         height: 64px;
       }
     }
+
     &-link:hover {
-      color: $primary-color;
+      color: var(--hover-color);
     }
   }
 
@@ -108,7 +109,7 @@
     box-sizing: border-box;
 
     @include onTablet {
-      border-left: 1px solid $elements-color;
+      border-left: 1px solid var(--elements-color);
       display: flex;
       align-items: center;
       padding: 16px;
@@ -119,7 +120,7 @@
     }
 
     &:not(:first-child) {
-      border-right: 1px solid $elements-color;
+      border-right: 1px solid var(--elements-color);
     }
 
     &--is-active {
@@ -144,52 +145,13 @@
 
   &__button--is-active::after {
     content: '';
-    background: $primary-color;
+    background: var(--primary-text-color);
     width: 100%;
     height: 3px;
     display: block;
     position: absolute;
     left: 0;
     bottom: 0;
-  }
-
-  &__input-block {
-    position: relative;
-    display: flex;
-    align-items: center;
-  }
-
-  &__input {
-    display: none;
-
-    @include onDesktop{
-      height: 100%;
-      color: $primary-color;
-      font-weight: 600;
-      font-size: 14px;
-      display: block;
-      width: 327px;
-      padding: 0 24px;
-      border: none;
-      border-left: 1px solid $elements-color;
-    }
-  }
-
-  &__input:focus {
-    outline: none;
-    background-color: $hover-background-color;
-  }
-
-  &__input::placeholder {
-    color: $icons-color;
-    font-weight: 600;
-    font-size: 14px;
-  }
-
-  &__search-icon {
-    position: absolute;
-    transform: translateX(2200%);
-    pointer-events: all;
   }
 
   &__burger-menu {
@@ -202,7 +164,7 @@
 
   &__burger-button {
     box-sizing: border-box;
-    border-left: 1px solid $elements-color;
+    border-left: 1px solid var(--elements-color);
     display: flex;
     align-items: center;
     padding: 16px;
@@ -211,12 +173,12 @@
 
 .is-active {
   position: relative;
-  color: $primary-color;
+  color: var(--primary-text-color);
 }
 
 .is-active::after {
   content: '';
-  background: $primary-color;
+  background: var(--primary-text-color);
   width: 100%;
   height: 3px;
   display: block;
@@ -231,7 +193,7 @@
   top: 0;
   right: 0;
   left: 0;
-  background-color: $white-color;
+  background-color: var(--background-color);
 
   &--pre-animation {
     transition: all $transition-slow-duration;
@@ -251,7 +213,7 @@
   &__top {
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid $elements-color;
+    border-bottom: 1px solid var(--elements-color);
     margin-bottom: 24px;
   }
 
@@ -264,7 +226,7 @@
     align-items: center;
     padding: 16px;
     box-sizing: border-box;
-    border-left: 1px solid $elements-color;
+    border-left: 1px solid var(--elements-color);
   }
 
   &__main {
@@ -296,14 +258,14 @@
     display: flex;
     align-items: center;
     height: 27px;
-    color: $secondary-color;
+    color: var(--secondary-text-color);
     text-decoration: none;
     text-transform: uppercase;
     transition: color $transition-duration;
   }
 
   &__nav_link:hover {
-    color: $primary-color;
+    color: var(--hover-color);
   }
 
   &--is-active {
@@ -329,7 +291,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border-top: 2px solid $elements-color;
+    border-top: 2px solid var(--elements-color);
   }
 
   &__button {
@@ -346,7 +308,7 @@
 
   &__button--is-active::after {
     content: '';
-    background: $primary-color;
+    background: var(--primary-text-color);
     width: 100%;
     height: 2px;
     display: block;
@@ -354,10 +316,9 @@
     top: 0;
     left: 0;
     right: 0;
-
   }
 
   &__button:not(:last-child) {
-    border-right: 2px solid $elements-color;
+    border-right: 2px solid var(--elements-color);
   }
 }
