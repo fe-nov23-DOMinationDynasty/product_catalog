@@ -44,7 +44,8 @@ export const Header = () => {
               <li className="header__nav-list-item">
                 <NavLink
                   to="/"
-                  className={handleIsActive('header__nav-link', 'is-active')}>
+                  className={handleIsActive('header__nav-link', 'is-active')}
+                >
                   Home
                 </NavLink>
               </li>
@@ -96,7 +97,9 @@ export const Header = () => {
             >
               <div className="header__icon-wrapper">
                 <Icon
-                  pathImage="./logos/favourites.svg"
+                  pathImage={isDark
+                    ? './logos/favourites-dark.svg'
+                    : './logos/favourites.svg'}
                   counter={favouriteProducts.length}
                 />
               </div>
@@ -109,7 +112,9 @@ export const Header = () => {
             >
               <div className="header__icon-wrapper">
                 <Icon
-                  pathImage="./logos/shopping-bag.svg"
+                  pathImage={isDark
+                    ? './logos/shopping-bag-dark.svg'
+                    : './logos/shopping-bag.svg'}
                   counter={cartItems.length}
                 />
               </div>
@@ -123,7 +128,12 @@ export const Header = () => {
                 setOpenBurger(true);
               }}
               className="header__burger-button">
-              <img src="./logos/burger-menu.svg" alt="logoShoppingBag" />
+              <img
+                src={isDark
+                  ? './logos/burger-menu-dark.svg'
+                  : './logos/burger-menu.svg'}
+                alt="logoShoppingBag"
+              />
             </button>
           </div>
         </nav>

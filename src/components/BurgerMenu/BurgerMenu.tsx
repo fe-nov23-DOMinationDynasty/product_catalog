@@ -3,6 +3,8 @@ import { NavLink } from 'react-router-dom';
 import { useEffect } from 'react';
 import { LogoLink } from '../LogoLink';
 import { handleIsActive } from '../Header/utils';
+import { useAppSelector } from '../../app/hooks';
+import { Theme } from '../../enums/Theme';
 
 
 type Props = {
@@ -16,6 +18,8 @@ export const BurgerMenu: React.FC<Props> = ({
   setCloseBurger,
   location
 }) => {
+  const isDark = useAppSelector(state => state.themeReducer) === Theme.Dark;
+
   useEffect(() => {
     if (openBurger) {
       document.body.style.overflow = "hidden";
@@ -45,7 +49,12 @@ export const BurgerMenu: React.FC<Props> = ({
             setCloseBurger(false);
           }}
           className="burger_menu__close">
-          <img src="./logos/close.svg" alt="layoutLogo" />
+          <img
+            src={isDark
+              ? './logos/close-dark.svg'
+              : './logos/close.svg'}
+            alt="close"
+          />
         </button>
       </div>
 
@@ -126,10 +135,14 @@ export const BurgerMenu: React.FC<Props> = ({
             }
           >
             <img
+              // eslint-disable-next-line no-nested-ternary
               src={location !== '/favourites'
-                ? "./logos/favourites.svg"
-                : "./logos/favourites-selected.svg"}
-              alt="logoFavourite" />
+                ? isDark
+                  ? './logos/favourites-dark.svg'
+                  : './logos/favourites.svg'
+                : './logos/favourites-selected.svg'}
+              alt="logoFavourite"
+            />
           </NavLink>
 
           <NavLink
@@ -143,7 +156,12 @@ export const BurgerMenu: React.FC<Props> = ({
               )
             }
           >
-            <img src="./logos/shopping-bag.svg" alt="logoShoppingBag" />
+            <img
+              src={isDark
+                ? './logos/shopping-bag-dark.svg'
+                : './logos/shopping-bag.svg'}
+              alt="logoShoppingBag"
+            />
           </NavLink>
         </div>
       </div>
