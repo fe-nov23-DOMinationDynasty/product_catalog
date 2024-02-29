@@ -1,20 +1,27 @@
 @import '../../styles/utils/variables';
+@import '../../styles/utils/mixins';
 
 .bread-crumbs {
-  $crumb-size: 16px;
   $crumb-gap: 8px;
+  $crumb-size: 16px;
 
   display: flex;
   gap: $crumb-gap;
 
+
   text-transform: capitalize;
 
   &__crumb {
+    min-width: $crumb-size;
+    flex: 0 0 auto;
     height: $crumb-size;
 
     position: relative;
     display: flex;
     align-items: center;
+    text-overflow: ellipsis;
+
+    color: $primary-color;
 
     color: var(--primary-text-color);
   }
@@ -34,6 +41,8 @@
 
   &__link {
     color: inherit;
+
+    @include textEllipsis;
   }
 
   &__home {

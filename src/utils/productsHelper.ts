@@ -1,8 +1,9 @@
 import { SortOptions } from '../enums/SortOptions';
+import { FilterOptions } from '../types/FilterOptions';
 import { PaginationParams } from '../types/PaginationParams';
 import { Product } from '../types/Product';
 
-const paginateProducts = (
+export const paginateProducts = (
   items: Product[],
   { currentPage, perPage }: PaginationParams
 ) => {
@@ -32,6 +33,15 @@ export const getUnicProducts = (products: Product[]) => {
   }
 
   return unicProducts;
+};
+
+export const filterProducts = (products: Product[], options: FilterOptions) => {
+  if (!options.query) {
+    return [...products];
+  }
+
+  return products
+    .filter(product => product.name.toLowerCase().includes(options.query));
 };
 
 export const sortProducts = (products: Product[], sortOption: SortOptions) => {
@@ -69,14 +79,14 @@ export const sortProducts = (products: Product[], sortOption: SortOptions) => {
 
 export function prepareProducts(
   products: Product[],
-  paginationParams: PaginationParams,
-  sortOption: SortOptions
+  sortOption: SortOptions,
+  filterOptions: FilterOptions
 ): Product[] {
-  const paginatedProducts = paginateProducts(products, paginationParams);
+  const filteredProducts = filterProducts(products, filterOptions);
 
   if (sortOption) {
-    return sortProducts(paginatedProducts, sortOption);
+    return sortProducts(filteredProducts, sortOption);
   }
 
-  return paginatedProducts;
+  return filteredProducts;
 }

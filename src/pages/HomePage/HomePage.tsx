@@ -1,25 +1,26 @@
 /* eslint-disable max-len */
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import './HomePage.scss';
 import '../../styles/utils/text-styles.scss';
 import '../../styles/utils/dark-theme.scss';
 
 import { PromoSlider } from '../../components/PromoSilder';
-import { useResize } from '../../hooks/useResize';
 import { RecommendsSlider } from '../../components/RecommendsSlider';
-import { useAppSelector } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { ShopCategory } from '../../components/ShopCategory';
 
-import { tabletWidth } from '../../constants/constants';
 import { getUnicProducts, sortProducts } from '../../utils/productsHelper';
 import { SortOptions } from '../../enums/SortOptions';
-import {
-  promosMobile,
-  promosTabletAndDesktop
-} from '../../components/PromoSilder/promoSliderUtils';
+import { Promo } from '../../types/Promo';
+import { getPromos } from '../../api/promos';
+import { wait } from '../../utils/fetchClient';
+import { getMockArray } from '../../services/getMockArray';
+import { actions as productsActions } from '../../features/productsSlice';
+import { requestDelay } from '../../constants/constants';
 
 export const HomePage = () => {
-  const [windowWidth] = useResize();
+  const [promos, setPromos] = useState<Promo[] | null>(null);
+  const dispatch = useAppDispatch();
 
   const { products, isLoading } = useAppSelector(
     (state) => state.productsReducer
@@ -32,42 +33,52 @@ export const HomePage = () => {
   }, [products]);
 
   const newModelsProducts = useMemo(() => {
+    if (!products.length) {
+      return getMockArray(4);
+    }
+
     const unicProducts = getUnicProducts(products);
 
     return sortProducts(unicProducts, SortOptions.Newest).slice(0, 16);
   }, [products]);
 
+  useEffect(() => {
+    wait(requestDelay)
+      .then(() => getPromos())
+      .then(setPromos);
+
+    wait(requestDelay)
+      .then(() => dispatch(productsActions.loadProducts()));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <section className="home-page">
-      {!isLoading && (
-        <>
-          <h1 className="h1 home-page__title">
-            Welcome to Nice Gadgets store!
-          </h1>
+      <h1 className="h1 home-page__title">
+        Welcome to Nice Gadgets store!
+      </h1>
 
-          <div className="home-page__content">
-            <PromoSlider
-              promos={
-                windowWidth >= tabletWidth
-                  ? promosTabletAndDesktop
-                  : promosMobile
-              }
-            />
+      <div className="home-page__content">
+        <PromoSlider
+          promos={promos}
+        />
 
-            <RecommendsSlider
-              title="Brand new models"
-              products={newModelsProducts}
-            />
+        <RecommendsSlider
+          title="Brand new models"
+          products={newModelsProducts}
+        />
 
+        {!isLoading && (
+          <>
             <ShopCategory />
 
             <RecommendsSlider
               title="Hot prices"
               products={hotPricesProducts}
             />
-          </div>
-        </>
-      )}
+          </>
+        )}
+      </div>
     </section>
   );
 };

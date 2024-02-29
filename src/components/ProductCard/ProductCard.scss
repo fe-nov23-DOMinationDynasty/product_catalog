@@ -7,10 +7,8 @@ $price-cross-line: 2px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
   padding: 32px;
   height: 100%;
-
   box-sizing: border-box;
   border: 1px solid $elements-color;
 
@@ -27,6 +25,13 @@ $price-cross-line: 2px;
     @include hoverEffect(box-shadow, 0 2px 16px 0 $accent-dark-hover);
   }
 
+  &__title {
+    &--skeleton {
+      height: 10px;
+      width: 100%;
+    }
+  }
+
   &__link {
     display: flex;
     flex-direction: column;
@@ -38,8 +43,13 @@ $price-cross-line: 2px;
   &__image {
     object-fit: contain;
     aspect-ratio: 1 / 1;
-
+    
     @include hoverEffect(scale, $transform-scale);
+
+    &--skeleton {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+    }
   }
 
   &__bottom-part {
@@ -60,8 +70,12 @@ $price-cross-line: 2px;
       bottom: -$spacing-small;
       width: 100%;
       height: 1px;
+      background-color: $elements-color;
+    }
 
-      background-color: var(--elements-color);
+    &--skeleton {
+      height: 30px;
+      width: 100px;
     }
   }
 
@@ -88,12 +102,8 @@ $price-cross-line: 2px;
       height: $price-cross-line;
       background-color: $secondary-color;
       mix-blend-mode: color-dodge;
-    }
 
-    &--dark {
-      color: $secondary-text-dark-theme-color;
-
-      &::before {
+      &--dark {
         background-color: $secondary-text-dark-theme-color;
         mix-blend-mode: difference;
       }
@@ -109,6 +119,11 @@ $price-cross-line: 2px;
   &__characteristic {
     display: flex;
     justify-content: space-between;
+
+    &--skeleton {
+      height: 10px;
+      width: 100%;
+    }
   }
 
   &__characteristic-name {
@@ -124,5 +139,10 @@ $price-cross-line: 2px;
     column-gap: $spacing-small;
     align-items: center;
     justify-content: space-between;
+
+    &--skeleton {
+      width: 100%;
+      height: 40px;
+    }
   }
 }

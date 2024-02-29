@@ -2,7 +2,7 @@ import React from 'react';
 import cn from 'classnames';
 import { Link, useLocation } from 'react-router-dom';
 import './BreadCrumbs.scss';
-import { Crumb } from './Crumb';
+import { Crumb } from '../Crumb/Crumb';
 import { useAppSelector } from '../../app/hooks';
 import { Theme } from '../../enums/Theme';
 

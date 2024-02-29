@@ -5,3 +5,10 @@ export function request<T>(product: string): Promise<T> {
       return data;
     });
 }
+
+export function wait(delay: number) {
+  return new Promise(
+    (resolve) => setTimeout(() => resolve(delay), delay)
+  );
+// eslint-disable-next-line padding-line-between-statements
+};

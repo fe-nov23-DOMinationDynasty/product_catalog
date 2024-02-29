@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import Aos from 'aos';
 import { Outlet } from 'react-router-dom';
 import cn from 'classnames';
 
@@ -6,22 +7,19 @@ import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 
 import './styles/blocks/container.scss';
+
 import './styles/utils/dark-theme.scss';
 import variables from './styles/utils/variables-export.module.scss';
 
-import { useAppDispatch, useAppSelector } from './app/hooks';
-import { actions as productsActions } from './features/productsSlice';
+import { useAppSelector } from './app/hooks';
 import { Theme } from './enums/Theme';
 
 export const App = () => {
   const isDark = useAppSelector(state => state.themeReducer) === Theme.Dark;
 
-  const dispatch = useAppDispatch();
-
   useEffect(() => {
-    dispatch(productsActions.loadProducts());
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    Aos.init();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

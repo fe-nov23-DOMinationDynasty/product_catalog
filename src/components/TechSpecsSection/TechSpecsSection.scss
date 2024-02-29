@@ -24,6 +24,10 @@
     column-gap: $spacing-small;
   }
 
+  &__info-skeleton {
+    height: 21px;
+  }
+
   &__name {
     color: $secondary-color;
   }
