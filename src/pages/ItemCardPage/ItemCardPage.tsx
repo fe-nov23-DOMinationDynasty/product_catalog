@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useMemo, useState } from 'react';
+import cn from 'classnames';
 import 'react-loading-skeleton/dist/skeleton.css';
 import Skeleton from 'react-loading-skeleton';
 
