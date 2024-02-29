@@ -38,15 +38,12 @@ export const CatalogPage = () => {
     (state) => state.productsReducer
   );
   const dropdownsRef = useRef<HTMLDivElement>(null);
-  const [amountOfPages, setAmountOfPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(currentPageNumber);
 
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(productsActions.clear());
-
     wait(requestDelay)
       .then(() => {
         dispatch(productsActions.loadProducts());
@@ -55,7 +52,7 @@ export const CatalogPage = () => {
     return () => {
       dispatch(productsActions.clear());
     };
-  }, [productCategory, currentPageNumber]);
+  }, [productCategory]);
 
   const categoryProducts = useMemo(() => {
     return products?.filter(({ category }) => category === productCategory);
@@ -77,12 +74,6 @@ export const CatalogPage = () => {
   }, [categoryProducts, sortOption, itemsPerPage, currentPageNumber, query]);
 
   useEffect(() => {
-    setAmountOfPages(
-      Math.ceil(categoryProducts?.length as number / +itemsPerPage)
-    );
-  }, [categoryProducts]);
-
-  useEffect(() => {
     setCurrentPage(currentPage);
   }, []);
 
@@ -96,6 +87,8 @@ export const CatalogPage = () => {
       setSearchParams(newParams);
     }
   };
+
+  const amountOfPages = Math.ceil(categoryProducts.length / +itemsPerPage);
 
   const handleSortParamsChanged = (newSortOption: string) => {
     const normalizedSortOption

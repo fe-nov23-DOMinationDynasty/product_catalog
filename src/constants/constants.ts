@@ -2,6 +2,7 @@ export const shownProductCardCharacteristics = ['Screen', 'Capacity', 'RAM'];
 export const tabletWidth = 640;
 export const localStorageFavouritesKey = 'favourites';
 export const localStorageCartKey = 'cart';
+export const localStorageThemeKey = 'theme';
 export const itemsPerPageOptions = ['4', '8', '16', 'all'];
 export const debounceDelay = 700;
 export const requestDelay = 300;
