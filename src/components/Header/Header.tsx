@@ -122,6 +122,17 @@ export const Header = () => {
           </div>
 
           <div className="header__burger-menu">
+            <div className="header__icon-theme">
+              <Classic
+                toggled={isDark}
+                onToggle={handleThemeChanged}
+                style={{
+                  fontSize: '30px',
+                }}
+                className="header__theme-toggler"
+                placeholder={null}
+              />
+            </div>
             <button
               type='button'
               onClick={() => {
