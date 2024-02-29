@@ -43,7 +43,7 @@ $price-cross-line: 2px;
   &__image {
     object-fit: contain;
     aspect-ratio: 1 / 1;
-    
+
     @include hoverEffect(scale, $transform-scale);
 
     &--skeleton {
@@ -102,8 +102,12 @@ $price-cross-line: 2px;
       height: $price-cross-line;
       background-color: $secondary-color;
       mix-blend-mode: color-dodge;
+    }
 
-      &--dark {
+    &--dark {
+      color: $secondary-text-dark-theme-color;
+
+      &::before {
         background-color: $secondary-text-dark-theme-color;
         mix-blend-mode: difference;
       }
