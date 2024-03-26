@@ -4,6 +4,7 @@
 ## Used technologies
 - HTML5
 - BEM
+- SASS
 - React
 - Vite
 - Redux Toolkit
