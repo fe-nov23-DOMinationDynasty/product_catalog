@@ -1,7 +1,7 @@
 - [Design](<https://www.figma.com/file/T5ttF21UnT6RRmCQQaZc6L/Phone-catalog-(V2)-Original?type=design&node-id=15834-1506&mode=design&t=ucHrNk1tUQoe6hb3-0>)
 - [DEMO](<https://product-catalog-prod.vercel.app>)
 
-##Used technologies
+## Used technologies
 - HTML5
 - BEM
 - React
