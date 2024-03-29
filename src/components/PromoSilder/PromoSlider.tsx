@@ -5,7 +5,6 @@ import cn from 'classnames';
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 import { Link } from 'react-router-dom';
-import 'aos/dist/aos.css';
 import Skeleton from 'react-loading-skeleton';
 import { Promo } from '../../types/Promo';
 
@@ -16,7 +15,6 @@ import 'swiper/css';
 import './PromoSlider.scss';
 import { useResize } from '../../hooks/useResize';
 import { tabletWidth } from '../../constants/constants';
-import { animDuration } from '../../styles/utils/AOS';
 import { getPagination } from './promoSliderUtils';
 import { Theme } from '../../enums/Theme';
 import { useAppSelector } from '../../app/hooks';
@@ -57,8 +55,6 @@ export const PromoSlider: React.FC<Props> = React.memo(({ promos }) => {
       {isTablet && promos
         ? (
           <button
-            data-aos="zoom-out"
-            data-aos-duration={animDuration}
             type="button"
             onClick={handlePrev}
             className={cn('promo-swiper__prev-button button--arrow-left', {
@@ -74,8 +70,6 @@ export const PromoSlider: React.FC<Props> = React.memo(({ promos }) => {
       <div className="promo-swiper__wrapper">
         {promos
           ? (<Swiper
-            data-aos="zoom-out"
-            data-aos-duration={animDuration}
             loop
             autoplay
             ref={swiperRef}
@@ -105,8 +99,6 @@ export const PromoSlider: React.FC<Props> = React.memo(({ promos }) => {
       {isTablet && promos
         ? (
           <button
-            data-aos="zoom-out"
-            data-aos-duration={animDuration}
             type="button"
             onClick={handleNext}
             className={cn('promo-swiper__prev-button button--arrow-right', {

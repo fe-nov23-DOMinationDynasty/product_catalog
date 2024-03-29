@@ -39,11 +39,13 @@
   }
 
   &__link {
-    color: $dark-primary-color;
+    color: $secondary-color;
 
     @include hoverEffect(color, $primary-color);
 
     &--dark {
+      color: $dark-primary-color;
+      
       @include hoverEffect(color, $accent-dark-hover);
     }
   }

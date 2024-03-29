@@ -20,6 +20,7 @@ import { requestDelay } from '../../constants/constants';
 
 export const HomePage = () => {
   const [promos, setPromos] = useState<Promo[] | null>(null);
+  const theme = useAppSelector(state => state.themeReducer);
   const dispatch = useAppDispatch();
 
   const { products, isLoading } = useAppSelector(
@@ -60,6 +61,7 @@ export const HomePage = () => {
 
       <div className="home-page__content">
         <PromoSlider
+          key={theme}
           promos={promos}
         />
 

@@ -5,7 +5,8 @@ import '../BreadCrumbs/BreadCrumbs.scss';
 interface Props {
   location: string,
 };
-
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
 export const Crumb: React.FC<Props> = ({ location }) => {
   let currentLink = '';
 

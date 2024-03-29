@@ -4,6 +4,8 @@
 .item-card-page {
   @include pageGrid;
 
+  overflow: hidden;
+
   &__header {
     grid-column: 1 / -1;
   }

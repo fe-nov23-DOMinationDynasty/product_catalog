@@ -1,5 +1,4 @@
 [
-  {"image": "./promos/promo-image-tablet-desktop.webp", "link": "phones/apple-iphone-14-pro-1tb-spaceblack"},
   {"image": "./promos/banner-phones.webp", "link": "phones"},
   {"image": "./promos/banner-tablets.webp", "link": "tablets"},
   {"image": "./promos/banner-accessories.webp", "link": "accessories"}
