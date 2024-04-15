@@ -1,4 +1,10 @@
 - [Design](<https://www.figma.com/file/T5ttF21UnT6RRmCQQaZc6L/Phone-catalog-(V2)-Original?type=design&node-id=15834-1506&mode=design&t=ucHrNk1tUQoe6hb3-0>)
+- [Demo](<https://product-catalog-prod.vercel.app>)
+
+Apple store with home, catalog, favourites, cart and product pages. You're able to customize product and add it to favourites or cart.
+
+##Used technologies: 
+- HTML5, BEM, React, Vite, SASS, Redux Toolkit, TypeScript
 
 ## Available Scripts
 
