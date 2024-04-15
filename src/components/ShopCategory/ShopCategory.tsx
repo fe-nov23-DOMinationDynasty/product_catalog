@@ -21,7 +21,7 @@ export const ShopCategory: React.FC = () => {
         {categories.map((category) => (
           <Link
             className="category"
-            to={`catalog/${category}`}
+            to={`${category}`}
             key={category}
             data-aos="zoom-out"
             data-aos-anchor-placement="top-bottom"
