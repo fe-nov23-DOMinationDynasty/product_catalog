@@ -3,7 +3,7 @@
 
 Apple store with home, catalog, favourites, cart and product pages. You're able to customize product and add it to favourites or cart.
 
-##Used technologies: 
+## Used technologies: 
 - HTML5, BEM, React, Vite, SASS, Redux Toolkit, TypeScript
 
 ## Available Scripts
